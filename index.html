@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>CARS24 Influencer Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --blue:#4736FE;--blue-d:#3628e0;--blue-l:#ede9ff;--blue-50:#f5f3ff;
+  --mint:#00d4a1;--mint-l:#e0faf4;
+  --g50:#f9fafb;--g100:#f3f4f6;--g200:#e5e7eb;--g300:#d1d5db;
+  --g400:#9ca3af;--g500:#6b7280;--g600:#4b5563;--g700:#374151;--g800:#1f2937;--g900:#111827;
+  --red:#ef4444;--redl:#fee2e2;--or:#f97316;--orl:#fff7ed;
+  --grn:#22c55e;--grnl:#dcfce7;--ylw:#eab308;--ylwl:#fefce8;
+  --pur:#8b5cf6;--pink:#ec4899;
+  --r:14px;--rs:8px;--rx:6px;
+  --sh:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.05);
+  --shm:0 4px 20px rgba(0,0,0,.1);--shl:0 10px 40px rgba(0,0,0,.15);
+}
+body{font-family:'Geist',system-ui,-apple-system,sans-serif;background:var(--g50);color:var(--g800);min-height:100vh;font-size:13px}
+::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar-thumb{background:var(--g300);border-radius:99px}
+
+/* Header */
+.hdr{background:#fff;border-bottom:1px solid var(--g200);padding:0 24px;height:54px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;box-shadow:var(--sh)}
+.hbrand{display:flex;align-items:center;gap:10px}
+.hlogo{background:var(--blue);color:#fff;font-weight:800;font-size:13px;padding:5px 10px;border-radius:var(--rs);letter-spacing:.5px}
+.htitle{font-weight:700;font-size:14px;color:var(--g900)}
+.hright{display:flex;align-items:center;gap:8px}
+
+/* Tabs */
+.tabs{background:#fff;border-bottom:1px solid var(--g200);padding:0 24px;display:flex;overflow-x:auto;position:sticky;top:54px;z-index:199}
+.tb{padding:13px 18px;font-size:12.5px;font-weight:600;color:var(--g500);border:none;background:none;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;white-space:nowrap;transition:all .15s;font-family:inherit;display:flex;align-items:center;gap:6px}
+.tb:hover{color:var(--g800)}
+.tb.on{color:var(--blue);border-bottom-color:var(--blue)}
+
+/* Main */
+.main{max-width:1680px;margin:0 auto;padding:20px 24px}
+.tc{display:none}.tc.on{display:block}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border-radius:var(--rs);font-family:inherit;font-size:12.5px;font-weight:600;cursor:pointer;border:none;transition:all .15s;white-space:nowrap;text-decoration:none;line-height:1}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn-blue{background:var(--blue);color:#fff}.btn-blue:hover:not(:disabled){background:var(--blue-d)}
+.btn-gh{background:transparent;color:var(--g600);border:1px solid var(--g200)}.btn-gh:hover:not(:disabled){background:var(--g100)}
+.btn-mint{background:var(--mint);color:#fff}.btn-mint:hover:not(:disabled){background:#00b88b}
+.btn-grn{background:var(--grn);color:#fff}.btn-grn:hover:not(:disabled){background:#16a34a}
+.btn-sm{padding:5px 10px;font-size:11.5px}
+.btn-xs{padding:3px 8px;font-size:11px}
+
+/* Setup panel */
+#setup{background:linear-gradient(135deg,var(--blue) 0%,#7c6bff 100%);color:#fff;border-radius:var(--r);padding:24px 28px;margin-bottom:20px;display:flex;gap:24px;flex-wrap:wrap}
+#setup.h{display:none}
+.sc{flex:1;min-width:200px}
+.sl{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:1px;opacity:.7;margin-bottom:5px}
+.st{font-size:16px;font-weight:700;margin-bottom:3px}
+.ss{font-size:11.5px;opacity:.8;margin-bottom:12px;line-height:1.6}
+.si{width:100%;padding:9px 12px;border-radius:var(--rs);border:1.5px solid rgba(255,255,255,.3);background:rgba(255,255,255,.15);color:#fff;font-family:monospace;font-size:12px;outline:none}
+.si::placeholder{color:rgba(255,255,255,.4)}
+.si:focus{border-color:rgba(255,255,255,.8);background:rgba(255,255,255,.2)}
+.ks{font-size:11px;opacity:.8;margin-top:4px;display:block}
+
+/* Upload zone */
+
+/* Recent month strip */
+.rm-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:20px}
+.kpi{background:#fff;border-radius:var(--r);padding:16px 18px;box-shadow:var(--sh);border:1px solid var(--g100);border-left:3px solid var(--blue);position:relative;overflow:hidden}
+.kpi.mint{border-left-color:var(--mint)}.kpi.grn{border-left-color:var(--grn)}
+.kpi.or{border-left-color:var(--or)}.kpi.pur{border-left-color:var(--pur)}
+.kpi-lbl{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--g400);margin-bottom:5px}
+.kpi-val{font-size:22px;font-weight:800;color:var(--g900);line-height:1}
+.kpi-sub{font-size:10.5px;color:var(--g400);margin-top:4px}
+
+/* Section header */
+.sh{font-size:13px;font-weight:700;color:var(--g900);margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.sh-tag{font-size:10.5px;color:var(--g400);font-weight:400}
+
+/* Cards */
+.card{background:#fff;border-radius:var(--r);box-shadow:var(--sh);padding:18px 20px;border:1px solid var(--g100)}
+
+/* Grids */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+@media(max-width:1100px){.g4{grid-template-columns:1fr 1fr}.g3{grid-template-columns:1fr 1fr}}
+@media(max-width:700px){.g2,.g3,.g4{grid-template-columns:1fr}}
+.mb{margin-bottom:16px}
+
+/* Tables */
+.tw{background:#fff;border-radius:var(--r);box-shadow:var(--sh);overflow:hidden;border:1px solid var(--g100)}
+.ts{overflow-x:auto}
+.ts-scroll{overflow-x:auto;max-height:560px;overflow-y:auto}
+table{width:100%;border-collapse:collapse;font-size:12px}
+thead{position:sticky;top:0;z-index:5;background:var(--g50)}
+th{padding:9px 12px;text-align:left;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--g400);border-bottom:1px solid var(--g200);white-space:nowrap;cursor:pointer;user-select:none}
+th:hover{color:var(--g700)}
+th.sa::after{content:' ↑';color:var(--blue)}th.sd::after{content:' ↓';color:var(--blue)}
+td{padding:8px 12px;border-bottom:1px solid var(--g100);vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:var(--g50)}
+tr.sel td{background:var(--blue-50)!important}
+tr.rok td{background:#f0fff8!important;animation:fl .5s ease}
+tr.rerr td{background:#fff5f5!important}
+tr.rspin td{background:#f5f3ff!important}
+@keyframes fl{0%{background:#bbf7d0!important}100%{background:#f0fff8!important}}
+.cn{font-weight:600;color:var(--g900)}
+.cs{font-size:10.5px;color:var(--g400);margin-top:1px}
+.cl{color:var(--blue);text-decoration:none;font-size:10.5px}
+.cl:hover{text-decoration:underline}
+.na{color:var(--g300);font-style:italic}
+
+/* Pills / badges */
+.pill{display:inline-flex;align-items:center;padding:2px 8px;border-radius:99px;font-size:10.5px;font-weight:700;white-space:nowrap}
+.t-nano{background:#fce7f3;color:#9d174d}.t-micro{background:var(--blue-l);color:var(--blue-d)}
+.t-macro{background:#ede9ff;color:#5b21b6}.t-mega{background:#fef3c7;color:#92400e}
+.bdg{display:inline-flex;align-items:center;gap:3px;padding:2px 7px;border-radius:99px;font-size:10.5px;font-weight:600;white-space:nowrap}
+.bl{background:var(--grnl);color:#166534}.bw{background:var(--ylwl);color:#854d0e}
+.buy{background:var(--mint-l);color:#065f46}.sell{background:var(--blue-l);color:var(--blue-d)}
+.tok{background:#fce7f3;color:#9d174d}
+.cpv-g{background:var(--grnl);color:#14532d}.cpv-ok{background:var(--ylwl);color:#713f12}
+.cpv-b{background:var(--redl);color:#991b1b}
+.cpv-chip{display:inline-block;padding:2px 7px;border-radius:99px;font-size:10.5px;font-weight:700}
+
+/* ER bar */
+.erb{display:flex;align-items:center;gap:5px}
+.erb-bg{width:44px;height:4px;background:var(--g200);border-radius:99px;overflow:hidden;flex-shrink:0}
+.erb-fill{height:100%;border-radius:99px;background:var(--blue)}
+.mg{color:var(--grn)}.mo{color:var(--or)}.mb2{color:var(--red)}
+
+/* Chart */
+.cw{position:relative;width:100%;height:240px}
+.cw-lg{height:290px}
+.cw-sm{height:190px}
+
+/* Top performer rows */
+.pr{display:flex;align-items:center;gap:9px;padding:7px 0;border-bottom:1px solid var(--g100)}
+.pr:last-child{border-bottom:none}
+.prk{width:20px;height:20px;border-radius:50%;background:var(--blue);color:#fff;font-size:9.5px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.prk.g{background:#f59e0b}.prk.s{background:#9ca3af}.prk.b{background:#d97706}
+.pri{flex:1;min-width:0}
+.prn{font-weight:600;font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.prs{font-size:10.5px;color:var(--g400)}
+.prv{font-weight:700;font-size:12.5px;color:var(--g800);white-space:nowrap}
+
+/* MoM table highlight */
+.current-month td{background:#f5f3ff!important;font-weight:600}
+
+/* Toolbar */
+.toolbar{display:flex;align-items:center;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.tl{display:flex;align-items:center;gap:8px;flex:1;flex-wrap:wrap}
+.tr2{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.sbox{padding:7px 10px 7px 28px;border:1px solid var(--g200);border-radius:var(--rs);font-family:inherit;font-size:12px;width:200px;outline:none;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='13' height='13' viewBox='0 0 24 24' fill='none' stroke='%239ca3af' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.35-4.35'/%3E%3C/svg%3E") no-repeat 8px center}
+.sbox:focus{border-color:var(--blue)}
+.fsel{padding:6px 9px;border:1px solid var(--g200);border-radius:var(--rs);font-family:inherit;font-size:12px;background:#fff;outline:none;cursor:pointer;color:var(--g700)}
+.fsel:focus{border-color:var(--blue)}
+.sbdg{background:var(--blue-l);color:var(--blue);padding:2px 8px;border-radius:99px;font-size:11px;font-weight:700}
+
+/* Progress */
+.pw{background:#fff;border-radius:var(--r);padding:12px 18px;margin-bottom:14px;box-shadow:var(--sh);display:flex;align-items:center;gap:12px}
+.pw.h{display:none}
+.pb-bg{flex:1;height:6px;background:var(--g200);border-radius:99px;overflow:hidden}
+.pb-fill{height:100%;background:linear-gradient(90deg,var(--blue),var(--mint));border-radius:99px;transition:width .3s}
+.pb-txt{font-size:11.5px;font-weight:600;color:var(--g600);white-space:nowrap}
+
+/* Tier / biz split layout */
+.split-wrap{display:grid;grid-template-columns:1fr 280px;gap:16px;align-items:start}
+@media(max-width:800px){.split-wrap{grid-template-columns:1fr}}
+
+/* Modal */
+.mov{position:fixed;inset:0;background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;z-index:300;padding:20px}
+.mov.h{display:none}
+.mo2{background:#fff;border-radius:var(--r);padding:24px;max-width:580px;width:100%;box-shadow:var(--shl);max-height:88vh;overflow-y:auto}
+.mh{font-size:16px;font-weight:800;margin-bottom:2px}
+.ms{color:var(--g500);font-size:11.5px;margin-bottom:16px}
+.mgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+.mm{background:var(--g50);border-radius:var(--rx);padding:10px 12px}
+.mm label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--g400);display:block;margin-bottom:3px}
+.mm .v{font-size:15px;font-weight:700;color:var(--g900)}
+.mact{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;margin-top:16px}
+.dvdr{height:1px;background:var(--g100);margin:12px 0}
+
+/* Apify guide modal */
+.ag-step{display:flex;gap:12px;margin-bottom:14px;align-items:flex-start}
+.ag-num{width:24px;height:24px;border-radius:50%;background:var(--blue);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.ag-txt{font-size:12.5px;color:var(--g700);line-height:1.6}
+.ag-txt strong{color:var(--g900)}
+.ag-txt code{background:var(--g100);padding:1px 5px;border-radius:4px;font-family:monospace;font-size:11.5px}
+.cost-note{background:var(--mint-l);border:1px solid var(--mint);border-radius:var(--rx);padding:10px 14px;font-size:12px;color:#065f46;margin-top:12px;line-height:1.6}
+
+/* Toast */
+.tc2{position:fixed;bottom:18px;right:18px;z-index:999;display:flex;flex-direction:column;gap:5px}
+.toast{background:var(--g800);color:#fff;padding:10px 14px;border-radius:var(--rs);font-size:12.5px;font-weight:500;box-shadow:var(--shm);animation:sin .2s ease;display:flex;align-items:center;gap:7px;max-width:320px}
+.toast.ok{background:#14532d}.toast.err{background:#991b1b}.toast.info{background:var(--blue)}
+@keyframes sin{from{transform:translateX(20px);opacity:0}to{transform:translateX(0);opacity:1}}
+.h{display:none!important}
+.sp{display:inline-block;width:12px;height:12px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spi .6s linear infinite}
+@keyframes spi{to{transform:rotate(360deg)}}
+.dot{width:6px;height:6px;border-radius:50%;display:inline-block;flex-shrink:0}
+.dg{background:var(--grn)}.dy{animation:py .9s infinite alternate}
+@keyframes py{from{background:var(--ylw)}to{background:var(--or)}}
+.tfoot{padding:9px 16px;color:var(--g400);font-size:11px;border-top:1px solid var(--g100);display:flex;justify-content:space-between;align-items:center}
+
+/* ── Category pills ───────────────────────────────────────────── */
+.cat-automobile{background:#dbeafe;color:#1e40af}
+.cat-finance{background:#d1fae5;color:#065f46}
+.cat-comedy{background:#fce7f3;color:#9d174d}
+.cat-vlogs{background:#ede9ff;color:#5b21b6}
+.cat-infotainment{background:#fef3c7;color:#78350f}
+.cat-lifestyle{background:#f1f5f9;color:#475569}
+
+/* ── Section description ──────────────────────────────────────── */
+.sec-desc{font-size:11.5px;color:var(--g400);margin:-6px 0 14px;line-height:1.5}
+.sec-hdr{margin-bottom:10px}
+.sec-hdr .sh{margin-bottom:4px}
+
+/* ── Overview 2×2 grid ────────────────────────────────────────── */
+.ov-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+@media(max-width:900px){.ov-grid{grid-template-columns:1fr}}
+
+/* ── Enhanced KPI cards ───────────────────────────────────────── */
+.kpi{position:relative;overflow:hidden;transition:box-shadow .2s}
+.kpi:hover{box-shadow:var(--shm)}
+.kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--blue),var(--mint))}
+.kpi.mint::before{background:linear-gradient(90deg,var(--mint),#4736FE)}
+.kpi.grn::before{background:var(--grn)}
+.kpi.or::before{background:var(--or)}
+.kpi.pur::before{background:var(--pur)}
+.kpi-icon{position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:28px;opacity:.08}
+
+/* ── Card enhancements ────────────────────────────────────────── */
+.card{transition:box-shadow .2s}
+.card:hover{box-shadow:var(--shm)}
+.card-accent-blue{border-top:3px solid var(--blue)}
+.card-accent-mint{border-top:3px solid var(--mint)}
+.card-accent-or{border-top:3px solid var(--or)}
+.card-accent-pur{border-top:3px solid var(--pur)}
+
+/* ── Table row hover enhancement ─────────────────────────────── */
+tr:hover td{background:var(--blue-50)!important;transition:background .12s}
+#agency-table tr:hover td{background:var(--blue-50)!important}
+
+/* ── Category matrix table ────────────────────────────────────── */
+.cat-matrix td{text-align:center;font-weight:600;font-size:11.5px;transition:background .15s}
+.cat-matrix th{text-align:center;font-size:10px}
+.cat-matrix th:first-child{text-align:left}
+.cat-matrix td:first-child{text-align:left;font-weight:600;color:var(--g700)}
+.cm-0{color:var(--g300)}
+.cm-auto{background:#eff6ff;color:#1e40af}
+.cm-finance{background:#f0fdf4;color:#14532d}
+.cm-comedy{background:#fdf4ff;color:#701a75}
+.cm-vlogs{background:#f5f3ff;color:#4c1d95}
+.cm-info{background:#fffbeb;color:#78350f}
+.cm-life{background:#f8fafc;color:#475569}
+tr.cm-total td{background:var(--g100)!important;font-weight:700;color:var(--g700);border-top:2px solid var(--g300)!important}
+
+/* ── Rank number enhanced ─────────────────────────────────────── */
+.prk{box-shadow:0 1px 3px rgba(0,0,0,.15)}
+.pr{transition:background .12s;border-radius:6px;padding:7px 6px}
+.pr:hover{background:var(--blue-50)}
+.pr:last-child{border-bottom:none}
+
+/* ── Influencer name with avatar initial ──────────────────────── */
+.av{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--mint));color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;text-transform:uppercase}
+
+/* ── Sort arrow improvements ──────────────────────────────────── */
+th.sa{color:var(--blue)}.th.sd{color:var(--blue)}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="hdr">
+  <div class="hbrand">
+    <div class="hlogo">CARS24</div>
+    <span class="htitle">Influencer Intelligence</span>
+  </div>
+  <div class="hright">
+    <button class="btn btn-gh btn-sm" id="btn-export" onclick="exportCSV()">⬇ Export CSV</button>
+    <button class="btn btn-gh btn-sm" onclick="resetAll()">↺ Reset</button>
+  </div>
+</header>
+
+<!-- Tabs -->
+<nav class="tabs">
+  <button class="tb on" id="tab-ov" onclick="switchTab('ov')">🏠 Overview</button>
+  <button class="tb" id="tab-inf" onclick="switchTab('inf')">👤 Influencers</button>
+  <button class="tb" id="tab-an" onclick="switchTab('an')">📈 Analytics</button>
+</nav>
+
+<main class="main">
+
+
+<!-- ════════ TAB: OVERVIEW ════════ -->
+<div class="tc on" id="tc-ov">
+
+  <!-- Recent month KPIs -->
+  <div class="sh mb" id="rm-head" style="display:none">
+    <span id="rm-title">Recent Month</span>
+    <span class="sh-tag" id="rm-subtitle"></span>
+  </div>
+  <div class="rm-strip mb" id="kpi-strip"></div>
+
+  <!-- 2×2 grid: Top 4 performance lenses -->
+  <div class="ov-grid">
+
+    <!-- Top Videos by Views -->
+    <div>
+      <div class="sec-hdr">
+        <div class="sh" style="margin:0">🎬 Top Videos by Views
+          <select id="tv-month-sel" class="fsel" onchange="renderTopVideosSection()" title="Filter by month" style="font-size:11px;margin-left:8px"></select>
+        </div>
+        <div class="sec-desc">Highest-viewed reels in this campaign — benchmarks for viral potential</div>
+      </div>
+      <div class="card card-accent-blue" style="padding:14px 18px">
+        <div id="top-views-tbl"></div>
+      </div>
+    </div>
+
+    <!-- Lowest CPV -->
+    <div>
+      <div class="sec-hdr">
+        <div class="sh" style="margin:0">💰 Lowest CPV
+          <select id="cpv-month-sel" class="fsel" onchange="renderCPVSection()" title="Filter by month" style="font-size:11px;margin-left:8px"></select>
+        </div>
+        <div class="sec-desc">Most cost-efficient reels — best return on spend across the campaign</div>
+      </div>
+      <div class="card card-accent-mint" style="padding:14px 18px">
+        <div id="low-cpv-tbl"></div>
+      </div>
+    </div>
+
+    <!-- Top Engagement Rate -->
+    <div>
+      <div class="sec-hdr">
+        <div class="sh" style="margin:0">🔥 Top Engagement Rate
+          <select id="er-month-sel" class="fsel" onchange="renderERSection()" title="Filter by month" style="font-size:11px;margin-left:8px"></select>
+        </div>
+        <div class="sec-desc">Highest audience resonance — likes, comments, saves & shares as % of views</div>
+      </div>
+      <div class="card card-accent-or" style="padding:14px 18px">
+        <div id="top-er-tbl"></div>
+      </div>
+    </div>
+
+    <!-- Views / Follower Ratio -->
+    <div>
+      <div class="sec-hdr">
+        <div class="sh" style="margin:0">📡 Views / Follower Ratio
+          <select id="vfr-month-sel" class="fsel" onchange="renderVFRSection()" title="Filter by month" style="font-size:11px;margin-left:8px"></select>
+        </div>
+        <div class="sec-desc">Content reach beyond existing fanbase — signals distribution & discoverability</div>
+      </div>
+      <div class="card card-accent-pur" style="padding:14px 18px">
+        <div id="top-vfr-tbl"></div>
+      </div>
+    </div>
+
+  </div><!-- /ov-grid -->
+
+  <!-- MoM breakdown table -->
+  <div class="mb">
+    <div class="sh">Month-on-Month Breakdown <span class="sh-tag">campaign performance over time</span></div>
+    <div class="sec-desc">Cumulative metrics across all active influencers each month — track spend, reach & engagement trends</div>
+    <div class="tw">
+      <div class="ts">
+        <table id="mom-table">
+          <thead>
+            <tr>
+              <th>Month</th>
+              <th>Creators Live</th>
+              <th>Total Views</th>
+              <th>Total Budget</th>
+              <th>Blended CPV</th>
+              <th>Eng. Rate</th>
+              <th>Total Likes</th>
+              <th>Total Comments</th>
+            </tr>
+          </thead>
+          <tbody id="mom-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tier breakdown -->
+  <div class="mb">
+    <div class="sh">Influencer Tier Breakdown <span class="sh-tag">by follower count</span></div>
+    <div class="sec-desc">Nano &lt;10K · Micro 10K–50K · Macro 50K–500K · Mega &gt;500K — performance averages by audience size</div>
+    <div class="tw"><div class="ts">
+      <table>
+        <thead><tr>
+          <th>Tier</th><th>Count</th><th>Avg Views</th>
+          <th>Avg ER</th><th>Avg CPV</th><th>Total Budget</th>
+        </tr></thead>
+        <tbody id="tier-tbody"></tbody>
+      </table>
+    </div></div>
+  </div>
+
+
+</div><!-- /overview -->
+
+<!-- ════════ TAB: INFLUENCERS ════════ -->
+<div class="tc" id="tc-inf">
+  <div class="toolbar">
+    <div class="tl">
+      <input class="sbox" id="srch" placeholder="Search name, agency…" oninput="applyFilters()"/>
+      <select class="fsel" id="f-month" onchange="applyFilters()"><option value="">All Months</option></select>
+      <select class="fsel" id="f-region" onchange="applyFilters()"><option value="">All Regions</option></select>
+      <select class="fsel" id="f-tier" onchange="applyFilters()">
+        <option value="">All Tiers</option>
+        <option value="Nano">Nano (&lt;10K)</option>
+        <option value="Micro">Micro (10K–50K)</option>
+        <option value="Macro">Macro (50K–500K)</option>
+        <option value="Mega">Mega (&gt;500K)</option>
+      </select>
+      <select class="fsel" id="f-category" onchange="applyFilters()">
+        <option value="">All Categories</option>
+        <option value="Automobile">🚗 Automobile</option>
+        <option value="Lifestyle">✨ Lifestyle</option>
+        <option value="Comedy">😂 Comedy</option>
+        <option value="Vlogs">📹 Vlogs</option>
+        <option value="Finance">💰 Finance</option>
+        <option value="Infotainment">📡 Infotainment</option>
+      </select>
+      <select class="fsel" id="f-status" onchange="applyFilters()">
+        <option value="">All Status</option><option value="Live">Live</option><option value="WIP">WIP</option>
+      </select>
+      <select class="fsel" id="f-sort" onchange="applySort()">
+        <option value="">Sort: Default (Month ↑)</option>
+        <option value="views-desc">Sort: Views (High → Low)</option>
+        <option value="er-desc">Sort: Engagement Rate (High → Low)</option>
+        <option value="cpv-asc">Sort: CPV (Low → High)</option>
+        <option value="cost-desc">Sort: Budget (High → Low)</option>
+      </select>
+    </div>
+    <div class="tr2">
+      <span class="sbdg h" id="sel-bdg">0 selected</span>
+      <button class="btn btn-gh btn-sm" onclick="toggleSelAll()">☑ All</button>
+    </div>
+  </div>
+  <div class="tw">
+    <div class="ts-scroll">
+      <table>
+        <thead><tr>
+          <th style="width:28px"><input type="checkbox" id="cb-all" onclick="toggleSelAll()"/></th>
+          <th onclick="colSort('name')">Influencer</th>
+          <th onclick="colSort('category')">Category</th>
+          <th onclick="colSort('tier')">Tier</th>
+          <th onclick="colSort('liveMonth')">Month</th>
+          <th onclick="colSort('region')">Region</th>
+          <th onclick="colSort('followers')">Followers</th>
+          <th onclick="colSort('views')">Views</th>
+          <th onclick="colSort('likes')">Likes</th>
+          <th onclick="colSort('comments')">Comments</th>
+          <th onclick="colSort('engRate')">Eng. Rate</th>
+          <th onclick="colSort('vfr')">Views/Follower</th>
+          <th onclick="colSort('cpv')">CPV</th>
+          <th onclick="colSort('cost')">Budget</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr></thead>
+        <tbody id="inf-tbody"></tbody>
+      </table>
+    </div>
+    <div class="tfoot">
+      <span>Showing <strong id="showing">0</strong> of <strong id="total">0</strong></span>
+      <span id="tbl-spend"></span>
+    </div>
+  </div>
+</div><!-- /influencers -->
+
+<!-- ════════ TAB: ANALYTICS ════════ -->
+<div class="tc" id="tc-an">
+  <div class="g2 mb">
+    <div class="card card-accent-blue">
+      <div class="sh">Top 10 by Views <span class="sh-tag">actual plays</span></div>
+      <div class="sec-desc">Highest-performing reels by total video play count across the full campaign</div>
+      <div class="cw-lg"><canvas id="c-top10v"></canvas></div>
+    </div>
+    <div class="card card-accent-mint">
+      <div class="sh">Top 10 by Engagement Rate <span class="sh-tag">% of views</span></div>
+      <div class="sec-desc">Reels with highest (likes + comments + saves) relative to total plays</div>
+      <div class="cw-lg"><canvas id="c-top10er"></canvas></div>
+    </div>
+  </div>
+  <div class="g2 mb">
+    <div class="card card-accent-or">
+      <div class="sh">Avg CPV by Month <span class="sh-tag">cost-per-view trend</span></div>
+      <div class="sec-desc">Average cost per view across all live creators each month — lower is better</div>
+      <div class="cw"><canvas id="c-cpv-trend"></canvas></div>
+    </div>
+    <div class="card card-accent-pur">
+      <div class="sh">Engagement Rate by Region <span class="sh-tag">avg %</span></div>
+      <div class="sec-desc">Which geographies drive the highest audience interaction on CARS24 content</div>
+      <div class="cw"><canvas id="c-er-region"></canvas></div>
+    </div>
+  </div>
+  <div class="g2 mb">
+    <div class="card">
+      <div class="sh">Avg Metrics by Tier <span class="sh-tag">ER % vs Avg CPV ₹</span></div>
+      <div class="sec-desc">How different audience-size tiers compare on engagement and cost efficiency</div>
+      <div class="cw"><canvas id="c-tier-m"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="sh">Followers vs Actual Views <span class="sh-tag">reach amplification scatter</span></div>
+      <div class="sec-desc">Each dot is a creator — outliers above the line over-index on reach vs. follower base</div>
+      <div class="cw"><canvas id="c-scatter"></canvas></div>
+    </div>
+  </div>
+  <div class="card mb card-accent-blue">
+    <div class="sh">Agency Performance <span class="sh-tag">creator count · views · CPV · engagement</span></div>
+    <div class="sec-desc">Avg CPV = average of each creator's cost-per-view within that agency</div>
+    <div class="tw"><div class="ts"><table id="agency-table">
+      <thead><tr>
+        <th>Agency</th>
+        <th onclick="agSort('creators')" style="cursor:pointer">Creators <span id="ag-s-creators"></span></th>
+        <th onclick="agSort('views')" style="cursor:pointer">Total Views <span id="ag-s-views">▼</span></th>
+        <th onclick="agSort('cost')" style="cursor:pointer">Total Budget <span id="ag-s-cost"></span></th>
+        <th onclick="agSort('cpv')" style="cursor:pointer">Avg CPV <span id="ag-s-cpv"></span></th>
+        <th onclick="agSort('er')" style="cursor:pointer">Avg Eng. Rate <span id="ag-s-er"></span></th>
+      </tr></thead>
+      <tbody id="agency-tbody"></tbody>
+    </table></div></div>
+  </div>
+
+  <!-- Content Category Matrix -->
+  <div class="card mb card-accent-pur">
+    <div class="sh">Content Category Matrix <span class="sh-tag">influencer count by month × category</span></div>
+    <div class="sec-desc">Number of active influencers per content niche across each campaign month</div>
+    <div class="tw"><div class="ts">
+      <table id="cat-matrix-table" class="cat-matrix">
+        <thead id="cat-matrix-head"></thead>
+        <tbody id="cat-matrix-body"></tbody>
+      </table>
+    </div></div>
+  </div>
+
+</div><!-- /analytics -->
+
+</main>
+
+<!-- Toasts -->
+<div class="tc2" id="tc2"></div>
+
+<!-- Detail Modal -->
+<div class="mov h" id="modal">
+  <div class="mo2">
+    <div class="mh" id="m-name"></div>
+    <div class="ms" id="m-sub"></div>
+    <div class="mgrid" id="m-metrics"></div>
+    <div class="dvdr"></div>
+    <div style="font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--g500);margin-bottom:10px">Rate Analysis</div>
+    <div class="mgrid" id="m-rates"></div>
+    <div class="mact">
+      <a href="#" class="btn btn-gh btn-sm" id="m-link" target="_blank">Open Reel ↗</a>
+      <button class="btn btn-gh btn-sm" onclick="closeModal()">Close</button>
+    </div>
+  </div>
+</div>
+
+
+<script>
+// ═══════════════════════════════════════════════
+//  CONFIG
+// ═══════════════════════════════════════════════
+const SHEET_ID  = '1VBjkdMm5Uhjq-JLmGqRL7aFTbTH3P0c7oRr1LHcN1o0';
+const SHEET_GID = '1928933144';
+const SHEET_CSV = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=${SHEET_GID}`;
+
+const MO = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+const COLORS = ['#4736FE','#00d4a1','#8b5cf6','#f97316','#ec4899','#eab308','#22c55e','#ef4444','#06b6d4','#a78bfa'];
+
+// ═══════════════════════════════════════════════
+//  STATE
+// ═══════════════════════════════════════════════
+let allRows = [], filteredRows = [], selectedIds = new Set();
+let sortCol = 'monthOrder', sortDir = 1;
+let modalRowId = null;
+let charts = {};
+
+// ═══════════════════════════════════════════════
+//  INIT
+// ═══════════════════════════════════════════════
+window.onload = () => {
+  tryLoadLocalJson();
+};
+
+async function tryLoadLocalJson() {
+  try {
+    const res = await fetch('live_data.json?t=' + Date.now());
+    if (!res.ok) return;
+    const data = await res.json();
+    if (!data.rows || !data.rows.length) return;
+    // live_data.json already has processed rows — load directly
+    allRows = data.rows;
+    buildFilters(); applyFilters(); buildOverview();
+    document.getElementById('btn-export').classList.remove('h');
+    document.getElementById('rm-head').style.display = '';
+    const ts = data.refreshedAt ? new Date(data.refreshedAt).toLocaleString('en-IN') : '';
+    toast(`Loaded ${allRows.length} influencers · refreshed ${ts}`, 'ok');
+  } catch(_) { /* file doesn't exist yet — normal on first run */ }
+}
+
+
+function switchTab(name) {
+  document.querySelectorAll('.tc').forEach(t => t.classList.remove('on'));
+  document.querySelectorAll('.tb').forEach(b => b.classList.remove('on'));
+  document.getElementById('tc-' + name).classList.add('on');
+  document.getElementById('tab-' + name).classList.add('on');
+  if (name === 'an' && allRows.length) buildAnalyticsCharts();
+}
+
+
+// ═══════════════════════════════════════════════
+//  CSV PARSE
+// ═══════════════════════════════════════════════
+function parseCSV(text) {
+  const lines = []; let inQ = false, cur = '', row = [];
+  for (let i = 0; i < text.length; i++) {
+    const ch = text[i];
+    if (ch === '"') inQ = !inQ;
+    else if (ch === ',' && !inQ) { row.push(cur.trim()); cur = ''; }
+    else if ((ch === '\n' || ch === '\r') && !inQ) {
+      if (ch === '\r' && text[i+1] === '\n') i++;
+      row.push(cur.trim()); cur = '';
+      if (row.some(c => c)) lines.push(row);
+      row = [];
+    } else cur += ch;
+  }
+  if (row.length) { row.push(cur.trim()); if (row.some(c=>c)) lines.push(row); }
+  return lines;
+}
+
+function cn(s) { if (!s) return null; const n = parseFloat(s.replace(/[^0-9.]/g,'')); return isNaN(n)?null:n; }
+
+// ═══════════════════════════════════════════════
+//  PROCESS ROWS
+// ═══════════════════════════════════════════════
+function processRows(lines) {
+  const hdrs = lines[0].map(h => h.toLowerCase().replace(/[^a-z0-9]/g,'_'));
+
+  // Exact-first column finder
+  const ix = n => {
+    let i = hdrs.findIndex(h => h === n);
+    if (i < 0) i = hdrs.findIndex(h => h.startsWith(n+'_') || h.endsWith('_'+n));
+    if (i < 0) i = hdrs.findIndex(h => h.includes(n));
+    return i >= 0 ? i : -1;
+  };
+  // Name column: must be exactly 'name', not 'agency_name'
+  const nameIdx = (() => {
+    let i = hdrs.findIndex(h => h === 'name');
+    if (i < 0) i = hdrs.findIndex(h => h === 'influencer_name');
+    if (i < 0) i = 2; // positional fallback
+    return i;
+  })();
+
+  const C = {
+    liveMonth: ix('live_month') >= 0 ? ix('live_month') : 0,
+    agency:    ix('agency')    >= 0 ? ix('agency')    : 1,
+    name:      nameIdx,
+    link:      ix('link')      >= 0 ? ix('link')      : 3,
+    region:    ix('region')    >= 0 ? ix('region')    : 4,
+    followers: ix('follower')  >= 0 ? ix('follower')  : 7,
+    avgViews:  ix('avg_view')  >= 0 ? ix('avg_view')  : 8,
+    finalCost: ix('final_cost')>= 0 ? ix('final_cost'): 9,
+    liveStatus:ix('live_status')>=0 ? ix('live_status'): 12,
+    business:  ix('business')  >= 0 ? ix('business')  : 13,
+    videoLink: ix('video_live_link')>=0 ? ix('video_live_link') : 16,
+    views:     ix('views')     >= 0 ? ix('views')     : 17,
+    likes:     ix('likes')     >= 0 ? ix('likes')     : 18,
+    comments:  ix('comments')  >= 0 ? ix('comments')  : 19,
+    shares:    ix('shares')    >= 0 ? ix('shares')    : 20,
+    saves:     ix('saves')     >= 0 ? ix('saves')     : 21,
+    actualCPV: ix('actual_cpv')>= 0 ? ix('actual_cpv'): 22,
+    er:        ix('engagement_rate')>=0 ? ix('engagement_rate') : 23,
+  };
+
+  allRows = [];
+  let id = 0;
+  for (let i = 1; i < lines.length; i++) {
+    const r = lines[i];
+    const name = (r[C.name] || '').trim();
+    if (!name) continue;
+
+    const views    = cn(r[C.views]);
+    const likes    = cn(r[C.likes]);
+    const comments = cn(r[C.comments]);
+    const shares   = cn(r[C.shares]);
+    const saves    = cn(r[C.saves]);
+    const finalCost= cn(r[C.finalCost]);
+    const followers= cn(r[C.followers]);
+    const erRaw    = cn(r[C.er]);
+    const cpvRaw   = cn(r[C.actualCPV]);
+
+    // ER = (likes + shares + comments + saves) / views * 100
+    const eng = (likes||0)+(shares||0)+(comments||0)+(saves||0);
+    const er  = erRaw != null ? erRaw : (views && eng > 0 ? eng/views*100 : null);
+    const cpv = cpvRaw != null ? cpvRaw : (views && finalCost ? finalCost/views : null);
+    const mo  = monthOrder(r[C.liveMonth] || '');
+
+    allRows.push({
+      id: id++,
+      liveMonth: r[C.liveMonth]||'', agency: r[C.agency]||'', name,
+      link: r[C.link]||'', region: r[C.region]||'PAN INDIA',
+      followers, avgViews: cn(r[C.avgViews]), cost: finalCost,
+      liveStatus: r[C.liveStatus]||'', business: r[C.business]||'',
+      videoLink: r[C.videoLink]||'',
+      views, likes, comments, shares, saves,
+      engRate: er, cpv, monthOrder: mo,
+      tier: tierOf(followers),
+      refreshStatus: 'idle',
+    });
+  }
+
+  buildFilters();
+  applyFilters();
+  buildOverview();
+
+  document.getElementById('btn-export').classList.remove('h');
+  document.getElementById('rm-head').style.display = '';
+  toast(`Loaded ${allRows.length} influencers`, 'ok');
+}
+
+// ═══════════════════════════════════════════════
+//  MONTH UTILS
+// ═══════════════════════════════════════════════
+function monthOrder(str) {
+  const s = str.toLowerCase();
+  const mi = MO.findIndex(m => s.includes(m.toLowerCase()));
+  const ym = s.match(/\d{4}/);
+  const yr = ym ? parseInt(ym[0]) : 2025;
+  return yr * 100 + (mi >= 0 ? mi : 0);
+}
+
+function recentMonth() {
+  const live = allRows.filter(r => r.liveStatus.toLowerCase() === 'live' && r.liveMonth);
+  if (!live.length) return null;
+  return live.reduce((a, b) => b.monthOrder > a.monthOrder ? b : a).liveMonth;
+}
+
+// ═══════════════════════════════════════════════
+//  OVERVIEW BUILD
+// ═══════════════════════════════════════════════
+function buildOverview() {
+  const curMonth = recentMonth();
+  const curRows  = curMonth ? allRows.filter(r => r.liveMonth === curMonth && r.liveStatus.toLowerCase() === 'live') : [];
+  const liveAll  = allRows.filter(r => r.liveStatus.toLowerCase() === 'live');
+
+  // KPIs for recent month
+  const rmViews = curRows.reduce((s,r)=>s+(r.views||0),0);
+  const rmSpend = curRows.reduce((s,r)=>s+(r.cost||0),0);
+  const rmCPV   = rmViews && rmSpend ? rmSpend/rmViews : null;
+  const rmEng   = curRows.reduce((s,r)=>s+(r.likes||0)+(r.shares||0)+(r.comments||0)+(r.saves||0),0);
+  const rmER    = rmViews && rmEng ? rmEng/rmViews*100 : null;
+
+  document.getElementById('rm-title').textContent = curMonth || 'Latest Month';
+  document.getElementById('rm-subtitle').textContent = `${curRows.length} creators live`;
+
+  const ICONS = ['📅','👥','👁️','💸','📉','⚡'];
+  document.getElementById('kpi-strip').innerHTML = [
+    {l:'Latest Month', v: curMonth||'—',                  s:'most recent live',          cls:'',    i:'📅'},
+    {l:'Creators Live',v: curRows.length,                  s:'active this month',         cls:'mint', i:'👥'},
+    {l:'Total Views',  v:fmtN(rmViews),                    s:'plays this month',          cls:'grn',  i:'👁️'},
+    {l:'Total Spend',  v:'₹'+fmtN(rmSpend),               s:'campaign budget this month',cls:'or',   i:'💸'},
+    {l:'Avg CPV',      v:rmCPV?'₹'+rmCPV.toFixed(2):'—',  s:'blended cost per view',     cls:'pur',  i:'📉'},
+    {l:'Engagement Rate',v:rmER?rmER.toFixed(2)+'%':'—',  s:'(likes+cmts+saves)/views',  cls:'',     i:'⚡'},
+  ].map(k=>`<div class="kpi ${k.cls}">
+    <div class="kpi-icon">${k.i}</div>
+    <div class="kpi-lbl">${k.l}</div>
+    <div class="kpi-val">${k.v}</div>
+    <div class="kpi-sub">${k.s}</div>
+  </div>`).join('');
+
+  buildTopVideosSection();
+  buildCPVSection();
+  buildERSection();
+  buildVFRSection();
+  buildMoMTable();
+  buildTierTable();
+}
+
+function _topMonths(rows) {
+  return [...new Set(rows.map(r=>r.liveMonth).filter(Boolean))].sort((a,b)=>monthOrder(a)-monthOrder(b));
+}
+function _buildSectionMonths(selId, rows) {
+  const months = _topMonths(rows);
+  const sel = document.getElementById(selId);
+  const cur = sel.value;
+  sel.innerHTML = '<option value="">All Time</option>' + months.map(m=>`<option value="${m}">${m}</option>`).join('');
+  if (cur && months.includes(cur)) sel.value = cur;
+  // default = "All Time" (empty value)
+}
+function buildTopVideosSection() {
+  _buildSectionMonths('tv-month-sel', allRows.filter(r=>r.views));
+  renderTopVideosSection();
+}
+function renderTopVideosSection() {
+  const month = document.getElementById('tv-month-sel').value;
+  const pool = allRows.filter(r=>r.views && (!month || r.liveMonth===month));
+  const top5 = [...pool].sort((a,b)=>b.views-a.views).slice(0,5);
+  document.getElementById('top-views-tbl').innerHTML = top5.length ? top5.map((r,i)=>`
+    <div class="pr">
+      <div class="prk ${i===0?'g':i===1?'s':i===2?'b':''}">${i+1}</div>
+      <div class="pri">
+        <div class="prn">${r.name}</div>
+        <div class="prs">${r.liveMonth||'—'} · ${r.tier}</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <div class="prv">${fmtN(r.views)}</div>
+        ${r.videoLink?`<a href="${r.videoLink}" target="_blank" class="btn btn-gh btn-xs">▶</a>`:''}
+      </div>
+    </div>`).join('') : '<div style="color:var(--g400);font-size:12px;padding:10px 0">No data</div>';
+}
+function buildCPVSection() {
+  _buildSectionMonths('cpv-month-sel', allRows.filter(r=>r.cpv!=null&&r.cpv>0));
+  renderCPVSection();
+}
+function renderCPVSection() {
+  const month = document.getElementById('cpv-month-sel').value;
+  const pool = allRows.filter(r=>r.cpv!=null&&r.cpv>0&&(!month||r.liveMonth===month));
+  const top5 = [...pool].sort((a,b)=>a.cpv-b.cpv).slice(0,5);
+  document.getElementById('low-cpv-tbl').innerHTML = top5.length ? top5.map((r,i)=>`
+    <div class="pr">
+      <div class="prk ${i===0?'g':i===1?'s':i===2?'b':''}">${i+1}</div>
+      <div class="pri">
+        <div class="prn">${r.name}</div>
+        <div class="prs">${fmtN(r.views)} views · ${r.liveMonth||'—'}</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <span class="cpv-chip ${r.cpv<0.1?'cpv-g':r.cpv<0.5?'cpv-ok':'cpv-b'}">₹${r.cpv.toFixed(2)}</span>
+        ${r.videoLink?`<a href="${r.videoLink}" target="_blank" class="btn btn-gh btn-xs">▶</a>`:''}
+      </div>
+    </div>`).join('') : '<div style="color:var(--g400);font-size:12px;padding:10px 0">No data</div>';
+}
+
+// ── Top Engagement Rate section ─────────────────────────────────────────────
+function buildERSection() {
+  _buildSectionMonths('er-month-sel', allRows.filter(r=>r.engRate!=null&&r.engRate<100));
+  renderERSection();
+}
+function renderERSection() {
+  const month = document.getElementById('er-month-sel').value;
+  const pool = allRows.filter(r=>r.engRate!=null&&r.engRate<100&&(!month||r.liveMonth===month));
+  const top5 = [...pool].sort((a,b)=>b.engRate-a.engRate).slice(0,5);
+  document.getElementById('top-er-tbl').innerHTML = top5.length ? top5.map((r,i)=>`
+    <div class="pr">
+      <div class="prk ${i===0?'g':i===1?'s':i===2?'b':''}">${i+1}</div>
+      <div class="pri">
+        <div class="prn">${r.name}</div>
+        <div class="prs">${r.liveMonth||'—'} · ${r.tier}</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <span class="${r.engRate>5?'mg':r.engRate>2?'mo':'mb2'}" style="font-weight:700">${r.engRate.toFixed(2)}%</span>
+        ${r.videoLink?`<a href="${r.videoLink}" target="_blank" class="btn btn-gh btn-xs">▶</a>`:''}
+      </div>
+    </div>`).join('') : '<div style="color:var(--g400);font-size:12px;padding:10px 0">No data</div>';
+}
+
+// ── Top Views/Follower Ratio section ────────────────────────────────────────
+function buildVFRSection() {
+  _buildSectionMonths('vfr-month-sel', allRows.filter(r=>r.views&&r.followers));
+  renderVFRSection();
+}
+function renderVFRSection() {
+  const month = document.getElementById('vfr-month-sel').value;
+  const pool = allRows.filter(r=>r.views&&r.followers&&(!month||r.liveMonth===month))
+                      .map(r=>({...r, vfr: r.views/r.followers}));
+  const top5 = [...pool].sort((a,b)=>b.vfr-a.vfr).slice(0,5);
+  document.getElementById('top-vfr-tbl').innerHTML = top5.length ? top5.map((r,i)=>`
+    <div class="pr">
+      <div class="prk ${i===0?'g':i===1?'s':i===2?'b':''}">${i+1}</div>
+      <div class="pri">
+        <div class="prn">${r.name}</div>
+        <div class="prs">${fmtN(r.views)} views · ${r.liveMonth||'—'}</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <span style="font-weight:700;color:var(--blue)">${r.vfr.toFixed(2)}×</span>
+        ${r.videoLink?`<a href="${r.videoLink}" target="_blank" class="btn btn-gh btn-xs">▶</a>`:''}
+      </div>
+    </div>`).join('') : '<div style="color:var(--g400);font-size:12px;padding:10px 0">No data</div>';
+}
+
+function buildMoMTable() {
+  const map = {};
+  for (const r of allRows) {
+    const m = r.liveMonth; if (!m) continue;
+    if (!map[m]) map[m] = {mo:r.monthOrder, live:0, views:0, cost:0, likes:0, comments:0, erArr:[], cpvArr:[]};
+    if (r.liveStatus.toLowerCase()==='live') map[m].live++;
+    map[m].views    += r.views    || 0;
+    map[m].cost     += r.cost     || 0;
+    map[m].likes    += r.likes    || 0;
+    map[m].comments += r.comments || 0;
+    if (r.engRate != null && r.engRate < 100) map[m].erArr.push(r.engRate);
+    if (r.cpv     != null) map[m].cpvArr.push(r.cpv);
+  }
+  const curMonth = recentMonth();
+  const sorted = Object.entries(map).sort((a,b)=>a[1].mo-b[1].mo);
+
+  const rowHtml = sorted.map(([m, d]) => {
+    const blendedCPV = d.views && d.cost ? d.cost/d.views : null;
+    const totalEng   = d.likes + d.comments;
+    const er         = d.views && totalEng ? totalEng/d.views*100 : null;
+    const cur        = m === curMonth ? ' class="current-month"' : '';
+    return `<tr${cur}>
+      <td style="font-weight:600;white-space:nowrap">${m}${m===curMonth?' <span style="font-size:9px;background:var(--blue);color:#fff;padding:1px 5px;border-radius:99px;vertical-align:middle">latest</span>':''}</td>
+      <td style="font-weight:700">${d.live}</td>
+      <td style="font-weight:700">${fmtN(d.views)}</td>
+      <td>₹${fmtN(d.cost)}</td>
+      <td>${blendedCPV?`<span class="cpv-chip ${blendedCPV<0.1?'cpv-g':blendedCPV<0.5?'cpv-ok':'cpv-b'}">₹${blendedCPV.toFixed(2)}</span>`:'—'}</td>
+      <td>${er?`<span class="${er>5?'mg':er>2?'mo':'mb2'}">${er.toFixed(2)}%</span>`:'—'}</td>
+      <td>${fmtN(d.likes)}</td>
+      <td>${fmtN(d.comments)}</td>
+    </tr>`;
+  }).join('');
+
+  // Totals row
+  const tot = sorted.reduce((acc, [, d]) => {
+    acc.live     += d.live;
+    acc.views    += d.views;
+    acc.cost     += d.cost;
+    acc.likes    += d.likes;
+    acc.comments += d.comments;
+    return acc;
+  }, {live:0, views:0, cost:0, likes:0, comments:0});
+  const totCPV = tot.views && tot.cost ? tot.cost/tot.views : null;
+  const totEng = tot.likes + tot.comments;
+  const totER  = tot.views && totEng ? totEng/tot.views*100 : null;
+  const totalRow = `<tr style="background:var(--blue-l);font-weight:700;border-top:2px solid var(--blue)">
+    <td style="font-weight:800">Total</td>
+    <td>${tot.live}</td>
+    <td>${fmtN(tot.views)}</td>
+    <td>₹${fmtN(tot.cost)}</td>
+    <td>${totCPV?`<span class="cpv-chip ${totCPV<0.1?'cpv-g':totCPV<0.5?'cpv-ok':'cpv-b'}">₹${totCPV.toFixed(2)}</span>`:'—'}</td>
+    <td>${totER?`<span class="${totER>5?'mg':totER>2?'mo':'mb2'}">${totER.toFixed(2)}%</span>`:'—'}</td>
+    <td>${fmtN(tot.likes)}</td>
+    <td>${fmtN(tot.comments)}</td>
+  </tr>`;
+
+  document.getElementById('mom-tbody').innerHTML = rowHtml + totalRow;
+}
+
+function buildTierTable() {
+  const tiers = ['Nano','Micro','Macro','Mega'];
+  const data  = tiers.map(t => {
+    const rows = allRows.filter(r=>r.tier===t);
+    return { t, n:rows.length,
+      avgV: avg(rows.map(r=>r.views).filter(Boolean)),
+      avgER:avg(rows.filter(r=>r.engRate!=null&&r.engRate<100).map(r=>r.engRate)),
+      avgCPV:avg(rows.filter(r=>r.cpv!=null).map(r=>r.cpv)),
+      budget:rows.reduce((s,r)=>s+(r.cost||0),0) };
+  }).filter(d=>d.n>0);
+
+  document.getElementById('tier-tbody').innerHTML = data.map(d=>`<tr>
+    <td><span class="pill t-${d.t.toLowerCase()}">${d.t}</span></td>
+    <td style="font-weight:700">${d.n}</td>
+    <td>${fmtN(Math.round(d.avgV))}</td>
+    <td><span class="${d.avgER>5?'mg':d.avgER>2?'mo':'mb2'}">${d.avgER?d.avgER.toFixed(2)+'%':'—'}</span></td>
+    <td>${d.avgCPV?`<span class="cpv-chip ${d.avgCPV<0.1?'cpv-g':d.avgCPV<0.5?'cpv-ok':'cpv-b'}">₹${d.avgCPV.toFixed(2)}</span>`:'—'}</td>
+    <td>₹${fmtN(d.budget)}</td>
+  </tr>`).join('');
+
+}
+
+
+// ═══════════════════════════════════════════════
+//  FILTERS
+// ═══════════════════════════════════════════════
+function buildFilters() {
+  const months  = [...new Set(allRows.map(r=>r.liveMonth).filter(Boolean))].sort((a,b)=>monthOrder(a)-monthOrder(b));
+  const regions = [...new Set(allRows.map(r=>r.region).filter(Boolean))].sort();
+  const ms = document.getElementById('f-month');
+  ms.innerHTML = '<option value="">All Months</option>';
+  months.forEach(m=>{ const o=document.createElement('option'); o.value=m; o.textContent=m; ms.appendChild(o); });
+  const rs = document.getElementById('f-region');
+  rs.innerHTML = '<option value="">All Regions</option>';
+  regions.forEach(r=>{ const o=document.createElement('option'); o.value=r; o.textContent=r; rs.appendChild(o); });
+}
+
+function applyFilters() {
+  const q   = document.getElementById('srch').value.toLowerCase();
+  const m   = document.getElementById('f-month').value;
+  const reg = document.getElementById('f-region').value;
+  const tier= document.getElementById('f-tier').value;
+  const sta = document.getElementById('f-status').value;
+  const cat = document.getElementById('f-category')?.value || '';
+  filteredRows = allRows.filter(r => {
+    if (q && !`${r.name} ${r.agency} ${r.region}`.toLowerCase().includes(q)) return false;
+    if (m && r.liveMonth !== m) return false;
+    if (reg && r.region !== reg) return false;
+    if (tier && r.tier !== tier) return false;
+    if (cat && r.category !== cat) return false;
+    if (sta && r.liveStatus.toLowerCase() !== sta.toLowerCase()) return false;
+    return true;
+  });
+  applySort();
+}
+
+function applySort() {
+  const v = document.getElementById('f-sort').value;
+  if      (v === 'views-desc') filteredRows.sort((a,b)=>(b.views||0)-(a.views||0));
+  else if (v === 'er-desc')    filteredRows.sort((a,b)=>(b.engRate||0)-(a.engRate||0));
+  else if (v === 'cpv-asc')    filteredRows.sort((a,b)=>(a.cpv||999)-(b.cpv||999));
+  else if (v === 'cost-desc')  filteredRows.sort((a,b)=>(b.cost||0)-(a.cost||0));
+  else                         filteredRows.sort((a,b)=>a.monthOrder-b.monthOrder || a.name.localeCompare(b.name));
+  renderTable();
+  document.getElementById('showing').textContent = filteredRows.length;
+  document.getElementById('total').textContent = allRows.length;
+  const spend = filteredRows.reduce((s,r)=>s+(r.cost||0),0);
+  document.getElementById('tbl-spend').textContent = 'Filtered budget: ₹'+fmtN(spend);
+}
+
+function colSort(col) {
+  // Override sort dropdown and sort by column
+  if (sortCol === col) sortDir *= -1; else { sortCol = col; sortDir = 1; }
+  document.querySelectorAll('#tc-inf th').forEach(th=>th.classList.remove('sa','sd'));
+  const th = [...document.querySelectorAll('#tc-inf th')].find(t=>t.getAttribute('onclick')===`colSort('${col}')`);
+  if (th) th.classList.add(sortDir===1?'sa':'sd');
+  filteredRows.sort((a,b)=>{
+    let va=a[col], vb=b[col];
+    if (col==='vfr') {
+      va = a.followers && a.views ? a.views/a.followers : null;
+      vb = b.followers && b.views ? b.views/b.followers : null;
+    }
+    if (va==null) return 1; if (vb==null) return -1;
+    if (typeof va==='string') {
+      if (col==='liveMonth') return (a.monthOrder-b.monthOrder)*sortDir;
+      return va.localeCompare(vb)*sortDir;
+    }
+    return (va-vb)*sortDir;
+  });
+  renderTable();
+}
+
+// ═══════════════════════════════════════════════
+//  RENDER TABLE
+// ═══════════════════════════════════════════════
+function renderTable() {
+  const tbody = document.getElementById('inf-tbody');
+  if (!filteredRows.length) { tbody.innerHTML=`<tr><td colspan="16" style="text-align:center;padding:32px;color:var(--g400)">No results</td></tr>`; return; }
+  tbody.innerHTML = filteredRows.map(r => {
+    const sel = selectedIds.has(r.id);
+    const rc  = r.refreshStatus==='done'?'rok':r.refreshStatus==='error'?'rerr':'';
+    const cat = r.category || 'Lifestyle';
+    const catKey = cat.toLowerCase();
+    return `<tr class="${rc}${sel?' sel':''}" id="row-${r.id}">
+      <td><input type="checkbox" ${sel?'checked':''} onchange="toggleRow(${r.id})"/></td>
+      <td>
+        <div class="cn">${r.name}</div>
+        <div class="cs">${r.agency||'—'}</div>
+        ${r.link?`<a href="${r.link}" target="_blank" class="cl">Profile ↗</a>`:''}
+      </td>
+      <td><span class="pill cat-${catKey}">${cat}</span></td>
+      <td><span class="pill t-${r.tier.toLowerCase()}">${r.tier}</span></td>
+      <td style="white-space:nowrap">${r.liveMonth||'—'}</td>
+      <td>${r.region||'—'}</td>
+      <td style="font-weight:600">${fmtN(r.followers)}</td>
+      <td style="font-weight:700">${fmtN(r.views)}</td>
+      <td>${fmtN(r.likes)}</td>
+      <td>${fmtN(r.comments)}</td>
+      <td>${fmtER(r.engRate)}</td>
+      <td>${r.followers && r.views ? (r.views/r.followers).toFixed(2)+'×' : '—'}</td>
+      <td>${fmtCPV(r.cpv)}</td>
+      <td>${r.cost?'₹'+fmtN(r.cost):'—'}</td>
+      <td>${stBdg(r)}</td>
+      <td>
+        <div style="display:flex;gap:3px">
+          <button class="btn btn-gh btn-xs" onclick="openModal(${r.id})">📊</button>
+          ${r.videoLink?`<a href="${r.videoLink}" target="_blank" class="btn btn-gh btn-xs">▶</a>`:''}
+        </div>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+function fmtN(n) {
+  if (n==null||n==='—') return '—';
+  const v = typeof n === 'string' ? parseFloat(n) : n;
+  if (isNaN(v)) return '—';
+  if (v>=1e7) return (v/1e7).toFixed(1)+'Cr';
+  if (v>=1e5) return (v/1e5).toFixed(1)+'L';
+  if (v>=1e3) return (v/1e3).toFixed(1)+'K';
+  return v.toLocaleString('en-IN');
+}
+function fmtCPV(v) {
+  if (v==null) return '<span class="na">—</span>';
+  return `<span class="cpv-chip ${v<0.1?'cpv-g':v<0.5?'cpv-ok':'cpv-b'}">₹${v.toFixed(2)}</span>`;
+}
+function fmtER(er) {
+  if (er==null||er>100) return '<span class="na">—</span>';
+  const cls = er>5?'mg':er>2?'mo':'mb2';
+  const pct = Math.min(er,20)/20*100;
+  return `<div class="erb"><div class="erb-bg"><div class="erb-fill" style="width:${pct}%"></div></div><span class="${cls}">${er.toFixed(2)}%</span></div>`;
+}
+
+function stBdg(r) {
+  if (r.refreshStatus==='refreshing') return '<span class="dot dy"></span> Refreshing…';
+  const s = r.liveStatus.toLowerCase();
+  if (s==='live') return `<span class="bdg bl"><span class="dot dg"></span> Live</span>`;
+  return `<span class="bdg bw">WIP</span>`;
+}
+
+// ═══════════════════════════════════════════════
+//  SELECTION
+// ═══════════════════════════════════════════════
+function toggleRow(id) {
+  if (selectedIds.has(id)) selectedIds.delete(id); else selectedIds.add(id);
+  updSel(); renderTable();
+}
+function toggleSelAll() {
+  const all = filteredRows.every(r=>selectedIds.has(r.id));
+  if (all) filteredRows.forEach(r=>selectedIds.delete(r.id));
+  else filteredRows.forEach(r=>selectedIds.add(r.id));
+  updSel(); renderTable();
+}
+function updSel() {
+  const n = selectedIds.size;
+  const b = document.getElementById('sel-bdg');
+  b.textContent = `${n} selected`; b.classList.toggle('h',n===0);
+}
+
+// ═══════════════════════════════════════════════
+//  ANALYTICS CHARTS
+// ═══════════════════════════════════════════════
+function buildAnalyticsCharts() {
+  // Top 10 views
+  dch('c-top10v');
+  const t10v = [...allRows].filter(r=>r.views).sort((a,b)=>b.views-a.views).slice(0,10);
+  charts['t10v'] = new Chart(document.getElementById('c-top10v').getContext('2d'), {
+    type:'bar',
+    data:{labels:t10v.map(r=>r.name),datasets:[{label:'Views',data:t10v.map(r=>r.views),backgroundColor:'#4736FE99',borderColor:'#4736FE',borderWidth:1.5,borderRadius:5}]},
+    options:{...bOpts(),indexAxis:'y',scales:{x:{ticks:{callback:v=>fmtN(v)},grid:{color:'#f3f4f6'}},y:{grid:{display:false},ticks:{font:{size:10}}}}}
+  });
+
+  // Top 10 ER
+  dch('c-top10er');
+  const t10er = [...allRows].filter(r=>r.engRate&&r.engRate<100).sort((a,b)=>b.engRate-a.engRate).slice(0,10);
+  charts['t10er'] = new Chart(document.getElementById('c-top10er').getContext('2d'), {
+    type:'bar',
+    data:{labels:t10er.map(r=>r.name),datasets:[{label:'ER %',data:t10er.map(r=>+r.engRate.toFixed(2)),backgroundColor:'#00d4a199',borderColor:'#00d4a1',borderWidth:1.5,borderRadius:5}]},
+    options:{...bOpts(),indexAxis:'y',scales:{x:{ticks:{callback:v=>v+'%'},grid:{color:'#f3f4f6'}},y:{grid:{display:false},ticks:{font:{size:10}}}}}
+  });
+
+  // CPV trend
+  dch('c-cpv-trend');
+  const cpvMap = {};
+  for (const r of allRows) {
+    if (!r.liveMonth||r.cpv==null) continue;
+    if (!cpvMap[r.liveMonth]) cpvMap[r.liveMonth]={mo:r.monthOrder,arr:[]};
+    cpvMap[r.liveMonth].arr.push(r.cpv);
+  }
+  const cpvSorted = Object.entries(cpvMap).sort((a,b)=>a[1].mo-b[1].mo);
+  charts['cpvt'] = new Chart(document.getElementById('c-cpv-trend').getContext('2d'), {
+    type:'line',
+    data:{labels:cpvSorted.map(e=>e[0].replace(' 2025','\'25').replace(' 2026','\'26')),datasets:[{label:'Avg CPV ₹',data:cpvSorted.map(e=>+(e[1].arr.reduce((a,b)=>a+b)/e[1].arr.length).toFixed(2)),borderColor:'#f97316',backgroundColor:'#f9731622',tension:.4,fill:true,borderWidth:2.5,pointRadius:4,pointBackgroundColor:'#f97316'}]},
+    options:{...bOpts(),scales:{y:{ticks:{callback:v=>'₹'+v},grid:{color:'#f3f4f6'}},x:{grid:{display:false},ticks:{maxRotation:45,font:{size:10}}}}}
+  });
+
+  // ER by region
+  dch('c-er-region');
+  const erMap = {};
+  for (const r of allRows) {
+    if (!r.region||r.engRate==null||r.engRate>100) continue;
+    if (!erMap[r.region]) erMap[r.region]=[];
+    erMap[r.region].push(r.engRate);
+  }
+  const erS = Object.entries(erMap).map(([k,v])=>({k,v:avg(v)})).sort((a,b)=>b.v-a.v);
+  charts['err'] = new Chart(document.getElementById('c-er-region').getContext('2d'), {
+    type:'bar',
+    data:{labels:erS.map(e=>e.k),datasets:[{label:'Avg ER %',data:erS.map(e=>+e.v.toFixed(2)),backgroundColor:COLORS,borderRadius:5}]},
+    options:{...bOpts(),scales:{y:{ticks:{callback:v=>v+'%'},grid:{color:'#f3f4f6'}},x:{grid:{display:false}}}}
+  });
+
+  // Tier metrics
+  dch('c-tier-m');
+  const tiers=['Nano','Micro','Macro','Mega'];
+  const tAvgER  = tiers.map(t=>avg(allRows.filter(r=>r.tier===t&&r.engRate!=null&&r.engRate<100).map(r=>r.engRate)));
+  const tAvgCPV = tiers.map(t=>avg(allRows.filter(r=>r.tier===t&&r.cpv!=null).map(r=>r.cpv)));
+  charts['tm'] = new Chart(document.getElementById('c-tier-m').getContext('2d'), {
+    type:'bar',
+    data:{labels:tiers,datasets:[
+      {label:'Avg ER %',data:tAvgER.map(v=>v?+v.toFixed(2):0),backgroundColor:'#4736FE44',borderColor:'#4736FE',borderWidth:2,borderRadius:5},
+      {label:'Avg CPV ₹',data:tAvgCPV.map(v=>v?+v.toFixed(2):0),backgroundColor:'#00d4a144',borderColor:'#00d4a1',borderWidth:2,borderRadius:5},
+    ]},
+    options:{...bOpts(),scales:{y:{grid:{color:'#f3f4f6'}},x:{grid:{display:false}}}}
+  });
+
+  // Scatter
+  dch('c-scatter');
+  const sd = allRows.filter(r=>r.followers&&r.views).map(r=>({x:r.followers/1000,y:r.views/1000,n:r.name}));
+  charts['sc'] = new Chart(document.getElementById('c-scatter').getContext('2d'), {
+    type:'scatter',
+    data:{datasets:[{label:'Influencers',data:sd,backgroundColor:'#4736FE55',borderColor:'#4736FE',pointRadius:5,pointHoverRadius:7}]},
+    options:{...bOpts(),scales:{x:{title:{display:true,text:'Followers (K)'},ticks:{callback:v=>v+'K'},grid:{color:'#f3f4f6'}},y:{title:{display:true,text:'Views (K)'},ticks:{callback:v=>v+'K'},grid:{color:'#f3f4f6'}}},plugins:{...bOpts().plugins,tooltip:{callbacks:{label:ctx=>`${sd[ctx.dataIndex]?.n}: ${fmtN(ctx.raw.x*1000)} flw, ${fmtN(ctx.raw.y*1000)} views`}}}}
+  });
+
+  // Build agency data (avg CPV = mean of each creator's individual CPV)
+  const agMap = {};
+  for (const r of allRows) {
+    const a = r.agency || 'Direct/Unknown';
+    if (!agMap[a]) agMap[a] = {creators:0, views:0, cost:0, cpvArr:[], erArr:[]};
+    agMap[a].creators++;
+    agMap[a].views += r.views || 0;
+    agMap[a].cost  += r.cost  || 0;
+    if (r.cpv != null) agMap[a].cpvArr.push(r.cpv);
+    if (r.engRate != null && r.engRate < 100) agMap[a].erArr.push(r.engRate);
+  }
+  window._agData = Object.entries(agMap).map(([ag, d]) => ({
+    name: ag, creators: d.creators, views: d.views, cost: d.cost,
+    cpv: d.cpvArr.length ? d.cpvArr.reduce((s,v)=>s+v)/d.cpvArr.length : null,
+    er: d.erArr.length ? d.erArr.reduce((s,v)=>s+v)/d.erArr.length : null,
+  }));
+  window._agSortCol = 'views';
+  window._agSortDir = -1;
+  renderAgencyTable();
+  buildCategoryMatrix();
+}
+
+// ─── Content Category Matrix ─────────────────────────────────────────────────
+function buildCategoryMatrix() {
+  const CATS = ['Automobile','Finance','Comedy','Vlogs','Infotainment','Lifestyle'];
+  const CAT_CLS = {Automobile:'cm-auto',Finance:'cm-finance',Comedy:'cm-comedy',Vlogs:'cm-vlogs',Infotainment:'cm-info',Lifestyle:'cm-life'};
+  const CAT_ICON = {Automobile:'🚗',Finance:'💰',Comedy:'😂',Vlogs:'📹',Infotainment:'📡',Lifestyle:'✨'};
+
+  // Build month → category → count
+  const monthMap = {};
+  for (const r of allRows) {
+    const m = r.liveMonth; if (!m) continue;
+    if (!monthMap[m]) monthMap[m] = {mo: r.monthOrder, counts: {}};
+    const cat = r.category || 'Lifestyle';
+    monthMap[m].counts[cat] = (monthMap[m].counts[cat] || 0) + 1;
+  }
+  const months = Object.entries(monthMap).sort((a,b)=>a[1].mo-b[1].mo);
+
+  // Column totals
+  const colTotals = {};
+  CATS.forEach(c => { colTotals[c] = 0; });
+  months.forEach(([,d]) => CATS.forEach(c => { colTotals[c] += d.counts[c]||0; }));
+
+  const thead = document.getElementById('cat-matrix-head');
+  const tbody = document.getElementById('cat-matrix-body');
+
+  thead.innerHTML = `<tr>
+    <th style="text-align:left;min-width:120px">Month</th>
+    ${CATS.map(c=>`<th>${CAT_ICON[c]} ${c}</th>`).join('')}
+    <th>Total</th>
+  </tr>`;
+
+  tbody.innerHTML = months.map(([month, d]) => {
+    const total = CATS.reduce((s,c)=>s+(d.counts[c]||0), 0);
+    return `<tr>
+      <td style="font-weight:600;white-space:nowrap;color:var(--g700)">${month}</td>
+      ${CATS.map(c => {
+        const n = d.counts[c] || 0;
+        return `<td class="${n ? CAT_CLS[c] : 'cm-0'}">${n || '—'}</td>`;
+      }).join('')}
+      <td style="font-weight:700;background:var(--blue-l);color:var(--blue)">${total}</td>
+    </tr>`;
+  }).join('') + `<tr class="cm-total">
+    <td>Total</td>
+    ${CATS.map(c=>`<td class="${CAT_CLS[c]}">${colTotals[c]}</td>`).join('')}
+    <td style="font-weight:700;background:var(--blue);color:#fff">${CATS.reduce((s,c)=>s+colTotals[c],0)}</td>
+  </tr>`;
+}
+
+let _agSortCol = 'views', _agSortDir = -1;
+function agSort(col) {
+  if (_agSortCol === col) _agSortDir *= -1; else { _agSortCol = col; _agSortDir = -1; }
+  document.querySelectorAll('#agency-table th span[id^="ag-s-"]').forEach(s=>s.textContent='');
+  const el = document.getElementById('ag-s-'+col);
+  if (el) el.textContent = _agSortDir===-1 ? ' ▼' : ' ▲';
+  renderAgencyTable();
+}
+function renderAgencyTable() {
+  const data = [...(window._agData||[])].sort((a,b)=>{
+    const va=a[_agSortCol], vb=b[_agSortCol];
+    if (va==null) return 1; if (vb==null) return -1;
+    return (va-vb)*_agSortDir;
+  });
+  document.getElementById('agency-tbody').innerHTML = data.map(d => `<tr>
+    <td style="font-weight:600">${d.name}</td>
+    <td style="font-weight:700;text-align:center">${d.creators}</td>
+    <td style="font-weight:700">${fmtN(d.views)}</td>
+    <td>₹${fmtN(d.cost)}</td>
+    <td>${d.cpv?`<span class="cpv-chip ${d.cpv<0.1?'cpv-g':d.cpv<0.5?'cpv-ok':'cpv-b'}">₹${d.cpv.toFixed(2)}</span>`:'—'}</td>
+    <td>${d.er?`<span class="${d.er>5?'mg':d.er>2?'mo':'mb2'}">${d.er.toFixed(2)}%</span>`:'—'}</td>
+  </tr>`).join('');
+}
+
+
+// ═══════════════════════════════════════════════
+//  MODAL
+// ═══════════════════════════════════════════════
+function openModal(id) {
+  const r = allRows.find(row=>row.id===id); if (!r) return;
+  modalRowId = id;
+  document.getElementById('m-name').textContent = r.name;
+  document.getElementById('m-sub').textContent  = `${r.agency||'—'} · ${r.region} · ${r.liveMonth} · ${r.tier}`;
+  const ml = document.getElementById('m-link');
+  ml.href = r.videoLink||r.link||'#'; ml.style.display = r.videoLink||r.link?'':'none';
+  const m1 = [
+    {l:'Views',v:fmtN(r.views)},{l:'Likes',v:fmtN(r.likes)},{l:'Comments',v:fmtN(r.comments)},
+    {l:'Shares',v:fmtN(r.shares)},{l:'Saves',v:fmtN(r.saves)},{l:'Followers',v:fmtN(r.followers)},
+    {l:'Budget',v:r.cost?'₹'+r.cost.toLocaleString('en-IN'):'—'},
+    {l:'CPV',v:r.cpv?'₹'+r.cpv.toFixed(2):'—'},
+    {l:'Avg Views',v:fmtN(r.avgViews)},
+  ];
+  const m2 = [
+    {l:'Eng. Rate',v:r.engRate?r.engRate.toFixed(2)+'%':'—'},
+    {l:'Like Rate',v:r.views&&r.likes?(r.likes/r.views*100).toFixed(2)+'%':'—'},
+    {l:'Share Rate',v:r.views&&r.shares?(r.shares/r.views*100).toFixed(2)+'%':'—'},
+    {l:'Save Rate',v:r.views&&r.saves?(r.saves/r.views*100).toFixed(2)+'%':'—'},
+    {l:'Comment Rate',v:r.views&&r.comments?(r.comments/r.views*100).toFixed(2)+'%':'—'},
+    {l:'Views/Avg',v:r.views&&r.avgViews?(r.views/r.avgViews*100).toFixed(0)+'% of avg':'—'},
+  ];
+  document.getElementById('m-metrics').innerHTML = m1.map(x=>`<div class="mm"><label>${x.l}</label><div class="v">${x.v}</div></div>`).join('');
+  document.getElementById('m-rates').innerHTML   = m2.map(x=>`<div class="mm"><label>${x.l}</label><div class="v">${x.v}</div></div>`).join('');
+  document.getElementById('modal').classList.remove('h');
+}
+function closeModal() { document.getElementById('modal').classList.add('h'); modalRowId=null; }
+document.getElementById('modal').addEventListener('click', e=>{ if(e.target===document.getElementById('modal')) closeModal(); });
+
+// ═══════════════════════════════════════════════
+//  EXPORT
+// ═══════════════════════════════════════════════
+function exportCSV() {
+  const h = ['Name','Agency','Tier','Region','Live Month','Followers','Views','Likes','Comments','Shares','Saves','Eng Rate%','CPV','Budget','Status','Video Link'];
+  const rows = allRows.map(r=>[
+    r.name,r.agency,r.tier,r.region,r.liveMonth,r.followers??'',r.views??'',r.likes??'',r.comments??'',r.shares??'',r.saves??'',
+    r.engRate?.toFixed(2)??'',r.cpv?.toFixed(2)??'',r.cost??'',r.liveStatus,r.videoLink
+  ].map(v=>`"${String(v??'').replace(/"/g,'""')}"`).join(','));
+  const blob = new Blob([[h.join(','),...rows].join('\n')],{type:'text/csv'});
+  const a = document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=`cars24_${new Date().toISOString().slice(0,10)}.csv`; a.click();
+  toast('CSV exported', 'ok');
+}
+
+// ═══════════════════════════════════════════════
+//  UTILS
+// ═══════════════════════════════════════════════
+function tierOf(f) { if(!f) return 'Unknown'; if(f<10000) return 'Nano'; if(f<50000) return 'Micro'; if(f<500000) return 'Macro'; return 'Mega'; }
+function avg(arr) { return arr.length ? arr.reduce((a,b)=>a+b)/arr.length : 0; }
+
+function dch(id) { if(charts[id]) { charts[id].destroy(); delete charts[id]; } }
+function bOpts() {
+  return { responsive:true, maintainAspectRatio:false, animation:{duration:400},
+    plugins:{ legend:{display:true,labels:{font:{family:'Geist',size:11},padding:14}},
+      tooltip:{callbacks:{label:ctx=>ctx.dataset.label+': '+(typeof ctx.raw==='number'?ctx.raw.toLocaleString('en-IN'):ctx.raw)}} } };
+}
+function toast(msg, type='') {
+  const el = document.createElement('div');
+  el.className = `toast ${type}`; el.textContent = msg;
+  document.getElementById('tc2').appendChild(el);
+  setTimeout(()=>{ el.style.opacity='0'; el.style.transition='opacity .3s'; setTimeout(()=>el.remove(),400); },3500);
+}
+function resetAll() {
+  if (!confirm('Reset all data?')) return;
+  allRows=[]; filteredRows=[]; selectedIds.clear();
+  Object.keys(charts).forEach(k=>{charts[k].destroy();delete charts[k];});
+  document.getElementById('btn-export').classList.add('h');
+  document.getElementById('kpi-strip').innerHTML='';
+  document.getElementById('mom-tbody').innerHTML='';
+  document.getElementById('inf-tbody').innerHTML='';
+  document.getElementById('rm-head').style.display='none';
+  toast('Dashboard reset');
+}
+</script>
+</body>
+</html>
