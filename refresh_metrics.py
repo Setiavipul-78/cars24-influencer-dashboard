@@ -66,6 +66,11 @@ updated = 0
 skipped = 0
 
 for r in rows:
+    # Skip rows where metrics were manually set from the CSV sheet — never auto-overwrite
+    if r.get('csvPin'):
+        skipped += 1
+        continue
+
     sc = shortcode(r.get('videoLink', ''))
     if not sc or sc not in apify:
         skipped += 1
