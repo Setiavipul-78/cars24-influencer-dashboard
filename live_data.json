@@ -25,7 +25,7 @@
       "cpv": 0.197,
       "refreshStatus": "ok",
       "lastRefreshed": "2025-06-14T12:26:59.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 1,
@@ -51,7 +51,7 @@
       "cpv": 0.346,
       "refreshStatus": "ok",
       "lastRefreshed": "2025-06-19T12:05:34.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 2,
@@ -77,7 +77,7 @@
       "cpv": 0.725,
       "refreshStatus": "ok",
       "lastRefreshed": "2025-06-27T15:11:21.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 3,
@@ -103,7 +103,7 @@
       "cpv": 0.687,
       "refreshStatus": "ok",
       "lastRefreshed": "2025-08-02T13:31:30.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 4,
@@ -129,7 +129,7 @@
       "cpv": 0.325,
       "refreshStatus": "ok",
       "lastRefreshed": "2026-06-06T15:34:28.361685Z",
-      "category": "Lifestyle",
+      "category": "Entertainment",
       "csvPin": true
     },
     {
@@ -182,7 +182,7 @@
       "cpv": 0.368,
       "refreshStatus": "ok",
       "lastRefreshed": "2026-06-06T15:34:28.361729Z",
-      "category": "Lifestyle",
+      "category": "Entertainment",
       "csvPin": true
     },
     {
@@ -209,7 +209,7 @@
       "cpv": 0.034,
       "refreshStatus": "ok",
       "lastRefreshed": "2025-08-20T14:03:11.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 8,
@@ -235,7 +235,7 @@
       "cpv": 0.176,
       "refreshStatus": "ok",
       "lastRefreshed": "2025-08-30T13:11:03.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 9,
@@ -261,7 +261,7 @@
       "cpv": 0.381,
       "refreshStatus": "ok",
       "lastRefreshed": "2025-08-30T11:12:21.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 10,
@@ -287,7 +287,7 @@
       "cpv": 0.033,
       "refreshStatus": "ok",
       "lastRefreshed": "2025-08-31T04:59:00.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 11,
@@ -313,7 +313,7 @@
       "cpv": 0.427,
       "refreshStatus": "ok",
       "lastRefreshed": "2025-08-14T12:49:42.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 12,
@@ -365,7 +365,7 @@
       "cpv": 0.168,
       "refreshStatus": "ok",
       "lastRefreshed": "2025-09-06T10:56:17.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 14,
@@ -391,7 +391,7 @@
       "cpv": 0.069,
       "refreshStatus": "ok",
       "lastRefreshed": "2025-09-11T11:36:55.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 15,
@@ -417,7 +417,7 @@
       "cpv": 0.215,
       "refreshStatus": "ok",
       "lastRefreshed": "2026-06-06T15:34:28.361825Z",
-      "category": "Lifestyle",
+      "category": "Entertainment",
       "csvPin": true
     },
     {
@@ -444,7 +444,7 @@
       "cpv": 0.161,
       "refreshStatus": "ok",
       "lastRefreshed": "2025-09-14T15:17:45.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 17,
@@ -470,7 +470,7 @@
       "cpv": 0.17,
       "refreshStatus": "ok",
       "lastRefreshed": "2025-09-17T09:41:44.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 18,
@@ -522,7 +522,7 @@
       "cpv": 0.058,
       "refreshStatus": "ok",
       "lastRefreshed": "2025-09-19T14:12:53.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 20,
@@ -548,7 +548,7 @@
       "cpv": 0.184,
       "refreshStatus": "ok",
       "lastRefreshed": "2025-09-20T07:17:11.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 21,
@@ -574,7 +574,7 @@
       "cpv": 0.122,
       "refreshStatus": "ok",
       "lastRefreshed": "2025-09-09T14:23:46.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 22,
@@ -600,7 +600,7 @@
       "cpv": 0.504,
       "refreshStatus": "ok",
       "lastRefreshed": "2025-09-11T15:18:10.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 23,
@@ -626,7 +626,7 @@
       "cpv": 0.373,
       "refreshStatus": "ok",
       "lastRefreshed": "2025-09-12T13:08:32.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 24,
@@ -652,7 +652,7 @@
       "cpv": 1.873,
       "refreshStatus": "ok",
       "lastRefreshed": "2025-09-11T13:29:04.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 25,
@@ -678,7 +678,7 @@
       "cpv": 0.036,
       "refreshStatus": "ok",
       "lastRefreshed": "2025-09-12T12:31:19.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 26,
@@ -704,7 +704,7 @@
       "cpv": 0.163,
       "refreshStatus": "ok",
       "lastRefreshed": "2025-09-16T06:51:49.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 27,
@@ -756,7 +756,7 @@
       "cpv": 0.308,
       "refreshStatus": "ok",
       "lastRefreshed": "2025-09-25T15:32:50.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 29,
@@ -782,7 +782,7 @@
       "cpv": 0.17,
       "refreshStatus": "ok",
       "lastRefreshed": "2025-09-25T12:43:58.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 30,
@@ -808,7 +808,7 @@
       "cpv": 0.207,
       "refreshStatus": "ok",
       "lastRefreshed": "2025-09-29T12:55:08.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 31,
@@ -834,7 +834,7 @@
       "cpv": 0.167,
       "refreshStatus": "ok",
       "lastRefreshed": "2025-10-13T09:10:02.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 32,
@@ -860,7 +860,7 @@
       "cpv": 0.254,
       "refreshStatus": "ok",
       "lastRefreshed": "2025-10-07T14:43:25.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 33,
@@ -886,7 +886,7 @@
       "cpv": 0.067,
       "refreshStatus": "ok",
       "lastRefreshed": "2025-10-10T11:14:47.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 34,
@@ -912,7 +912,7 @@
       "cpv": 0.017,
       "refreshStatus": "ok",
       "lastRefreshed": "2025-10-28T07:16:14.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 35,
@@ -938,7 +938,7 @@
       "cpv": 0.12,
       "refreshStatus": "ok",
       "lastRefreshed": "2025-10-05T12:42:41.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 36,
@@ -964,7 +964,7 @@
       "cpv": 0.464,
       "refreshStatus": "ok",
       "lastRefreshed": "2025-10-27T12:11:23.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 37,
@@ -990,7 +990,7 @@
       "cpv": 0.034,
       "refreshStatus": "ok",
       "lastRefreshed": "2025-10-09T14:02:19.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 38,
@@ -1016,7 +1016,7 @@
       "cpv": 0.156,
       "refreshStatus": "ok",
       "lastRefreshed": "2025-10-10T11:37:50.000Z",
-      "category": "Comedy"
+      "category": "Entertainment"
     },
     {
       "id": 39,
@@ -1042,7 +1042,7 @@
       "cpv": 0.014,
       "refreshStatus": "ok",
       "lastRefreshed": "2025-10-14T11:24:43.000Z",
-      "category": "Comedy"
+      "category": "Entertainment"
     },
     {
       "id": 40,
@@ -1094,7 +1094,7 @@
       "cpv": 0.034,
       "refreshStatus": "ok",
       "lastRefreshed": null,
-      "category": "Lifestyle",
+      "category": "Entertainment",
       "csvPin": true
     },
     {
@@ -1121,7 +1121,7 @@
       "cpv": 0.408,
       "refreshStatus": "ok",
       "lastRefreshed": "2025-10-25T12:57:50.000Z",
-      "category": "Comedy"
+      "category": "Entertainment"
     },
     {
       "id": 43,
@@ -1147,7 +1147,7 @@
       "cpv": 0.039,
       "refreshStatus": "ok",
       "lastRefreshed": "2025-11-01T06:39:04.000Z",
-      "category": "Comedy"
+      "category": "Entertainment"
     },
     {
       "id": 44,
@@ -1199,7 +1199,7 @@
       "cpv": 0.03,
       "refreshStatus": "ok",
       "lastRefreshed": "2025-10-30T15:29:38.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 46,
@@ -1251,7 +1251,7 @@
       "cpv": 0.288,
       "refreshStatus": "ok",
       "lastRefreshed": "2025-11-13T12:53:58.000Z",
-      "category": "Comedy"
+      "category": "Entertainment"
     },
     {
       "id": 48,
@@ -1277,7 +1277,7 @@
       "cpv": 0.151,
       "refreshStatus": "ok",
       "lastRefreshed": "2025-11-10T12:29:45.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 49,
@@ -1303,7 +1303,7 @@
       "cpv": 0.027,
       "refreshStatus": "ok",
       "lastRefreshed": "2025-11-04T09:29:55.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 50,
@@ -1355,7 +1355,7 @@
       "cpv": 0.216,
       "refreshStatus": "ok",
       "lastRefreshed": "2025-11-24T13:15:30.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 52,
@@ -1381,7 +1381,7 @@
       "cpv": 0.029,
       "refreshStatus": "ok",
       "lastRefreshed": "2025-11-18T12:33:13.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 53,
@@ -1407,7 +1407,7 @@
       "cpv": 0.044,
       "refreshStatus": "ok",
       "lastRefreshed": "2025-11-17T14:28:52.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 54,
@@ -1433,7 +1433,7 @@
       "cpv": 0.091,
       "refreshStatus": "ok",
       "lastRefreshed": "2026-06-06T17:00:45Z",
-      "category": "Lifestyle",
+      "category": "Entertainment",
       "csvPin": true
     },
     {
@@ -1486,7 +1486,7 @@
       "cpv": 0.119,
       "refreshStatus": "ok",
       "lastRefreshed": "2025-11-05T14:44:56.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 57,
@@ -1512,7 +1512,7 @@
       "cpv": 0.086,
       "refreshStatus": "ok",
       "lastRefreshed": "2025-11-18T15:11:44.000Z",
-      "category": "Comedy"
+      "category": "Entertainment"
     },
     {
       "id": 58,
@@ -1538,7 +1538,7 @@
       "cpv": 0.15,
       "refreshStatus": "ok",
       "lastRefreshed": "2026-06-06T15:34:28.362315Z",
-      "category": "Lifestyle",
+      "category": "Entertainment",
       "csvPin": true
     },
     {
@@ -1565,7 +1565,7 @@
       "cpv": 0.229,
       "refreshStatus": "ok",
       "lastRefreshed": "2025-11-29T12:48:30.000Z",
-      "category": "Comedy"
+      "category": "Entertainment"
     },
     {
       "id": 60,
@@ -1591,7 +1591,7 @@
       "cpv": 0.022,
       "refreshStatus": "ok",
       "lastRefreshed": "2025-10-31T12:37:32.000Z",
-      "category": "Comedy"
+      "category": "Entertainment"
     },
     {
       "id": 61,
@@ -1617,7 +1617,7 @@
       "cpv": 0.035,
       "refreshStatus": "ok",
       "lastRefreshed": "2025-10-27T12:44:02.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 62,
@@ -1669,7 +1669,7 @@
       "cpv": 1.269,
       "refreshStatus": "ok",
       "lastRefreshed": "2025-12-25T07:32:20.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 64,
@@ -1695,7 +1695,7 @@
       "cpv": 0.006,
       "refreshStatus": "ok",
       "lastRefreshed": "2025-12-02T14:57:14.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 65,
@@ -1721,7 +1721,7 @@
       "cpv": 0.6,
       "refreshStatus": "ok",
       "lastRefreshed": "2025-12-09T07:52:43.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 66,
@@ -1747,7 +1747,7 @@
       "cpv": 0.13,
       "refreshStatus": "ok",
       "lastRefreshed": "2025-12-16T12:40:23.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 67,
@@ -1773,7 +1773,7 @@
       "cpv": 0.034,
       "refreshStatus": "ok",
       "lastRefreshed": "2025-12-02T10:33:57.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 68,
@@ -1825,7 +1825,7 @@
       "cpv": 1.556,
       "refreshStatus": "ok",
       "lastRefreshed": "2025-12-27T11:28:03.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 70,
@@ -1851,7 +1851,7 @@
       "cpv": 0.638,
       "refreshStatus": "ok",
       "lastRefreshed": "2025-12-22T13:06:53.000Z",
-      "category": "Comedy"
+      "category": "Entertainment"
     },
     {
       "id": 71,
@@ -1903,7 +1903,7 @@
       "cpv": 0.199,
       "refreshStatus": "ok",
       "lastRefreshed": "2025-12-11T12:27:54.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 73,
@@ -1929,7 +1929,7 @@
       "cpv": 0.092,
       "refreshStatus": "ok",
       "lastRefreshed": "2025-12-24T13:08:57.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 74,
@@ -1955,7 +1955,7 @@
       "cpv": 0.072,
       "refreshStatus": "ok",
       "lastRefreshed": "2025-12-04T10:56:13.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 75,
@@ -1981,7 +1981,7 @@
       "cpv": 0.342,
       "refreshStatus": "ok",
       "lastRefreshed": "2025-12-05T12:41:59.000Z",
-      "category": "Comedy"
+      "category": "Entertainment"
     },
     {
       "id": 76,
@@ -2007,7 +2007,7 @@
       "cpv": 0.113,
       "refreshStatus": "ok",
       "lastRefreshed": "2025-12-08T13:01:16.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 77,
@@ -2033,7 +2033,7 @@
       "cpv": 0.083,
       "refreshStatus": "ok",
       "lastRefreshed": "2025-12-12T06:22:10.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 78,
@@ -2085,7 +2085,7 @@
       "cpv": 0.131,
       "refreshStatus": "ok",
       "lastRefreshed": "2025-12-24T11:07:13.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 80,
@@ -2111,7 +2111,7 @@
       "cpv": 0.078,
       "refreshStatus": "ok",
       "lastRefreshed": "2025-11-13T11:44:30.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 81,
@@ -2163,7 +2163,7 @@
       "cpv": 0.044,
       "refreshStatus": "ok",
       "lastRefreshed": "2025-12-02T12:39:47.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 83,
@@ -2189,7 +2189,7 @@
       "cpv": 1.049,
       "refreshStatus": "ok",
       "lastRefreshed": "2025-11-26T13:12:33.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 84,
@@ -2215,7 +2215,7 @@
       "cpv": 0.048,
       "refreshStatus": "ok",
       "lastRefreshed": "2025-12-13T05:40:14.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 85,
@@ -2241,7 +2241,7 @@
       "cpv": 0.303,
       "refreshStatus": "ok",
       "lastRefreshed": "2026-01-05T12:41:18.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 86,
@@ -2267,7 +2267,7 @@
       "cpv": 0.075,
       "refreshStatus": "ok",
       "lastRefreshed": "2026-01-07T13:02:24.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 87,
@@ -2319,7 +2319,7 @@
       "cpv": 0.092,
       "refreshStatus": "ok",
       "lastRefreshed": "2026-01-08T07:44:55.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 89,
@@ -2345,7 +2345,7 @@
       "cpv": 0.571,
       "refreshStatus": "ok",
       "lastRefreshed": "2026-01-05T07:14:38.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 90,
@@ -2371,7 +2371,7 @@
       "cpv": 0.027,
       "refreshStatus": "ok",
       "lastRefreshed": "2026-01-05T12:00:38.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 91,
@@ -2397,7 +2397,7 @@
       "cpv": 0.299,
       "refreshStatus": "ok",
       "lastRefreshed": "2026-06-06T15:34:28.362682Z",
-      "category": "Lifestyle",
+      "category": "Entertainment",
       "csvPin": true
     },
     {
@@ -2424,7 +2424,7 @@
       "cpv": 0.047,
       "refreshStatus": "ok",
       "lastRefreshed": "2026-01-23T09:26:31.000Z",
-      "category": "Comedy"
+      "category": "Entertainment"
     },
     {
       "id": 93,
@@ -2450,7 +2450,7 @@
       "cpv": 0.115,
       "refreshStatus": "ok",
       "lastRefreshed": "2026-01-22T13:31:45.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 94,
@@ -2503,7 +2503,7 @@
       "cpv": 1.738,
       "refreshStatus": "ok",
       "lastRefreshed": "2026-01-30T11:16:20.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 96,
@@ -2529,7 +2529,7 @@
       "cpv": 0.025,
       "refreshStatus": "ok",
       "lastRefreshed": "2026-01-05T06:46:02.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 97,
@@ -2555,7 +2555,7 @@
       "cpv": 0.169,
       "refreshStatus": "ok",
       "lastRefreshed": "2026-01-09T13:00:05.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 98,
@@ -2581,7 +2581,7 @@
       "cpv": 0.219,
       "refreshStatus": "ok",
       "lastRefreshed": "2026-01-07T13:33:08.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 99,
@@ -2633,7 +2633,7 @@
       "cpv": 0.451,
       "refreshStatus": "ok",
       "lastRefreshed": "2026-02-10T11:31:03.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 101,
@@ -2659,7 +2659,7 @@
       "cpv": 0.573,
       "refreshStatus": "ok",
       "lastRefreshed": "2026-04-29T12:34:59.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 102,
@@ -2711,7 +2711,7 @@
       "cpv": 0.218,
       "refreshStatus": "ok",
       "lastRefreshed": "2026-03-21T06:37:51.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 104,
@@ -2790,7 +2790,7 @@
       "cpv": 2.084,
       "refreshStatus": "ok",
       "lastRefreshed": "2026-03-28T05:49:29.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 107,
@@ -3052,7 +3052,7 @@
       "cpv": 0.316,
       "refreshStatus": "ok",
       "lastRefreshed": "2026-03-23T13:13:26.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 117,
@@ -3078,7 +3078,7 @@
       "cpv": 0.485,
       "refreshStatus": "ok",
       "lastRefreshed": "2026-04-21T11:45:32.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 118,
@@ -3104,7 +3104,7 @@
       "cpv": 0.266,
       "refreshStatus": "ok",
       "lastRefreshed": "2026-04-09T07:01:30.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 119,
@@ -3156,7 +3156,7 @@
       "cpv": 1.532,
       "refreshStatus": "ok",
       "lastRefreshed": "2026-04-10T13:53:08.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 121,
@@ -3182,7 +3182,7 @@
       "cpv": 0.361,
       "refreshStatus": "ok",
       "lastRefreshed": "2026-04-14T13:49:25.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 122,
@@ -3208,7 +3208,7 @@
       "cpv": 2.2,
       "refreshStatus": "ok",
       "lastRefreshed": "2026-03-31T12:11:06.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 123,
@@ -3234,7 +3234,7 @@
       "cpv": 3.484,
       "refreshStatus": "ok",
       "lastRefreshed": "2026-04-30T15:09:36.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 124,
@@ -3260,7 +3260,7 @@
       "cpv": 0.116,
       "refreshStatus": "ok",
       "lastRefreshed": "2026-04-02T11:35:01.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 125,
@@ -3286,7 +3286,7 @@
       "cpv": 0.167,
       "refreshStatus": "ok",
       "lastRefreshed": "2026-04-29T13:36:25.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 126,
@@ -3312,7 +3312,7 @@
       "cpv": 0.12,
       "refreshStatus": "ok",
       "lastRefreshed": "2026-04-29T11:43:31.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 127,
@@ -3338,7 +3338,7 @@
       "cpv": 1.663,
       "refreshStatus": "ok",
       "lastRefreshed": "2026-04-21T14:37:13.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 128,
@@ -3391,7 +3391,7 @@
       "cpv": 0.66,
       "refreshStatus": "ok",
       "lastRefreshed": "2026-03-25T14:24:40.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 130,
@@ -3417,7 +3417,7 @@
       "cpv": 0.25,
       "refreshStatus": "ok",
       "lastRefreshed": "2026-03-12T13:53:10.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 131,
@@ -3547,7 +3547,7 @@
       "cpv": 1.285,
       "refreshStatus": "ok",
       "lastRefreshed": "2026-05-01T07:22:41.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 136,
@@ -3573,7 +3573,7 @@
       "cpv": 0.066,
       "refreshStatus": "ok",
       "lastRefreshed": "2026-05-19T05:38:05.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 137,
@@ -3651,7 +3651,7 @@
       "cpv": 0.223,
       "refreshStatus": "ok",
       "lastRefreshed": "2026-05-11T14:43:21.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 140,
@@ -3677,7 +3677,7 @@
       "cpv": 0.143,
       "refreshStatus": "ok",
       "lastRefreshed": "2026-05-05T16:34:57.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 141,
@@ -3703,7 +3703,7 @@
       "cpv": 0.182,
       "refreshStatus": "ok",
       "lastRefreshed": "2026-05-13T14:05:15.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 142,
@@ -3729,7 +3729,7 @@
       "cpv": 0.13,
       "refreshStatus": "ok",
       "lastRefreshed": "2026-05-04T14:27:49.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 143,
@@ -3833,7 +3833,7 @@
       "cpv": 0.06,
       "refreshStatus": "ok",
       "lastRefreshed": "2026-05-21T12:26:52.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 147,
@@ -3859,7 +3859,7 @@
       "cpv": 0.125,
       "refreshStatus": "ok",
       "lastRefreshed": "2026-05-29T14:47:47.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 148,
@@ -3885,7 +3885,7 @@
       "cpv": 0.927,
       "refreshStatus": "ok",
       "lastRefreshed": "2026-05-27T12:30:36.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 149,
@@ -3911,7 +3911,7 @@
       "cpv": 0.276,
       "refreshStatus": "ok",
       "lastRefreshed": "2026-05-23T12:00:23.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 150,
@@ -3937,7 +3937,7 @@
       "cpv": 0.133,
       "refreshStatus": "ok",
       "lastRefreshed": "2026-05-27T11:36:38.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 151,
@@ -3989,7 +3989,7 @@
       "cpv": 0.076,
       "refreshStatus": "ok",
       "lastRefreshed": "2026-05-31T16:02:27.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 153,
@@ -4015,7 +4015,7 @@
       "cpv": 0.117,
       "refreshStatus": "ok",
       "lastRefreshed": "2026-05-31T07:33:18.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 154,
@@ -4067,7 +4067,7 @@
       "cpv": 1.048,
       "refreshStatus": "ok",
       "lastRefreshed": "2026-06-02T13:00:14.000Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 156,
@@ -4145,7 +4145,7 @@
       "cpv": 0.071,
       "refreshStatus": "ok",
       "lastRefreshed": "2026-06-06T16:27:40Z",
-      "category": "Lifestyle",
+      "category": "Entertainment",
       "csvPin": true
     },
     {
@@ -4172,7 +4172,7 @@
       "cpv": 0.279,
       "refreshStatus": "ok",
       "lastRefreshed": "2026-06-06T17:00:45Z",
-      "category": "Lifestyle"
+      "category": "Entertainment"
     },
     {
       "id": 160,

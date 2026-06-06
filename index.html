@@ -208,10 +208,9 @@ tr.rspin td{background:#f5f3ff!important}
 /* ── Category pills ───────────────────────────────────────────── */
 .cat-automobile{background:#dbeafe;color:#1e40af}
 .cat-finance{background:#d1fae5;color:#065f46}
-.cat-comedy{background:#fce7f3;color:#9d174d}
+.cat-entertainment{background:#fce7f3;color:#9d174d}
 .cat-vlogs{background:#ede9ff;color:#5b21b6}
 .cat-infotainment{background:#fef3c7;color:#78350f}
-.cat-lifestyle{background:#f1f5f9;color:#475569}
 
 /* ── Section description ──────────────────────────────────────── */
 .sec-desc{font-size:11.5px;color:var(--g400);margin:-6px 0 14px;line-height:1.5}
@@ -422,8 +421,7 @@ th.sa{color:var(--blue)}.th.sd{color:var(--blue)}
       <select class="fsel" id="f-category" onchange="applyFilters()">
         <option value="">All Categories</option>
         <option value="Automobile">🚗 Automobile</option>
-        <option value="Lifestyle">✨ Lifestyle</option>
-        <option value="Comedy">😂 Comedy</option>
+        <option value="Entertainment">🎭 Entertainment</option>
         <option value="Vlogs">📹 Vlogs</option>
         <option value="Finance">💰 Finance</option>
         <option value="Infotainment">📡 Infotainment</option>
@@ -1223,9 +1221,9 @@ function buildAnalyticsCharts() {
 
 // ─── Content Category Matrix ─────────────────────────────────────────────────
 function buildCategoryMatrix() {
-  const CATS = ['Automobile','Finance','Comedy','Vlogs','Infotainment','Lifestyle'];
-  const CAT_CLS = {Automobile:'cm-auto',Finance:'cm-finance',Comedy:'cm-comedy',Vlogs:'cm-vlogs',Infotainment:'cm-info',Lifestyle:'cm-life'};
-  const CAT_ICON = {Automobile:'🚗',Finance:'💰',Comedy:'😂',Vlogs:'📹',Infotainment:'📡',Lifestyle:'✨'};
+  const CATS = ['Automobile','Entertainment','Finance','Vlogs','Infotainment'];
+  const CAT_CLS = {Automobile:'cm-auto',Entertainment:'cm-comedy',Finance:'cm-finance',Vlogs:'cm-vlogs',Infotainment:'cm-info'};
+  const CAT_ICON = {Automobile:'🚗',Entertainment:'🎭',Finance:'💰',Vlogs:'📹',Infotainment:'📡'};
 
   // Build month → category → count
   const monthMap = {};
