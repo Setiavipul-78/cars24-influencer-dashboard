@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>CARS24 Influencer Intelligence</title>
+<title>Cars24 Influencer Intelligence</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
@@ -77,8 +77,12 @@ body{font-family:'Geist',system-ui,-apple-system,sans-serif;background:var(--g50
 .kpi-sub{font-size:10.5px;color:var(--g400);margin-top:4px}
 
 /* Section header */
-.sh{font-size:13px;font-weight:700;color:var(--g900);margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;gap:8px}
-.sh-tag{font-size:10.5px;color:var(--g400);font-weight:400}
+.sh{font-size:14px;font-weight:800;color:var(--g900);margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;gap:8px;padding-bottom:10px;border-bottom:1.5px solid var(--g100);letter-spacing:-.2px}
+.sh-tag{font-size:10px;color:var(--g500);font-weight:600;background:var(--g100);padding:2px 9px;border-radius:99px;white-space:nowrap;flex-shrink:0}
+.card-accent-blue .sh{border-bottom-color:var(--blue-l)}
+.card-accent-mint .sh{border-bottom-color:var(--mint-l)}
+.card-accent-or .sh{border-bottom-color:var(--orl)}
+.card-accent-pur .sh{border-bottom-color:#ede9ff}
 
 /* Cards */
 .card{background:#fff;border-radius:var(--r);box-shadow:var(--sh);padding:18px 20px;border:1px solid var(--g100)}
@@ -275,7 +279,7 @@ th.sa{color:var(--blue)}.th.sd{color:var(--blue)}
 <!-- Header -->
 <header class="hdr">
   <div class="hbrand">
-    <div class="hlogo">CARS24</div>
+    <div class="hlogo">Cars24</div>
     <span class="htitle">Influencer Intelligence</span>
   </div>
   <div class="hright">
@@ -487,56 +491,65 @@ th.sa{color:var(--blue)}.th.sd{color:var(--blue)}
       <div class="cw-lg"><canvas id="c-top10er"></canvas></div>
     </div>
   </div>
+  <!-- Row 2: CPV Trend + Budget MoM -->
   <div class="g2 mb">
     <div class="card card-accent-or">
       <div class="sh">Avg CPV by Month <span class="sh-tag">cost-per-view trend</span></div>
-      <div class="sec-desc">Average cost per view across all live creators each month — lower is better</div>
+      <div class="sec-desc">Avg CPV (mean of creator CPVs) vs Blended CPV (total spend ÷ total views) — lower is better</div>
       <div class="cw"><canvas id="c-cpv-trend"></canvas></div>
     </div>
-    <div class="card card-accent-pur">
-      <div class="sh">Engagement Rate by Region <span class="sh-tag">avg %</span></div>
-      <div class="sec-desc">Which geographies drive the highest audience interaction on CARS24 content</div>
-      <div class="cw"><canvas id="c-er-region"></canvas></div>
+    <div class="card card-accent-blue">
+      <div class="sh">Budget Spend by Month <span class="sh-tag">MoM ₹ investment</span></div>
+      <div class="sec-desc">Total influencer marketing spend per campaign month — track how investment scales over time</div>
+      <div class="cw"><canvas id="c-budget-mom"></canvas></div>
     </div>
   </div>
+  <!-- Row 3: ER by Region + Tier Metrics -->
   <div class="g2 mb">
+    <div class="card card-accent-pur">
+      <div class="sh">Engagement Rate by Region <span class="sh-tag">avg %</span></div>
+      <div class="sec-desc">Which geographies drive the highest audience interaction on Cars24 content</div>
+      <div class="cw"><canvas id="c-er-region"></canvas></div>
+    </div>
     <div class="card">
       <div class="sh">Avg Metrics by Tier <span class="sh-tag">ER % vs Avg CPV ₹</span></div>
       <div class="sec-desc">How different audience-size tiers compare on engagement and cost efficiency</div>
       <div class="cw"><canvas id="c-tier-m"></canvas></div>
     </div>
-    <div class="card">
-      <div class="sh">Followers vs Actual Views <span class="sh-tag">reach amplification scatter</span></div>
-      <div class="sec-desc">Each dot is a creator — outliers above the line over-index on reach vs. follower base</div>
-      <div class="cw"><canvas id="c-scatter"></canvas></div>
+  </div>
+  <!-- Row 4: Scatter full-width -->
+  <div class="card mb">
+    <div class="sh">Followers vs Actual Views <span class="sh-tag">reach amplification scatter</span></div>
+    <div class="sec-desc">Each dot is a creator — outliers above the diagonal over-index on reach relative to their follower base</div>
+    <div class="cw" style="height:280px"><canvas id="c-scatter"></canvas></div>
+  </div>
+  <!-- Row 5 (2×2): Agency Performance + Content Category Matrix -->
+  <div class="g2 mb">
+    <div class="card card-accent-blue">
+      <div class="sh">Agency Performance <span class="sh-tag">creator count · views · CPV · engagement</span></div>
+      <div class="sec-desc">Avg CPV = average of each creator's cost-per-view within that agency</div>
+      <div class="tw"><div class="ts"><table id="agency-table">
+        <thead><tr>
+          <th>Agency</th>
+          <th onclick="agSort('creators')" style="cursor:pointer">Creators <span id="ag-s-creators"></span></th>
+          <th onclick="agSort('views')" style="cursor:pointer">Total Views <span id="ag-s-views">▼</span></th>
+          <th onclick="agSort('cost')" style="cursor:pointer">Total Budget <span id="ag-s-cost"></span></th>
+          <th onclick="agSort('cpv')" style="cursor:pointer">Avg CPV <span id="ag-s-cpv"></span></th>
+          <th onclick="agSort('er')" style="cursor:pointer">Avg Eng. Rate <span id="ag-s-er"></span></th>
+        </tr></thead>
+        <tbody id="agency-tbody"></tbody>
+      </table></div></div>
     </div>
-  </div>
-  <div class="card mb card-accent-blue">
-    <div class="sh">Agency Performance <span class="sh-tag">creator count · views · CPV · engagement</span></div>
-    <div class="sec-desc">Avg CPV = average of each creator's cost-per-view within that agency</div>
-    <div class="tw"><div class="ts"><table id="agency-table">
-      <thead><tr>
-        <th>Agency</th>
-        <th onclick="agSort('creators')" style="cursor:pointer">Creators <span id="ag-s-creators"></span></th>
-        <th onclick="agSort('views')" style="cursor:pointer">Total Views <span id="ag-s-views">▼</span></th>
-        <th onclick="agSort('cost')" style="cursor:pointer">Total Budget <span id="ag-s-cost"></span></th>
-        <th onclick="agSort('cpv')" style="cursor:pointer">Avg CPV <span id="ag-s-cpv"></span></th>
-        <th onclick="agSort('er')" style="cursor:pointer">Avg Eng. Rate <span id="ag-s-er"></span></th>
-      </tr></thead>
-      <tbody id="agency-tbody"></tbody>
-    </table></div></div>
-  </div>
-
-  <!-- Content Category Matrix -->
-  <div class="card mb card-accent-pur">
-    <div class="sh">Content Category Matrix <span class="sh-tag">influencer count by month × category</span></div>
-    <div class="sec-desc">Number of active influencers per content niche across each campaign month</div>
-    <div class="tw"><div class="ts">
-      <table id="cat-matrix-table" class="cat-matrix">
-        <thead id="cat-matrix-head"></thead>
-        <tbody id="cat-matrix-body"></tbody>
-      </table>
-    </div></div>
+    <div class="card card-accent-pur">
+      <div class="sh">Content Category Matrix <span class="sh-tag">influencer count by month × category</span></div>
+      <div class="sec-desc">Number of active influencers per content niche across each campaign month</div>
+      <div class="tw"><div class="ts">
+        <table id="cat-matrix-table" class="cat-matrix">
+          <thead id="cat-matrix-head"></thead>
+          <tbody id="cat-matrix-body"></tbody>
+        </table>
+      </div></div>
+    </div>
   </div>
 
 </div><!-- /analytics -->
@@ -1144,19 +1157,41 @@ function buildAnalyticsCharts() {
     options:{...bOpts(),indexAxis:'y',scales:{x:{ticks:{callback:v=>v+'%'},grid:{color:'#f3f4f6'}},y:{grid:{display:false},ticks:{font:{size:10}}}}}
   });
 
-  // CPV trend
+  // CPV trend — Avg CPV + Blended CPV
   dch('c-cpv-trend');
   const cpvMap = {};
   for (const r of allRows) {
-    if (!r.liveMonth||r.cpv==null) continue;
-    if (!cpvMap[r.liveMonth]) cpvMap[r.liveMonth]={mo:r.monthOrder,arr:[]};
-    cpvMap[r.liveMonth].arr.push(r.cpv);
+    if (!r.liveMonth) continue;
+    if (!cpvMap[r.liveMonth]) cpvMap[r.liveMonth]={mo:r.monthOrder,arr:[],totalCost:0,totalViews:0};
+    if (r.cpv != null) cpvMap[r.liveMonth].arr.push(r.cpv);
+    if (r.cost)  cpvMap[r.liveMonth].totalCost  += r.cost;
+    if (r.views) cpvMap[r.liveMonth].totalViews += r.views;
   }
   const cpvSorted = Object.entries(cpvMap).sort((a,b)=>a[1].mo-b[1].mo);
+  const cpvLabels = cpvSorted.map(e=>e[0].replace(' 2025','\'25').replace(' 2026','\'26'));
   charts['cpvt'] = new Chart(document.getElementById('c-cpv-trend').getContext('2d'), {
     type:'line',
-    data:{labels:cpvSorted.map(e=>e[0].replace(' 2025','\'25').replace(' 2026','\'26')),datasets:[{label:'Avg CPV ₹',data:cpvSorted.map(e=>+(e[1].arr.reduce((a,b)=>a+b)/e[1].arr.length).toFixed(2)),borderColor:'#f97316',backgroundColor:'#f9731622',tension:.4,fill:true,borderWidth:2.5,pointRadius:4,pointBackgroundColor:'#f97316'}]},
+    data:{labels:cpvLabels,datasets:[
+      {label:'Avg CPV ₹',data:cpvSorted.map(e=>e[1].arr.length?+(e[1].arr.reduce((a,b)=>a+b)/e[1].arr.length).toFixed(2):null),borderColor:'#f97316',backgroundColor:'#f9731622',tension:.4,fill:true,borderWidth:2.5,pointRadius:4,pointBackgroundColor:'#f97316'},
+      {label:'Blended CPV ₹',data:cpvSorted.map(e=>e[1].totalViews?+(e[1].totalCost/e[1].totalViews).toFixed(2):null),borderColor:'#4736FE',backgroundColor:'transparent',tension:.4,fill:false,borderWidth:2,borderDash:[5,3],pointRadius:4,pointBackgroundColor:'#4736FE'}
+    ]},
     options:{...bOpts(),scales:{y:{ticks:{callback:v=>'₹'+v},grid:{color:'#f3f4f6'}},x:{grid:{display:false},ticks:{maxRotation:45,font:{size:10}}}}}
+  });
+
+  // Budget spend by Month
+  dch('c-budget-mom');
+  const budgetMap = {};
+  for (const r of allRows) {
+    if (!r.liveMonth||!r.cost) continue;
+    if (!budgetMap[r.liveMonth]) budgetMap[r.liveMonth]={mo:r.monthOrder,total:0,count:0};
+    budgetMap[r.liveMonth].total += r.cost;
+    budgetMap[r.liveMonth].count++;
+  }
+  const budSorted = Object.entries(budgetMap).sort((a,b)=>a[1].mo-b[1].mo);
+  charts['budm'] = new Chart(document.getElementById('c-budget-mom').getContext('2d'), {
+    type:'bar',
+    data:{labels:budSorted.map(e=>e[0].replace(' 2025','\'25').replace(' 2026','\'26')),datasets:[{label:'Total Spend ₹',data:budSorted.map(e=>e[1].total),backgroundColor:'#4736FE88',borderColor:'#4736FE',borderWidth:1.5,borderRadius:5}]},
+    options:{...bOpts(),scales:{y:{ticks:{callback:v=>'₹'+fmtN(v)},grid:{color:'#f3f4f6'}},x:{grid:{display:false},ticks:{maxRotation:45,font:{size:10}}}},plugins:{...bOpts().plugins,tooltip:{callbacks:{label:ctx=>`₹${fmtN(ctx.raw)} (${budSorted[ctx.dataIndex]?.[1].count} creators)`}}}}
   });
 
   // ER by region
