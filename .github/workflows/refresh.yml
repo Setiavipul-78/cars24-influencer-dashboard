@@ -35,47 +35,4 @@ jobs:
           git diff --cached --quiet || git commit -m "chore: refresh metrics $(date -u '+%Y-%m-%d %H:%M UTC')"
           git push
 
-      - name: Deploy updated data to Netlify
-        env:
-          NETLIFY_TOKEN: ${{ secrets.NETLIFY_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-        run: |
-          python3 - <<'EOF'
-          import hashlib, json, os, urllib.request
-
-          token   = os.environ['NETLIFY_TOKEN']
-          site_id = os.environ['NETLIFY_SITE_ID']
-
-          def sha1(path):
-              with open(path, 'rb') as f:
-                  return hashlib.sha1(f.read()).hexdigest()
-
-          files = {'/index.html': sha1('index.html'), '/live_data.json': sha1('live_data.json')}
-
-          # Create deploy
-          req = urllib.request.Request(
-              f'https://api.netlify.com/api/v1/sites/{site_id}/deploys',
-              data=json.dumps({'files': files}).encode(),
-              headers={'Authorization': f'Bearer {token}', 'Content-Type': 'application/json'},
-              method='POST'
-          )
-          with urllib.request.urlopen(req) as r:
-              deploy = json.loads(r.read())
-
-          deploy_id = deploy['id']
-          required  = deploy.get('required', [])
-          print(f'Deploy {deploy_id} — {len(required)} file(s) to upload')
-
-          # Upload any required files
-          path_map = {sha1('index.html'): ('index.html','text/html'), sha1('live_data.json'): ('live_data.json','application/json')}
-          for h in required:
-              local, ctype = path_map[h]
-              with open(local, 'rb') as f:
-                  data = f.read()
-              url = f'https://api.netlify.com/api/v1/deploys/{deploy_id}/files/{local}'
-              req2 = urllib.request.Request(url, data=data, headers={'Authorization': f'Bearer {token}', 'Content-Type': ctype}, method='PUT')
-              with urllib.request.urlopen(req2): pass
-              print(f'Uploaded {local}')
-
-          print('Netlify deploy complete')
-          EOF
+      # Cloudflare Pages auto-deploys on every push — no deploy step needed
