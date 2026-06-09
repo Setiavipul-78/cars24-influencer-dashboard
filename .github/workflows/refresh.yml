@@ -2,13 +2,14 @@ name: Refresh Dashboard Metrics
 
 on:
   schedule:
-    # Runs every Tuesday at 6:00 AM IST (00:30 UTC)
-    - cron: '30 0 * * 2'
+    # Runs every day at 9:00 AM IST (03:30 UTC)
+    - cron: '30 3 * * *'
   workflow_dispatch:   # Allow manual trigger from GitHub UI
 
 jobs:
   refresh:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     permissions:
       contents: write   # needed to commit live_data.json
 
