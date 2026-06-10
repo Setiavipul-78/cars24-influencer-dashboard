@@ -45,11 +45,16 @@ with open(live_path) as f:
 rows = data["rows"]
 
 # ── Collect video URLs to scrape (skip csvPin rows) ───────────────────────────
+INSTA_RE = re.compile(r'^https?://(www\.)?instagram\.com/', re.I)
+
 urls_to_scrape = []
 for r in rows:
     if r.get("csvPin"):
         continue
-    link = r.get("videoLink", "")
+    # Handle cells that accidentally contain multiple URLs (e.g. YouTube + Instagram)
+    raw_link = r.get("videoLink", "")
+    candidates = [l.strip() for l in raw_link.replace('\n', ' ').split() if INSTA_RE.match(l.strip())]
+    link = candidates[0] if candidates else ""
     if shortcode(link) and link:
         urls_to_scrape.append(link.split("?")[0].rstrip("/") + "/")
 
