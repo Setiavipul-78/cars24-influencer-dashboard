@@ -598,23 +598,37 @@ let charts = {};
 // ═══════════════════════════════════════════════
 //  INIT
 // ═══════════════════════════════════════════════
+let _lastRefreshedAt = null;
+
 window.onload = () => {
   tryLoadLocalJson();
+  // Auto-refresh every 30 minutes — picks up the daily 9AM Apify scrape automatically
+  setInterval(() => tryLoadLocalJson(true), 30 * 60 * 1000);
 };
 
-async function tryLoadLocalJson() {
+async function tryLoadLocalJson(silent = false) {
   try {
     const res = await fetch('live_data.json?t=' + Date.now());
     if (!res.ok) return;
     const data = await res.json();
     if (!data.rows || !data.rows.length) return;
-    // live_data.json already has processed rows — load directly
+
+    // Skip if data hasn't changed since last load
+    if (silent && data.refreshedAt === _lastRefreshedAt) return;
+
+    const isUpdate = silent && _lastRefreshedAt !== null;
+    _lastRefreshedAt = data.refreshedAt;
+
     allRows = data.rows;
     buildFilters(); applyFilters(); buildOverview();
     document.getElementById('btn-export').classList.remove('h');
     document.getElementById('rm-head').style.display = '';
     const ts = data.refreshedAt ? new Date(data.refreshedAt).toLocaleString('en-IN') : '';
-    toast(`Loaded ${allRows.length} influencers · refreshed ${ts}`, 'ok');
+    if (isUpdate) {
+      toast(`Dashboard updated with fresh data · ${ts}`, 'info');
+    } else {
+      toast(`Loaded ${allRows.length} influencers · refreshed ${ts}`, 'ok');
+    }
   } catch(_) { /* file doesn't exist yet — normal on first run */ }
 }
 
