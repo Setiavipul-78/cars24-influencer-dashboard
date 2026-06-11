@@ -455,6 +455,7 @@ th.sa{color:var(--blue)}.th.sd{color:var(--blue)}
           <th onclick="colSort('category')">Category</th>
           <th onclick="colSort('tier')">Tier</th>
           <th onclick="colSort('liveMonth')">Month</th>
+          <th onclick="colSort('liveDate')">Live Date</th>
           <th onclick="colSort('region')">Region</th>
           <th onclick="colSort('followers')">Followers</th>
           <th onclick="colSort('views')">Views</th>
@@ -1052,6 +1053,10 @@ function colSort(col) {
       va = a.followers && a.views ? a.views/a.followers : null;
       vb = b.followers && b.views ? b.views/b.followers : null;
     }
+    if (col==='liveDate') {
+      va = a.lastRefreshed ? new Date(a.lastRefreshed).getTime() : null;
+      vb = b.lastRefreshed ? new Date(b.lastRefreshed).getTime() : null;
+    }
     if (va==null) return 1; if (vb==null) return -1;
     if (typeof va==='string') {
       if (col==='liveMonth') return (a.monthOrder-b.monthOrder)*sortDir;
@@ -1067,7 +1072,7 @@ function colSort(col) {
 // ═══════════════════════════════════════════════
 function renderTable() {
   const tbody = document.getElementById('inf-tbody');
-  if (!filteredRows.length) { tbody.innerHTML=`<tr><td colspan="16" style="text-align:center;padding:32px;color:var(--g400)">No results</td></tr>`; return; }
+  if (!filteredRows.length) { tbody.innerHTML=`<tr><td colspan="17" style="text-align:center;padding:32px;color:var(--g400)">No results</td></tr>`; return; }
   tbody.innerHTML = filteredRows.map(r => {
     const sel = selectedIds.has(r.id);
     const rc  = r.refreshStatus==='done'?'rok':r.refreshStatus==='error'?'rerr':'';
@@ -1083,6 +1088,7 @@ function renderTable() {
       <td><span class="pill cat-${catKey}">${cat}</span></td>
       <td><span class="pill t-${r.tier.toLowerCase()}">${r.tier}</span></td>
       <td style="white-space:nowrap">${r.liveMonth||'—'}</td>
+      <td style="white-space:nowrap;color:var(--g500);font-size:12px">${r.lastRefreshed ? new Date(r.lastRefreshed).toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'}) : '—'}</td>
       <td>${r.region||'—'}</td>
       <td style="font-weight:600">${fmtN(r.followers)}</td>
       <td style="font-weight:700">${fmtN(r.views)}</td>
