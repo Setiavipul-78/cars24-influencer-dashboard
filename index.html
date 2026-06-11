@@ -433,6 +433,7 @@ th.sa{color:var(--blue)}.th.sd{color:var(--blue)}
       <select class="fsel" id="f-status" onchange="applyFilters()">
         <option value="">All Status</option><option value="Live">Live</option><option value="WIP">WIP</option>
       </select>
+      <select class="fsel" id="f-week" onchange="applyFilters()"><option value="">All Weeks</option></select>
       <select class="fsel" id="f-sort" onchange="applySort()">
         <option value="">Sort: Default (Month ↑)</option>
         <option value="views-desc">Sort: Views (High → Low)</option>
@@ -1006,6 +1007,26 @@ function buildFilters() {
   const rs = document.getElementById('f-region');
   rs.innerHTML = '<option value="">All Regions</option>';
   regions.forEach(r=>{ const o=document.createElement('option'); o.value=r; o.textContent=r; rs.appendChild(o); });
+  // Build week options from lastRefreshed dates (Mon–Sun weeks)
+  const weekMap = new Map();
+  allRows.forEach(r => {
+    if (!r.lastRefreshed) return;
+    const d = new Date(r.lastRefreshed);
+    const day = d.getDay(); // 0=Sun
+    const diffToMon = (day === 0 ? -6 : 1 - day);
+    const mon = new Date(d); mon.setDate(d.getDate() + diffToMon); mon.setHours(0,0,0,0);
+    const sun = new Date(mon); sun.setDate(mon.getDate() + 6);
+    const key = mon.toISOString().slice(0,10);
+    if (!weekMap.has(key)) {
+      const fmt = d => d.toLocaleDateString('en-IN',{day:'2-digit',month:'short'});
+      weekMap.set(key, `${fmt(mon)} – ${fmt(sun)}`);
+    }
+  });
+  const ws = document.getElementById('f-week');
+  ws.innerHTML = '<option value="">All Weeks</option>';
+  [...weekMap.keys()].sort().reverse().forEach(k => {
+    const o = document.createElement('option'); o.value=k; o.textContent=weekMap.get(k); ws.appendChild(o);
+  });
 }
 
 function applyFilters() {
@@ -1015,6 +1036,7 @@ function applyFilters() {
   const tier= document.getElementById('f-tier').value;
   const sta = document.getElementById('f-status').value;
   const cat = document.getElementById('f-category')?.value || '';
+  const wk  = document.getElementById('f-week').value; // ISO date string of Monday
   filteredRows = allRows.filter(r => {
     if (q && !`${r.name} ${r.agency} ${r.region}`.toLowerCase().includes(q)) return false;
     if (m && r.liveMonth !== m) return false;
@@ -1022,6 +1044,12 @@ function applyFilters() {
     if (tier && r.tier !== tier) return false;
     if (cat && r.category !== cat) return false;
     if (sta && r.liveStatus.toLowerCase() !== sta.toLowerCase()) return false;
+    if (wk && r.lastRefreshed) {
+      const d = new Date(r.lastRefreshed);
+      const day = d.getDay();
+      const mon = new Date(d); mon.setDate(d.getDate() + (day===0?-6:1-day)); mon.setHours(0,0,0,0);
+      if (mon.toISOString().slice(0,10) !== wk) return false;
+    } else if (wk && !r.lastRefreshed) return false;
     return true;
   });
   applySort();
