@@ -1,5 +1,5 @@
 {
-  "refreshedAt": "2026-06-11T08:23:24Z",
+  "refreshedAt": "2026-06-11T15:04:22Z",
   "rows": [
     {
       "id": 0,
@@ -4058,15 +4058,15 @@
       "avgViews": null,
       "cost": 100000.0,
       "tier": "Mega",
-      "views": 97532,
+      "views": 97643,
       "likes": null,
       "comments": 5,
       "shares": null,
       "saves": null,
       "engRate": 0.01,
-      "cpv": 1.025,
+      "cpv": 1.024,
       "refreshStatus": "ok",
-      "lastRefreshed": "2026-06-02T13:00:14.000Z",
+      "lastRefreshed": "2026-06-11T15:04:22Z",
       "category": "Entertainment"
     },
     {
