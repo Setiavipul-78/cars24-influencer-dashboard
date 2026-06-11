@@ -142,6 +142,16 @@ def get_val(d, *candidates):
             if c in k and d[k] != '': return str(d[k]).strip()
     return ''
 
+def norm_month(s):
+    """Convert ISO date '2025-06-01' → 'June 2025' to match live_data format."""
+    if not s: return s
+    m = re.match(r'^(\d{4})-(\d{2})-\d{2}$', s)
+    if m:
+        year, mon = int(m.group(1)), int(m.group(2))
+        if 1 <= mon <= 12:
+            return f'{MO[mon-1]} {year}'
+    return s
+
 if sheet_rows:
     existing = {}
     for i, r in enumerate(rows):
@@ -152,7 +162,7 @@ if sheet_rows:
     for sheet_row in sheet_rows:
         name = get_val(sheet_row, 'name', 'influencer_name', 'influencer')
         if not name: continue
-        month = get_val(sheet_row, 'live_month', 'month')
+        month = norm_month(get_val(sheet_row, 'live_month', 'month'))
         key   = (name.lower(), month.lower())
 
         video_link_raw = get_val(sheet_row, 'video_live_link', 'video_link', 'reel_link', 'instagram_link')

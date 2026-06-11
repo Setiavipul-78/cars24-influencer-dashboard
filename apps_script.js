@@ -23,6 +23,14 @@ const GITHUB_FILE   = 'sheet_data.json';
 const GITHUB_BRANCH = 'main';
 const SHEET_GID     = 1928933144;
 
+function toStr(v) {
+  if (v === null || v === undefined || v === '') return '';
+  if (v instanceof Date) {
+    return Utilities.formatDate(v, Session.getScriptTimeZone(), 'yyyy-MM-dd');
+  }
+  return v.toString().trim();
+}
+
 function pushSheetToGitHub() {
   const props = PropertiesService.getScriptProperties();
   const token = props.getProperty('GITHUB_TOKEN');
@@ -83,12 +91,4 @@ function pushSheetToGitHub() {
   } else {
     Logger.log(`❌  GitHub push failed (HTTP ${code}): ${putResp.getContentText().slice(0, 300)}`);
   }
-}
-
-function toStr(v) {
-  if (v === null || v === undefined || v === '') return '';
-  if (v instanceof Date) {
-    return Utilities.formatDate(v, Session.getScriptTimeZone(), 'yyyy-MM-dd');
-  }
-  return v.toString().trim();
 }
