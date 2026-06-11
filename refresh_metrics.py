@@ -6,7 +6,7 @@ Refresh script — two steps on every run:
 csvPin=true rows are never overwritten (manually verified metrics from CSV).
 """
 
-import csv, io, json, re, urllib.request, urllib.error, datetime, os, sys, time
+import json, re, urllib.request, urllib.error, datetime, os, sys, time
 
 APIFY_TOKEN = os.environ.get("APIFY_TOKEN", "apify_api_U2idmzmhBnzlnMBi71su8BR6EzzVE30NEfF4")
 ACTOR_ID    = "apify~instagram-scraper"
@@ -14,10 +14,8 @@ BATCH_SIZE  = 50
 MAX_WAIT_S  = 600
 POLL_S      = 10
 
-# Google Sheet (must be shared as "Anyone with link can view")
-SHEET_ID  = "1VBjkdMm5Uhjq-JLmGqRL7aFTbTH3P0c7oRr1LHcN1o0"
-SHEET_GID = "1928933144"
-SHEET_CSV = f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/export?format=csv&gid={SHEET_GID}"
+# sheet_data.json is written by apps_script.js (Google Apps Script) and committed to the repo.
+# refresh_metrics.py reads it locally — no public sheet access required.
 
 SC_RE    = re.compile(r'/(?:reel|reels|p)/([A-Za-z0-9_-]+)(?:/|\?|$)')
 INSTA_RE = re.compile(r'^https?://(www\.)?instagram\.com/', re.I)
@@ -109,120 +107,101 @@ def post_json(url, payload):
         raise
 
 # ══════════════════════════════════════════════════════════════════════════════
-#  STEP 1 — Sync Google Sheet → live_data.json
+#  STEP 1 — Sync sheet_data.json → live_data.json
+#  sheet_data.json is pushed to this repo by apps_script.js running inside
+#  Google Sheets — no public sheet access needed.
 # ══════════════════════════════════════════════════════════════════════════════
-print("── Step 1: Syncing Google Sheet ──")
-try:
-    csv_text = fetch_text(SHEET_CSV)
-    reader   = list(csv.reader(io.StringIO(csv_text)))
-except Exception as e:
-    print(f"Could not fetch sheet: {e} — skipping sync", file=sys.stderr)
-    reader = []
+print("── Step 1: Syncing from sheet_data.json ──")
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
 live_path  = os.path.join(script_dir, "live_data.json")
+sheet_path = os.path.join(script_dir, "sheet_data.json")
 
 with open(live_path) as f:
     data = json.load(f)
 
 rows = data["rows"]
 
-if reader and len(reader) > 1:
-    hdrs = [h.lower().replace(' ','_').replace('/','_') for h in reader[0]]
+sheet_rows = []
+try:
+    if os.path.exists(sheet_path):
+        with open(sheet_path) as f:
+            sd = json.load(f)
+        sheet_rows = sd.get("rows", [])
+        print(f"  Loaded {len(sheet_rows)} rows (exported {sd.get('exportedAt', '?')})")
+    else:
+        print("  sheet_data.json not found — skipping sync")
+except Exception as e:
+    print(f"  Could not read sheet_data.json: {e} — skipping sync", file=sys.stderr)
 
-    def col(name):
-        for i, h in enumerate(hdrs):
-            if h == name: return i
-        for i, h in enumerate(hdrs):
-            if name in h: return i
-        return -1
+def get_val(d, *candidates):
+    """Fuzzy key lookup — tries exact then substring match."""
+    for c in candidates:
+        if c in d and d[c] != '': return str(d[c]).strip()
+        for k in d:
+            if c in k and d[k] != '': return str(d[k]).strip()
+    return ''
 
-    C = {
-        'month':      col('live_month'),
-        'agency':     col('agency'),
-        'name':       col('name') if col('name') >= 0 else col('influencer_name'),
-        'link':       col('link'),
-        'region':     col('region'),
-        'followers':  col('follower'),
-        'avg_views':  col('avg_view'),
-        'cost':       col('final_cost'),
-        'status':     col('live_status'),
-        'business':   col('business'),
-        'video_link': col('video_live_link'),
-        'views':      col('views'),
-        'likes':      col('likes'),
-        'comments':   col('comments'),
-        'shares':     col('shares'),
-        'saves':      col('saves'),
-    }
-
-    # Build lookup key → row index in live_data
+if sheet_rows:
     existing = {}
     for i, r in enumerate(rows):
         key = (r['name'].strip().lower(), r['liveMonth'].strip().lower())
         existing[key] = i
 
     added = 0
-    for sheet_row in reader[1:]:
-        if len(sheet_row) < 3: continue
-        name = sheet_row[C['name']].strip() if C['name'] >= 0 and C['name'] < len(sheet_row) else ''
+    for sheet_row in sheet_rows:
+        name = get_val(sheet_row, 'name', 'influencer_name', 'influencer')
         if not name: continue
-        month = sheet_row[C['month']].strip() if C['month'] >= 0 and C['month'] < len(sheet_row) else ''
+        month = get_val(sheet_row, 'live_month', 'month')
         key   = (name.lower(), month.lower())
 
-        video_link_raw = sheet_row[C['video_link']].strip() if C['video_link'] >= 0 and C['video_link'] < len(sheet_row) else ''
+        video_link_raw = get_val(sheet_row, 'video_live_link', 'video_link', 'reel_link', 'instagram_link')
         video_link     = clean_insta_url(video_link_raw) or video_link_raw
 
-        agency    = sheet_row[C['agency']].strip()    if C['agency']    >= 0 and C['agency']    < len(sheet_row) else ''
-        region    = sheet_row[C['region']].strip()    if C['region']    >= 0 and C['region']    < len(sheet_row) else 'PAN INDIA'
-        followers = num(sheet_row[C['followers']])    if C['followers'] >= 0 and C['followers'] < len(sheet_row) else None
-        cost      = num(sheet_row[C['cost']])         if C['cost']      >= 0 and C['cost']      < len(sheet_row) else None
-        status    = sheet_row[C['status']].strip()    if C['status']    >= 0 and C['status']    < len(sheet_row) else ''
-        business  = sheet_row[C['business']].strip()  if C['business']  >= 0 and C['business']  < len(sheet_row) else ''
-        link      = sheet_row[C['link']].strip()      if C['link']      >= 0 and C['link']      < len(sheet_row) else ''
-        avg_views = num(sheet_row[C['avg_views']])    if C['avg_views'] >= 0 and C['avg_views'] < len(sheet_row) else None
+        agency    = get_val(sheet_row, 'agency')
+        region    = get_val(sheet_row, 'region') or 'PAN INDIA'
+        followers = num(get_val(sheet_row, 'follower_count', 'followers', 'follower'))
+        cost      = num(get_val(sheet_row, 'final_cost', 'cost', 'budget'))
+        status    = get_val(sheet_row, 'live_status', 'status')
+        business  = get_val(sheet_row, 'business')
+        link      = get_val(sheet_row, 'link', 'profile_link', 'instagram_profile')
+        avg_views = num(get_val(sheet_row, 'avg_views', 'avg_view', 'average_views'))
 
         if key in existing:
-            # Update metadata fields only — never touch metrics
             r = rows[existing[key]]
-            r['agency']    = agency    or r.get('agency', '')
-            r['region']    = region    or r.get('region', 'PAN INDIA')
-            r['cost']      = cost      if cost is not None else r.get('cost')
-            r['liveStatus']= status    or r.get('liveStatus', '')
-            r['business']  = business  or r.get('business', '')
-            r['videoLink'] = video_link or r.get('videoLink', '')
-            r['link']      = link      or r.get('link', '')
-            r['followers'] = followers if followers is not None else r.get('followers')
-            r['avgViews']  = avg_views if avg_views is not None else r.get('avgViews')
-            r['tier']      = tier_of(r['followers'])
+            r['agency']     = agency     or r.get('agency', '')
+            r['region']     = region     or r.get('region', 'PAN INDIA')
+            r['cost']       = cost       if cost      is not None else r.get('cost')
+            r['liveStatus'] = status     or r.get('liveStatus', '')
+            r['business']   = business   or r.get('business', '')
+            r['videoLink']  = video_link or r.get('videoLink', '')
+            r['link']       = link       or r.get('link', '')
+            r['followers']  = followers  if followers is not None else r.get('followers')
+            r['avgViews']   = avg_views  if avg_views is not None else r.get('avgViews')
+            r['tier']       = tier_of(r['followers'])
         else:
-            # New row — add it
             mo = month_order(month)
             new_row = {
-                'id':           max((r['id'] for r in rows), default=0) + 1,
-                'name':         name,
-                'agency':       agency,
-                'region':       region or 'PAN INDIA',
-                'liveMonth':    month,
-                'monthOrder':   mo,
-                'liveStatus':   status,
-                'business':     business,
-                'link':         link,
-                'videoLink':    video_link,
-                'followers':    followers,
-                'avgViews':     avg_views,
-                'cost':         cost,
-                'tier':         tier_of(followers),
-                'views':        None,
-                'likes':        None,
-                'comments':     None,
-                'shares':       None,
-                'saves':        None,
-                'engRate':      None,
-                'cpv':          None,
-                'refreshStatus':'pending',
-                'lastRefreshed':None,
-                'category':     classify(name),
+                'id':            max((r['id'] for r in rows), default=0) + 1,
+                'name':          name,
+                'agency':        agency,
+                'region':        region,
+                'liveMonth':     month,
+                'monthOrder':    mo,
+                'liveStatus':    status,
+                'business':      business,
+                'link':          link,
+                'videoLink':     video_link,
+                'followers':     followers,
+                'avgViews':      avg_views,
+                'cost':          cost,
+                'tier':          tier_of(followers),
+                'views':         None, 'likes':   None, 'comments': None,
+                'shares':        None, 'saves':   None,
+                'engRate':       None, 'cpv':     None,
+                'refreshStatus': 'pending',
+                'lastRefreshed': None,
+                'category':      classify(name),
             }
             rows.append(new_row)
             existing[key] = len(rows) - 1
@@ -231,7 +210,7 @@ if reader and len(reader) > 1:
 
     print(f"Sheet sync: {added} new rows added, {len(rows)-added} existing updated")
 else:
-    print("  Sheet empty or unavailable — skipping sync")
+    print("  No sheet data — skipping sync")
 
 # ══════════════════════════════════════════════════════════════════════════════
 #  STEP 2 — Fresh Apify scrape
