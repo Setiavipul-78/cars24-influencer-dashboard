@@ -27,16 +27,18 @@ body{font-family:'Geist',system-ui,-apple-system,sans-serif;background:var(--g50
 ::-webkit-scrollbar-thumb{background:var(--g300);border-radius:99px}
 
 /* Header */
-.hdr{background:#fff;border-bottom:1px solid var(--g200);padding:0 24px;height:58px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;box-shadow:0 2px 12px rgba(71,54,254,.08)}
+.hdr{background:#fff;border-bottom:1px solid var(--g200);padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;box-shadow:0 2px 16px rgba(71,54,254,.1)}
 .hbrand{display:flex;align-items:center;gap:12px}
 .hlogo{display:flex;align-items:center}
 .hlogo svg{display:block}
-.htitle{font-weight:700;font-size:14px;color:var(--g900);letter-spacing:-.2px}
-.htitle span{color:var(--g400);font-weight:500;margin-left:6px;font-size:12px}
+.hwordmark{display:flex;flex-direction:column;gap:2px}
+.hword-name{font-weight:800;font-size:17px;color:var(--g900);letter-spacing:-.6px;line-height:1}
+.hword-name .h24{color:var(--blue)}
+.hword-sub{font-size:9.5px;font-weight:600;color:var(--g400);text-transform:uppercase;letter-spacing:.9px;line-height:1}
 .hright{display:flex;align-items:center;gap:8px}
 
 /* Tabs */
-.tabs{background:var(--g50);border-bottom:1px solid var(--g200);padding:10px 24px;gap:6px;display:flex;overflow-x:auto;position:sticky;top:58px;z-index:199}
+.tabs{background:var(--g50);border-bottom:1px solid var(--g200);padding:10px 24px;gap:6px;display:flex;overflow-x:auto;position:sticky;top:60px;z-index:199}
 .tb{padding:9px 20px;font-size:12.5px;font-weight:600;color:var(--g500);border:none;background:var(--g100);cursor:pointer;border-radius:99px;white-space:nowrap;transition:all .2s;font-family:inherit;display:flex;align-items:center;gap:7px;border-bottom:none;letter-spacing:-.1px}
 .tb:hover{color:var(--g800);background:var(--g200);transform:translateY(-1px)}
 /* Overview — brand blue */
@@ -287,18 +289,30 @@ th.sa{color:var(--blue)}.th.sd{color:var(--blue)}
 <header class="hdr">
   <div class="hbrand">
     <div class="hlogo">
-      <svg width="100" height="34" viewBox="0 0 100 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="100" height="34" rx="8" fill="#4736FE"/>
-        <!-- car silhouette -->
-        <path d="M10 21.5 L12.5 17.5 L16 16 L21 16 L23 18 L25 18 L25 21.5 Z" fill="rgba(255,255,255,.25)" stroke="rgba(255,255,255,.5)" stroke-width=".6"/>
-        <circle cx="14" cy="21.5" r="1.5" fill="rgba(255,255,255,.7)"/>
-        <circle cx="22" cy="21.5" r="1.5" fill="rgba(255,255,255,.7)"/>
-        <!-- wordmark -->
-        <text x="30" y="22.5" fill="white" font-family="-apple-system,BlinkMacSystemFont,'Geist',sans-serif" font-weight="600" font-size="13" letter-spacing=".1">Cars</text>
-        <text x="58" y="22.5" fill="white" font-family="-apple-system,BlinkMacSystemFont,'Geist',sans-serif" font-weight="800" font-size="13" letter-spacing=".1">24</text>
+      <!--
+        Cars24 "C" mark — broken ring with two pieces:
+        • Main arc:  135° → 345° clockwise (210°, large arc)
+        • Top piece: 15°  →  45° clockwise (30°, small arc) — Mint accent
+        Angles measured clockwise from 12 o'clock. R=40, r=24, center=(50,50)
+      -->
+      <svg width="40" height="40" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="cBg" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#5548FF"/>
+            <stop offset="100%" stop-color="#2B20CC"/>
+          </linearGradient>
+        </defs>
+        <rect width="100" height="100" rx="22" fill="url(#cBg)"/>
+        <!-- Main C arc (white) -->
+        <path d="M78.3 78.3 A40 40 0 1 1 39.6 11.4 L43.8 26.8 A24 24 0 1 0 67 67 Z" fill="white"/>
+        <!-- Small top accent piece (Mint Green) -->
+        <path d="M60.4 11.4 A40 40 0 0 1 78.3 21.7 L67 33 A24 24 0 0 0 56.2 26.8 Z" fill="#63FFB1"/>
       </svg>
     </div>
-    <span class="htitle">Influencer Intelligence <span>by Cars24</span></span>
+    <div class="hwordmark">
+      <div class="hword-name">Cars<span class="h24">24</span></div>
+      <div class="hword-sub">Influencer Intelligence</div>
+    </div>
   </div>
   <div class="hright">
     <button class="btn btn-gh btn-sm" id="btn-export" onclick="exportCSV()">⬇ Export CSV</button>
