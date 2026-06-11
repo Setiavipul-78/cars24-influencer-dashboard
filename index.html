@@ -35,18 +35,18 @@ body{font-family:'Geist',system-ui,-apple-system,sans-serif;background:var(--g50
 ::-webkit-scrollbar-thumb{background:var(--g300);border-radius:99px}
 
 /* Header */
-.hdr{background:#fff;border-bottom:1px solid var(--g200);padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;box-shadow:0 2px 16px rgba(71,54,254,.1)}
-.hbrand{display:flex;align-items:center;gap:12px}
+.hdr{background:#fff;border-bottom:1px solid var(--g200);padding:0 24px;height:72px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;box-shadow:0 2px 16px rgba(71,54,254,.1)}
+.hbrand{display:flex;align-items:center;gap:14px}
 .hlogo{display:flex;align-items:center}
 .hlogo svg{display:block}
-.hwordmark{display:flex;flex-direction:column;gap:2px}
-.hword-name{font-weight:800;font-size:17px;color:var(--g900);letter-spacing:-.6px;line-height:1}
-.hword-name .h24{color:var(--blue)}
-.hword-sub{font-size:9.5px;font-weight:600;color:var(--g400);text-transform:uppercase;letter-spacing:.9px;line-height:1}
+.hwordmark{display:flex;flex-direction:column;gap:4px}
+.hword-name{font-weight:800;font-size:24px;color:var(--g900);letter-spacing:-.8px;line-height:1}
+.hword-name .h24{color:var(--g900)}
+.hword-sub{font-size:13px;font-weight:600;color:var(--g500);letter-spacing:.1px;line-height:1}
 .hright{display:flex;align-items:center;gap:8px}
 
 /* Tabs */
-.tabs{background:var(--g50);border-bottom:1px solid var(--g200);padding:10px 24px;gap:6px;display:flex;overflow-x:auto;position:sticky;top:60px;z-index:199}
+.tabs{background:var(--g50);border-bottom:1px solid var(--g200);padding:10px 24px;gap:6px;display:flex;overflow-x:auto;position:sticky;top:72px;z-index:199}
 .tb{padding:9px 20px;font-size:12.5px;font-weight:600;color:var(--g500);border:none;background:var(--g100);cursor:pointer;border-radius:99px;white-space:nowrap;transition:all .2s;font-family:inherit;display:flex;align-items:center;gap:7px;border-bottom:none;letter-spacing:-.1px}
 .tb:hover{color:var(--g800);background:var(--g200);transform:translateY(-1px)}
 /* Overview — brand blue */
@@ -241,6 +241,11 @@ tr.rspin td{background:#f5f3ff!important}
 /* ── Overview 2×2 grid ────────────────────────────────────────── */
 .ov-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
 @media(max-width:900px){.ov-grid{grid-template-columns:1fr}}
+.ov-period-bar{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.ov-period-sel{font-size:13px;font-weight:600;padding:8px 14px;border-radius:8px;border:1.5px solid var(--g200);background:#fff;color:var(--g800);cursor:pointer;min-width:180px}
+.ov-period-sel:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(71,54,254,.12)}
+.ov-period-lbl{font-size:12px;font-weight:600;color:var(--g400);text-transform:uppercase;letter-spacing:.7px}
+.mom-highlight{outline:3px solid var(--blue);outline-offset:4px;border-radius:12px;transition:outline .3s}
 
 /* ── Enhanced KPI cards ───────────────────────────────────────── */
 .kpi{position:relative;overflow:hidden;transition:box-shadow .2s}
@@ -298,7 +303,7 @@ th.sa{color:var(--blue)}.th.sd{color:var(--blue)}
   <div class="hbrand">
     <div class="hlogo">
       <!-- Official Cars24 logo — C mark icon (68×68 viewport) -->
-      <svg width="40" height="40" viewBox="0 0 68 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg width="52" height="52" viewBox="0 0 68 68" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M60.6335 0H7.36658C3.28312 0 0 3.29221 0 7.36658V60.6334C0 64.6987 3.29221 68 7.36658 68H60.6335C64.6987 68 68.0001 64.6896 68.0001 60.6334V7.36658C68.0001 3.28312 64.6897 0 60.6335 0ZM57.896 40.5891C55.0585 50.8114 45.8002 58.3689 34.714 58.6145C34.5412 58.6326 34.3593 58.6327 34.1683 58.6327C33.9773 58.6327 33.7863 58.6326 33.6044 58.6145C33.4135 58.6145 33.2043 58.6144 33.0042 58.5962H32.9496C24.9373 58.1961 17.9436 53.9854 13.7328 47.7465C11.0863 43.8176 9.5584 39.0885 9.5584 33.9864C9.5584 31.5854 9.89492 29.2662 10.5406 27.0744C10.6134 26.8289 10.8225 26.6743 11.0863 26.6743H19.7989C20.2172 26.6743 20.4809 27.0745 20.3263 27.4473C19.5533 29.4482 19.1168 31.6582 19.1168 33.9864C19.1168 41.4349 23.5367 47.7282 29.6574 49.8564C30.2394 50.0474 30.8488 50.2111 31.4672 50.3475C32.3403 50.5203 33.2407 50.6112 34.1683 50.6112C35.7326 50.6112 37.2695 50.3475 38.6883 49.8564C41.0711 49.0288 43.2083 47.5554 44.9272 45.6274C46.2914 44.0995 47.3827 42.2624 48.1375 40.2253C48.2103 39.9979 48.4195 39.8706 48.665 39.8706H57.3595C57.7414 39.8706 58.0051 40.2253 57.9051 40.5891H57.896ZM57.896 30.5668H49.3562C49.0925 30.5668 48.8651 30.3758 48.8105 30.1121C48.1648 27.1291 46.7916 24.4643 44.8999 22.3453C43.7085 20.9993 42.3079 19.8898 40.7619 19.0531C40.098 18.6711 39.3976 18.371 38.6792 18.1254C37.2422 17.6343 35.7326 17.3706 34.1592 17.3706H17.3251C16.8158 17.3706 16.5703 16.743 16.925 16.3883C21.0812 12.3049 26.6926 9.69477 32.9315 9.39465H32.986C33.1952 9.37646 33.4043 9.37644 33.5862 9.37644C33.7772 9.35825 33.9682 9.35824 34.1501 9.35824C34.332 9.35824 34.5321 9.35825 34.6958 9.37644C46.6552 9.64019 56.5227 18.4074 58.4326 29.8756C58.4871 30.2303 58.2234 30.5577 57.8869 30.5577L57.896 30.5668Z" fill="#4736FE"/>
       </svg>
     </div>
@@ -334,6 +339,16 @@ th.sa{color:var(--blue)}.th.sd{color:var(--blue)}
 
 <!-- ════════ TAB: OVERVIEW ════════ -->
 <div class="tc on" id="tc-ov">
+
+  <!-- Period selector -->
+  <div class="ov-period-bar">
+    <span class="ov-period-lbl">Period</span>
+    <select id="ov-period" class="ov-period-sel" title="Filter overview by time period" onchange="changeOvPeriod()">
+      <option value="">All Time</option>
+      <option value="mom">Month on Month</option>
+      <!-- months populated by buildOverview() -->
+    </select>
+  </div>
 
   <!-- Recent month KPIs -->
   <div class="sh mb" id="rm-head" style="display:none">
@@ -809,41 +824,104 @@ function recentMonth() {
 //  OVERVIEW BUILD
 // ═══════════════════════════════════════════════
 function buildOverview() {
-  const curMonth = recentMonth();
-  const curRows  = curMonth ? allRows.filter(r => r.liveMonth === curMonth && r.liveStatus.toLowerCase() === 'live') : [];
-  const liveAll  = allRows.filter(r => r.liveStatus.toLowerCase() === 'live');
+  // Populate period dropdown (months newest-first after fixed options)
+  const allMonths = [...new Set(allRows.map(r=>r.liveMonth).filter(Boolean))]
+                      .sort((a,b)=>monthOrder(b)-monthOrder(a));
+  const sel = document.getElementById('ov-period');
+  const savedPeriod = sel.value;
+  // Rebuild options: All Time + Month on Month + months
+  const monthOpts = allMonths.map(m=>`<option value="${m}"${m===savedPeriod?' selected':''}>${m}</option>`).join('');
+  sel.innerHTML =
+    `<option value=""${savedPeriod===''?' selected':''}>All Time</option>` +
+    `<option value="mom"${savedPeriod==='mom'?' selected':''}>Month on Month</option>` +
+    monthOpts;
 
-  // KPIs for recent month
-  const rmViews = curRows.reduce((s,r)=>s+(r.views||0),0);
-  const rmSpend = curRows.reduce((s,r)=>s+(r.cost||0),0);
-  const rmCPV   = rmViews && rmSpend ? rmSpend/rmViews : null;
-  const rmEng   = curRows.reduce((s,r)=>s+(r.likes||0)+(r.shares||0)+(r.comments||0)+(r.saves||0),0);
-  const rmER    = rmViews && rmEng ? rmEng/rmViews*100 : null;
-
-  document.getElementById('rm-title').textContent = curMonth || 'Latest Month';
-  document.getElementById('rm-subtitle').textContent = `${curRows.length} creators live`;
-
-  const ICONS = ['📅','👥','👁️','💸','📉','⚡'];
-  document.getElementById('kpi-strip').innerHTML = [
-    {l:'Latest Month', v: curMonth||'—',                  s:'most recent live',          cls:'',    i:'📅'},
-    {l:'Creators Live',v: curRows.length,                  s:'active this month',         cls:'mint', i:'👥'},
-    {l:'Total Views',  v:fmtN(rmViews),                    s:'plays this month',          cls:'grn',  i:'👁️'},
-    {l:'Total Spend',  v:'₹'+fmtN(rmSpend),               s:'campaign budget this month',cls:'or',   i:'💸'},
-    {l:'Avg CPV',      v:rmCPV?'₹'+rmCPV.toFixed(2):'—',  s:'blended cost per view',     cls:'pur',  i:'📉'},
-    {l:'Engagement Rate',v:rmER?rmER.toFixed(2)+'%':'—',  s:'(likes+cmts+saves)/views',  cls:'',     i:'⚡'},
-  ].map(k=>`<div class="kpi ${k.cls}">
-    <div class="kpi-icon">${k.i}</div>
-    <div class="kpi-lbl">${k.l}</div>
-    <div class="kpi-val">${k.v}</div>
-    <div class="kpi-sub">${k.s}</div>
-  </div>`).join('');
-
+  renderOvKPIs(savedPeriod || '');
   buildTopVideosSection();
   buildCPVSection();
   buildERSection();
   buildVFRSection();
   buildMoMTable();
   buildTierTable();
+}
+
+function renderOvKPIs(period) {
+  const curMonth   = recentMonth();
+  const isAllTime  = !period || period === '';
+  const isMoM      = period === 'mom';
+  const monthSel   = (!isAllTime && !isMoM) ? period : null;
+
+  // Which rows feed the KPI strip
+  const kpiMonth = monthSel || (isAllTime ? null : curMonth);
+  const pool     = kpiMonth
+    ? allRows.filter(r => r.liveMonth === kpiMonth && r.liveStatus.toLowerCase() === 'live')
+    : allRows.filter(r => r.liveStatus.toLowerCase() === 'live');
+
+  const views = pool.reduce((s,r)=>s+(r.views||0),0);
+  const spend = pool.reduce((s,r)=>s+(r.cost||0),0);
+  const cpv   = views && spend ? spend/views : null;
+  const eng   = pool.reduce((s,r)=>s+(r.likes||0)+(r.shares||0)+(r.comments||0)+(r.saves||0),0);
+  const er    = views && eng ? eng/views*100 : null;
+
+  const headEl = document.getElementById('rm-head');
+  headEl.style.display = '';
+  if (isAllTime) {
+    document.getElementById('rm-title').textContent = 'All Campaigns';
+    document.getElementById('rm-subtitle').textContent = `${pool.length} creators across all months`;
+  } else if (isMoM) {
+    document.getElementById('rm-title').textContent = 'Month on Month';
+    document.getElementById('rm-subtitle').textContent = 'cumulative breakdown below';
+  } else {
+    document.getElementById('rm-title').textContent = kpiMonth || 'Latest Month';
+    document.getElementById('rm-subtitle').textContent = `${pool.length} creators live`;
+  }
+
+  document.getElementById('kpi-strip').innerHTML = [
+    isAllTime
+      ? {l:'Active Months',  v: [...new Set(pool.map(r=>r.liveMonth))].length, s:'months with live creators',  cls:'',    i:'📅'}
+      : {l: isMoM ? 'Latest Month' : 'Period',
+         v: isMoM ? (curMonth||'—') : (kpiMonth||'—'), s:'selected period', cls:'', i:'📅'},
+    {l:'Creators',     v: pool.length,                      s: isAllTime?'total across campaign':'active this period',  cls:'mint', i:'👥'},
+    {l:'Total Views',  v: fmtN(views),                      s: isAllTime?'all-time plays':'plays this period',          cls:'grn',  i:'👁️'},
+    {l:'Total Spend',  v: '₹'+fmtN(spend),                  s: isAllTime?'all-time budget':'budget this period',        cls:'or',   i:'💸'},
+    {l:'Avg CPV',      v: cpv?'₹'+cpv.toFixed(2):'—',       s:'blended cost per view',                                 cls:'pur',  i:'📉'},
+    {l:'Engagement',   v: er?er.toFixed(2)+'%':'—',          s:'(likes+cmts+saves)/views',                              cls:'',     i:'⚡'},
+  ].map(k=>`<div class="kpi ${k.cls}">
+    <div class="kpi-icon">${k.i}</div>
+    <div class="kpi-lbl">${k.l}</div>
+    <div class="kpi-val">${k.v}</div>
+    <div class="kpi-sub">${k.s}</div>
+  </div>`).join('');
+}
+
+function changeOvPeriod() {
+  const period = document.getElementById('ov-period').value;
+  renderOvKPIs(period);
+
+  const isMoM     = period === 'mom';
+  const isAllTime = !period;
+  const monthSel  = (!isAllTime && !isMoM) ? period : '';
+
+  // Sync the 4 section selects to the chosen month (or All Time)
+  ['tv-month-sel','cpv-month-sel','er-month-sel','vfr-month-sel'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = monthSel;
+  });
+  renderTopVideosSection();
+  renderCPVSection();
+  renderERSection();
+  renderVFRSection();
+
+  // For Month on Month — scroll to the MoM table and briefly highlight it
+  if (isMoM) {
+    const momEl = document.querySelector('#tc-ov .mb:has(#mom-table)') ||
+                  document.getElementById('mom-table')?.closest('.mb');
+    if (momEl) {
+      momEl.classList.add('mom-highlight');
+      setTimeout(() => momEl.classList.remove('mom-highlight'), 1800);
+      momEl.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+  }
 }
 
 function _topMonths(rows) {
