@@ -27,17 +27,24 @@ body{font-family:'Geist',system-ui,-apple-system,sans-serif;background:var(--g50
 ::-webkit-scrollbar-thumb{background:var(--g300);border-radius:99px}
 
 /* Header */
-.hdr{background:#fff;border-bottom:1px solid var(--g200);padding:0 24px;height:54px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;box-shadow:var(--sh)}
-.hbrand{display:flex;align-items:center;gap:10px}
-.hlogo{background:var(--blue);color:#fff;font-weight:800;font-size:13px;padding:5px 10px;border-radius:var(--rs);letter-spacing:.5px}
-.htitle{font-weight:700;font-size:14px;color:var(--g900)}
+.hdr{background:#fff;border-bottom:1px solid var(--g200);padding:0 24px;height:58px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;box-shadow:0 2px 12px rgba(71,54,254,.08)}
+.hbrand{display:flex;align-items:center;gap:12px}
+.hlogo{display:flex;align-items:center}
+.hlogo svg{display:block}
+.htitle{font-weight:700;font-size:14px;color:var(--g900);letter-spacing:-.2px}
+.htitle span{color:var(--g400);font-weight:500;margin-left:6px;font-size:12px}
 .hright{display:flex;align-items:center;gap:8px}
 
 /* Tabs */
-.tabs{background:#fff;border-bottom:1px solid var(--g200);padding:0 24px;display:flex;overflow-x:auto;position:sticky;top:54px;z-index:199}
-.tb{padding:13px 18px;font-size:12.5px;font-weight:600;color:var(--g500);border:none;background:none;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;white-space:nowrap;transition:all .15s;font-family:inherit;display:flex;align-items:center;gap:6px}
-.tb:hover{color:var(--g800)}
-.tb.on{color:var(--blue);border-bottom-color:var(--blue)}
+.tabs{background:var(--g50);border-bottom:1px solid var(--g200);padding:10px 24px;gap:6px;display:flex;overflow-x:auto;position:sticky;top:58px;z-index:199}
+.tb{padding:9px 20px;font-size:12.5px;font-weight:600;color:var(--g500);border:none;background:var(--g100);cursor:pointer;border-radius:99px;white-space:nowrap;transition:all .2s;font-family:inherit;display:flex;align-items:center;gap:7px;border-bottom:none;letter-spacing:-.1px}
+.tb:hover{color:var(--g800);background:var(--g200);transform:translateY(-1px)}
+/* Overview — brand blue */
+#tab-ov.on{background:var(--blue);color:#fff;box-shadow:0 4px 14px rgba(71,54,254,.35);transform:translateY(-1px)}
+/* Influencers — mint teal */
+#tab-inf.on{background:linear-gradient(135deg,#00c49a,#00a896);color:#fff;box-shadow:0 4px 14px rgba(0,196,154,.35);transform:translateY(-1px)}
+/* Analytics — vivid purple */
+#tab-an.on{background:linear-gradient(135deg,#7c3aed,#4736FE);color:#fff;box-shadow:0 4px 14px rgba(124,58,237,.35);transform:translateY(-1px)}
 
 /* Main */
 .main{max-width:1680px;margin:0 auto;padding:20px 24px}
@@ -279,8 +286,19 @@ th.sa{color:var(--blue)}.th.sd{color:var(--blue)}
 <!-- Header -->
 <header class="hdr">
   <div class="hbrand">
-    <div class="hlogo">Cars24</div>
-    <span class="htitle">Influencer Intelligence</span>
+    <div class="hlogo">
+      <svg width="100" height="34" viewBox="0 0 100 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="100" height="34" rx="8" fill="#4736FE"/>
+        <!-- car silhouette -->
+        <path d="M10 21.5 L12.5 17.5 L16 16 L21 16 L23 18 L25 18 L25 21.5 Z" fill="rgba(255,255,255,.25)" stroke="rgba(255,255,255,.5)" stroke-width=".6"/>
+        <circle cx="14" cy="21.5" r="1.5" fill="rgba(255,255,255,.7)"/>
+        <circle cx="22" cy="21.5" r="1.5" fill="rgba(255,255,255,.7)"/>
+        <!-- wordmark -->
+        <text x="30" y="22.5" fill="white" font-family="-apple-system,BlinkMacSystemFont,'Geist',sans-serif" font-weight="600" font-size="13" letter-spacing=".1">Cars</text>
+        <text x="58" y="22.5" fill="white" font-family="-apple-system,BlinkMacSystemFont,'Geist',sans-serif" font-weight="800" font-size="13" letter-spacing=".1">24</text>
+      </svg>
+    </div>
+    <span class="htitle">Influencer Intelligence <span>by Cars24</span></span>
   </div>
   <div class="hright">
     <button class="btn btn-gh btn-sm" id="btn-export" onclick="exportCSV()">⬇ Export CSV</button>
@@ -290,9 +308,18 @@ th.sa{color:var(--blue)}.th.sd{color:var(--blue)}
 
 <!-- Tabs -->
 <nav class="tabs">
-  <button class="tb on" id="tab-ov" onclick="switchTab('ov')">🏠 Overview</button>
-  <button class="tb" id="tab-inf" onclick="switchTab('inf')">👤 Influencers</button>
-  <button class="tb" id="tab-an" onclick="switchTab('an')">📈 Analytics</button>
+  <button class="tb on" id="tab-ov" onclick="switchTab('ov')">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    Overview
+  </button>
+  <button class="tb" id="tab-inf" onclick="switchTab('inf')">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+    Influencers
+  </button>
+  <button class="tb" id="tab-an" onclick="switchTab('an')">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+    Analytics
+  </button>
 </nav>
 
 <main class="main">
