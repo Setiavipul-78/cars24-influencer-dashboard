@@ -174,11 +174,16 @@ if sheet_rows:
             r['cost']       = cost       if cost      is not None else r.get('cost')
             r['liveStatus'] = status     or r.get('liveStatus', '')
             r['business']   = business   or r.get('business', '')
-            r['videoLink']  = video_link or r.get('videoLink', '')
             r['link']       = link       or r.get('link', '')
             r['followers']  = followers  if followers is not None else r.get('followers')
             r['avgViews']   = avg_views  if avg_views is not None else r.get('avgViews')
             r['tier']       = tier_of(r['followers'])
+            old_link = r.get('videoLink', '')
+            r['videoLink']  = video_link or old_link
+            # Link just added for the first time — reset so Apify scrapes it tonight
+            if video_link and not old_link:
+                r['refreshStatus'] = 'pending'
+                r['lastRefreshed'] = None
         else:
             mo = month_order(month)
             new_row = {
