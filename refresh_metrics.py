@@ -216,6 +216,7 @@ if sheet_rows:
                 'engRate':       None, 'cpv':     None,
                 'refreshStatus': 'pending',
                 'lastRefreshed': None,
+                'postedAt':      None,
                 'category':      classify(name),
             }
             rows.append(new_row)
@@ -296,9 +297,13 @@ for r in rows:
     new_comments = m["comments"] if m["comments"]           else r.get("comments")
     r.update({
         "views": new_views, "likes": new_likes, "comments": new_comments,
-        "lastRefreshed": m["ts"] or datetime.datetime.utcnow().isoformat() + "Z",
+        "lastRefreshed": datetime.datetime.utcnow().isoformat() + "Z",
         "refreshStatus": "ok",
     })
+    # postedAt = when the reel was published on Instagram (from Apify's timestamp).
+    # Only set if Apify returned a real timestamp; never fall back to script-run time.
+    if m["ts"]:
+        r["postedAt"] = m["ts"]
     shares = r.get("shares") or 0
     saves  = r.get("saves")  or 0
     eng    = (new_likes or 0) + shares + (new_comments or 0) + saves
