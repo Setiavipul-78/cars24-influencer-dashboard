@@ -179,6 +179,8 @@ if sheet_rows:
 
         if key in existing:
             r = rows[existing[key]]
+            if r.get('csvPin'):
+                continue  # frozen row — views, postedAt, videoLink, all metrics preserved as-is
             r['agency']     = agency     or r.get('agency', '')
             r['region']     = region     or r.get('region', 'PAN INDIA')
             r['cost']       = cost       if cost      is not None else r.get('cost')
@@ -194,6 +196,7 @@ if sheet_rows:
             if video_link and not old_link:
                 r['refreshStatus'] = 'pending'
                 r['lastRefreshed'] = None
+                r['postedAt']      = None
         else:
             mo = month_order(month)
             new_row = {
