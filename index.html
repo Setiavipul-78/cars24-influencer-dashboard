@@ -112,6 +112,94 @@ body{font-family:'Geist',system-ui,-apple-system,sans-serif;background:var(--g50
 @media(max-width:700px){.g2,.g3,.g4{grid-template-columns:1fr}}
 .mb{margin-bottom:16px}
 
+/* ═══════════════════════════════════════
+   RESPONSIVE — tablet ≤900px
+   ═══════════════════════════════════════ */
+@media(max-width:900px){
+  .hdr{height:62px;padding:0 16px}
+  .hlogo svg{width:42px;height:42px}
+  .hword-name{font-size:20px}
+  .hword-sub{font-size:11.5px}
+  .hbrand{gap:10px}
+  .tabs{padding:8px 16px;top:62px}
+  .main{padding:16px}
+  .ov-period-bar{flex-wrap:wrap}
+  .ov-period-sel{min-width:0;flex:1}
+  .rm-strip{grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
+  .kpi{padding:13px 14px}
+  .kpi-val{font-size:19px}
+  .cw{height:200px}.cw-lg{height:240px}
+  .mgrid{grid-template-columns:repeat(2,1fr)}
+}
+
+/* ═══════════════════════════════════════
+   RESPONSIVE — phone ≤600px
+   ═══════════════════════════════════════ */
+@media(max-width:600px){
+  /* Header */
+  .hdr{height:56px;padding:0 12px}
+  .hlogo svg{width:34px;height:34px}
+  .hword-name{font-size:17px;letter-spacing:-.5px}
+  .hword-sub{display:none}               /* hide subtitle on phone */
+  .hbrand{gap:9px}
+  .hright .btn span{display:none}        /* icon-only buttons */
+  .hright .btn{padding:5px 8px;gap:0}
+  /* Tabs */
+  .tabs{padding:7px 12px;gap:5px;top:56px}
+  .tb{padding:7px 13px;font-size:11.5px;gap:5px}
+  /* Main */
+  .main{padding:12px}
+  .mb{margin-bottom:12px}
+  /* KPI strip */
+  .rm-strip{grid-template-columns:repeat(2,1fr);gap:8px}
+  .kpi{padding:11px 12px}
+  .kpi-val{font-size:17px}
+  .kpi-icon{font-size:16px}
+  .kpi-lbl{font-size:9.5px}
+  .kpi-sub{font-size:9.5px}
+  /* Period bar */
+  .ov-period-bar{flex-direction:column;align-items:stretch;gap:6px}
+  .ov-period-sel{font-size:12.5px;padding:8px 10px}
+  /* Overview grid already 1-col via @900 rule */
+  .ov-grid{gap:10px}
+  /* Toolbar & filters */
+  .toolbar{flex-direction:column;align-items:stretch;gap:6px}
+  .tl{flex-direction:column;align-items:stretch;gap:6px}
+  .sbox{width:100%}
+  .fsel{font-size:12px;flex:1}
+  .tr2{justify-content:flex-end}
+  /* Cards */
+  .card{padding:14px 14px}
+  /* Charts */
+  .cw{height:180px}.cw-lg{height:200px}
+  /* Analytics 2-col → 1-col already handled by g2 rule */
+  /* Table: shrink cell padding, hide least-critical columns */
+  td,th{padding:7px 8px}
+  .col-hide-sm{display:none}             /* applied to low-priority columns */
+  /* Modal */
+  .mo2{padding:16px;border-radius:12px}
+  .mgrid{grid-template-columns:repeat(2,1fr);gap:7px}
+  .mm .v{font-size:13px}
+  /* Section headers */
+  .sh{font-size:13px}
+  .sec-desc{font-size:11px}
+}
+
+/* ═══════════════════════════════════════
+   RESPONSIVE — very small ≤380px
+   ═══════════════════════════════════════ */
+@media(max-width:380px){
+  .rm-strip{grid-template-columns:1fr 1fr}
+  .kpi-val{font-size:15px}
+  .hword-name{font-size:15px}
+  .tb{padding:6px 10px;font-size:11px}
+  td,th{padding:6px 6px;font-size:11px}
+}
+
+/* Swipe hint — phone only */
+.swipe-hint{display:none;text-align:center;padding:6px 12px;font-size:11px;color:var(--g400);background:var(--g50);border-top:1px solid var(--g100)}
+@media(max-width:600px){.swipe-hint{display:block}}
+
 /* Tables */
 .tw{background:#fff;border-radius:var(--r);box-shadow:var(--sh);overflow:hidden;border:1px solid var(--g100)}
 .ts{overflow-x:auto}
@@ -500,27 +588,28 @@ th.sa{color:var(--blue)}.th.sd{color:var(--blue)}
     <div class="ts-scroll">
       <table>
         <thead><tr>
-          <th style="width:28px"><input type="checkbox" id="cb-all" onclick="toggleSelAll()"/></th>
+          <th style="width:28px" class="col-hide-sm"><input type="checkbox" id="cb-all" onclick="toggleSelAll()"/></th>
           <th onclick="colSort('name')">Influencer</th>
-          <th onclick="colSort('category')">Category</th>
-          <th onclick="colSort('tier')">Tier</th>
+          <th onclick="colSort('category')" class="col-hide-sm">Category</th>
+          <th onclick="colSort('tier')" class="col-hide-sm">Tier</th>
           <th onclick="colSort('liveMonth')">Month</th>
-          <th onclick="colSort('liveDate')">Live Date</th>
-          <th onclick="colSort('region')">Region</th>
-          <th onclick="colSort('followers')">Followers</th>
+          <th onclick="colSort('liveDate')" class="col-hide-sm">Live Date</th>
+          <th onclick="colSort('region')" class="col-hide-sm">Region</th>
+          <th onclick="colSort('followers')" class="col-hide-sm">Followers</th>
           <th onclick="colSort('views')">Views</th>
-          <th onclick="colSort('likes')">Likes</th>
-          <th onclick="colSort('comments')">Comments</th>
+          <th onclick="colSort('likes')" class="col-hide-sm">Likes</th>
+          <th onclick="colSort('comments')" class="col-hide-sm">Comments</th>
           <th onclick="colSort('engRate')">Eng. Rate</th>
-          <th onclick="colSort('vfr')">Views/Follower</th>
+          <th onclick="colSort('vfr')" class="col-hide-sm">Views/Follower</th>
           <th onclick="colSort('cpv')">CPV</th>
-          <th onclick="colSort('cost')">Budget</th>
+          <th onclick="colSort('cost')" class="col-hide-sm">Budget</th>
           <th>Status</th>
           <th>Actions</th>
         </tr></thead>
         <tbody id="inf-tbody"></tbody>
       </table>
     </div>
+    <div class="swipe-hint">← swipe to see more →</div>
     <div class="tfoot">
       <span>Showing <strong id="showing">0</strong> of <strong id="total">0</strong></span>
       <span id="tbl-spend"></span>
@@ -1262,25 +1351,25 @@ function renderTable() {
     const cat = r.category || 'Lifestyle';
     const catKey = cat.toLowerCase();
     return `<tr class="${rc}${sel?' sel':''}" id="row-${r.id}">
-      <td><input type="checkbox" ${sel?'checked':''} onchange="toggleRow(${r.id})"/></td>
+      <td class="col-hide-sm"><input type="checkbox" ${sel?'checked':''} onchange="toggleRow(${r.id})"/></td>
       <td>
         <div class="cn">${r.name}</div>
         <div class="cs">${r.agency||'—'}</div>
         ${r.link?`<a href="${r.link}" target="_blank" class="cl">Profile ↗</a>`:''}
       </td>
-      <td><span class="pill cat-${catKey}">${cat}</span></td>
-      <td><span class="pill t-${r.tier.toLowerCase()}">${r.tier}</span></td>
+      <td class="col-hide-sm"><span class="pill cat-${catKey}">${cat}</span></td>
+      <td class="col-hide-sm"><span class="pill t-${r.tier.toLowerCase()}">${r.tier}</span></td>
       <td style="white-space:nowrap">${r.liveMonth||'—'}</td>
-      <td style="white-space:nowrap;color:var(--g500);font-size:12px">${(r.postedAt||r.lastRefreshed) ? new Date(r.postedAt||r.lastRefreshed).toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'}) : '—'}</td>
-      <td>${r.region||'—'}</td>
-      <td style="font-weight:600">${fmtN(r.followers)}</td>
+      <td class="col-hide-sm" style="white-space:nowrap;color:var(--g500);font-size:12px">${(r.postedAt||r.lastRefreshed) ? new Date(r.postedAt||r.lastRefreshed).toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'}) : '—'}</td>
+      <td class="col-hide-sm">${r.region||'—'}</td>
+      <td class="col-hide-sm" style="font-weight:600">${fmtN(r.followers)}</td>
       <td style="font-weight:700">${fmtN(r.views)}</td>
-      <td>${fmtN(r.likes)}</td>
-      <td>${fmtN(r.comments)}</td>
+      <td class="col-hide-sm">${fmtN(r.likes)}</td>
+      <td class="col-hide-sm">${fmtN(r.comments)}</td>
       <td>${fmtER(r.engRate)}</td>
-      <td>${r.followers && r.views ? (r.views/r.followers).toFixed(2)+'×' : '—'}</td>
+      <td class="col-hide-sm">${r.followers && r.views ? (r.views/r.followers).toFixed(2)+'×' : '—'}</td>
       <td>${fmtCPV(r.cpv)}</td>
-      <td>${r.cost?'₹'+fmtN(r.cost):'—'}</td>
+      <td class="col-hide-sm">${r.cost?'₹'+fmtN(r.cost):'—'}</td>
       <td>${stBdg(r)}</td>
       <td>
         <div style="display:flex;gap:3px">
