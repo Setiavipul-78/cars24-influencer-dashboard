@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-06-15T08:54:44.436Z",
+  "exportedAt": "2026-06-15T09:03:36.508Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -5100,6 +5100,36 @@
       "insights": "",
       "insights_link": "",
       "performance_cut": "false"
+    },
+    {
+      "live_month": "2026-06-01",
+      "agency_name": "Self",
+      "name": "Shiwani",
+      "link": "instagram.com/ifeeldrama?igsh=MWFkd2d3M2k5ZjB2eQ==",
+      "region": "PAN INDIA",
+      "performance_cuts": "",
+      "performance_vids": "",
+      "followers": "",
+      "avg_views": "",
+      "final_cost": "",
+      "payment_agency": "",
+      "avg_cpv": "",
+      "live_status": "",
+      "business": "",
+      "po_status": "false",
+      "payment_status": "false",
+      "video_live_link": "",
+      "live_data": "",
+      "views": "",
+      "likes": "",
+      "comments": "",
+      "shares": "",
+      "saves": "",
+      "actual_cpv_as_on_01062025": "",
+      "engagement_rate": "",
+      "insights": "",
+      "insights_link": "",
+      "performance_cut": ""
     }
   ]
 }
