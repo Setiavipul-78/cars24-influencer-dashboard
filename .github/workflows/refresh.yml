@@ -36,3 +36,8 @@ jobs:
           git push
 
       # Cloudflare Pages auto-deploys on every push — no deploy step needed
+
+      - name: Send daily email report
+        env:
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+        run: python send_report.py
