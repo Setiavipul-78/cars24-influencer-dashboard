@@ -603,6 +603,32 @@ th.sa{color:var(--blue)}.th.sd{color:var(--blue)}
     </div>
   </div>
 
+  <!-- Day on Day Views + Refresh Health -->
+  <div class="card mb card-accent-blue" style="padding:20px 20px 14px">
+    <div class="sh">Day on Day Views <span class="sh-tag">daily refresh health</span></div>
+    <div class="sec-desc">Total views across all creators each day — gaps mean a refresh was missed</div>
+    <div class="cw" style="height:220px"><canvas id="c-dod"></canvas></div>
+  </div>
+  <div class="card mb">
+    <div class="sh">Daily Refresh Log <span class="sh-tag">one row per run</span></div>
+    <div class="sec-desc">Each row is one GitHub Actions refresh — missing dates indicate the cron did not run or data hasn't changed</div>
+    <div class="tw"><div class="ts">
+      <table id="dod-table">
+        <thead><tr>
+          <th>Date</th>
+          <th>Total Views</th>
+          <th>Day Δ Views</th>
+          <th>% Change</th>
+          <th>Rows Updated</th>
+          <th>No Match</th>
+          <th>Refresh Status</th>
+          <th>Run At (IST)</th>
+        </tr></thead>
+        <tbody id="dod-tbody"></tbody>
+      </table>
+    </div></div>
+  </div>
+
 </div><!-- /analytics -->
 
 </main>
@@ -645,6 +671,7 @@ let allRows = [], filteredRows = [], selectedIds = new Set();
 let sortCol = 'monthOrder', sortDir = 1;
 let modalRowId = null;
 let charts = {};
+let snapshots = [];   // daily_snapshots.json data
 
 // ═══════════════════════════════════════════════
 //  INIT
@@ -653,9 +680,21 @@ let _lastRefreshedAt = null;
 
 window.onload = () => {
   tryLoadLocalJson();
-  // Auto-refresh every 30 minutes — picks up the daily 9AM Apify scrape automatically
+  loadSnapshots();
   setInterval(() => tryLoadLocalJson(true), 30 * 60 * 1000);
+  setInterval(() => loadSnapshots(), 30 * 60 * 1000);
 };
+
+async function loadSnapshots() {
+  try {
+    const res = await fetch('daily_snapshots.json?t=' + Date.now());
+    if (!res.ok) return;
+    const data = await res.json();
+    snapshots = (data.snapshots || []).slice().sort((a,b)=>a.date.localeCompare(b.date));
+    // Re-render DoD section if analytics tab is visible
+    if (document.getElementById('tc-an').classList.contains('on')) buildDoDSection();
+  } catch(_) {}
+}
 
 async function tryLoadLocalJson(silent = false) {
   try {
@@ -1257,10 +1296,12 @@ function fmtN(n) {
   if (n==null||n==='—') return '—';
   const v = typeof n === 'string' ? parseFloat(n) : n;
   if (isNaN(v)) return '—';
-  if (v>=1e7) return (v/1e7).toFixed(1)+'Cr';
-  if (v>=1e5) return (v/1e5).toFixed(1)+'L';
-  if (v>=1e3) return (v/1e3).toFixed(1)+'K';
-  return v.toLocaleString('en-IN');
+  // Indian unit system — L (lakh) for everything ≥10K, Cr (crore) for ≥1Cr
+  const trim = s => s.replace(/\.?0+$/, '');
+  if (v >= 1e7) return trim((v/1e7).toFixed(2)) + 'Cr';
+  if (v >= 1e4) return trim((v/1e5).toFixed(2)) + 'L';
+  if (v >= 1e3) return trim((v/1e3).toFixed(1)) + 'K';
+  return Math.round(v).toLocaleString('en-IN');
 }
 function fmtCPV(v) {
   if (v==null) return '<span class="na">—</span>';
@@ -1339,7 +1380,7 @@ function buildAnalyticsCharts() {
       {label:'Avg CPV ₹',data:cpvSorted.map(e=>e[1].arr.length?+(e[1].arr.reduce((a,b)=>a+b)/e[1].arr.length).toFixed(2):null),borderColor:'#f97316',backgroundColor:'#f9731622',tension:.4,fill:true,borderWidth:2.5,pointRadius:4,pointBackgroundColor:'#f97316'},
       {label:'Blended CPV ₹',data:cpvSorted.map(e=>e[1].totalViews?+(e[1].totalCost/e[1].totalViews).toFixed(2):null),borderColor:'#4736FE',backgroundColor:'transparent',tension:.4,fill:false,borderWidth:2,borderDash:[5,3],pointRadius:4,pointBackgroundColor:'#4736FE'}
     ]},
-    options:{...bOpts(),scales:{y:{ticks:{callback:v=>'₹'+v},grid:{color:'#f3f4f6'}},x:{grid:{display:false},ticks:{maxRotation:45,font:{size:10}}}}}
+    options:{...bOpts(),scales:{y:{ticks:{callback:v=>'₹'+v.toFixed(2)},grid:{color:'#f3f4f6'}},x:{grid:{display:false},ticks:{maxRotation:45,font:{size:10}}}}}
   });
 
   // Budget spend by Month
@@ -1389,11 +1430,11 @@ function buildAnalyticsCharts() {
 
   // Scatter
   dch('c-scatter');
-  const sd = allRows.filter(r=>r.followers&&r.views).map(r=>({x:r.followers/1000,y:r.views/1000,n:r.name}));
+  const sd = allRows.filter(r=>r.followers&&r.views).map(r=>({x:r.followers/1e5,y:r.views/1e5,n:r.name}));
   charts['sc'] = new Chart(document.getElementById('c-scatter').getContext('2d'), {
     type:'scatter',
     data:{datasets:[{label:'Influencers',data:sd,backgroundColor:'#4736FE55',borderColor:'#4736FE',pointRadius:5,pointHoverRadius:7}]},
-    options:{...bOpts(),scales:{x:{title:{display:true,text:'Followers (K)'},ticks:{callback:v=>v+'K'},grid:{color:'#f3f4f6'}},y:{title:{display:true,text:'Views (K)'},ticks:{callback:v=>v+'K'},grid:{color:'#f3f4f6'}}},plugins:{...bOpts().plugins,tooltip:{callbacks:{label:ctx=>`${sd[ctx.dataIndex]?.n}: ${fmtN(ctx.raw.x*1000)} flw, ${fmtN(ctx.raw.y*1000)} views`}}}}
+    options:{...bOpts(),scales:{x:{title:{display:true,text:'Followers (L)'},ticks:{callback:v=>v.toFixed(1)+'L'},grid:{color:'#f3f4f6'}},y:{title:{display:true,text:'Views (L)'},ticks:{callback:v=>v.toFixed(1)+'L'},grid:{color:'#f3f4f6'}}},plugins:{...bOpts().plugins,tooltip:{callbacks:{label:ctx=>`${sd[ctx.dataIndex]?.n}: ${fmtN(ctx.raw.x*1e5)} flw, ${fmtN(ctx.raw.y*1e5)} views`}}}}
   });
 
   // Build agency data (avg CPV = mean of each creator's individual CPV)
@@ -1416,6 +1457,114 @@ function buildAnalyticsCharts() {
   window._agSortDir = -1;
   renderAgencyTable();
   buildCategoryMatrix();
+  buildDoDSection();
+}
+
+function buildDoDSection() {
+  if (!snapshots.length) {
+    document.getElementById('dod-tbody').innerHTML =
+      '<tr><td colspan="8" style="color:var(--g400);text-align:center;padding:20px">No snapshot data yet — will populate after the next GitHub Actions refresh run.</td></tr>';
+    return;
+  }
+
+  // ── Line chart ─────────────────────────────────────────────────────────────
+  dch('c-dod');
+  const labels   = snapshots.map(s => {
+    const d = new Date(s.date + 'T00:00:00Z');
+    return d.toLocaleDateString('en-IN', {day:'2-digit', month:'short'});
+  });
+  const viewsArr = snapshots.map(s => s.totalViews);
+
+  charts['dod'] = new Chart(document.getElementById('c-dod').getContext('2d'), {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [{
+        label: 'Total Views',
+        data: viewsArr,
+        borderColor: '#4736FE',
+        backgroundColor: 'rgba(71,54,254,.08)',
+        borderWidth: 2.5,
+        tension: .3,
+        fill: true,
+        pointRadius: 4,
+        pointBackgroundColor: '#4736FE',
+        pointHoverRadius: 6,
+      }]
+    },
+    options: {
+      ...bOpts(),
+      scales: {
+        y: { ticks: { callback: v => fmtN(v) }, grid: { color: '#f3f4f6' } },
+        x: { grid: { display: false }, ticks: { maxRotation: 45, font: { size: 10 } } }
+      },
+      plugins: { ...bOpts().plugins, tooltip: { callbacks: { label: ctx => `Total Views: ${fmtN(ctx.raw)}` } } }
+    }
+  });
+
+  // ── Table (newest first, with gap detection) ────────────────────────────────
+  const rows = [];
+  for (let i = 0; i < snapshots.length; i++) {
+    const s    = snapshots[i];
+    const prev = snapshots[i - 1];
+
+    // Detect missed days between consecutive snapshots
+    if (prev) {
+      const prevD = new Date(prev.date + 'T00:00:00Z');
+      const curD  = new Date(s.date   + 'T00:00:00Z');
+      const gap   = Math.round((curD - prevD) / 86400000);
+      for (let g = 1; g < gap; g++) {
+        const md = new Date(prevD); md.setUTCDate(prevD.getUTCDate() + g);
+        rows.push({ date: md.toISOString().slice(0,10), missed: true });
+      }
+    }
+    rows.push(s);
+  }
+  rows.reverse(); // newest first
+
+  const fmt = iso => {
+    const d = new Date(iso + 'T00:00:00Z');
+    return d.toLocaleDateString('en-IN', {day:'2-digit', month:'short', year:'numeric'});
+  };
+  const fmtIST = iso => iso
+    ? new Date(iso).toLocaleString('en-IN', {timeZone:'Asia/Kolkata', hour:'2-digit', minute:'2-digit', hour12:true})
+    : '—';
+
+  // Map date → snapshot for delta lookup
+  const byDate = Object.fromEntries(snapshots.map(s => [s.date, s]));
+  const prevOf = date => {
+    const idx = snapshots.findIndex(s => s.date === date);
+    return idx > 0 ? snapshots[idx - 1] : null;
+  };
+
+  document.getElementById('dod-tbody').innerHTML = rows.map(s => {
+    if (s.missed) return `
+      <tr style="background:#fff8f8">
+        <td>${fmt(s.date)}</td>
+        <td colspan="6" style="color:#dc2626;font-size:12px;font-style:italic">— Refresh did not run —</td>
+        <td><span style="color:#dc2626;font-weight:600">✗ Missed</span></td>
+      </tr>`;
+
+    const prev  = prevOf(s.date);
+    const delta = prev ? s.totalViews - prev.totalViews : null;
+    const pct   = prev && prev.totalViews ? (delta / prev.totalViews * 100) : null;
+    const dCol  = delta === null ? '' : delta >= 0 ? 'color:#16a34a' : 'color:#dc2626';
+    const dStr  = delta === null ? '—'
+      : (delta >= 0 ? '+' : '') + fmtN(delta);
+    const pStr  = pct === null ? '—'
+      : (pct >= 0 ? '+' : '') + pct.toFixed(2) + '%';
+
+    return `<tr>
+      <td>${fmt(s.date)}</td>
+      <td style="font-weight:600">${fmtN(s.totalViews)}</td>
+      <td style="${dCol};font-weight:600">${dStr}</td>
+      <td style="${dCol}">${pStr}</td>
+      <td>${s.updatedRows ?? '—'}</td>
+      <td>${s.noMatchRows ?? '—'}</td>
+      <td><span style="color:#16a34a;font-weight:600">✓ Ran</span></td>
+      <td style="font-size:11px;color:var(--g500)">${fmtIST(s.refreshedAt)}</td>
+    </tr>`;
+  }).join('');
 }
 
 // ─── Content Category Matrix ─────────────────────────────────────────────────
@@ -1503,7 +1652,7 @@ function openModal(id) {
   const m1 = [
     {l:'Views',v:fmtN(r.views)},{l:'Likes',v:fmtN(r.likes)},{l:'Comments',v:fmtN(r.comments)},
     {l:'Shares',v:fmtN(r.shares)},{l:'Saves',v:fmtN(r.saves)},{l:'Followers',v:fmtN(r.followers)},
-    {l:'Budget',v:r.cost?'₹'+r.cost.toLocaleString('en-IN'):'—'},
+    {l:'Budget',v:r.cost?'₹'+fmtN(r.cost):'—'},
     {l:'CPV',v:r.cpv?'₹'+r.cpv.toFixed(2):'—'},
     {l:'Avg Views',v:fmtN(r.avgViews)},
   ];

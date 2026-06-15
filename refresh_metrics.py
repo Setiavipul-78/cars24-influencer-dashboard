@@ -314,8 +314,9 @@ for r in rows:
     r["cpv"]     = round(r["cost"] / new_views, 3)  if (r.get("cost") and new_views) else None
     updated += 1
 
-# ── Save ──────────────────────────────────────────────────────────────────────
-data["refreshedAt"] = datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
+# ── Save live_data.json ───────────────────────────────────────────────────────
+now_iso = datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
+data["refreshedAt"] = now_iso
 data["rows"]        = rows
 
 with open(live_path, "w") as f:
@@ -323,3 +324,43 @@ with open(live_path, "w") as f:
 
 print(f"\nDone — updated {updated} rows, {skipped_pin} csvPin skipped, {no_match} no Apify match")
 print(f"Wrote {live_path}")
+
+# ── Append daily snapshot ──────────────────────────────────────────────────────
+snap_path = os.path.join(script_dir, "daily_snapshots.json")
+try:
+    with open(snap_path) as f:
+        snap_data = json.load(f)
+except (FileNotFoundError, json.JSONDecodeError):
+    snap_data = {"snapshots": []}
+
+today       = now_iso[:10]                                     # "YYYY-MM-DD"
+total_views = sum(r.get("views") or 0 for r in rows)
+total_cost  = sum(r.get("cost")  or 0 for r in rows)
+live_count  = sum(1 for r in rows if r.get("liveStatus","").lower() == "live")
+
+snap_entry = {
+    "date":           today,
+    "refreshedAt":    now_iso,
+    "totalViews":     total_views,
+    "totalCreators":  len(rows),
+    "liveCreators":   live_count,
+    "updatedRows":    updated,
+    "noMatchRows":    no_match,
+    "totalCost":      total_cost,
+}
+
+# Replace today's entry if it already exists (re-run scenario), else append
+snaps = snap_data.get("snapshots", [])
+idx = next((i for i, s in enumerate(snaps) if s.get("date") == today), None)
+if idx is not None:
+    snaps[idx] = snap_entry
+else:
+    snaps.append(snap_entry)
+
+snaps.sort(key=lambda s: s["date"])
+snap_data["snapshots"] = snaps
+
+with open(snap_path, "w") as f:
+    json.dump(snap_data, f, indent=2)
+
+print(f"Daily snapshot saved: {today} — {total_views:,} total views")
