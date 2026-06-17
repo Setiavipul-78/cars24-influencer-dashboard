@@ -251,7 +251,15 @@ batches = [urls_to_scrape[i:i+BATCH_SIZE] for i in range(0, len(urls_to_scrape),
 
 for b_idx, batch in enumerate(batches):
     print(f"\nBatch {b_idx+1}/{len(batches)} — {len(batch)} URLs")
-    run_resp = post_json(run_url, {"directUrls": batch, "resultsType": "posts", "resultsLimit": 1})
+    run_resp = post_json(run_url, {
+        "directUrls":  batch,
+        "resultsType": "posts",
+        "resultsLimit": 1,
+        "proxy": {
+            "useApifyProxy":      True,
+            "apifyProxyGroups":   ["RESIDENTIAL"],
+        },
+    })
     run_id   = run_resp["data"]["id"]
     ds_id    = run_resp["data"]["defaultDatasetId"]
     print(f"  Run ID: {run_id}")
