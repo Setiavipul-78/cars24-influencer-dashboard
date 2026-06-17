@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-06-17T14:26:11.136Z",
+  "exportedAt": "2026-06-17T14:27:27.035Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -4906,8 +4906,8 @@
       "avg_cpv": "1.6",
       "live_status": "WIP",
       "business": "Token",
-      "po_status": "false",
-      "payment_status": "false",
+      "po_status": "true",
+      "payment_status": "true",
       "video_live_link": "https://www.instagram.com/reel/DZHW_VCR4sD/",
       "live_data": "3rd June",
       "views": "",
