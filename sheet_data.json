@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-06-17T14:53:31.182Z",
+  "exportedAt": "2026-06-17T14:56:11.689Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -4366,8 +4366,8 @@
       "avg_cpv": "0.041666666666666664",
       "live_status": "Live",
       "business": "Buy",
-      "po_status": "false",
-      "payment_status": "false",
+      "po_status": "true",
+      "payment_status": "true",
       "video_live_link": "https://www.instagram.com/reel/DYSBFOUBzgw/?",
       "live_data": "2026-05-13",
       "views": "135855",
