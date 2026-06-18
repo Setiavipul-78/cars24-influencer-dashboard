@@ -12,7 +12,7 @@ def fmt(n):
     n = float(n)
     def trim(s): return s.rstrip('0').rstrip('.')
     if n >= 1e7: return trim(f'{n/1e7:.2f}') + 'Cr'
-    if n >= 1e4: return trim(f'{n/1e5:.2f}') + 'L'
+    if n >= 1e5: return trim(f'{n/1e5:.2f}') + 'L'
     if n >= 1e3: return trim(f'{n/1e3:.1f}') + 'K'
     return str(int(round(n)))
 

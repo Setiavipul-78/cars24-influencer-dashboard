@@ -1388,7 +1388,7 @@ function fmtN(n) {
   // Indian unit system — L (lakh) for everything ≥10K, Cr (crore) for ≥1Cr
   const trim = s => s.replace(/\.?0+$/, '');
   if (v >= 1e7) return trim((v/1e7).toFixed(2)) + 'Cr';
-  if (v >= 1e4) return trim((v/1e5).toFixed(2)) + 'L';
+  if (v >= 1e5) return trim((v/1e5).toFixed(2)) + 'L';
   if (v >= 1e3) return trim((v/1e3).toFixed(1)) + 'K';
   return Math.round(v).toLocaleString('en-IN');
 }
