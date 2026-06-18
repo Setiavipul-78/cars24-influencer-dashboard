@@ -1363,7 +1363,7 @@ function renderTable() {
       <td class="col-hide-sm" style="white-space:nowrap;color:var(--g500);font-size:12px">${(r.postedAt||r.lastRefreshed) ? new Date(r.postedAt||r.lastRefreshed).toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'}) : '—'}</td>
       <td class="col-hide-sm">${r.region||'—'}</td>
       <td class="col-hide-sm" style="font-weight:600">${fmtN(r.followers)}</td>
-      <td style="font-weight:700">${fmtN(r.views)}</td>
+      <td style="font-weight:700">${viewsBdg(r)}</td>
       <td class="col-hide-sm">${fmtN(r.likes)}</td>
       <td class="col-hide-sm">${fmtN(r.comments)}</td>
       <td>${fmtER(r.engRate)}</td>
@@ -1408,6 +1408,11 @@ function stBdg(r) {
   const s = r.liveStatus.toLowerCase();
   if (s==='live') return `<span class="bdg bl"><span class="dot dg"></span> Live</span>`;
   return `<span class="bdg bw">WIP</span>`;
+}
+function viewsBdg(r) {
+  const v = fmtN(r.views);
+  if (r.overrideViews) return `${v} <span title="Manually set from Creator Insights" style="font-size:9px;background:#f3f0ff;color:#4736FE;border-radius:3px;padding:1px 4px;font-weight:600;vertical-align:middle">M</span>`;
+  return v;
 }
 
 // ═══════════════════════════════════════════════

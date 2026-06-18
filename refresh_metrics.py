@@ -172,14 +172,15 @@ if sheet_rows:
         video_link_raw = get_val(sheet_row, 'video_live_link', 'video_link', 'reel_link', 'instagram_link')
         video_link     = clean_insta_url(video_link_raw) or video_link_raw
 
-        agency    = get_val(sheet_row, 'agency')
-        region    = get_val(sheet_row, 'region') or 'PAN INDIA'
-        followers = num(get_val(sheet_row, 'follower_count', 'followers', 'follower'))
-        cost      = num(get_val(sheet_row, 'final_cost', 'cost', 'budget'))
-        status    = get_val(sheet_row, 'live_status', 'status')
-        business  = get_val(sheet_row, 'business')
-        link      = get_val(sheet_row, 'link', 'profile_link', 'instagram_profile')
-        avg_views = num(get_val(sheet_row, 'avg_views', 'avg_view', 'average_views'))
+        agency         = get_val(sheet_row, 'agency')
+        region         = get_val(sheet_row, 'region') or 'PAN INDIA'
+        followers      = num(get_val(sheet_row, 'follower_count', 'followers', 'follower'))
+        cost           = num(get_val(sheet_row, 'final_cost', 'cost', 'budget'))
+        status         = get_val(sheet_row, 'live_status', 'status')
+        business       = get_val(sheet_row, 'business')
+        link           = get_val(sheet_row, 'link', 'profile_link', 'instagram_profile')
+        avg_views      = num(get_val(sheet_row, 'avg_views', 'avg_view', 'average_views'))
+        override_views = num(get_val(sheet_row, 'override_views', 'actual_views', 'manual_views'))
 
         # Match by shortcode first (stable across liveMonth changes), then name+month
         sheet_sc = shortcode(video_link)
@@ -194,15 +195,16 @@ if sheet_rows:
             r = rows[idx]
             if r.get('csvPin'):
                 continue  # frozen row — views, postedAt, videoLink, all metrics preserved as-is
-            r['agency']     = agency     or r.get('agency', '')
-            r['region']     = region     or r.get('region', 'PAN INDIA')
-            r['cost']       = cost       if cost      is not None else r.get('cost')
-            r['liveStatus'] = status     or r.get('liveStatus', '')
-            r['business']   = business   or r.get('business', '')
-            r['link']       = link       or r.get('link', '')
-            r['followers']  = followers  if followers is not None else r.get('followers')
-            r['avgViews']   = avg_views  if avg_views is not None else r.get('avgViews')
-            r['tier']       = tier_of(r['followers'])
+            r['agency']         = agency         or r.get('agency', '')
+            r['region']         = region         or r.get('region', 'PAN INDIA')
+            r['cost']           = cost           if cost          is not None else r.get('cost')
+            r['liveStatus']     = status         or r.get('liveStatus', '')
+            r['business']       = business       or r.get('business', '')
+            r['link']           = link           or r.get('link', '')
+            r['followers']      = followers      if followers     is not None else r.get('followers')
+            r['avgViews']       = avg_views      if avg_views     is not None else r.get('avgViews')
+            r['overrideViews']  = override_views if override_views is not None else r.get('overrideViews')
+            r['tier']           = tier_of(r['followers'])
             old_link = r.get('videoLink', '')
             r['videoLink']  = video_link or old_link
             # Link just added for the first time — reset so Apify scrapes it tonight
@@ -230,6 +232,7 @@ if sheet_rows:
                 'views':         None, 'likes':   None, 'comments': None,
                 'shares':        None, 'saves':   None,
                 'engRate':       None, 'cpv':     None,
+                'overrideViews': override_views,
                 'refreshStatus': 'pending',
                 'lastRefreshed': None,
                 'postedAt':      None,
@@ -318,13 +321,15 @@ for r in rows:
         no_match += 1; continue
 
     m = apify[sc]
-    new_views    = m["views"]    if m["views"]             else r.get("views")
+    # overrideViews from sheet takes priority over Apify (for Creator Insights accuracy)
+    apify_views  = m["views"] if m["views"] else r.get("views")
+    new_views    = r.get("overrideViews") or apify_views
     new_likes    = m["likes"]    if m["likes"] is not None  else r.get("likes")
     new_comments = m["comments"] if m["comments"]           else r.get("comments")
     r.update({
         "views": new_views, "likes": new_likes, "comments": new_comments,
         "lastRefreshed": datetime.datetime.utcnow().isoformat() + "Z",
-        "refreshStatus": "ok",
+        "refreshStatus": "ok" if not r.get("overrideViews") else "manual",
     })
     # postedAt = when the reel was published on Instagram (from Apify's timestamp).
     # Only set if Apify returned a real timestamp; never fall back to script-run time.
