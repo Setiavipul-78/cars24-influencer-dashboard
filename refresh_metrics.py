@@ -154,9 +154,13 @@ def norm_month(s):
 
 if sheet_rows:
     existing = {}
+    existing_by_sc = {}
     for i, r in enumerate(rows):
         key = (r['name'].strip().lower(), r['liveMonth'].strip().lower())
         existing[key] = i
+        sc = shortcode(r.get('videoLink', ''))
+        if sc:
+            existing_by_sc[sc] = i
 
     added = 0
     for sheet_row in sheet_rows:
@@ -177,8 +181,17 @@ if sheet_rows:
         link      = get_val(sheet_row, 'link', 'profile_link', 'instagram_profile')
         avg_views = num(get_val(sheet_row, 'avg_views', 'avg_view', 'average_views'))
 
-        if key in existing:
-            r = rows[existing[key]]
+        # Match by shortcode first (stable across liveMonth changes), then name+month
+        sheet_sc = shortcode(video_link)
+        if sheet_sc and sheet_sc in existing_by_sc:
+            idx = existing_by_sc[sheet_sc]
+        elif key in existing:
+            idx = existing[key]
+        else:
+            idx = None
+
+        if idx is not None:
+            r = rows[idx]
             if r.get('csvPin'):
                 continue  # frozen row — views, postedAt, videoLink, all metrics preserved as-is
             r['agency']     = agency     or r.get('agency', '')
@@ -224,6 +237,8 @@ if sheet_rows:
             }
             rows.append(new_row)
             existing[key] = len(rows) - 1
+            if sheet_sc:
+                existing_by_sc[sheet_sc] = len(rows) - 1
             added += 1
             print(f"  + New row: {name} ({month})")
 
@@ -313,8 +328,15 @@ for r in rows:
     })
     # postedAt = when the reel was published on Instagram (from Apify's timestamp).
     # Only set if Apify returned a real timestamp; never fall back to script-run time.
+    # Also derive liveMonth from the actual post date so it reflects reality, not the sheet.
     if m["ts"]:
         r["postedAt"] = m["ts"]
+        try:
+            dt = datetime.datetime.fromisoformat(m["ts"].replace("Z", "+00:00"))
+            r["liveMonth"]  = dt.strftime("%B %Y")   # e.g. "May 2026"
+            r["monthOrder"] = dt.year * 100 + dt.month
+        except Exception:
+            pass
     shares = r.get("shares") or 0
     saves  = r.get("saves")  or 0
     eng    = (new_likes or 0) + shares + (new_comments or 0) + saves
