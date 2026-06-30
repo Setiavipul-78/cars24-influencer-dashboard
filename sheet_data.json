@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-06-30T08:10:48.260Z",
+  "exportedAt": "2026-06-30T08:11:02.265Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -5140,7 +5140,7 @@
       "performance_cuts": "",
       "performance_vids": "",
       "followers": "319000",
-      "avg_views": "",
+      "avg_views": "1000000",
       "final_cost": "90000",
       "payment_agency": "Flutch",
       "avg_cpv": "",
@@ -5170,7 +5170,7 @@
       "performance_cuts": "",
       "performance_vids": "",
       "followers": "",
-      "avg_views": "1000000",
+      "avg_views": "",
       "final_cost": "180000",
       "payment_agency": "Scoutly",
       "avg_cpv": "",
