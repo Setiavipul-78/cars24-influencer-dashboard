@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-06-30T08:49:09.083Z",
+  "exportedAt": "2026-06-30T08:49:54.734Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -4547,7 +4547,7 @@
       "live_status": "Live",
       "business": "Buy",
       "po_status": "true",
-      "payment_status": "false",
+      "payment_status": "true",
       "video_live_link": "https://www.instagram.com/reel/DY7SbTcvsvP/?",
       "live_date": "2026-05-29",
       "views": "670178",
