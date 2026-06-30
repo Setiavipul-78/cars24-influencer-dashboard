@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-06-30T08:07:48.960Z",
+  "exportedAt": "2026-06-30T08:08:16.427Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -4996,7 +4996,7 @@
       "avg_cpv": "0.0225",
       "live_status": "Live",
       "business": "Buy",
-      "po_status": "false",
+      "po_status": "true",
       "payment_status": "false",
       "video_live_link": "https://www.instagram.com/reel/DZ5AnxeuuYm/?",
       "live_date": "2026-06-22",
@@ -5026,7 +5026,7 @@
       "avg_cpv": "0.065",
       "live_status": "Live",
       "business": "Buy",
-      "po_status": "false",
+      "po_status": "true",
       "payment_status": "false",
       "video_live_link": "https://www.instagram.com/reel/DZ_8KtUTAhw/",
       "live_date": "2026-06-25",
