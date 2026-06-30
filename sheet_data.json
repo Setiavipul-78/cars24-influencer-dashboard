@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-06-30T08:10:18.212Z",
+  "exportedAt": "2026-06-30T08:10:32.761Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -5169,7 +5169,7 @@
       "region": "PAN INDIA",
       "performance_cuts": "",
       "performance_vids": "",
-      "followers": "",
+      "followers": "1000000",
       "avg_views": "",
       "final_cost": "180000",
       "payment_agency": "Scoutly",
