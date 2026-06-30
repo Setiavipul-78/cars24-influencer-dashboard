@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-06-30T08:03:40.206Z",
+  "exportedAt": "2026-06-30T08:03:44.001Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -5342,7 +5342,7 @@
       "performance_cut": ""
     },
     {
-      "live_month": "",
+      "live_month": "2026-06-01",
       "agency_name": "CreatorInfo",
       "name": "Rahul Gowda",
       "link": "",
