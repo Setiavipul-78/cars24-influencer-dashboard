@@ -1,1 +1,14 @@
-{"snapshots":[]}
+{
+  "snapshots": [
+    {
+      "date": "2026-06-30",
+      "refreshedAt": "2026-06-30T08:44:29Z",
+      "totalViews": 145690977,
+      "totalCreators": 186,
+      "liveCreators": 177,
+      "updatedRows": 164,
+      "noMatchRows": 9,
+      "totalCost": 16006000
+    }
+  ]
+}
