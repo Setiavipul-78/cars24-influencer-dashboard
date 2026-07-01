@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-07-01T14:47:34.514Z",
+  "exportedAt": "2026-07-01T14:47:59.388Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -5444,7 +5444,7 @@
       "final_cost": "200000",
       "payment_agency": "Creator Mela",
       "avg_cpv": "0.1",
-      "live_status": "",
+      "live_status": "Live",
       "business": "",
       "po_status": "false",
       "payment_status": "false",
