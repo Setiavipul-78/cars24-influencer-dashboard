@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-07-04T06:49:11.645Z",
+  "exportedAt": "2026-07-04T06:49:17.757Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -4793,10 +4793,10 @@
       "views": "11729",
       "likes": "",
       "comments": "1",
-      "shares": "",
+      "shares": "4",
       "saves": "",
       "actual_cpv_as_on_30062025": "",
-      "engagement_rate": "0.00008525876033762469",
+      "engagement_rate": "0.00042629380168812344",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false"
