@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-07-04T21:08:50.554Z",
+  "exportedAt": "2026-07-04T21:08:55.252Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -5293,7 +5293,7 @@
       "avg_views": "600000",
       "final_cost": "100000",
       "payment_agency": "Scoutly",
-      "avg_cpv": "",
+      "avg_cpv": "0.16666666666666666",
       "live_status": "Live",
       "business": "",
       "po_status": "false",
