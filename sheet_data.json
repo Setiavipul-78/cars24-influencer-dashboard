@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-07-04T07:04:14.392Z",
+  "exportedAt": "2026-07-04T07:04:29.787Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -5210,12 +5210,12 @@
       "payment_status": "false",
       "video_live_link": "https://www.instagram.com/reel/DaNHShjt2IN/?",
       "live_date": "2026-06-30",
-      "views": "",
+      "views": "268134",
       "likes": "7386",
       "comments": "4",
-      "shares": "",
+      "shares": "134",
       "saves": "",
-      "actual_cpv_as_on_30062025": "#DIV/0!",
+      "actual_cpv_as_on_30062025": "0",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
