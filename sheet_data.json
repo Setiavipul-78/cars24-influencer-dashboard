@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-07-06T09:36:59.094Z",
+  "exportedAt": "2026-07-06T09:37:03.492Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -5040,7 +5040,7 @@
       "business": "Token",
       "po_status": "true",
       "payment_status": "true",
-      "invouce_raised": "false",
+      "invouce_raised": "true",
       "video_live_link": "https://www.instagram.com/p/DZIM04mT2cW/",
       "live_date": "2026-06-03",
       "views": "72761",
