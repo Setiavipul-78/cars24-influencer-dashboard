@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-07-06T09:37:03.492Z",
+  "exportedAt": "2026-07-06T09:37:08.335Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -5071,7 +5071,7 @@
       "business": "Token",
       "po_status": "true",
       "payment_status": "true",
-      "invouce_raised": "false",
+      "invouce_raised": "true",
       "video_live_link": "https://www.instagram.com/reel/DZP4GSls0V8/?",
       "live_date": "2026-06-06",
       "views": "13678",
@@ -5133,7 +5133,7 @@
       "business": "Buy",
       "po_status": "true",
       "payment_status": "true",
-      "invouce_raised": "false",
+      "invouce_raised": "true",
       "video_live_link": "https://www.instagram.com/reel/DZXlvxfy09M/?igsh=MTF1dmZncjRocTZoOA==",
       "live_date": "2026-06-11",
       "views": "173533",
