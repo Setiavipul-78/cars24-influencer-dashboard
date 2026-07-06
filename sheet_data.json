@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-07-06T06:57:04.196Z",
+  "exportedAt": "2026-07-06T06:57:41.651Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -5400,6 +5400,36 @@
       "insights": "",
       "insights_link": "",
       "performance_cut": "false"
+    },
+    {
+      "live_month": "",
+      "agency_name": "Stoutly",
+      "name": "",
+      "link": "",
+      "region": "",
+      "performance_cuts": "",
+      "performance_vids": "",
+      "followers": "",
+      "avg_views": "",
+      "final_cost": "",
+      "payment_agency": "",
+      "avg_cpv": "",
+      "live_status": "",
+      "business": "",
+      "po_status": "",
+      "payment_status": "",
+      "video_live_link": "",
+      "live_date": "",
+      "views": "",
+      "likes": "",
+      "comments": "",
+      "shares": "",
+      "saves": "",
+      "actual_cpv_as_on_30062025": "",
+      "engagement_rate": "",
+      "insights": "",
+      "insights_link": "",
+      "performance_cut": ""
     },
     {
       "live_month": "2026-07-01",
