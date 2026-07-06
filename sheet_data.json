@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-07-06T07:09:53.809Z",
+  "exportedAt": "2026-07-06T07:09:59.043Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -5326,7 +5326,7 @@
       "avg_cpv": "0.09333333333333334",
       "live_status": "Live",
       "business": "Buy",
-      "po_status": "false",
+      "po_status": "true",
       "payment_status": "false",
       "video_live_link": "https://www.instagram.com/reel/DaSiUrJJX8l/?",
       "live_date": "2026-07-02",
@@ -5384,9 +5384,9 @@
       "final_cost": "150000",
       "payment_agency": "Creator Info",
       "avg_cpv": "0.075",
-      "live_status": "WIP",
+      "live_status": "Live",
       "business": "Buy",
-      "po_status": "false",
+      "po_status": "true",
       "payment_status": "false",
       "video_live_link": "",
       "live_date": "",
