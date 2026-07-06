@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-07-06T07:30:54.353Z",
+  "exportedAt": "2026-07-06T07:30:58.914Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -5489,7 +5489,7 @@
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
-      "performance_cut": ""
+      "performance_cut": "false"
     },
     {
       "live_month": "2026-07-01",
@@ -5519,7 +5519,7 @@
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
-      "performance_cut": ""
+      "performance_cut": "false"
     },
     {
       "live_month": "2026-07-01",
