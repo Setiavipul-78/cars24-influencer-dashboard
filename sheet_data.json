@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-07-06T09:36:42.378Z",
+  "exportedAt": "2026-07-06T09:36:56.334Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -4916,7 +4916,7 @@
       "business": "Token",
       "po_status": "true",
       "payment_status": "true",
-      "invouce_raised": "false",
+      "invouce_raised": "true",
       "video_live_link": "https://www.instagram.com/reel/DZPqHvUtkql/?",
       "live_date": "2026-06-06",
       "views": "106507",
@@ -4947,7 +4947,7 @@
       "business": "Token",
       "po_status": "true",
       "payment_status": "true",
-      "invouce_raised": "false",
+      "invouce_raised": "true",
       "video_live_link": "https://www.instagram.com/reel/DZHW_VCR4sD/",
       "live_date": "2026-06-03",
       "views": "11729",
@@ -4978,7 +4978,7 @@
       "business": "Token",
       "po_status": "true",
       "payment_status": "true",
-      "invouce_raised": "false",
+      "invouce_raised": "true",
       "video_live_link": "https://www.instagram.com/reel/DZC4JDpJCmh/",
       "live_date": "2026-06-01",
       "views": "31373",
