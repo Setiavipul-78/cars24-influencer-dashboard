@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-07-06T06:58:11.507Z",
+  "exportedAt": "2026-07-06T06:58:20.243Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -5402,7 +5402,7 @@
       "performance_cut": "false"
     },
     {
-      "live_month": "",
+      "live_month": "2026-07-01",
       "agency_name": "Scoutly",
       "name": "",
       "link": "",
