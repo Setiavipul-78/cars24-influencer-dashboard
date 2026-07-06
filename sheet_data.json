@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-07-06T06:27:28.246Z",
+  "exportedAt": "2026-07-06T06:57:04.196Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -5400,36 +5400,6 @@
       "insights": "",
       "insights_link": "",
       "performance_cut": "false"
-    },
-    {
-      "live_month": "2026-07-01",
-      "agency_name": "Flutch",
-      "name": "Dhananjay Sharma",
-      "link": "https://www.instagram.com/imdhananjaybinjola??",
-      "region": "PAN INDIA",
-      "performance_cuts": "",
-      "performance_vids": "",
-      "followers": "145000",
-      "avg_views": "2000000",
-      "final_cost": "60000",
-      "payment_agency": "Flutch",
-      "avg_cpv": "0.03",
-      "live_status": "WIP",
-      "business": "Buy",
-      "po_status": "false",
-      "payment_status": "false",
-      "video_live_link": "",
-      "live_date": "",
-      "views": "",
-      "likes": "",
-      "comments": "",
-      "shares": "",
-      "saves": "",
-      "actual_cpv_as_on_30062025": "",
-      "engagement_rate": "",
-      "insights": "",
-      "insights_link": "",
-      "performance_cut": ""
     },
     {
       "live_month": "2026-07-01",
