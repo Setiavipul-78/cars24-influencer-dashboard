@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-07-07T11:08:02.643Z",
+  "exportedAt": "2026-07-07T11:08:09.813Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -5735,6 +5735,37 @@
       "insights": "",
       "insights_link": "",
       "performance_cut": "false"
+    },
+    {
+      "live_month": "",
+      "agency_name": "",
+      "name": "Muskaan",
+      "link": "https://www.instagram.com/muskan_pyari_0/",
+      "region": "",
+      "performance_cuts": "",
+      "performance_vids": "",
+      "followers": "",
+      "avg_views": "",
+      "final_cost": "",
+      "payment_agency": "",
+      "avg_cpv": "",
+      "live_status": "",
+      "business": "",
+      "po_status": "false",
+      "payment_status": "false",
+      "invouce_raised": "false",
+      "video_live_link": "",
+      "live_date": "",
+      "views": "",
+      "likes": "",
+      "comments": "",
+      "shares": "",
+      "saves": "",
+      "actual_cpv_as_on_30062025": "",
+      "engagement_rate": "",
+      "insights": "",
+      "insights_link": "",
+      "performance_cut": ""
     }
   ]
 }
