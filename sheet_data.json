@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-07-07T11:10:40.537Z",
+  "exportedAt": "2026-07-07T11:10:46.692Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -5749,8 +5749,8 @@
       "final_cost": "45000",
       "payment_agency": "Scoutly",
       "avg_cpv": "0.045",
-      "live_status": "",
-      "business": "",
+      "live_status": "WIP",
+      "business": "Buy",
       "po_status": "false",
       "payment_status": "false",
       "invouce_raised": "false",
