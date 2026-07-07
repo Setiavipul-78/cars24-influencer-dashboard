@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-07-07T11:08:28.503Z",
+  "exportedAt": "2026-07-07T11:08:34.244Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -5745,7 +5745,7 @@
       "performance_cuts": "",
       "performance_vids": "",
       "followers": "",
-      "avg_views": "",
+      "avg_views": "1000000",
       "final_cost": "",
       "payment_agency": "",
       "avg_cpv": "",
