@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-07-09T07:18:07.251Z",
+  "exportedAt": "2026-07-09T07:18:14.815Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -5601,13 +5601,13 @@
       "invouce_raised": "false",
       "video_live_link": "https://www.instagram.com/lovkushssharma/",
       "live_date": "2026-07-06",
-      "views": "",
+      "views": "264039",
       "likes": "",
       "comments": "64",
       "shares": "",
       "saves": "",
-      "actual_cpv_as_on_30062025": "#DIV/0!",
-      "engagement_rate": "#DIV/0!",
+      "actual_cpv_as_on_30062025": "0.4923515086786422",
+      "engagement_rate": "0.00024238843504179307",
       "insights": "",
       "insights_link": "",
       "performance_cut": ""
