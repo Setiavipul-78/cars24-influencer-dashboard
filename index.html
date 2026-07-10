@@ -384,10 +384,10 @@ tr.cm-total td{background:var(--g100)!important;font-weight:700;color:var(--g700
 th.sa{color:var(--blue)}.th.sd{color:var(--blue)}
 
 /* ── Country switcher ─────────────────────────────────────────── */
-.country-sw{display:flex;align-items:center;gap:6px;padding:6px 24px;border-bottom:1px solid var(--g200);background:#fff}
-.csw-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--g400);margin-right:2px}
-.csw-btn{padding:4px 12px;border-radius:99px;font-size:12px;font-weight:600;border:1.5px solid var(--g200);background:#fff;cursor:pointer;color:var(--g600);transition:all .15s;font-family:inherit}
-.csw-btn.on{background:var(--blue);color:#fff;border-color:var(--blue);box-shadow:0 2px 8px rgba(71,54,254,.25)}
+.country-sw{display:flex;align-items:center;gap:10px;padding:10px 24px;border-bottom:2px solid var(--g200);background:linear-gradient(to right,#f8f9ff,#fff)}
+.csw-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--g400);margin-right:4px}
+.csw-btn{padding:8px 20px;border-radius:99px;font-size:15px;font-weight:700;border:2px solid var(--g200);background:#fff;cursor:pointer;color:var(--g600);transition:all .15s;font-family:inherit;line-height:1.3}
+.csw-btn.on{background:var(--blue);color:#fff;border-color:var(--blue);box-shadow:0 3px 12px rgba(71,54,254,.3)}
 .csw-btn:hover:not(.on){background:var(--g100);border-color:var(--g300)}
 
 /* ── Lifestyle category pill ──────────────────────────────────── */
@@ -416,6 +416,14 @@ th.sa{color:var(--blue)}.th.sd{color:var(--blue)}
   </div>
 </header>
 
+<!-- Country switcher — sits above tabs so you pick market first -->
+<div class="country-sw">
+  <span class="csw-lbl">Market</span>
+  <button class="csw-btn on" id="csw-IN" onclick="switchCountry('IN')">🇮🇳 India</button>
+  <button class="csw-btn" id="csw-AU" onclick="switchCountry('AU')">🇦🇺 Australia</button>
+  <button class="csw-btn" id="csw-UAE" onclick="switchCountry('UAE')">🇦🇪 UAE</button>
+</div>
+
 <!-- Tabs -->
 <nav class="tabs">
   <button class="tb on" id="tab-ov" onclick="switchTab('ov')">
@@ -431,14 +439,6 @@ th.sa{color:var(--blue)}.th.sd{color:var(--blue)}
     Analytics
   </button>
 </nav>
-
-<!-- Country switcher -->
-<div class="country-sw">
-  <span class="csw-lbl">Market</span>
-  <button class="csw-btn on" id="csw-IN" onclick="switchCountry('IN')">🇮🇳 India</button>
-  <button class="csw-btn" id="csw-AU" onclick="switchCountry('AU')">🇦🇺 Australia</button>
-  <button class="csw-btn" id="csw-UAE" onclick="switchCountry('UAE')">🇦🇪 UAE</button>
-</div>
 
 <main class="main">
 
@@ -750,7 +750,7 @@ const COLORS = ['#4736FE','#00d4a1','#8b5cf6','#f97316','#ec4899','#eab308','#22
 //  MULTI-COUNTRY
 // ═══════════════════════════════════════════════
 let activeCountry = 'IN';
-function curSym() { return {IN:'₹',AU:'A$',UAE:'AED '}[activeCountry]||'₹'; }
+function curSym() { return '₹'; }
 function isActive(r) {
   const s = (r.liveStatus||'').toLowerCase();
   return activeCountry === 'AU' ? s === 'briefing' : s === 'live';
@@ -799,7 +799,7 @@ const UAE_ROWS = [
   {id:7,name:"Mecik",agency:"Price Match",category:"Automobile",followers:152000,link:"",videoLink:"",views:53900,likes:30,comments:85,shares:14,saves:0,cost:2000,cpv:0.0371,liveStatus:"Live",liveMonth:"May 2026",monthOrder:202605,region:"UAE",tier:"Macro",engRate:0.24,postedAt:null},
 ];
 
-function switchCountry(c) {
+async function switchCountry(c) {
   activeCountry = c;
   document.querySelectorAll('.csw-btn').forEach(b=>b.classList.remove('on'));
   document.getElementById('csw-'+c).classList.add('on');
@@ -808,12 +808,34 @@ function switchCountry(c) {
   if (c === 'IN') {
     _lastRefreshedAt = null;
     tryLoadLocalJson();
+  } else if (c === 'AU') {
+    // Try live JSON first, fall back to static rows
+    try {
+      const res = await fetch('au_live_data.json?t='+Date.now());
+      if (res.ok) {
+        const data = await res.json();
+        if (data.rows && data.rows.length) {
+          allRows = data.rows.map((r,i)=>({...r,id:i,liveStatus:'Live'}));
+          buildFilters(); applyFilters(); buildOverview();
+          document.getElementById('btn-export').classList.remove('h');
+          document.getElementById('rm-head').style.display='';
+          const ts = data.refreshedAt ? new Date(data.refreshedAt).toLocaleString('en-IN') : '';
+          toast(`🇦🇺 Australia — ${allRows.length} reels · refreshed ${ts}`,'ok');
+          return;
+        }
+      }
+    } catch(_) {}
+    // Fallback: no au_live_data.json yet
+    allRows = [];
+    buildFilters(); applyFilters(); buildOverview();
+    document.getElementById('rm-head').style.display='';
+    toast('🇦🇺 Australia data loading — check back soon','info');
   } else {
-    allRows = (c==='AU' ? AU_ROWS : UAE_ROWS).map((r,i)=>({...r,id:i}));
+    allRows = UAE_ROWS.map((r,i)=>({...r,id:i}));
     buildFilters(); applyFilters(); buildOverview();
     document.getElementById('btn-export').classList.remove('h');
     document.getElementById('rm-head').style.display = '';
-    toast((c==='AU'?'🇦🇺 Australia':'🇦🇪 UAE')+' market loaded', 'info');
+    toast('🇦🇪 UAE market loaded', 'info');
   }
 }
 
@@ -1224,7 +1246,7 @@ function buildMoMTable() {
 
   if (activeCountry === 'AU') {
     if (liveHdr) liveHdr.textContent = 'Reels';
-    const sym = 'A$';
+    const sym = '₹';
     const curMonth = AU_MOM_DATA[AU_MOM_DATA.length-1]?.month;
     const rowHtml = AU_MOM_DATA.map(d => {
       const cpv = d.views && d.cost ? d.cost/d.views : null;
