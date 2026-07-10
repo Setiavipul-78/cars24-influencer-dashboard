@@ -382,6 +382,16 @@ tr.cm-total td{background:var(--g100)!important;font-weight:700;color:var(--g700
 
 /* ── Sort arrow improvements ──────────────────────────────────── */
 th.sa{color:var(--blue)}.th.sd{color:var(--blue)}
+
+/* ── Country switcher ─────────────────────────────────────────── */
+.country-sw{display:flex;align-items:center;gap:6px;padding:6px 24px;border-bottom:1px solid var(--g200);background:#fff}
+.csw-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--g400);margin-right:2px}
+.csw-btn{padding:4px 12px;border-radius:99px;font-size:12px;font-weight:600;border:1.5px solid var(--g200);background:#fff;cursor:pointer;color:var(--g600);transition:all .15s;font-family:inherit}
+.csw-btn.on{background:var(--blue);color:#fff;border-color:var(--blue);box-shadow:0 2px 8px rgba(71,54,254,.25)}
+.csw-btn:hover:not(.on){background:var(--g100);border-color:var(--g300)}
+
+/* ── Lifestyle category pill ──────────────────────────────────── */
+.cat-lifestyle{background:#fdf4ff;color:#7e22ce}
 </style>
 </head>
 <body>
@@ -421,6 +431,14 @@ th.sa{color:var(--blue)}.th.sd{color:var(--blue)}
     Analytics
   </button>
 </nav>
+
+<!-- Country switcher -->
+<div class="country-sw">
+  <span class="csw-lbl">Market</span>
+  <button class="csw-btn on" id="csw-IN" onclick="switchCountry('IN')">🇮🇳 India</button>
+  <button class="csw-btn" id="csw-AU" onclick="switchCountry('AU')">🇦🇺 Australia</button>
+  <button class="csw-btn" id="csw-UAE" onclick="switchCountry('UAE')">🇦🇪 UAE</button>
+</div>
 
 <main class="main">
 
@@ -639,7 +657,7 @@ th.sa{color:var(--blue)}.th.sd{color:var(--blue)}
       <div class="cw"><canvas id="c-cpv-trend"></canvas></div>
     </div>
     <div class="card card-accent-blue">
-      <div class="sh">Budget Spend by Month <span class="sh-tag">MoM ₹ investment</span></div>
+      <div class="sh">Budget Spend by Month <span class="sh-tag">MoM spend</span></div>
       <div class="sec-desc">Total influencer marketing spend per campaign month — track how investment scales over time</div>
       <div class="cw"><canvas id="c-budget-mom"></canvas></div>
     </div>
@@ -652,7 +670,7 @@ th.sa{color:var(--blue)}.th.sd{color:var(--blue)}
       <div class="cw"><canvas id="c-er-region"></canvas></div>
     </div>
     <div class="card">
-      <div class="sh">Avg Metrics by Tier <span class="sh-tag">ER % vs Avg CPV ₹</span></div>
+      <div class="sh">Avg Metrics by Tier <span class="sh-tag">ER % vs Avg CPV</span></div>
       <div class="sec-desc">How different audience-size tiers compare on engagement and cost efficiency</div>
       <div class="cw"><canvas id="c-tier-m"></canvas></div>
     </div>
@@ -727,6 +745,77 @@ const SHEET_CSV = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?for
 
 const MO = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 const COLORS = ['#4736FE','#00d4a1','#8b5cf6','#f97316','#ec4899','#eab308','#22c55e','#ef4444','#06b6d4','#a78bfa'];
+
+// ═══════════════════════════════════════════════
+//  MULTI-COUNTRY
+// ═══════════════════════════════════════════════
+let activeCountry = 'IN';
+function curSym() { return {IN:'₹',AU:'A$',UAE:'AED '}[activeCountry]||'₹'; }
+function isActive(r) {
+  const s = (r.liveStatus||'').toLowerCase();
+  return activeCountry === 'AU' ? s === 'briefing' : s === 'live';
+}
+
+const AU_MOM_DATA = [
+  {month:'November 2025',monthOrder:202511,reels:7,views:48660,cost:1753.59},
+  {month:'December 2025',monthOrder:202512,reels:15,views:139547,cost:8883.04},
+  {month:'January 2026',monthOrder:202601,reels:15,views:93684,cost:7252.01},
+  {month:'February 2026',monthOrder:202602,reels:33,views:229939,cost:0},
+  {month:'March 2026',monthOrder:202603,reels:37,views:277447,cost:4844.07},
+  {month:'April 2026',monthOrder:202604,reels:32,views:230318,cost:2252.84},
+  {month:'May 2026',monthOrder:202605,reels:14,views:141907,cost:24},
+  {month:'June 2026',monthOrder:202606,reels:7,views:59224,cost:0},
+];
+
+const AU_ROWS = [
+  {name:"ReDriven",agency:"YouTube",category:"Automobile",followers:466000,link:"https://www.youtube.com/@ReDriven/shorts",videoLink:"",views:null,liveStatus:"Hold",cost:null,cpv:null,liveMonth:"July 2026",monthOrder:202607,region:"Australia",tier:"Macro",likes:null,comments:null,shares:null,saves:null,engRate:null,postedAt:null},
+  {name:"Feel Good Family",agency:"YouTube",category:"Vlogs",followers:109000,link:"https://www.youtube.com/@TheFeelGoodFamily/shorts",videoLink:"",views:null,liveStatus:"Reached out",cost:null,cpv:null,liveMonth:"July 2026",monthOrder:202607,region:"Australia",tier:"Macro",likes:null,comments:null,shares:null,saves:null,engRate:null,postedAt:null},
+  {name:"Rask",agency:"YouTube",category:"Finance",followers:52800,link:"https://www.youtube.com/@Rask-invest/shorts",videoLink:"",views:null,liveStatus:"Dropped",cost:null,cpv:null,liveMonth:"July 2026",monthOrder:202607,region:"Australia",tier:"Macro",likes:null,comments:null,shares:null,saves:null,engRate:null,postedAt:null},
+  {name:"InvestWithQueenie",agency:"YouTube",category:"Finance",followers:84800,link:"https://www.youtube.com/@InvestWithQueenie/shorts",videoLink:"",views:null,liveStatus:"Reached out",cost:null,cpv:null,liveMonth:"July 2026",monthOrder:202607,region:"Australia",tier:"Macro",likes:null,comments:null,shares:null,saves:null,engRate:null,postedAt:null},
+  {name:"ClayWong",agency:"YouTube",category:"Automobile",followers:196000,link:"https://www.youtube.com/@ClayWong/videos",videoLink:"",views:null,liveStatus:"Reached out",cost:null,cpv:null,liveMonth:"July 2026",monthOrder:202607,region:"Australia",tier:"Macro",likes:null,comments:null,shares:null,saves:null,engRate:null,postedAt:null},
+  {name:"Annie's Bucket",agency:"Instagram",category:"Lifestyle",followers:281000,link:"https://www.instagram.com/anniesbucketlist/",videoLink:"",views:82544,liveStatus:"Briefing",cost:12350,cpv:0.1496,liveMonth:"July 2026",monthOrder:202607,region:"Australia",tier:"Macro",likes:null,comments:null,shares:null,saves:null,engRate:null,postedAt:null},
+  {name:"Hao",agency:"Instagram",category:"Automobile",followers:217000,link:"https://www.instagram.com/haophu_/",videoLink:"",views:34000,liveStatus:"Briefing",cost:null,cpv:null,liveMonth:"July 2026",monthOrder:202607,region:"Australia",tier:"Macro",likes:null,comments:null,shares:null,saves:null,engRate:null,postedAt:null},
+  {name:"Andy",agency:"Instagram",category:"Automobile",followers:218000,link:"https://www.instagram.com/andythesk/reels/",videoLink:"",views:null,liveStatus:"Hold",cost:null,cpv:null,liveMonth:"July 2026",monthOrder:202607,region:"Australia",tier:"Macro",likes:null,comments:null,shares:null,saves:null,engRate:null,postedAt:null},
+  {name:"Luke Donkin",agency:"Instagram",category:"Entertainment",followers:458000,link:"https://www.instagram.com/lukedonkin/reels/",videoLink:"",views:320122,liveStatus:"Briefing",cost:14500,cpv:0.0453,liveMonth:"July 2026",monthOrder:202607,region:"Australia",tier:"Macro",likes:null,comments:null,shares:null,saves:null,engRate:null,postedAt:null},
+  {name:"Troy Williams",agency:"Instagram",category:"Automobile",followers:411000,link:"https://www.instagram.com/troycandy/",videoLink:"",views:null,liveStatus:"Hold",cost:null,cpv:null,liveMonth:"July 2026",monthOrder:202607,region:"Australia",tier:"Macro",likes:null,comments:null,shares:null,saves:null,engRate:null,postedAt:null},
+  {name:"Matt Storer",agency:"Instagram",category:"Entertainment",followers:421000,link:"https://www.instagram.com/mattstorerhere",videoLink:"",views:null,liveStatus:"Reached out",cost:null,cpv:null,liveMonth:"July 2026",monthOrder:202607,region:"Australia",tier:"Macro",likes:null,comments:null,shares:null,saves:null,engRate:null,postedAt:null},
+  {name:"Winna",agency:"Instagram",category:"Lifestyle",followers:288000,link:"https://www.instagram.com/winna.bhun",videoLink:"",views:null,liveStatus:"Hold",cost:null,cpv:null,liveMonth:"July 2026",monthOrder:202607,region:"Australia",tier:"Macro",likes:null,comments:null,shares:null,saves:null,engRate:null,postedAt:null},
+  {name:"Max Price",agency:"Instagram",category:"Entertainment",followers:115000,link:"https://www.instagram.com/maxprice3",videoLink:"",views:485733,liveStatus:"Briefing",cost:null,cpv:null,liveMonth:"July 2026",monthOrder:202607,region:"Australia",tier:"Macro",likes:null,comments:null,shares:null,saves:null,engRate:null,postedAt:null},
+  {name:"Kindofabigdeal",agency:"Instagram",category:"Entertainment",followers:463000,link:"https://www.instagram.com/kindofabigdeal",videoLink:"",views:null,liveStatus:"Reached out",cost:null,cpv:null,liveMonth:"July 2026",monthOrder:202607,region:"Australia",tier:"Macro",likes:null,comments:null,shares:null,saves:null,engRate:null,postedAt:null},
+  {name:"Calista",agency:"Instagram",category:"Infotainment",followers:120000,link:"https://www.instagram.com/thecalistacut",videoLink:"",views:null,liveStatus:"Hold",cost:null,cpv:null,liveMonth:"July 2026",monthOrder:202607,region:"Australia",tier:"Macro",likes:null,comments:null,shares:null,saves:null,engRate:null,postedAt:null},
+  {name:"Tashi Invests",agency:"Instagram",category:"Finance",followers:198000,link:"https://www.instagram.com/tashinvests",videoLink:"",views:166844,liveStatus:"Briefing",cost:22700,cpv:0.1361,liveMonth:"July 2026",monthOrder:202607,region:"Australia",tier:"Macro",likes:null,comments:null,shares:null,saves:null,engRate:null,postedAt:null},
+  {name:"Annette",agency:"Instagram",category:"Lifestyle",followers:41400,link:"https://www.instagram.com/lifewith.annette",videoLink:"",views:null,liveStatus:"Reached out",cost:null,cpv:null,liveMonth:"July 2026",monthOrder:202607,region:"Australia",tier:"Micro",likes:null,comments:null,shares:null,saves:null,engRate:null,postedAt:null},
+  {name:"Cassie",agency:"Instagram",category:"Lifestyle",followers:108000,link:"https://www.instagram.com/dailywithcass",videoLink:"",views:60822,liveStatus:"Briefing",cost:14500,cpv:0.2384,liveMonth:"July 2026",monthOrder:202607,region:"Australia",tier:"Macro",likes:null,comments:null,shares:null,saves:null,engRate:null,postedAt:null},
+].map((r,i)=>({...r,id:i}));
+
+const UAE_ROWS = [
+  {id:0,name:"Kareem Almoarrawi",agency:"Lifetime Warranty",category:"Lifestyle",followers:524000,link:"https://www.instagram.com/reel/DVyn9Q4DD7x/",videoLink:"https://www.instagram.com/reel/DVyn9Q4DD7x/",views:236000,likes:8200,comments:1004,shares:11000,saves:16,cost:7500,cpv:0.0318,liveStatus:"Live",liveMonth:"March 2026",monthOrder:202603,region:"UAE",tier:"Macro",engRate:8.57,postedAt:null},
+  {id:1,name:"Dr. Dalia Kokash",agency:"Lifetime Warranty",category:"Lifestyle",followers:83300,link:"https://www.instagram.com/reel/DVymYO0CGWR/",videoLink:"https://www.instagram.com/reel/DVymYO0CGWR/",views:11900,likes:234,comments:84,shares:73,saves:66,cost:7500,cpv:0.6303,liveStatus:"Live",liveMonth:"March 2026",monthOrder:202603,region:"UAE",tier:"Macro",engRate:3.84,postedAt:null},
+  {id:2,name:"Shezza Razzaqi",agency:"Lifetime Warranty",category:"Lifestyle",followers:51100,link:"https://www.instagram.com/reel/DWeJgYZCNPn/",videoLink:"https://www.instagram.com/reel/DWeJgYZCNPn/",views:31004,likes:673,comments:36,shares:326,saves:56,cost:1500,cpv:0.0484,liveStatus:"Live",liveMonth:"March 2026",monthOrder:202603,region:"UAE",tier:"Macro",engRate:3.52,postedAt:null},
+  {id:3,name:"Hershy",agency:"Video Call Test Drive",category:"Lifestyle",followers:131000,link:"https://www.instagram.com/p/DWhL1P7DhtO/",videoLink:"https://www.instagram.com/p/DWhL1P7DhtO/",views:30700,likes:2000,comments:3,shares:1,saves:1,cost:1500,cpv:0.0489,liveStatus:"Live",liveMonth:"April 2026",monthOrder:202604,region:"UAE",tier:"Macro",engRate:6.53,postedAt:null},
+  {id:4,name:"Welard",agency:"Price Match",category:"Automobile",followers:12500,link:"",videoLink:"",views:600,likes:21,comments:22,shares:5,saves:0,cost:2000,cpv:3.33,liveStatus:"Live",liveMonth:"May 2026",monthOrder:202605,region:"UAE",tier:"Micro",engRate:8.0,postedAt:null},
+  {id:5,name:"Hina",agency:"Price Match",category:"Lifestyle",followers:126000,link:"",videoLink:"",views:286000,likes:1015,comments:133,shares:47,saves:0,cost:2000,cpv:0.0070,liveStatus:"Live",liveMonth:"May 2026",monthOrder:202605,region:"UAE",tier:"Macro",engRate:0.42,postedAt:null},
+  {id:6,name:"Loai",agency:"Price Match",category:"Lifestyle",followers:75500,link:"",videoLink:"",views:7041,likes:15,comments:10,shares:4,saves:2,cost:2000,cpv:0.2841,liveStatus:"Live",liveMonth:"May 2026",monthOrder:202605,region:"UAE",tier:"Macro",engRate:0.44,postedAt:null},
+  {id:7,name:"Mecik",agency:"Price Match",category:"Automobile",followers:152000,link:"",videoLink:"",views:53900,likes:30,comments:85,shares:14,saves:0,cost:2000,cpv:0.0371,liveStatus:"Live",liveMonth:"May 2026",monthOrder:202605,region:"UAE",tier:"Macro",engRate:0.24,postedAt:null},
+];
+
+function switchCountry(c) {
+  activeCountry = c;
+  document.querySelectorAll('.csw-btn').forEach(b=>b.classList.remove('on'));
+  document.getElementById('csw-'+c).classList.add('on');
+  Object.keys(charts).forEach(k=>{charts[k].destroy();delete charts[k];});
+  selectedIds.clear();
+  if (c === 'IN') {
+    _lastRefreshedAt = null;
+    tryLoadLocalJson();
+  } else {
+    allRows = (c==='AU' ? AU_ROWS : UAE_ROWS).map((r,i)=>({...r,id:i}));
+    buildFilters(); applyFilters(); buildOverview();
+    document.getElementById('btn-export').classList.remove('h');
+    document.getElementById('rm-head').style.display = '';
+    toast((c==='AU'?'🇦🇺 Australia':'🇦🇪 UAE')+' market loaded', 'info');
+  }
+}
 
 // ═══════════════════════════════════════════════
 //  STATE
@@ -904,19 +993,34 @@ function monthOrder(str) {
 }
 
 function recentMonth() {
-  const live = allRows.filter(r => r.liveStatus.toLowerCase() === 'live' && r.liveMonth);
-  if (!live.length) return null;
-  return live.reduce((a, b) => b.monthOrder > a.monthOrder ? b : a).liveMonth;
+  const active = allRows.filter(r => isActive(r) && r.liveMonth);
+  if (!active.length) {
+    const any = allRows.filter(r => r.liveMonth);
+    return any.length ? any.reduce((a,b)=>b.monthOrder>a.monthOrder?b:a).liveMonth : null;
+  }
+  return active.reduce((a, b) => b.monthOrder > a.monthOrder ? b : a).liveMonth;
 }
 
 // ═══════════════════════════════════════════════
 //  OVERVIEW BUILD
 // ═══════════════════════════════════════════════
 function buildOverview() {
+  const sel = document.getElementById('ov-period');
+  if (activeCountry === 'AU') {
+    // AU: All Time KPI from reachouts; MoM table uses AU_MOM_DATA
+    sel.innerHTML = '<option value="">All Time</option><option value="mom">Month on Month (Previous Efforts)</option>';
+    renderOvKPIs('');
+    buildTopVideosSection();
+    buildCPVSection();
+    buildERSection();
+    buildVFRSection();
+    buildMoMTable();
+    buildTierTable();
+    return;
+  }
   // Populate period dropdown (months newest-first after fixed options)
   const allMonths = [...new Set(allRows.map(r=>r.liveMonth).filter(Boolean))]
                       .sort((a,b)=>monthOrder(b)-monthOrder(a));
-  const sel = document.getElementById('ov-period');
   const savedPeriod = sel.value;
   // Rebuild options: All Time + Month on Month + months
   const monthOpts = allMonths.map(m=>`<option value="${m}"${m===savedPeriod?' selected':''}>${m}</option>`).join('');
@@ -943,8 +1047,8 @@ function renderOvKPIs(period) {
   // Which rows feed the KPI strip
   const kpiMonth = monthSel || (isAllTime ? null : curMonth);
   const pool     = kpiMonth
-    ? allRows.filter(r => r.liveMonth === kpiMonth && r.liveStatus.toLowerCase() === 'live')
-    : allRows.filter(r => r.liveStatus.toLowerCase() === 'live');
+    ? allRows.filter(r => r.liveMonth === kpiMonth && isActive(r))
+    : allRows.filter(r => isActive(r));
 
   const views = pool.reduce((s,r)=>s+(r.views||0),0);
   const spend = pool.reduce((s,r)=>s+(r.cost||0),0);
@@ -970,10 +1074,10 @@ function renderOvKPIs(period) {
       ? {l:'Active Months',  v: [...new Set(pool.map(r=>r.liveMonth))].length, s:'months with live creators',  cls:'',    i:'📅'}
       : {l: isMoM ? 'Latest Month' : 'Period',
          v: isMoM ? (curMonth||'—') : (kpiMonth||'—'), s:'selected period', cls:'', i:'📅'},
-    {l:'Creators',     v: pool.length,                      s: isAllTime?'total across campaign':'active this period',  cls:'mint', i:'👥'},
+    {l: activeCountry==='AU'?'In Briefing':'Creators', v: pool.length, s: isAllTime?'total across campaign':'active this period',  cls:'mint', i:'👥'},
     {l:'Total Views',  v: fmtN(views),                      s: isAllTime?'all-time plays':'plays this period',          cls:'grn',  i:'👁️'},
-    {l:'Total Spend',  v: '₹'+fmtN(spend),                  s: isAllTime?'all-time budget':'budget this period',        cls:'or',   i:'💸'},
-    {l:'Avg CPV',      v: cpv?'₹'+cpv.toFixed(2):'—',       s:'blended cost per view',                                 cls:'pur',  i:'📉'},
+    {l:'Total Spend',  v: curSym()+fmtN(spend),             s: isAllTime?'all-time budget':'budget this period',        cls:'or',   i:'💸'},
+    {l:'Avg CPV',      v: cpv?curSym()+cpv.toFixed(2):'—',  s:'blended cost per view',                                 cls:'pur',  i:'📉'},
     {l:'Engagement',   v: er?er.toFixed(2)+'%':'—',          s:'(likes+cmts+saves)/views',                              cls:'',     i:'⚡'},
   ].map(k=>`<div class="kpi ${k.cls}">
     <div class="kpi-icon">${k.i}</div>
@@ -1061,7 +1165,7 @@ function renderCPVSection() {
         <div class="prs">${fmtN(r.views)} views · ${r.liveMonth||'—'}</div>
       </div>
       <div style="display:flex;align-items:center;gap:8px">
-        <span class="cpv-chip ${r.cpv<0.1?'cpv-g':r.cpv<0.5?'cpv-ok':'cpv-b'}">₹${r.cpv.toFixed(2)}</span>
+        <span class="cpv-chip ${r.cpv<0.1?'cpv-g':r.cpv<0.5?'cpv-ok':'cpv-b'}">${curSym()}${r.cpv.toFixed(2)}</span>
         ${r.videoLink?`<a href="${r.videoLink}" target="_blank" class="btn btn-gh btn-xs">▶</a>`:''}
       </div>
     </div>`).join('') : '<div style="color:var(--g400);font-size:12px;padding:10px 0">No data</div>';
@@ -1115,11 +1219,46 @@ function renderVFRSection() {
 }
 
 function buildMoMTable() {
+  // Update column header dynamically
+  const liveHdr = document.querySelector('#mom-table thead th:nth-child(2)');
+
+  if (activeCountry === 'AU') {
+    if (liveHdr) liveHdr.textContent = 'Reels';
+    const sym = 'A$';
+    const curMonth = AU_MOM_DATA[AU_MOM_DATA.length-1]?.month;
+    const rowHtml = AU_MOM_DATA.map(d => {
+      const cpv = d.views && d.cost ? d.cost/d.views : null;
+      const isCur = d.month === curMonth;
+      return `<tr${isCur?' class="current-month"':''}>
+        <td style="font-weight:600;white-space:nowrap">${d.month}${isCur?' <span style="font-size:9px;background:var(--blue);color:#fff;padding:1px 5px;border-radius:99px;vertical-align:middle">latest</span>':''}</td>
+        <td style="font-weight:700">${d.reels}</td>
+        <td style="font-weight:700">${fmtN(d.views)}</td>
+        <td>${d.cost?sym+fmtN(d.cost):'—'}</td>
+        <td>${cpv?`<span class="cpv-chip ${cpv<0.05?'cpv-g':cpv<0.2?'cpv-ok':'cpv-b'}">${sym}${cpv.toFixed(4)}</span>`:'—'}</td>
+        <td>—</td><td>—</td><td>—</td>
+      </tr>`;
+    }).join('');
+    const tot = AU_MOM_DATA.reduce((a,d)=>({reels:a.reels+d.reels,views:a.views+d.views,cost:a.cost+d.cost}),{reels:0,views:0,cost:0});
+    const totCPV = tot.views && tot.cost ? tot.cost/tot.views : null;
+    const totalRow = `<tr style="background:var(--blue-l);font-weight:700;border-top:2px solid var(--blue)">
+      <td style="font-weight:800">Total</td>
+      <td>${tot.reels}</td>
+      <td>${fmtN(tot.views)}</td>
+      <td>${sym}${fmtN(tot.cost)}</td>
+      <td>${totCPV?`<span class="cpv-chip ${totCPV<0.05?'cpv-g':totCPV<0.2?'cpv-ok':'cpv-b'}">${sym}${totCPV.toFixed(4)}</span>`:'—'}</td>
+      <td>—</td><td>—</td><td>—</td>
+    </tr>`;
+    document.getElementById('mom-tbody').innerHTML = rowHtml + totalRow;
+    return;
+  }
+
+  if (liveHdr) liveHdr.textContent = 'Creators Live';
+  const sym = curSym();
   const map = {};
   for (const r of allRows) {
     const m = r.liveMonth; if (!m) continue;
     if (!map[m]) map[m] = {mo:r.monthOrder, live:0, views:0, cost:0, likes:0, comments:0, erArr:[], cpvArr:[]};
-    if (r.liveStatus.toLowerCase()==='live') map[m].live++;
+    if (isActive(r)) map[m].live++;
     map[m].views    += r.views    || 0;
     map[m].cost     += r.cost     || 0;
     map[m].likes    += r.likes    || 0;
@@ -1139,8 +1278,8 @@ function buildMoMTable() {
       <td style="font-weight:600;white-space:nowrap">${m}${m===curMonth?' <span style="font-size:9px;background:var(--blue);color:#fff;padding:1px 5px;border-radius:99px;vertical-align:middle">latest</span>':''}</td>
       <td style="font-weight:700">${d.live}</td>
       <td style="font-weight:700">${fmtN(d.views)}</td>
-      <td>₹${fmtN(d.cost)}</td>
-      <td>${blendedCPV?`<span class="cpv-chip ${blendedCPV<0.1?'cpv-g':blendedCPV<0.5?'cpv-ok':'cpv-b'}">₹${blendedCPV.toFixed(2)}</span>`:'—'}</td>
+      <td>${sym}${fmtN(d.cost)}</td>
+      <td>${blendedCPV?`<span class="cpv-chip ${blendedCPV<0.1?'cpv-g':blendedCPV<0.5?'cpv-ok':'cpv-b'}">${sym}${blendedCPV.toFixed(2)}</span>`:'—'}</td>
       <td>${er?`<span class="${er>5?'mg':er>2?'mo':'mb2'}">${er.toFixed(2)}%</span>`:'—'}</td>
       <td>${fmtN(d.likes)}</td>
       <td>${fmtN(d.comments)}</td>
@@ -1163,8 +1302,8 @@ function buildMoMTable() {
     <td style="font-weight:800">Total</td>
     <td>${tot.live}</td>
     <td>${fmtN(tot.views)}</td>
-    <td>₹${fmtN(tot.cost)}</td>
-    <td>${totCPV?`<span class="cpv-chip ${totCPV<0.1?'cpv-g':totCPV<0.5?'cpv-ok':'cpv-b'}">₹${totCPV.toFixed(2)}</span>`:'—'}</td>
+    <td>${sym}${fmtN(tot.cost)}</td>
+    <td>${totCPV?`<span class="cpv-chip ${totCPV<0.1?'cpv-g':totCPV<0.5?'cpv-ok':'cpv-b'}">${sym}${totCPV.toFixed(2)}</span>`:'—'}</td>
     <td>${totER?`<span class="${totER>5?'mg':totER>2?'mo':'mb2'}">${totER.toFixed(2)}%</span>`:'—'}</td>
     <td>${fmtN(tot.likes)}</td>
     <td>${fmtN(tot.comments)}</td>
@@ -1189,8 +1328,8 @@ function buildTierTable() {
     <td style="font-weight:700">${d.n}</td>
     <td>${fmtN(Math.round(d.avgV))}</td>
     <td><span class="${d.avgER>5?'mg':d.avgER>2?'mo':'mb2'}">${d.avgER?d.avgER.toFixed(2)+'%':'—'}</span></td>
-    <td>${d.avgCPV?`<span class="cpv-chip ${d.avgCPV<0.1?'cpv-g':d.avgCPV<0.5?'cpv-ok':'cpv-b'}">₹${d.avgCPV.toFixed(2)}</span>`:'—'}</td>
-    <td>₹${fmtN(d.budget)}</td>
+    <td>${d.avgCPV?`<span class="cpv-chip ${d.avgCPV<0.1?'cpv-g':d.avgCPV<0.5?'cpv-ok':'cpv-b'}">${curSym()}${d.avgCPV.toFixed(2)}</span>`:'—'}</td>
+    <td>${curSym()}${fmtN(d.budget)}</td>
   </tr>`).join('');
 
 }
@@ -1208,6 +1347,23 @@ function buildFilters() {
   const rs = document.getElementById('f-region');
   rs.innerHTML = '<option value="">All Regions</option>';
   regions.forEach(r=>{ const o=document.createElement('option'); o.value=r; o.textContent=r; rs.appendChild(o); });
+  // Dynamic status options
+  const statEl = document.getElementById('f-status');
+  if (activeCountry === 'AU') {
+    statEl.innerHTML = '<option value="">All Status</option><option value="Briefing">Briefing</option><option value="Reached out">Reached out</option><option value="Hold">Hold</option><option value="Dropped">Dropped</option>';
+  } else {
+    statEl.innerHTML = '<option value="">All Status</option><option value="Live">Live</option><option value="WIP">WIP</option>';
+  }
+  // Dynamic category options
+  const catEl = document.getElementById('f-category');
+  if (catEl) {
+    if (activeCountry === 'IN') {
+      catEl.innerHTML = '<option value="">All Categories</option><option value="Automobile">🚗 Automobile</option><option value="Entertainment">🎭 Entertainment</option><option value="Vlogs">📹 Vlogs</option><option value="Finance">💰 Finance</option><option value="Infotainment">📡 Infotainment</option>';
+    } else {
+      const cats = [...new Set(allRows.map(r=>r.category).filter(Boolean))].sort();
+      catEl.innerHTML = '<option value="">All Categories</option>' + cats.map(c=>`<option value="${c}">${c}</option>`).join('');
+    }
+  }
   // Build week options from postedAt (Instagram post date from Apify)
   // Falls back to lastRefreshed for rows that pre-date the postedAt field.
   const weekMap = new Map();
@@ -1271,7 +1427,7 @@ function applySort() {
   document.getElementById('showing').textContent = filteredRows.length;
   document.getElementById('total').textContent = allRows.length;
   const spend = filteredRows.reduce((s,r)=>s+(r.cost||0),0);
-  document.getElementById('tbl-spend').textContent = 'Filtered budget: ₹'+fmtN(spend);
+  document.getElementById('tbl-spend').textContent = 'Filtered budget: '+curSym()+fmtN(spend);
 }
 
 function colSort(col) {
@@ -1330,7 +1486,7 @@ function renderTable() {
       <td>${fmtER(r.engRate)}</td>
       <td class="col-hide-sm">${r.followers && r.views ? (r.views/r.followers).toFixed(2)+'×' : '—'}</td>
       <td>${fmtCPV(r.cpv)}</td>
-      <td class="col-hide-sm">${r.cost?'₹'+fmtN(r.cost):'—'}</td>
+      <td class="col-hide-sm">${r.cost?curSym()+fmtN(r.cost):'—'}</td>
       <td>${stBdg(r)}</td>
       <td>
         <div style="display:flex;gap:3px">
@@ -1346,16 +1502,22 @@ function fmtN(n) {
   if (n==null||n==='—') return '—';
   const v = typeof n === 'string' ? parseFloat(n) : n;
   if (isNaN(v)) return '—';
-  // Indian unit system — L (lakh) for everything ≥10K, Cr (crore) for ≥1Cr
   const trim = s => s.replace(/\.?0+$/, '');
-  if (v >= 1e7) return trim((v/1e7).toFixed(2)) + 'Cr';
-  if (v >= 1e5) return trim((v/1e5).toFixed(2)) + 'L';
-  if (v >= 1e3) return trim((v/1e3).toFixed(1)) + 'K';
-  return Math.round(v).toLocaleString('en-IN');
+  if (activeCountry === 'IN') {
+    if (v >= 1e7) return trim((v/1e7).toFixed(2)) + 'Cr';
+    if (v >= 1e5) return trim((v/1e5).toFixed(2)) + 'L';
+    if (v >= 1e3) return trim((v/1e3).toFixed(1)) + 'K';
+    return Math.round(v).toLocaleString('en-IN');
+  } else {
+    if (v >= 1e9) return trim((v/1e9).toFixed(2)) + 'B';
+    if (v >= 1e6) return trim((v/1e6).toFixed(2)) + 'M';
+    if (v >= 1e3) return trim((v/1e3).toFixed(1)) + 'K';
+    return Math.round(v).toLocaleString('en');
+  }
 }
 function fmtCPV(v) {
   if (v==null) return '<span class="na">—</span>';
-  return `<span class="cpv-chip ${v<0.1?'cpv-g':v<0.5?'cpv-ok':'cpv-b'}">₹${v.toFixed(2)}</span>`;
+  return `<span class="cpv-chip ${v<0.1?'cpv-g':v<0.5?'cpv-ok':'cpv-b'}">${curSym()}${v.toFixed(2)}</span>`;
 }
 function fmtER(er) {
   if (er==null||er>100) return '<span class="na">—</span>';
@@ -1366,9 +1528,13 @@ function fmtER(er) {
 
 function stBdg(r) {
   if (r.refreshStatus==='refreshing') return '<span class="dot dy"></span> Refreshing…';
-  const s = r.liveStatus.toLowerCase();
-  if (s==='live') return `<span class="bdg bl"><span class="dot dg"></span> Live</span>`;
-  return `<span class="bdg bw">WIP</span>`;
+  const s = (r.liveStatus||'').toLowerCase();
+  if (s==='live')         return `<span class="bdg bl"><span class="dot dg"></span> Live</span>`;
+  if (s==='briefing')     return `<span class="bdg buy">Briefing</span>`;
+  if (s==='reached out')  return `<span class="bdg sell">Reached Out</span>`;
+  if (s==='dropped')      return `<span class="bdg tok">Dropped</span>`;
+  if (s==='hold')         return `<span class="bdg bw">Hold</span>`;
+  return `<span class="bdg bw">${r.liveStatus||'WIP'}</span>`;
 }
 function viewsBdg(r) {
   const v = fmtN(r.views);
@@ -1432,10 +1598,10 @@ function buildAnalyticsCharts() {
   charts['cpvt'] = new Chart(document.getElementById('c-cpv-trend').getContext('2d'), {
     type:'line',
     data:{labels:cpvLabels,datasets:[
-      {label:'Avg CPV ₹',data:cpvSorted.map(e=>e[1].arr.length?+(e[1].arr.reduce((a,b)=>a+b)/e[1].arr.length).toFixed(2):null),borderColor:'#f97316',backgroundColor:'#f9731622',tension:.4,fill:true,borderWidth:2.5,pointRadius:4,pointBackgroundColor:'#f97316'},
-      {label:'Blended CPV ₹',data:cpvSorted.map(e=>e[1].totalViews?+(e[1].totalCost/e[1].totalViews).toFixed(2):null),borderColor:'#4736FE',backgroundColor:'transparent',tension:.4,fill:false,borderWidth:2,borderDash:[5,3],pointRadius:4,pointBackgroundColor:'#4736FE'}
+      {label:'Avg CPV',data:cpvSorted.map(e=>e[1].arr.length?+(e[1].arr.reduce((a,b)=>a+b)/e[1].arr.length).toFixed(2):null),borderColor:'#f97316',backgroundColor:'#f9731622',tension:.4,fill:true,borderWidth:2.5,pointRadius:4,pointBackgroundColor:'#f97316'},
+      {label:'Blended CPV',data:cpvSorted.map(e=>e[1].totalViews?+(e[1].totalCost/e[1].totalViews).toFixed(2):null),borderColor:'#4736FE',backgroundColor:'transparent',tension:.4,fill:false,borderWidth:2,borderDash:[5,3],pointRadius:4,pointBackgroundColor:'#4736FE'}
     ]},
-    options:{...bOpts(),scales:{y:{ticks:{callback:v=>'₹'+v.toFixed(2)},grid:{color:'#f3f4f6'}},x:{grid:{display:false},ticks:{maxRotation:45,font:{size:10}}}}}
+    options:{...bOpts(),scales:{y:{ticks:{callback:v=>curSym()+v.toFixed(2)},grid:{color:'#f3f4f6'}},x:{grid:{display:false},ticks:{maxRotation:45,font:{size:10}}}}}
   });
 
   // Budget spend by Month
@@ -1450,8 +1616,8 @@ function buildAnalyticsCharts() {
   const budSorted = Object.entries(budgetMap).sort((a,b)=>a[1].mo-b[1].mo);
   charts['budm'] = new Chart(document.getElementById('c-budget-mom').getContext('2d'), {
     type:'bar',
-    data:{labels:budSorted.map(e=>e[0].replace(' 2025','\'25').replace(' 2026','\'26')),datasets:[{label:'Total Spend ₹',data:budSorted.map(e=>e[1].total),backgroundColor:'#4736FE88',borderColor:'#4736FE',borderWidth:1.5,borderRadius:5}]},
-    options:{...bOpts(),scales:{y:{ticks:{callback:v=>'₹'+fmtN(v)},grid:{color:'#f3f4f6'}},x:{grid:{display:false},ticks:{maxRotation:45,font:{size:10}}}},plugins:{...bOpts().plugins,tooltip:{callbacks:{label:ctx=>`₹${fmtN(ctx.raw)} (${budSorted[ctx.dataIndex]?.[1].count} creators)`}}}}
+    data:{labels:budSorted.map(e=>e[0].replace(' 2025','\'25').replace(' 2026','\'26')),datasets:[{label:'Total Spend',data:budSorted.map(e=>e[1].total),backgroundColor:'#4736FE88',borderColor:'#4736FE',borderWidth:1.5,borderRadius:5}]},
+    options:{...bOpts(),scales:{y:{ticks:{callback:v=>curSym()+fmtN(v)},grid:{color:'#f3f4f6'}},x:{grid:{display:false},ticks:{maxRotation:45,font:{size:10}}}},plugins:{...bOpts().plugins,tooltip:{callbacks:{label:ctx=>`${curSym()}${fmtN(ctx.raw)} (${budSorted[ctx.dataIndex]?.[1].count} creators)`}}}}
   });
 
   // ER by region
@@ -1478,18 +1644,20 @@ function buildAnalyticsCharts() {
     type:'bar',
     data:{labels:tiers,datasets:[
       {label:'Avg ER %',data:tAvgER.map(v=>v?+v.toFixed(2):0),backgroundColor:'#4736FE44',borderColor:'#4736FE',borderWidth:2,borderRadius:5},
-      {label:'Avg CPV ₹',data:tAvgCPV.map(v=>v?+v.toFixed(2):0),backgroundColor:'#00d4a144',borderColor:'#00d4a1',borderWidth:2,borderRadius:5},
+      {label:'Avg CPV',data:tAvgCPV.map(v=>v?+v.toFixed(2):0),backgroundColor:'#00d4a144',borderColor:'#00d4a1',borderWidth:2,borderRadius:5},
     ]},
     options:{...bOpts(),scales:{y:{grid:{color:'#f3f4f6'}},x:{grid:{display:false}}}}
   });
 
   // Scatter
   dch('c-scatter');
-  const sd = allRows.filter(r=>r.followers&&r.views).map(r=>({x:r.followers/1e5,y:r.views/1e5,n:r.name}));
+  const scUnit = activeCountry==='IN' ? 1e5 : 1e3;
+  const scLbl  = activeCountry==='IN' ? 'L'  : 'K';
+  const sd = allRows.filter(r=>r.followers&&r.views).map(r=>({x:r.followers/scUnit,y:r.views/scUnit,n:r.name}));
   charts['sc'] = new Chart(document.getElementById('c-scatter').getContext('2d'), {
     type:'scatter',
     data:{datasets:[{label:'Influencers',data:sd,backgroundColor:'#4736FE55',borderColor:'#4736FE',pointRadius:5,pointHoverRadius:7}]},
-    options:{...bOpts(),scales:{x:{title:{display:true,text:'Followers (L)'},ticks:{callback:v=>v.toFixed(1)+'L'},grid:{color:'#f3f4f6'}},y:{title:{display:true,text:'Views (L)'},ticks:{callback:v=>v.toFixed(1)+'L'},grid:{color:'#f3f4f6'}}},plugins:{...bOpts().plugins,tooltip:{callbacks:{label:ctx=>`${sd[ctx.dataIndex]?.n}: ${fmtN(ctx.raw.x*1e5)} flw, ${fmtN(ctx.raw.y*1e5)} views`}}}}
+    options:{...bOpts(),scales:{x:{title:{display:true,text:`Followers (${scLbl})`},ticks:{callback:v=>v.toFixed(1)+scLbl},grid:{color:'#f3f4f6'}},y:{title:{display:true,text:`Views (${scLbl})`},ticks:{callback:v=>v.toFixed(1)+scLbl},grid:{color:'#f3f4f6'}}},plugins:{...bOpts().plugins,tooltip:{callbacks:{label:ctx=>`${sd[ctx.dataIndex]?.n}: ${fmtN(ctx.raw.x*scUnit)} flw, ${fmtN(ctx.raw.y*scUnit)} views`}}}}
   });
 
   // Build agency data (avg CPV = mean of each creator's individual CPV)
@@ -1516,9 +1684,12 @@ function buildAnalyticsCharts() {
 
 // ─── Content Category Matrix ─────────────────────────────────────────────────
 function buildCategoryMatrix() {
-  const CATS = ['Automobile','Entertainment','Finance','Vlogs','Infotainment'];
-  const CAT_CLS = {Automobile:'cm-auto',Entertainment:'cm-comedy',Finance:'cm-finance',Vlogs:'cm-vlogs',Infotainment:'cm-info'};
-  const CAT_ICON = {Automobile:'🚗',Entertainment:'🎭',Finance:'💰',Vlogs:'📹',Infotainment:'📡'};
+  const DEFAULT_CATS = ['Automobile','Entertainment','Finance','Vlogs','Infotainment'];
+  const CATS = activeCountry === 'IN'
+    ? DEFAULT_CATS
+    : [...new Set(allRows.map(r=>r.category).filter(Boolean))].sort();
+  const CAT_CLS  = {Automobile:'cm-auto',Entertainment:'cm-comedy',Finance:'cm-finance',Vlogs:'cm-vlogs',Infotainment:'cm-info',Lifestyle:'cm-life'};
+  const CAT_ICON = {Automobile:'🚗',Entertainment:'🎭',Finance:'💰',Vlogs:'📹',Infotainment:'📡',Lifestyle:'🌟'};
 
   // Build month → category → count
   const monthMap = {};
@@ -1579,8 +1750,8 @@ function renderAgencyTable() {
     <td style="font-weight:600">${d.name}</td>
     <td style="font-weight:700;text-align:center">${d.creators}</td>
     <td style="font-weight:700">${fmtN(d.views)}</td>
-    <td>₹${fmtN(d.cost)}</td>
-    <td>${d.cpv?`<span class="cpv-chip ${d.cpv<0.1?'cpv-g':d.cpv<0.5?'cpv-ok':'cpv-b'}">₹${d.cpv.toFixed(2)}</span>`:'—'}</td>
+    <td>${curSym()}${fmtN(d.cost)}</td>
+    <td>${d.cpv?`<span class="cpv-chip ${d.cpv<0.1?'cpv-g':d.cpv<0.5?'cpv-ok':'cpv-b'}">${curSym()}${d.cpv.toFixed(2)}</span>`:'—'}</td>
     <td>${d.er?`<span class="${d.er>5?'mg':d.er>2?'mo':'mb2'}">${d.er.toFixed(2)}%</span>`:'—'}</td>
   </tr>`).join('');
 }
@@ -1599,8 +1770,8 @@ function openModal(id) {
   const m1 = [
     {l:'Views',v:fmtN(r.views)},{l:'Likes',v:fmtN(r.likes)},{l:'Comments',v:fmtN(r.comments)},
     {l:'Shares',v:fmtN(r.shares)},{l:'Saves',v:fmtN(r.saves)},{l:'Followers',v:fmtN(r.followers)},
-    {l:'Budget',v:r.cost?'₹'+fmtN(r.cost):'—'},
-    {l:'CPV',v:r.cpv?'₹'+r.cpv.toFixed(2):'—'},
+    {l:'Budget',v:r.cost?curSym()+fmtN(r.cost):'—'},
+    {l:'CPV',v:r.cpv?curSym()+r.cpv.toFixed(2):'—'},
     {l:'Avg Views',v:fmtN(r.avgViews)},
   ];
   const m2 = [
