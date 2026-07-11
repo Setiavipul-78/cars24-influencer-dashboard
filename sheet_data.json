@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-07-11T11:18:49.638Z",
+  "exportedAt": "2026-07-11T11:18:57.769Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -5811,7 +5811,7 @@
       "final_cost": "100000",
       "payment_agency": "Creator Info",
       "avg_cpv": "",
-      "live_status": "",
+      "live_status": "WIP",
       "business": "",
       "po_status": "false",
       "payment_status": "false",
@@ -5842,7 +5842,7 @@
       "final_cost": "110000",
       "payment_agency": "Creator Info",
       "avg_cpv": "",
-      "live_status": "",
+      "live_status": "WIP",
       "business": "",
       "po_status": "false",
       "payment_status": "false",
