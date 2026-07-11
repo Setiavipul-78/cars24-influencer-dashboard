@@ -333,6 +333,10 @@ tr.rspin td{background:#f5f3ff!important}
 .ov-period-sel{font-size:13px;font-weight:600;padding:8px 14px;border-radius:8px;border:1.5px solid var(--g200);background:#fff;color:var(--g800);cursor:pointer;min-width:180px}
 .ov-period-sel:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(71,54,254,.12)}
 .ov-period-lbl{font-size:12px;font-weight:600;color:var(--g400);text-transform:uppercase;letter-spacing:.7px}
+.btn-sheet-pill{display:inline-flex;align-items:center;gap:5px;padding:7px 16px;border-radius:20px;background:var(--blue);color:#fff;font-size:12.5px;font-weight:600;text-decoration:none;letter-spacing:.2px;border:none;cursor:pointer;transition:opacity .15s,box-shadow .15s;margin-left:auto}
+.btn-sheet-pill:hover{opacity:.88;box-shadow:0 3px 10px rgba(71,54,254,.3)}
+@media(prefers-color-scheme:dark){.btn-sheet-pill{background:var(--blue)}}
+:root[data-theme="dark"] .btn-sheet-pill{background:var(--blue)}
 .mom-highlight{outline:3px solid var(--blue);outline-offset:4px;border-radius:12px;transition:outline .3s}
 
 /* ── Enhanced KPI cards ───────────────────────────────────────── */
@@ -446,7 +450,7 @@ th.sa{color:var(--blue)}.th.sd{color:var(--blue)}
 <!-- ════════ TAB: OVERVIEW ════════ -->
 <div class="tc on" id="tc-ov">
 
-  <!-- Period selector -->
+  <!-- Period selector + Sheet link -->
   <div class="ov-period-bar">
     <span class="ov-period-lbl">Period</span>
     <select id="ov-period" class="ov-period-sel" title="Filter overview by time period" onchange="changeOvPeriod()">
@@ -454,6 +458,7 @@ th.sa{color:var(--blue)}.th.sd{color:var(--blue)}
       <option value="mom">Month on Month</option>
       <!-- months populated by buildOverview() -->
     </select>
+    <a id="btn-sheet" href="#" target="_blank" rel="noopener" class="btn-sheet-pill">📊 View Sheet ↗</a>
   </div>
 
   <!-- Recent month KPIs -->
@@ -743,6 +748,12 @@ const SHEET_ID  = '1VBjkdMm5Uhjq-JLmGqRL7aFTbTH3P0c7oRr1LHcN1o0';
 const SHEET_GID = '1928933144';
 const SHEET_CSV = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=${SHEET_GID}`;
 
+const SHEET_URLS = {
+  IN:  `https://docs.google.com/spreadsheets/d/1VBjkdMm5Uhjq-JLmGqRL7aFTbTH3P0c7oRr1LHcN1o0/edit?gid=1928933144`,
+  AU:  `https://docs.google.com/spreadsheets/d/1VDcKBUNwFacleZFdN_By-qAeroheo3mlqOItat1ZQM8/edit?gid=1707778305`,
+  UAE: `https://docs.google.com/spreadsheets/d/1_DEKX02I3Dh41B8nBtwPR1G-_4nt98WgDILZjzg3sp4/edit?gid=211709974`,
+};
+
 const MO = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 const COLORS = ['#4736FE','#00d4a1','#8b5cf6','#f97316','#ec4899','#eab308','#22c55e','#ef4444','#06b6d4','#a78bfa'];
 
@@ -753,7 +764,7 @@ let activeCountry = 'IN';
 function curSym() { return '₹'; }
 function isActive(r) {
   const s = (r.liveStatus||'').toLowerCase();
-  return activeCountry === 'AU' ? s === 'briefing' : s === 'live';
+  return s === 'live';
 }
 
 const AU_MOM_DATA = [
@@ -799,12 +810,18 @@ const UAE_ROWS = [
   {id:7,name:"Mecik",agency:"Price Match",category:"Automobile",followers:152000,link:"",videoLink:"",views:53900,likes:30,comments:85,shares:14,saves:0,cost:2000,cpv:0.0371,liveStatus:"Live",liveMonth:"May 2026",monthOrder:202605,region:"UAE",tier:"Macro",engRate:0.24,postedAt:null},
 ];
 
+function setSheetLink(c) {
+  const el = document.getElementById('btn-sheet');
+  if (el) el.href = SHEET_URLS[c] || '#';
+}
+
 async function switchCountry(c) {
   activeCountry = c;
   document.querySelectorAll('.csw-btn').forEach(b=>b.classList.remove('on'));
   document.getElementById('csw-'+c).classList.add('on');
   Object.keys(charts).forEach(k=>{charts[k].destroy();delete charts[k];});
   selectedIds.clear();
+  setSheetLink(c);
   if (c === 'IN') {
     _lastRefreshedAt = null;
     tryLoadLocalJson();
@@ -853,6 +870,7 @@ let charts = {};
 let _lastRefreshedAt = null;
 
 window.onload = () => {
+  setSheetLink('IN');
   tryLoadLocalJson();
   setInterval(() => tryLoadLocalJson(true), 30 * 60 * 1000);
 };
@@ -1369,13 +1387,9 @@ function buildFilters() {
   const rs = document.getElementById('f-region');
   rs.innerHTML = '<option value="">All Regions</option>';
   regions.forEach(r=>{ const o=document.createElement('option'); o.value=r; o.textContent=r; rs.appendChild(o); });
-  // Dynamic status options
+  // Dynamic status options — same for all countries
   const statEl = document.getElementById('f-status');
-  if (activeCountry === 'AU') {
-    statEl.innerHTML = '<option value="">All Status</option><option value="Briefing">Briefing</option><option value="Reached out">Reached out</option><option value="Hold">Hold</option><option value="Dropped">Dropped</option>';
-  } else {
-    statEl.innerHTML = '<option value="">All Status</option><option value="Live">Live</option><option value="WIP">WIP</option>';
-  }
+  statEl.innerHTML = '<option value="">All Status</option><option value="Live">Live</option><option value="WIP">WIP</option>';
   // Dynamic category options
   const catEl = document.getElementById('f-category');
   if (catEl) {
