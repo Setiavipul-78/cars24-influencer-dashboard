@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-07-13T18:10:31.037Z",
+  "exportedAt": "2026-07-13T18:28:32.289Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -14,7 +14,7 @@
       "final_cost": "65000",
       "payment_agency": "BrandZone",
       "avg_cpv": "0.3869047619047619",
-      "live_status": "",
+      "live_status": "Live",
       "business": "Buy",
       "po_status": "true",
       "payment_status": "true",
