@@ -841,7 +841,7 @@ async function switchCountry(c) {
       if (res.ok) {
         const data = await res.json();
         if (data.rows && data.rows.length) {
-          allRows = data.rows.map((r,i)=>({...r,id:i,liveStatus:'Live'}));
+          allRows = data.rows.map((r,i)=>({...r,id:i,liveStatus:r.liveStatus||'Live',link:r.link||r.profileLink||''}));
           buildFilters(); applyFilters(); buildOverview();
           document.getElementById('btn-export').classList.remove('h');
           document.getElementById('rm-head').style.display='';
@@ -857,6 +857,22 @@ async function switchCountry(c) {
     document.getElementById('rm-head').style.display='';
     toast('🇦🇺 Australia data loading — check back soon','info');
   } else {
+    // Try live JSON first, fall back to UAE_ROWS
+    try {
+      const res = await fetch('uae_live_data.json?t='+Date.now());
+      if (res.ok) {
+        const data = await res.json();
+        if (data.rows && data.rows.length) {
+          allRows = data.rows.map((r,i)=>({...r,id:i,link:r.link||r.videoLink||''}));
+          buildFilters(); applyFilters(); buildOverview();
+          document.getElementById('btn-export').classList.remove('h');
+          document.getElementById('rm-head').style.display='';
+          const ts = data.refreshedAt ? new Date(data.refreshedAt).toLocaleString('en-IN') : '';
+          toast(`🇦🇪 UAE — ${allRows.length} creators · refreshed ${ts}`,'ok');
+          return;
+        }
+      }
+    } catch(_) {}
     allRows = UAE_ROWS.map((r,i)=>({...r,id:i}));
     buildFilters(); applyFilters(); buildOverview();
     document.getElementById('btn-export').classList.remove('h');
