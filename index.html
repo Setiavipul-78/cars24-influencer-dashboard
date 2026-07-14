@@ -426,6 +426,7 @@ th.sa{color:var(--blue)}.th.sd{color:var(--blue)}
   <button class="csw-btn on" id="csw-IN" onclick="switchCountry('IN')">🇮🇳 India</button>
   <button class="csw-btn" id="csw-AU" onclick="switchCountry('AU')">🇦🇺 Australia</button>
   <button class="csw-btn" id="csw-UAE" onclick="switchCountry('UAE')">🇦🇪 UAE</button>
+  <button id="au-curr-btn" onclick="toggleAuCurr()" style="display:none;margin-left:12px;background:var(--blue);color:#fff;border:none;border-radius:99px;padding:5px 16px;font-size:12px;font-weight:700;cursor:pointer;letter-spacing:.3px">🇦🇺 A$ AUD  ⇄  ₹ INR</button>
 </div>
 
 <!-- Tabs -->
@@ -759,9 +760,34 @@ const COLORS = ['#4736FE','#00d4a1','#8b5cf6','#f97316','#ec4899','#eab308','#22
 let activeCountry = 'IN';
 function curSym() { return '₹'; }
 const AUD_INR = 55;
+let auCurr = 'AUD'; // 'AUD' or 'INR' — toggled by currency pill
+function fmtAuC(aud) {
+  if (!aud) return '—';
+  return auCurr === 'AUD' ? `A$${fmtN(aud)}` : `₹${fmtN(Math.round(aud * AUD_INR))}`;
+}
+function fmtAuCPV(cpv) {
+  if (!cpv) return '—';
+  const val = auCurr === 'AUD' ? cpv : cpv * AUD_INR;
+  return (auCurr === 'AUD' ? 'A$' : '₹') + val.toFixed(4);
+}
+// Legacy dual-display helper kept for non-toggle contexts
 function fmtCostAU(aud) {
   if (!aud) return '—';
   return `A$${fmtN(aud)}&nbsp;<span style="color:var(--g400);font-size:10.5px">/ ₹${fmtN(Math.round(aud * AUD_INR))}</span>`;
+}
+function toggleAuCurr() {
+  auCurr = auCurr === 'AUD' ? 'INR' : 'AUD';
+  const btn = document.getElementById('au-curr-btn');
+  if (btn) {
+    btn.textContent = auCurr === 'AUD' ? '🇦🇺 A$ AUD  ⇄  ₹ INR' : '🇮🇳 ₹ INR  ⇄  A$ AUD';
+    btn.style.background = auCurr === 'AUD' ? 'var(--blue)' : '#6d28d9';
+  }
+  // Re-render everything that shows costs
+  renderOvKPIs('');
+  buildMoMTable();
+  renderTable();
+  renderAgencyTable();
+  buildAnalyticsCharts();
 }
 function isActive(r) {
   const s = (r.liveStatus||'').toLowerCase();
@@ -827,6 +853,9 @@ function setSheetLink(c) {
 
 async function switchCountry(c) {
   activeCountry = c;
+  const auBtn = document.getElementById('au-curr-btn');
+  if (auBtn) auBtn.style.display = c === 'AU' ? '' : 'none';
+  if (c !== 'AU') auCurr = 'AUD'; // reset to AUD when leaving AU tab
   document.querySelectorAll('.csw-btn').forEach(b=>b.classList.remove('on'));
   document.getElementById('csw-'+c).classList.add('on');
   Object.keys(charts).forEach(k=>{charts[k].destroy();delete charts[k];});
@@ -1109,6 +1138,8 @@ function renderOvKPIs(period) {
     const auTot = AU_MOM_DATA.reduce((a,d)=>({views:a.views+d.views,cost:a.cost+d.cost,reels:a.reels+d.reels}),{views:0,cost:0,reels:0});
     const cpvAUD = auTot.views && auTot.cost ? auTot.cost / auTot.views : null;
     const active = allRows.filter(r=>isActive(r));
+    const totalLikes    = active.reduce((s,r)=>s+(r.likes||0),0);
+    const totalComments = active.reduce((s,r)=>s+(r.comments||0),0);
     const eng = active.reduce((s,r)=>s+(r.likes||0)+(r.shares||0)+(r.comments||0)+(r.saves||0),0);
     const actViews = active.reduce((s,r)=>s+(r.views||0),0);
     const er = actViews && eng ? eng/actViews*100 : null;
@@ -1116,13 +1147,16 @@ function renderOvKPIs(period) {
     headEl.style.display = '';
     document.getElementById('rm-title').textContent    = 'Australia Campaign';
     document.getElementById('rm-subtitle').textContent = `${active.length} reels live · ${AU_MOM_DATA.filter(d=>d.reels>0).length} active months`;
+    const currLabel = auCurr === 'AUD' ? 'AUD' : 'INR';
     document.getElementById('kpi-strip').innerHTML = [
-      {l:'Active Months', v:AU_MOM_DATA.filter(d=>d.reels>0).length, s:'months with live reels', cls:'', i:'📅'},
-      {l:'Total Reels',   v:auTot.reels, s:'reels published', cls:'mint', i:'📱'},
-      {l:'Total Views',   v:fmtN(auTot.views), s:'all-time reel plays', cls:'grn', i:'👁️'},
-      {l:'Total Spend',   v:`A$${fmtN(auTot.cost)} / ₹${fmtN(Math.round(auTot.cost*AUD_INR))}`, s:'all-time campaign cost', cls:'or', i:'💸'},
-      {l:'Blended CPV',   v:cpvAUD?`A$${cpvAUD.toFixed(4)}`:'—', s:'total spend ÷ total views (AUD)', cls:'pur', i:'📉'},
-      {l:'Engagement',    v:er?er.toFixed(2)+'%':'—', s:'(likes+cmts+saves)/views', cls:'', i:'⚡'},
+      {l:'Active Months', v:AU_MOM_DATA.filter(d=>d.reels>0).length,  s:'months with live reels',          cls:'',    i:'📅'},
+      {l:'Total Reels',   v:auTot.reels,                               s:'reels published',                 cls:'mint',i:'📱'},
+      {l:'Total Views',   v:fmtN(auTot.views),                         s:'all-time reel plays',             cls:'grn', i:'👁️'},
+      {l:'Total Likes',   v:fmtN(totalLikes),                          s:'total likes across all reels',    cls:'',    i:'❤️'},
+      {l:'Total Comments',v:fmtN(totalComments),                       s:'total comments across all reels', cls:'',    i:'💬'},
+      {l:'Total Spend',   v:fmtAuC(auTot.cost),                        s:`all-time cost (${currLabel})`,    cls:'or',  i:'💸'},
+      {l:'Blended CPV',   v:fmtAuCPV(cpvAUD),                         s:`total spend ÷ views (${currLabel})`, cls:'pur',i:'📉'},
+      {l:'Eng. Rate',     v:er?er.toFixed(2)+'%':'—',                  s:'(likes+cmts+saves)/views',        cls:'',    i:'⚡'},
     ].map(k=>`<div class="kpi ${k.cls}"><div class="kpi-icon">${k.i}</div><div class="kpi-lbl">${k.l}</div><div class="kpi-val">${k.v}</div><div class="kpi-sub">${k.s}</div></div>`).join('');
     return;
   }
@@ -1312,31 +1346,30 @@ function buildMoMTable() {
   if (activeCountry === 'AU') {
     if (liveHdr) liveHdr.textContent = 'Reels';
     const curMonth = AU_MOM_DATA[AU_MOM_DATA.length-1]?.month;
-    const rowHtml = AU_MOM_DATA.map(d => {
+    const sorted = [...AU_MOM_DATA].reverse(); // newest first
+    const rowHtml = sorted.map(d => {
       const cpv = d.views && d.cost ? d.cost/d.views : null;
-      const inr  = d.cost ? Math.round(d.cost * AUD_INR) : 0;
       const isCur = d.month === curMonth;
       return `<tr${isCur?' class="current-month"':''}>
         <td style="font-weight:600;white-space:nowrap">${d.month}${isCur?' <span style="font-size:9px;background:var(--blue);color:#fff;padding:1px 5px;border-radius:99px;vertical-align:middle">latest</span>':''}</td>
         <td style="font-weight:700">${d.reels}</td>
         <td style="font-weight:700">${fmtN(d.views)}</td>
-        <td>${d.cost?`A$${fmtN(d.cost)}<br><span style="font-size:10px;color:var(--g400)">₹${fmtN(inr)}</span>`:'—'}</td>
-        <td>${cpv?`<span class="cpv-chip ${cpv<0.05?'cpv-g':cpv<0.2?'cpv-ok':'cpv-b'}">A$${cpv.toFixed(4)}</span>`:'—'}</td>
+        <td>${d.cost?fmtAuC(d.cost):'—'}</td>
+        <td>${cpv?`<span class="cpv-chip ${cpv<0.05?'cpv-g':cpv<0.2?'cpv-ok':'cpv-b'}">${fmtAuCPV(cpv)}</span>`:'—'}</td>
         <td>—</td><td>—</td><td>—</td>
       </tr>`;
     }).join('');
     const tot = AU_MOM_DATA.reduce((a,d)=>({reels:a.reels+d.reels,views:a.views+d.views,cost:a.cost+d.cost}),{reels:0,views:0,cost:0});
     const totCPV = tot.views && tot.cost ? tot.cost/tot.views : null;
-    const totINR = Math.round(tot.cost * AUD_INR);
     const totalRow = `<tr style="background:var(--blue-l);font-weight:700;border-top:2px solid var(--blue)">
       <td style="font-weight:800">Total</td>
       <td>${tot.reels}</td>
       <td>${fmtN(tot.views)}</td>
-      <td>A$${fmtN(tot.cost)}<br><span style="font-size:10px;color:var(--g400)">₹${fmtN(totINR)}</span></td>
-      <td>${totCPV?`<span class="cpv-chip ${totCPV<0.05?'cpv-g':totCPV<0.2?'cpv-ok':'cpv-b'}">A$${totCPV.toFixed(4)}</span>`:'—'}</td>
+      <td>${fmtAuC(tot.cost)}</td>
+      <td>${totCPV?`<span class="cpv-chip ${totCPV<0.05?'cpv-g':totCPV<0.2?'cpv-ok':'cpv-b'}">${fmtAuCPV(totCPV)}</span>`:'—'}</td>
       <td>—</td><td>—</td><td>—</td>
     </tr>`;
-    document.getElementById('mom-tbody').innerHTML = rowHtml + totalRow;
+    document.getElementById('mom-tbody').innerHTML = totalRow + rowHtml;
     return;
   }
 
@@ -1555,7 +1588,7 @@ function renderTable() {
       const mom = momLookup[month]||{};
       const mViews = mRows.reduce((s,r)=>s+(r.views||0),0);
       const blendedCPV = mViews && mom.cost ? mom.cost/mViews : null;
-      const inr = mom.cost ? Math.round(mom.cost*AUD_INR) : 0;
+      // inr computed via fmtAuC when needed
       const hdr = `<tr style="background:var(--blue);color:#fff">
         <td class="col-hide-sm"></td>
         <td style="font-weight:700;padding:8px 12px" colspan="2">${month}</td>
@@ -1569,8 +1602,8 @@ function renderTable() {
         <td class="col-hide-sm">—</td>
         <td>—</td>
         <td class="col-hide-sm">—</td>
-        <td>${blendedCPV?`<span class="cpv-chip cpv-g" style="background:#d1fae5;color:#065f46">A$${blendedCPV.toFixed(4)}</span>`:'—'}</td>
-        <td class="col-hide-sm">${mom.cost?`A$${fmtN(mom.cost)} / ₹${fmtN(inr)}`:'—'}</td>
+        <td>${blendedCPV?`<span class="cpv-chip cpv-g" style="background:#d1fae5;color:#065f46">${fmtAuCPV(blendedCPV)}</span>`:'—'}</td>
+        <td class="col-hide-sm">${mom.cost?fmtAuC(mom.cost):'—'}</td>
         <td></td><td></td>
       </tr>`;
       const rowsHtml = mRows.map(r => {
@@ -1726,12 +1759,14 @@ function buildAnalyticsCharts() {
   if (activeCountry === 'AU') {
     const auCpvLabels = AU_MOM_DATA.map(d=>d.month.replace(' 2025','\'25').replace(' 2026','\'26'));
     const auBlendedCPV = AU_MOM_DATA.map(d=>d.views&&d.cost?+(d.cost/d.views).toFixed(4):null);
+    const auBlendedCPVDisp = auBlendedCPV.map(v=>v==null?null:auCurr==='AUD'?v:+(v*AUD_INR).toFixed(4));
+    const cpvSym = auCurr === 'AUD' ? 'A$' : '₹';
     charts['cpvt'] = new Chart(document.getElementById('c-cpv-trend').getContext('2d'), {
       type:'line',
       data:{labels:auCpvLabels,datasets:[
-        {label:'Blended CPV (A$)',data:auBlendedCPV,borderColor:'#4736FE',backgroundColor:'#4736FE22',tension:.4,fill:true,borderWidth:2.5,pointRadius:4,pointBackgroundColor:'#4736FE'},
+        {label:`Blended CPV (${auCurr})`,data:auBlendedCPVDisp,borderColor:'#4736FE',backgroundColor:'#4736FE22',tension:.4,fill:true,borderWidth:2.5,pointRadius:4,pointBackgroundColor:'#4736FE'},
       ]},
-      options:{...bOpts(),scales:{y:{ticks:{callback:v=>'A$'+v.toFixed(4)},grid:{color:'#f3f4f6'}},x:{grid:{display:false},ticks:{maxRotation:45,font:{size:10}}}}}
+      options:{...bOpts(),scales:{y:{ticks:{callback:v=>cpvSym+v.toFixed(4)},grid:{color:'#f3f4f6'}},x:{grid:{display:false},ticks:{maxRotation:45,font:{size:10}}}}}
     });
   } else {
     const cpvMap = {};
@@ -1759,10 +1794,12 @@ function buildAnalyticsCharts() {
   if (activeCountry === 'AU') {
     const auBudLabels = AU_MOM_DATA.filter(d=>d.cost>0).map(d=>d.month.replace(' 2025','\'25').replace(' 2026','\'26'));
     const auBudData   = AU_MOM_DATA.filter(d=>d.cost>0).map(d=>d.cost);
+    const auBudDataDisp = auBudData.map(v=>auCurr==='AUD'?v:Math.round(v*AUD_INR));
+    const budSym = auCurr === 'AUD' ? 'A$' : '₹';
     charts['budm'] = new Chart(document.getElementById('c-budget-mom').getContext('2d'), {
       type:'bar',
-      data:{labels:auBudLabels,datasets:[{label:'Spend (A$)',data:auBudData,backgroundColor:'#4736FE88',borderColor:'#4736FE',borderWidth:1.5,borderRadius:5}]},
-      options:{...bOpts(),scales:{y:{ticks:{callback:v=>'A$'+fmtN(v)},grid:{color:'#f3f4f6'}},x:{grid:{display:false},ticks:{maxRotation:45,font:{size:10}}}},plugins:{...bOpts().plugins,tooltip:{callbacks:{label:ctx=>`A$${fmtN(ctx.raw)} / ₹${fmtN(Math.round(ctx.raw*AUD_INR))}`}}}}
+      data:{labels:auBudLabels,datasets:[{label:`Spend (${auCurr})`,data:auBudDataDisp,backgroundColor:'#4736FE88',borderColor:'#4736FE',borderWidth:1.5,borderRadius:5}]},
+      options:{...bOpts(),scales:{y:{ticks:{callback:v=>budSym+fmtN(v)},grid:{color:'#f3f4f6'}},x:{grid:{display:false},ticks:{maxRotation:45,font:{size:10}}}},plugins:{...bOpts().plugins,tooltip:{callbacks:{label:ctx=>`${budSym}${fmtN(ctx.raw)}`}}}}
     });
   } else {
     const budgetMap = {};
@@ -1937,8 +1974,8 @@ function renderAgencyTable() {
     <td style="font-weight:600">${d.name}</td>
     <td style="font-weight:700;text-align:center">${d.creators}</td>
     <td style="font-weight:700">${fmtN(d.views)}</td>
-    <td>${activeCountry==='AU'?fmtCostAU(d.cost):(d.cost?curSym()+fmtN(d.cost):'—')}</td>
-    <td>${d.cpv?`<span class="cpv-chip ${d.cpv<0.1?'cpv-g':d.cpv<0.5?'cpv-ok':'cpv-b'}">${activeCountry==='AU'?'A$':curSym()}${d.cpv.toFixed(4)}</span>`:'—'}</td>
+    <td>${activeCountry==='AU'?fmtAuC(d.cost):(d.cost?curSym()+fmtN(d.cost):'—')}</td>
+    <td>${d.cpv?`<span class="cpv-chip ${d.cpv<0.1?'cpv-g':d.cpv<0.5?'cpv-ok':'cpv-b'}">${activeCountry==='AU'?fmtAuCPV(d.cpv):curSym()+d.cpv.toFixed(4)}</span>`:'—'}</td>
     <td>${d.er?`<span class="${d.er>5?'mg':d.er>2?'mo':'mb2'}">${d.er.toFixed(2)}%</span>`:'—'}</td>
   </tr>`).join('');
 }
