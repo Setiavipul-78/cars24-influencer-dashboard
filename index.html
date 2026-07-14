@@ -426,7 +426,6 @@ th.sa{color:var(--blue)}.th.sd{color:var(--blue)}
   <button class="csw-btn on" id="csw-IN" onclick="switchCountry('IN')">🇮🇳 India</button>
   <button class="csw-btn" id="csw-AU" onclick="switchCountry('AU')">🇦🇺 Australia</button>
   <button class="csw-btn" id="csw-UAE" onclick="switchCountry('UAE')">🇦🇪 UAE</button>
-  <button id="au-curr-btn" onclick="toggleAuCurr()" style="display:none;margin-left:12px;background:var(--blue);color:#fff;border:none;border-radius:99px;padding:5px 16px;font-size:12px;font-weight:700;cursor:pointer;letter-spacing:.3px">🇦🇺 A$ AUD  ⇄  ₹ INR</button>
 </div>
 
 <!-- Tabs -->
@@ -460,6 +459,7 @@ th.sa{color:var(--blue)}.th.sd{color:var(--blue)}
       <!-- months populated by buildOverview() -->
     </select>
     <a id="btn-sheet" href="#" target="_blank" rel="noopener" class="btn-sheet-pill">📊 View Sheet ↗</a>
+    <button id="au-curr-btn" onclick="toggleAuCurr()" style="display:none;background:var(--blue);color:#fff;border:none;border-radius:99px;padding:5px 14px;font-size:12px;font-weight:700;cursor:pointer;letter-spacing:.3px;margin-left:6px">🇦🇺 A$ AUD ⇄ ₹ INR</button>
   </div>
 
   <!-- Recent month KPIs -->
@@ -1345,10 +1345,21 @@ function buildMoMTable() {
 
   if (activeCountry === 'AU') {
     if (liveHdr) liveHdr.textContent = 'Reels';
+    // Per-month engagement stats from allRows (Apify data)
+    const mStats = {};
+    for (const r of allRows) {
+      const m = r.liveMonth; if (!m) continue;
+      if (!mStats[m]) mStats[m] = {likes:0, comments:0, views:0};
+      mStats[m].likes    += r.likes    || 0;
+      mStats[m].comments += r.comments || 0;
+      mStats[m].views    += r.views    || 0;
+    }
     const curMonth = AU_MOM_DATA[AU_MOM_DATA.length-1]?.month;
     const sorted = [...AU_MOM_DATA].reverse(); // newest first
     const rowHtml = sorted.map(d => {
-      const cpv = d.views && d.cost ? d.cost/d.views : null;
+      const cpv  = d.views && d.cost ? d.cost/d.views : null;
+      const st   = mStats[d.month] || {};
+      const er   = st.views ? ((st.likes||0)+(st.comments||0))/st.views*100 : null;
       const isCur = d.month === curMonth;
       return `<tr${isCur?' class="current-month"':''}>
         <td style="font-weight:600;white-space:nowrap">${d.month}${isCur?' <span style="font-size:9px;background:var(--blue);color:#fff;padding:1px 5px;border-radius:99px;vertical-align:middle">latest</span>':''}</td>
@@ -1356,18 +1367,24 @@ function buildMoMTable() {
         <td style="font-weight:700">${fmtN(d.views)}</td>
         <td>${d.cost?fmtAuC(d.cost):'—'}</td>
         <td>${cpv?`<span class="cpv-chip ${cpv<0.05?'cpv-g':cpv<0.2?'cpv-ok':'cpv-b'}">${fmtAuCPV(cpv)}</span>`:'—'}</td>
-        <td>—</td><td>—</td><td>—</td>
+        <td>${er?`<span class="${er>5?'mg':er>2?'mo':'mb2'}">${er.toFixed(2)}%</span>`:'—'}</td>
+        <td>${st.likes?fmtN(st.likes):'—'}</td>
+        <td>${st.comments?fmtN(st.comments):'—'}</td>
       </tr>`;
     }).join('');
-    const tot = AU_MOM_DATA.reduce((a,d)=>({reels:a.reels+d.reels,views:a.views+d.views,cost:a.cost+d.cost}),{reels:0,views:0,cost:0});
+    const tot  = AU_MOM_DATA.reduce((a,d)=>({reels:a.reels+d.reels,views:a.views+d.views,cost:a.cost+d.cost}),{reels:0,views:0,cost:0});
+    const totSt = Object.values(mStats).reduce((a,s)=>({likes:a.likes+s.likes,comments:a.comments+s.comments,views:a.views+s.views}),{likes:0,comments:0,views:0});
     const totCPV = tot.views && tot.cost ? tot.cost/tot.views : null;
+    const totER  = totSt.views ? (totSt.likes+totSt.comments)/totSt.views*100 : null;
     const totalRow = `<tr style="background:var(--blue-l);font-weight:700;border-top:2px solid var(--blue)">
       <td style="font-weight:800">Total</td>
       <td>${tot.reels}</td>
       <td>${fmtN(tot.views)}</td>
       <td>${fmtAuC(tot.cost)}</td>
       <td>${totCPV?`<span class="cpv-chip ${totCPV<0.05?'cpv-g':totCPV<0.2?'cpv-ok':'cpv-b'}">${fmtAuCPV(totCPV)}</span>`:'—'}</td>
-      <td>—</td><td>—</td><td>—</td>
+      <td>${totER?`<span class="${totER>5?'mg':totER>2?'mo':'mb2'}">${totER.toFixed(2)}%</span>`:'—'}</td>
+      <td>${fmtN(totSt.likes)}</td>
+      <td>${fmtN(totSt.comments)}</td>
     </tr>`;
     document.getElementById('mom-tbody').innerHTML = totalRow + rowHtml;
     return;
@@ -1582,13 +1599,15 @@ function renderTable() {
   if (activeCountry === 'AU') {
     const momLookup = {};
     AU_MOM_DATA.forEach(d=>{ momLookup[d.month]=d; });
-    const months = [...new Set(filteredRows.map(r=>r.liveMonth).filter(Boolean))].sort((a,b)=>monthOrder(a)-monthOrder(b));
+    const months = [...new Set(filteredRows.map(r=>r.liveMonth).filter(Boolean))].sort((a,b)=>monthOrder(b)-monthOrder(a));
     tbody.innerHTML = months.map(month => {
       const mRows = filteredRows.filter(r=>r.liveMonth===month);
       const mom = momLookup[month]||{};
-      const mViews = mRows.reduce((s,r)=>s+(r.views||0),0);
+      const mViews    = mRows.reduce((s,r)=>s+(r.views||0),0);
+      const mLikes    = mRows.reduce((s,r)=>s+(r.likes||0),0);
+      const mComments = mRows.reduce((s,r)=>s+(r.comments||0),0);
+      const mER       = mViews ? (mLikes+mComments)/mViews*100 : null;
       const blendedCPV = mViews && mom.cost ? mom.cost/mViews : null;
-      // inr computed via fmtAuC when needed
       const hdr = `<tr style="background:var(--blue);color:#fff">
         <td class="col-hide-sm"></td>
         <td style="font-weight:700;padding:8px 12px" colspan="2">${month}</td>
@@ -1598,9 +1617,9 @@ function renderTable() {
         <td class="col-hide-sm"></td>
         <td class="col-hide-sm"></td>
         <td style="font-weight:800">${fmtN(mViews)}</td>
-        <td class="col-hide-sm">—</td>
-        <td class="col-hide-sm">—</td>
-        <td>—</td>
+        <td class="col-hide-sm" style="font-weight:600">${mLikes?fmtN(mLikes):'—'}</td>
+        <td class="col-hide-sm" style="font-weight:600">${mComments?fmtN(mComments):'—'}</td>
+        <td>${mER?`<span style="font-weight:700">${mER.toFixed(2)}%</span>`:'—'}</td>
         <td class="col-hide-sm">—</td>
         <td>${blendedCPV?`<span class="cpv-chip cpv-g" style="background:#d1fae5;color:#065f46">${fmtAuCPV(blendedCPV)}</span>`:'—'}</td>
         <td class="col-hide-sm">${mom.cost?fmtAuC(mom.cost):'—'}</td>
@@ -2037,7 +2056,7 @@ function dch(id) { if(charts[id]) { charts[id].destroy(); delete charts[id]; } }
 function bOpts() {
   return { responsive:true, maintainAspectRatio:false, animation:{duration:400},
     plugins:{ legend:{display:true,labels:{font:{family:'Geist',size:11},padding:14}},
-      tooltip:{callbacks:{label:ctx=>ctx.dataset.label+': '+(typeof ctx.raw==='number'?ctx.raw.toLocaleString('en-IN'):ctx.raw)}} } };
+      tooltip:{callbacks:{label:ctx=>ctx.dataset.label+': '+(typeof ctx.raw==='number'?fmtN(ctx.raw):ctx.raw)}} } };
 }
 function toast(msg, type='') {
   const el = document.createElement('div');
