@@ -667,13 +667,9 @@ th.sa{color:var(--blue)}.th.sd{color:var(--blue)}
       <div class="cw"><canvas id="c-budget-mom"></canvas></div>
     </div>
   </div>
-  <!-- Row 3: ER by Region + Tier Metrics -->
-  <div class="g2 mb">
-    <div class="card card-accent-pur">
-      <div class="sh">Engagement Rate by Region <span class="sh-tag">avg %</span></div>
-      <div class="sec-desc">Which geographies drive the highest audience interaction on Cars24 content</div>
-      <div class="cw"><canvas id="c-er-region"></canvas></div>
-    </div>
+  <!-- Row 3: Tier Metrics (ER by Region removed) -->
+  <canvas id="c-er-region" style="display:none"></canvas>
+  <div class="mb">
     <div class="card">
       <div class="sh">Avg Metrics by Tier <span class="sh-tag">ER % vs Avg CPV</span></div>
       <div class="sec-desc">How different audience-size tiers compare on engagement and cost efficiency</div>
@@ -762,6 +758,11 @@ const COLORS = ['#4736FE','#00d4a1','#8b5cf6','#f97316','#ec4899','#eab308','#22
 // ═══════════════════════════════════════════════
 let activeCountry = 'IN';
 function curSym() { return '₹'; }
+const AUD_INR = 55;
+function fmtCostAU(aud) {
+  if (!aud) return '—';
+  return `A$${fmtN(aud)}&nbsp;<span style="color:var(--g400);font-size:10.5px">/ ₹${fmtN(Math.round(aud * AUD_INR))}</span>`;
+}
 function isActive(r) {
   const s = (r.liveStatus||'').toLowerCase();
   return s === 'live';
@@ -1104,6 +1105,27 @@ function buildOverview() {
 }
 
 function renderOvKPIs(period) {
+  if (activeCountry === 'AU') {
+    const auTot = AU_MOM_DATA.reduce((a,d)=>({views:a.views+d.views,cost:a.cost+d.cost,reels:a.reels+d.reels}),{views:0,cost:0,reels:0});
+    const cpvAUD = auTot.views && auTot.cost ? auTot.cost / auTot.views : null;
+    const active = allRows.filter(r=>isActive(r));
+    const eng = active.reduce((s,r)=>s+(r.likes||0)+(r.shares||0)+(r.comments||0)+(r.saves||0),0);
+    const actViews = active.reduce((s,r)=>s+(r.views||0),0);
+    const er = actViews && eng ? eng/actViews*100 : null;
+    const headEl = document.getElementById('rm-head');
+    headEl.style.display = '';
+    document.getElementById('rm-title').textContent    = 'Australia Campaign';
+    document.getElementById('rm-subtitle').textContent = `${active.length} reels live · ${AU_MOM_DATA.filter(d=>d.reels>0).length} active months`;
+    document.getElementById('kpi-strip').innerHTML = [
+      {l:'Active Months', v:AU_MOM_DATA.filter(d=>d.reels>0).length, s:'months with live reels', cls:'', i:'📅'},
+      {l:'Total Reels',   v:auTot.reels, s:'reels published', cls:'mint', i:'📱'},
+      {l:'Total Views',   v:fmtN(auTot.views), s:'all-time reel plays', cls:'grn', i:'👁️'},
+      {l:'Total Spend',   v:`A$${fmtN(auTot.cost)} / ₹${fmtN(Math.round(auTot.cost*AUD_INR))}`, s:'all-time campaign cost', cls:'or', i:'💸'},
+      {l:'Blended CPV',   v:cpvAUD?`A$${cpvAUD.toFixed(4)}`:'—', s:'total spend ÷ total views (AUD)', cls:'pur', i:'📉'},
+      {l:'Engagement',    v:er?er.toFixed(2)+'%':'—', s:'(likes+cmts+saves)/views', cls:'', i:'⚡'},
+    ].map(k=>`<div class="kpi ${k.cls}"><div class="kpi-icon">${k.i}</div><div class="kpi-lbl">${k.l}</div><div class="kpi-val">${k.v}</div><div class="kpi-sub">${k.s}</div></div>`).join('');
+    return;
+  }
   const curMonth   = recentMonth();
   const isAllTime  = !period || period === '';
   const isMoM      = period === 'mom';
@@ -1289,28 +1311,29 @@ function buildMoMTable() {
 
   if (activeCountry === 'AU') {
     if (liveHdr) liveHdr.textContent = 'Reels';
-    const sym = '₹';
     const curMonth = AU_MOM_DATA[AU_MOM_DATA.length-1]?.month;
     const rowHtml = AU_MOM_DATA.map(d => {
       const cpv = d.views && d.cost ? d.cost/d.views : null;
+      const inr  = d.cost ? Math.round(d.cost * AUD_INR) : 0;
       const isCur = d.month === curMonth;
       return `<tr${isCur?' class="current-month"':''}>
         <td style="font-weight:600;white-space:nowrap">${d.month}${isCur?' <span style="font-size:9px;background:var(--blue);color:#fff;padding:1px 5px;border-radius:99px;vertical-align:middle">latest</span>':''}</td>
         <td style="font-weight:700">${d.reels}</td>
         <td style="font-weight:700">${fmtN(d.views)}</td>
-        <td>${d.cost?sym+fmtN(d.cost):'—'}</td>
-        <td>${cpv?`<span class="cpv-chip ${cpv<0.05?'cpv-g':cpv<0.2?'cpv-ok':'cpv-b'}">${sym}${cpv.toFixed(4)}</span>`:'—'}</td>
+        <td>${d.cost?`A$${fmtN(d.cost)}<br><span style="font-size:10px;color:var(--g400)">₹${fmtN(inr)}</span>`:'—'}</td>
+        <td>${cpv?`<span class="cpv-chip ${cpv<0.05?'cpv-g':cpv<0.2?'cpv-ok':'cpv-b'}">A$${cpv.toFixed(4)}</span>`:'—'}</td>
         <td>—</td><td>—</td><td>—</td>
       </tr>`;
     }).join('');
     const tot = AU_MOM_DATA.reduce((a,d)=>({reels:a.reels+d.reels,views:a.views+d.views,cost:a.cost+d.cost}),{reels:0,views:0,cost:0});
     const totCPV = tot.views && tot.cost ? tot.cost/tot.views : null;
+    const totINR = Math.round(tot.cost * AUD_INR);
     const totalRow = `<tr style="background:var(--blue-l);font-weight:700;border-top:2px solid var(--blue)">
       <td style="font-weight:800">Total</td>
       <td>${tot.reels}</td>
       <td>${fmtN(tot.views)}</td>
-      <td>${sym}${fmtN(tot.cost)}</td>
-      <td>${totCPV?`<span class="cpv-chip ${totCPV<0.05?'cpv-g':totCPV<0.2?'cpv-ok':'cpv-b'}">${sym}${totCPV.toFixed(4)}</span>`:'—'}</td>
+      <td>A$${fmtN(tot.cost)}<br><span style="font-size:10px;color:var(--g400)">₹${fmtN(totINR)}</span></td>
+      <td>${totCPV?`<span class="cpv-chip ${totCPV<0.05?'cpv-g':totCPV<0.2?'cpv-ok':'cpv-b'}">A$${totCPV.toFixed(4)}</span>`:'—'}</td>
       <td>—</td><td>—</td><td>—</td>
     </tr>`;
     document.getElementById('mom-tbody').innerHTML = rowHtml + totalRow;
@@ -1523,6 +1546,60 @@ function colSort(col) {
 function renderTable() {
   const tbody = document.getElementById('inf-tbody');
   if (!filteredRows.length) { tbody.innerHTML=`<tr><td colspan="17" style="text-align:center;padding:32px;color:var(--g400)">No results</td></tr>`; return; }
+  if (activeCountry === 'AU') {
+    const momLookup = {};
+    AU_MOM_DATA.forEach(d=>{ momLookup[d.month]=d; });
+    const months = [...new Set(filteredRows.map(r=>r.liveMonth).filter(Boolean))].sort((a,b)=>monthOrder(a)-monthOrder(b));
+    tbody.innerHTML = months.map(month => {
+      const mRows = filteredRows.filter(r=>r.liveMonth===month);
+      const mom = momLookup[month]||{};
+      const mViews = mRows.reduce((s,r)=>s+(r.views||0),0);
+      const blendedCPV = mViews && mom.cost ? mom.cost/mViews : null;
+      const inr = mom.cost ? Math.round(mom.cost*AUD_INR) : 0;
+      const hdr = `<tr style="background:var(--blue);color:#fff">
+        <td class="col-hide-sm"></td>
+        <td style="font-weight:700;padding:8px 12px" colspan="2">${month}</td>
+        <td class="col-hide-sm"></td>
+        <td style="font-weight:600;font-size:11px">${mRows.length} reels</td>
+        <td class="col-hide-sm"></td>
+        <td class="col-hide-sm"></td>
+        <td class="col-hide-sm"></td>
+        <td style="font-weight:800">${fmtN(mViews)}</td>
+        <td class="col-hide-sm">—</td>
+        <td class="col-hide-sm">—</td>
+        <td>—</td>
+        <td class="col-hide-sm">—</td>
+        <td>${blendedCPV?`<span class="cpv-chip cpv-g" style="background:#d1fae5;color:#065f46">A$${blendedCPV.toFixed(4)}</span>`:'—'}</td>
+        <td class="col-hide-sm">${mom.cost?`A$${fmtN(mom.cost)} / ₹${fmtN(inr)}`:'—'}</td>
+        <td></td><td></td>
+      </tr>`;
+      const rowsHtml = mRows.map(r => {
+        const sel=selectedIds.has(r.id); const rc=r.refreshStatus==='done'?'rok':r.refreshStatus==='error'?'rerr':'';
+        const cat=r.category||'Lifestyle'; const catKey=cat.toLowerCase();
+        return `<tr class="${rc}${sel?' sel':''}" id="row-${r.id}">
+          <td class="col-hide-sm"><input type="checkbox" ${sel?'checked':''} onchange="toggleRow(${r.id})"/></td>
+          <td><div class="cn">${r.name}</div><div class="cs">${r.agency||'—'}</div>${r.link?`<a href="${r.link}" target="_blank" class="cl">Profile ↗</a>`:''}</td>
+          <td class="col-hide-sm"><span class="pill cat-${catKey}">${cat}</span></td>
+          <td class="col-hide-sm"><span class="pill t-${(r.tier||'nano').toLowerCase()}">${r.tier||'—'}</span></td>
+          <td style="white-space:nowrap">${r.liveMonth||'—'}</td>
+          <td class="col-hide-sm" style="white-space:nowrap;color:var(--g500);font-size:12px">${r.postedAt?new Date(r.postedAt).toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'}):'—'}</td>
+          <td class="col-hide-sm">${r.region||'—'}</td>
+          <td class="col-hide-sm" style="font-weight:600">${fmtN(r.followers)}</td>
+          <td style="font-weight:700">${viewsBdg(r)}</td>
+          <td class="col-hide-sm">${fmtN(r.likes)}</td>
+          <td class="col-hide-sm">${fmtN(r.comments)}</td>
+          <td>${fmtER(r.engRate)}</td>
+          <td class="col-hide-sm">${r.followers&&r.views?(r.views/r.followers).toFixed(2)+'×':'—'}</td>
+          <td>—</td>
+          <td class="col-hide-sm">—</td>
+          <td>${stBdg(r)}</td>
+          <td><div style="display:flex;gap:3px"><button class="btn btn-gh btn-xs" onclick="openModal(${r.id})">📊</button>${r.videoLink?`<a href="${r.videoLink}" target="_blank" class="btn btn-gh btn-xs">▶</a>`:''}</div></td>
+        </tr>`;
+      }).join('');
+      return hdr + rowsHtml;
+    }).join('');
+    return;
+  }
   tbody.innerHTML = filteredRows.map(r => {
     const sel = selectedIds.has(r.id);
     const rc  = r.refreshStatus==='done'?'rok':r.refreshStatus==='error'?'rerr':'';
@@ -1644,42 +1721,64 @@ function buildAnalyticsCharts() {
     options:{...bOpts(),indexAxis:'y',scales:{x:{ticks:{callback:v=>v+'%'},grid:{color:'#f3f4f6'}},y:{grid:{display:false},ticks:{font:{size:10}}}}}
   });
 
-  // CPV trend — Avg CPV + Blended CPV
+  // CPV trend — use AU_MOM_DATA for AU, row data for others
   dch('c-cpv-trend');
-  const cpvMap = {};
-  for (const r of allRows) {
-    if (!r.liveMonth) continue;
-    if (!cpvMap[r.liveMonth]) cpvMap[r.liveMonth]={mo:r.monthOrder,arr:[],totalCost:0,totalViews:0};
-    if (r.cpv != null) cpvMap[r.liveMonth].arr.push(r.cpv);
-    if (r.cost)  cpvMap[r.liveMonth].totalCost  += r.cost;
-    if (r.views) cpvMap[r.liveMonth].totalViews += r.views;
+  if (activeCountry === 'AU') {
+    const auCpvLabels = AU_MOM_DATA.map(d=>d.month.replace(' 2025','\'25').replace(' 2026','\'26'));
+    const auBlendedCPV = AU_MOM_DATA.map(d=>d.views&&d.cost?+(d.cost/d.views).toFixed(4):null);
+    charts['cpvt'] = new Chart(document.getElementById('c-cpv-trend').getContext('2d'), {
+      type:'line',
+      data:{labels:auCpvLabels,datasets:[
+        {label:'Blended CPV (A$)',data:auBlendedCPV,borderColor:'#4736FE',backgroundColor:'#4736FE22',tension:.4,fill:true,borderWidth:2.5,pointRadius:4,pointBackgroundColor:'#4736FE'},
+      ]},
+      options:{...bOpts(),scales:{y:{ticks:{callback:v=>'A$'+v.toFixed(4)},grid:{color:'#f3f4f6'}},x:{grid:{display:false},ticks:{maxRotation:45,font:{size:10}}}}}
+    });
+  } else {
+    const cpvMap = {};
+    for (const r of allRows) {
+      if (!r.liveMonth) continue;
+      if (!cpvMap[r.liveMonth]) cpvMap[r.liveMonth]={mo:r.monthOrder,arr:[],totalCost:0,totalViews:0};
+      if (r.cpv != null) cpvMap[r.liveMonth].arr.push(r.cpv);
+      if (r.cost)  cpvMap[r.liveMonth].totalCost  += r.cost;
+      if (r.views) cpvMap[r.liveMonth].totalViews += r.views;
+    }
+    const cpvSorted = Object.entries(cpvMap).sort((a,b)=>a[1].mo-b[1].mo);
+    const cpvLabels = cpvSorted.map(e=>e[0].replace(' 2025','\'25').replace(' 2026','\'26'));
+    charts['cpvt'] = new Chart(document.getElementById('c-cpv-trend').getContext('2d'), {
+      type:'line',
+      data:{labels:cpvLabels,datasets:[
+        {label:'Avg CPV',data:cpvSorted.map(e=>e[1].arr.length?+(e[1].arr.reduce((a,b)=>a+b)/e[1].arr.length).toFixed(2):null),borderColor:'#f97316',backgroundColor:'#f9731622',tension:.4,fill:true,borderWidth:2.5,pointRadius:4,pointBackgroundColor:'#f97316'},
+        {label:'Blended CPV',data:cpvSorted.map(e=>e[1].totalViews?+(e[1].totalCost/e[1].totalViews).toFixed(2):null),borderColor:'#4736FE',backgroundColor:'transparent',tension:.4,fill:false,borderWidth:2,borderDash:[5,3],pointRadius:4,pointBackgroundColor:'#4736FE'}
+      ]},
+      options:{...bOpts(),scales:{y:{ticks:{callback:v=>curSym()+v.toFixed(2)},grid:{color:'#f3f4f6'}},x:{grid:{display:false},ticks:{maxRotation:45,font:{size:10}}}}}
+    });
   }
-  const cpvSorted = Object.entries(cpvMap).sort((a,b)=>a[1].mo-b[1].mo);
-  const cpvLabels = cpvSorted.map(e=>e[0].replace(' 2025','\'25').replace(' 2026','\'26'));
-  charts['cpvt'] = new Chart(document.getElementById('c-cpv-trend').getContext('2d'), {
-    type:'line',
-    data:{labels:cpvLabels,datasets:[
-      {label:'Avg CPV',data:cpvSorted.map(e=>e[1].arr.length?+(e[1].arr.reduce((a,b)=>a+b)/e[1].arr.length).toFixed(2):null),borderColor:'#f97316',backgroundColor:'#f9731622',tension:.4,fill:true,borderWidth:2.5,pointRadius:4,pointBackgroundColor:'#f97316'},
-      {label:'Blended CPV',data:cpvSorted.map(e=>e[1].totalViews?+(e[1].totalCost/e[1].totalViews).toFixed(2):null),borderColor:'#4736FE',backgroundColor:'transparent',tension:.4,fill:false,borderWidth:2,borderDash:[5,3],pointRadius:4,pointBackgroundColor:'#4736FE'}
-    ]},
-    options:{...bOpts(),scales:{y:{ticks:{callback:v=>curSym()+v.toFixed(2)},grid:{color:'#f3f4f6'}},x:{grid:{display:false},ticks:{maxRotation:45,font:{size:10}}}}}
-  });
 
-  // Budget spend by Month
+  // Budget spend by Month — use AU_MOM_DATA for AU
   dch('c-budget-mom');
-  const budgetMap = {};
-  for (const r of allRows) {
-    if (!r.liveMonth||!r.cost) continue;
-    if (!budgetMap[r.liveMonth]) budgetMap[r.liveMonth]={mo:r.monthOrder,total:0,count:0};
-    budgetMap[r.liveMonth].total += r.cost;
-    budgetMap[r.liveMonth].count++;
+  if (activeCountry === 'AU') {
+    const auBudLabels = AU_MOM_DATA.filter(d=>d.cost>0).map(d=>d.month.replace(' 2025','\'25').replace(' 2026','\'26'));
+    const auBudData   = AU_MOM_DATA.filter(d=>d.cost>0).map(d=>d.cost);
+    charts['budm'] = new Chart(document.getElementById('c-budget-mom').getContext('2d'), {
+      type:'bar',
+      data:{labels:auBudLabels,datasets:[{label:'Spend (A$)',data:auBudData,backgroundColor:'#4736FE88',borderColor:'#4736FE',borderWidth:1.5,borderRadius:5}]},
+      options:{...bOpts(),scales:{y:{ticks:{callback:v=>'A$'+fmtN(v)},grid:{color:'#f3f4f6'}},x:{grid:{display:false},ticks:{maxRotation:45,font:{size:10}}}},plugins:{...bOpts().plugins,tooltip:{callbacks:{label:ctx=>`A$${fmtN(ctx.raw)} / ₹${fmtN(Math.round(ctx.raw*AUD_INR))}`}}}}
+    });
+  } else {
+    const budgetMap = {};
+    for (const r of allRows) {
+      if (!r.liveMonth||!r.cost) continue;
+      if (!budgetMap[r.liveMonth]) budgetMap[r.liveMonth]={mo:r.monthOrder,total:0,count:0};
+      budgetMap[r.liveMonth].total += r.cost;
+      budgetMap[r.liveMonth].count++;
+    }
+    const budSorted = Object.entries(budgetMap).sort((a,b)=>a[1].mo-b[1].mo);
+    charts['budm'] = new Chart(document.getElementById('c-budget-mom').getContext('2d'), {
+      type:'bar',
+      data:{labels:budSorted.map(e=>e[0].replace(' 2025','\'25').replace(' 2026','\'26')),datasets:[{label:'Total Spend',data:budSorted.map(e=>e[1].total),backgroundColor:'#4736FE88',borderColor:'#4736FE',borderWidth:1.5,borderRadius:5}]},
+      options:{...bOpts(),scales:{y:{ticks:{callback:v=>curSym()+fmtN(v)},grid:{color:'#f3f4f6'}},x:{grid:{display:false},ticks:{maxRotation:45,font:{size:10}}}},plugins:{...bOpts().plugins,tooltip:{callbacks:{label:ctx=>`${curSym()}${fmtN(ctx.raw)} (${budSorted[ctx.dataIndex]?.[1].count} creators)`}}}}
+    });
   }
-  const budSorted = Object.entries(budgetMap).sort((a,b)=>a[1].mo-b[1].mo);
-  charts['budm'] = new Chart(document.getElementById('c-budget-mom').getContext('2d'), {
-    type:'bar',
-    data:{labels:budSorted.map(e=>e[0].replace(' 2025','\'25').replace(' 2026','\'26')),datasets:[{label:'Total Spend',data:budSorted.map(e=>e[1].total),backgroundColor:'#4736FE88',borderColor:'#4736FE',borderWidth:1.5,borderRadius:5}]},
-    options:{...bOpts(),scales:{y:{ticks:{callback:v=>curSym()+fmtN(v)},grid:{color:'#f3f4f6'}},x:{grid:{display:false},ticks:{maxRotation:45,font:{size:10}}}},plugins:{...bOpts().plugins,tooltip:{callbacks:{label:ctx=>`${curSym()}${fmtN(ctx.raw)} (${budSorted[ctx.dataIndex]?.[1].count} creators)`}}}}
-  });
 
   // ER by region
   dch('c-er-region');
@@ -1721,22 +1820,49 @@ function buildAnalyticsCharts() {
     options:{...bOpts(),scales:{x:{title:{display:true,text:`Followers (${scLbl})`},ticks:{callback:v=>v.toFixed(1)+scLbl},grid:{color:'#f3f4f6'}},y:{title:{display:true,text:`Views (${scLbl})`},ticks:{callback:v=>v.toFixed(1)+scLbl},grid:{color:'#f3f4f6'}}},plugins:{...bOpts().plugins,tooltip:{callbacks:{label:ctx=>`${sd[ctx.dataIndex]?.n}: ${fmtN(ctx.raw.x*scUnit)} flw, ${fmtN(ctx.raw.y*scUnit)} views`}}}}
   });
 
-  // Build agency data (avg CPV = mean of each creator's individual CPV)
+  // Build agency data — AU uses proportional monthly cost attribution
   const agMap = {};
   for (const r of allRows) {
-    const a = r.agency || 'Direct/Unknown';
-    if (!agMap[a]) agMap[a] = {creators:0, views:0, cost:0, cpvArr:[], erArr:[]};
+    const a = r.agency || 'Insense';
+    if (!agMap[a]) agMap[a] = {creators:0, views:0, erArr:[], monthViews:{}};
     agMap[a].creators++;
     agMap[a].views += r.views || 0;
-    agMap[a].cost  += r.cost  || 0;
-    if (r.cpv != null) agMap[a].cpvArr.push(r.cpv);
     if (r.engRate != null && r.engRate < 100) agMap[a].erArr.push(r.engRate);
+    if (activeCountry === 'AU') {
+      const m = r.liveMonth;
+      if (m) { agMap[a].monthViews[m] = (agMap[a].monthViews[m]||0) + (r.views||0); }
+    }
   }
-  window._agData = Object.entries(agMap).map(([ag, d]) => ({
-    name: ag, creators: d.creators, views: d.views, cost: d.cost,
-    cpv: d.cpvArr.length ? d.cpvArr.reduce((s,v)=>s+v)/d.cpvArr.length : null,
-    er: d.erArr.length ? d.erArr.reduce((s,v)=>s+v)/d.erArr.length : null,
-  }));
+  if (activeCountry === 'AU') {
+    const momLookup = {};
+    AU_MOM_DATA.forEach(d => { momLookup[d.month] = d; });
+    window._agData = Object.entries(agMap).map(([ag, d]) => {
+      let totalCost = 0;
+      for (const [month, agViews] of Object.entries(d.monthViews||{})) {
+        const mom = momLookup[month];
+        if (mom && mom.cost && mom.views) totalCost += (agViews / mom.views) * mom.cost;
+      }
+      const cpv = d.views && totalCost ? totalCost / d.views : null;
+      const er  = d.erArr.length ? d.erArr.reduce((s,v)=>s+v)/d.erArr.length : null;
+      return { name: ag, creators: d.creators, views: d.views, cost: totalCost, cpv, er };
+    });
+  } else {
+    const agMap2 = {};
+    for (const r of allRows) {
+      const a = r.agency || 'Direct/Unknown';
+      if (!agMap2[a]) agMap2[a] = {creators:0, views:0, cost:0, cpvArr:[], erArr:[]};
+      agMap2[a].creators++;
+      agMap2[a].views += r.views || 0;
+      agMap2[a].cost  += r.cost  || 0;
+      if (r.cpv != null) agMap2[a].cpvArr.push(r.cpv);
+      if (r.engRate != null && r.engRate < 100) agMap2[a].erArr.push(r.engRate);
+    }
+    window._agData = Object.entries(agMap2).map(([ag, d]) => ({
+      name: ag, creators: d.creators, views: d.views, cost: d.cost,
+      cpv: d.cpvArr.length ? d.cpvArr.reduce((s,v)=>s+v)/d.cpvArr.length : null,
+      er:  d.erArr.length  ? d.erArr.reduce((s,v)=>s+v)/d.erArr.length  : null,
+    }));
+  }
   window._agSortCol = 'views';
   window._agSortDir = -1;
   renderAgencyTable();
@@ -1749,8 +1875,8 @@ function buildCategoryMatrix() {
   const CATS = activeCountry === 'IN'
     ? DEFAULT_CATS
     : [...new Set(allRows.map(r=>r.category).filter(Boolean))].sort();
-  const CAT_CLS  = {Automobile:'cm-auto',Entertainment:'cm-comedy',Finance:'cm-finance',Vlogs:'cm-vlogs',Infotainment:'cm-info',Lifestyle:'cm-life'};
-  const CAT_ICON = {Automobile:'🚗',Entertainment:'🎭',Finance:'💰',Vlogs:'📹',Infotainment:'📡',Lifestyle:'🌟'};
+  const CAT_CLS  = {Automobile:'cm-auto',Entertainment:'cm-comedy',Finance:'cm-finance',Vlogs:'cm-vlogs',Infotainment:'cm-info',Lifestyle:'cm-life',Food:'cm-food',Parenting:'cm-par',Travel:'cm-travel',Fitness:'cm-fit'};
+  const CAT_ICON = {Automobile:'🚗',Entertainment:'🎭',Finance:'💰',Vlogs:'📹',Infotainment:'📡',Lifestyle:'🌟',Food:'🍽️',Parenting:'👨‍👩‍👧',Travel:'✈️',Fitness:'💪'};
 
   // Build month → category → count
   const monthMap = {};
@@ -1772,7 +1898,7 @@ function buildCategoryMatrix() {
 
   thead.innerHTML = `<tr>
     <th style="text-align:left;min-width:120px">Month</th>
-    ${CATS.map(c=>`<th>${CAT_ICON[c]} ${c}</th>`).join('')}
+    ${CATS.map(c=>`<th>${CAT_ICON[c]||'🎯'} ${c}</th>`).join('')}
     <th>Total</th>
   </tr>`;
 
@@ -1782,13 +1908,13 @@ function buildCategoryMatrix() {
       <td style="font-weight:600;white-space:nowrap;color:var(--g700)">${month}</td>
       ${CATS.map(c => {
         const n = d.counts[c] || 0;
-        return `<td class="${n ? CAT_CLS[c] : 'cm-0'}">${n || '—'}</td>`;
+        return `<td class="${n ? (CAT_CLS[c]||'cm-life') : 'cm-0'}">${n || '—'}</td>`;
       }).join('')}
       <td style="font-weight:700;background:var(--blue-l);color:var(--blue)">${total}</td>
     </tr>`;
   }).join('') + `<tr class="cm-total">
     <td>Total</td>
-    ${CATS.map(c=>`<td class="${CAT_CLS[c]}">${colTotals[c]}</td>`).join('')}
+    ${CATS.map(c=>`<td class="${CAT_CLS[c]||'cm-life'}">${colTotals[c]}</td>`).join('')}
     <td style="font-weight:700;background:var(--blue);color:#fff">${CATS.reduce((s,c)=>s+colTotals[c],0)}</td>
   </tr>`;
 }
@@ -1811,8 +1937,8 @@ function renderAgencyTable() {
     <td style="font-weight:600">${d.name}</td>
     <td style="font-weight:700;text-align:center">${d.creators}</td>
     <td style="font-weight:700">${fmtN(d.views)}</td>
-    <td>${curSym()}${fmtN(d.cost)}</td>
-    <td>${d.cpv?`<span class="cpv-chip ${d.cpv<0.1?'cpv-g':d.cpv<0.5?'cpv-ok':'cpv-b'}">${curSym()}${d.cpv.toFixed(2)}</span>`:'—'}</td>
+    <td>${activeCountry==='AU'?fmtCostAU(d.cost):(d.cost?curSym()+fmtN(d.cost):'—')}</td>
+    <td>${d.cpv?`<span class="cpv-chip ${d.cpv<0.1?'cpv-g':d.cpv<0.5?'cpv-ok':'cpv-b'}">${activeCountry==='AU'?'A$':curSym()}${d.cpv.toFixed(4)}</span>`:'—'}</td>
     <td>${d.er?`<span class="${d.er>5?'mg':d.er>2?'mo':'mb2'}">${d.er.toFixed(2)}%</span>`:'—'}</td>
   </tr>`).join('');
 }
