@@ -1314,7 +1314,7 @@ function renderCPVSection() {
         <div class="prs">${fmtN(r.views)} views · ${r.liveMonth||'—'}</div>
       </div>
       <div style="display:flex;align-items:center;gap:8px">
-        <span class="cpv-chip ${r.cpv<0.1?'cpv-g':r.cpv<0.5?'cpv-ok':'cpv-b'}">${curSym()}${r.cpv.toFixed(2)}</span>
+        <span class="cpv-chip ${r.cpv<0.1?'cpv-g':r.cpv<0.5?'cpv-ok':'cpv-b'}">${activeCountry==='AU'?fmtAuCPV(r.cpv):activeCountry==='UAE'?fmtUaeCPV(r.cpv):curSym()+r.cpv.toFixed(2)}</span>
         ${r.videoLink?`<a href="${r.videoLink}" target="_blank" class="btn btn-gh btn-xs">▶</a>`:''}
       </div>
     </div>`).join('') : '<div style="color:var(--g400);font-size:12px;padding:10px 0">No data</div>';
@@ -1444,8 +1444,8 @@ function buildMoMTable() {
       <td style="font-weight:600;white-space:nowrap">${m}${m===curMonth?' <span style="font-size:9px;background:var(--blue);color:#fff;padding:1px 5px;border-radius:99px;vertical-align:middle">latest</span>':''}</td>
       <td style="font-weight:700">${d.live}</td>
       <td style="font-weight:700">${fmtN(d.views)}</td>
-      <td>${activeCountry==='UAE'?fmtUaeC(d.cost):(d.cost?sym+fmtN(d.cost):'—')}</td>
-      <td>${blendedCPV?`<span class="cpv-chip ${blendedCPV<0.1?'cpv-g':blendedCPV<0.5?'cpv-ok':'cpv-b'}">${activeCountry==='UAE'?fmtUaeCPV(blendedCPV):sym+blendedCPV.toFixed(2)}</span>`:'—'}</td>
+      <td>${activeCountry==='AU'?fmtAuC(d.cost):activeCountry==='UAE'?fmtUaeC(d.cost):(d.cost?sym+fmtN(d.cost):'—')}</td>
+      <td>${blendedCPV?`<span class="cpv-chip ${blendedCPV<0.1?'cpv-g':blendedCPV<0.5?'cpv-ok':'cpv-b'}">${activeCountry==='AU'?fmtAuCPV(blendedCPV):activeCountry==='UAE'?fmtUaeCPV(blendedCPV):sym+blendedCPV.toFixed(2)}</span>`:'—'}</td>
       <td>${er?`<span class="${er>5?'mg':er>2?'mo':'mb2'}">${er.toFixed(2)}%</span>`:'—'}</td>
       <td>${fmtN(d.likes)}</td>
       <td>${fmtN(d.comments)}</td>
@@ -1468,8 +1468,8 @@ function buildMoMTable() {
     <td style="font-weight:800">Total</td>
     <td>${tot.live}</td>
     <td>${fmtN(tot.views)}</td>
-    <td>${activeCountry==='UAE'?fmtUaeC(tot.cost):(tot.cost?sym+fmtN(tot.cost):'—')}</td>
-    <td>${totCPV?`<span class="cpv-chip ${totCPV<0.1?'cpv-g':totCPV<0.5?'cpv-ok':'cpv-b'}">${activeCountry==='UAE'?fmtUaeCPV(totCPV):sym+totCPV.toFixed(2)}</span>`:'—'}</td>
+    <td>${activeCountry==='AU'?fmtAuC(tot.cost):activeCountry==='UAE'?fmtUaeC(tot.cost):(tot.cost?sym+fmtN(tot.cost):'—')}</td>
+    <td>${totCPV?`<span class="cpv-chip ${totCPV<0.1?'cpv-g':totCPV<0.5?'cpv-ok':'cpv-b'}">${activeCountry==='AU'?fmtAuCPV(totCPV):activeCountry==='UAE'?fmtUaeCPV(totCPV):sym+totCPV.toFixed(2)}</span>`:'—'}</td>
     <td>${totER?`<span class="${totER>5?'mg':totER>2?'mo':'mb2'}">${totER.toFixed(2)}%</span>`:'—'}</td>
     <td>${fmtN(tot.likes)}</td>
     <td>${fmtN(tot.comments)}</td>
@@ -1494,8 +1494,8 @@ function buildTierTable() {
     <td style="font-weight:700">${d.n}</td>
     <td>${fmtN(Math.round(d.avgV))}</td>
     <td><span class="${d.avgER>5?'mg':d.avgER>2?'mo':'mb2'}">${d.avgER?d.avgER.toFixed(2)+'%':'—'}</span></td>
-    <td>${d.avgCPV?`<span class="cpv-chip ${d.avgCPV<0.1?'cpv-g':d.avgCPV<0.5?'cpv-ok':'cpv-b'}">${curSym()}${d.avgCPV.toFixed(2)}</span>`:'—'}</td>
-    <td>${curSym()}${fmtN(d.budget)}</td>
+    <td>${d.avgCPV?`<span class="cpv-chip ${d.avgCPV<0.1?'cpv-g':d.avgCPV<0.5?'cpv-ok':'cpv-b'}">${activeCountry==='AU'?fmtAuCPV(d.avgCPV):activeCountry==='UAE'?fmtUaeCPV(d.avgCPV):curSym()+d.avgCPV.toFixed(2)}</span>`:'—'}</td>
+    <td>${activeCountry==='AU'?fmtAuC(d.budget):activeCountry==='UAE'?fmtUaeC(d.budget):curSym()+fmtN(d.budget)}</td>
   </tr>`).join('');
 
 }
@@ -1590,7 +1590,7 @@ function applySort() {
   document.getElementById('showing').textContent = filteredRows.length;
   document.getElementById('total').textContent = allRows.length;
   const spend = filteredRows.reduce((s,r)=>s+(r.cost||0),0);
-  document.getElementById('tbl-spend').textContent = 'Filtered budget: '+curSym()+fmtN(spend);
+  document.getElementById('tbl-spend').textContent = 'Filtered budget: '+(activeCountry==='AU'?fmtAuC(spend)||'A$0':activeCountry==='UAE'?fmtUaeC(spend)||'AED 0':curSym()+fmtN(spend));
 }
 
 function colSort(col) {
@@ -1736,7 +1736,8 @@ function fmtN(n) {
 }
 function fmtCPV(v) {
   if (v==null) return '<span class="na">—</span>';
-  return `<span class="cpv-chip ${v<0.1?'cpv-g':v<0.5?'cpv-ok':'cpv-b'}">${curSym()}${v.toFixed(2)}</span>`;
+  const disp = activeCountry==='AU'?fmtAuCPV(v):activeCountry==='UAE'?fmtUaeCPV(v):curSym()+v.toFixed(2);
+  return `<span class="cpv-chip ${v<0.1?'cpv-g':v<0.5?'cpv-ok':'cpv-b'}">${disp}</span>`;
 }
 function fmtER(er) {
   if (er==null||er>100) return '<span class="na">—</span>';
@@ -2044,8 +2045,8 @@ function openModal(id) {
   const m1 = [
     {l:'Views',v:fmtN(r.views)},{l:'Likes',v:fmtN(r.likes)},{l:'Comments',v:fmtN(r.comments)},
     {l:'Shares',v:fmtN(r.shares)},{l:'Saves',v:fmtN(r.saves)},{l:'Followers',v:fmtN(r.followers)},
-    {l:'Budget',v:r.cost?curSym()+fmtN(r.cost):'—'},
-    {l:'CPV',v:r.cpv?curSym()+r.cpv.toFixed(2):'—'},
+    {l:'Budget',v:activeCountry==='AU'?fmtAuC(r.cost):activeCountry==='UAE'?fmtUaeC(r.cost):(r.cost?curSym()+fmtN(r.cost):'—')},
+    {l:'CPV',v:activeCountry==='AU'?fmtAuCPV(r.cpv):activeCountry==='UAE'?fmtUaeCPV(r.cpv):(r.cpv?curSym()+r.cpv.toFixed(2):'—')},
     {l:'Avg Views',v:fmtN(r.avgViews)},
   ];
   const m2 = [
