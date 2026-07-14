@@ -750,7 +750,7 @@ const SHEET_CSV = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?for
 
 const SHEET_URLS = {
   IN:  `https://docs.google.com/spreadsheets/d/1VBjkdMm5Uhjq-JLmGqRL7aFTbTH3P0c7oRr1LHcN1o0/edit?gid=1928933144`,
-  AU:  `https://docs.google.com/spreadsheets/d/1VDcKBUNwFacleZFdN_By-qAeroheo3mlqOItat1ZQM8/edit?gid=1707778305`,
+  AU:  `https://docs.google.com/spreadsheets/d/1VDcKBUNwFacleZFdN_By-qAeroheo3mlqOItat1ZQM8/edit?gid=713202607`,
   UAE: `https://docs.google.com/spreadsheets/d/1_DEKX02I3Dh41B8nBtwPR1G-_4nt98WgDILZjzg3sp4/edit?gid=211709974`,
 };
 
@@ -768,11 +768,11 @@ function isActive(r) {
 }
 
 const AU_MOM_DATA = [
-  {month:'November 2025',monthOrder:202511,reels:6,views:9613,cost:1753.59},
+  {month:'November 2025',monthOrder:202511,reels:7,views:13239,cost:1753.59},
   {month:'December 2025',monthOrder:202512,reels:15,views:44239,cost:8883.04},
-  {month:'January 2026',monthOrder:202601,reels:14,views:20528,cost:7252.01},
-  {month:'February 2026',monthOrder:202602,reels:32,views:72310,cost:0},
-  {month:'March 2026',monthOrder:202603,reels:33,views:77465,cost:4844.07},
+  {month:'January 2026',monthOrder:202601,reels:15,views:27952,cost:7252.01},
+  {month:'February 2026',monthOrder:202602,reels:29,views:71458,cost:0},
+  {month:'March 2026',monthOrder:202603,reels:33,views:78394,cost:0},
   {month:'April 2026',monthOrder:202604,reels:33,views:210564,cost:2252.84},
   {month:'May 2026',monthOrder:202605,reels:15,views:98108,cost:0},
   {month:'June 2026',monthOrder:202606,reels:7,views:22284,cost:0},
@@ -800,14 +800,23 @@ const AU_ROWS = [
 ].map((r,i)=>({...r,id:i}));
 
 const UAE_ROWS = [
-  {id:0,name:"Kareem Almoarrawi",agency:"Lifetime Warranty",category:"Lifestyle",followers:524000,link:"https://www.instagram.com/reel/DVyn9Q4DD7x/",videoLink:"https://www.instagram.com/reel/DVyn9Q4DD7x/",views:236000,likes:8200,comments:1004,shares:11000,saves:16,cost:7500,cpv:0.0318,liveStatus:"Live",liveMonth:"March 2026",monthOrder:202603,region:"UAE",tier:"Macro",engRate:8.57,postedAt:null},
-  {id:1,name:"Dr. Dalia Kokash",agency:"Lifetime Warranty",category:"Lifestyle",followers:83300,link:"https://www.instagram.com/reel/DVymYO0CGWR/",videoLink:"https://www.instagram.com/reel/DVymYO0CGWR/",views:11900,likes:234,comments:84,shares:73,saves:66,cost:7500,cpv:0.6303,liveStatus:"Live",liveMonth:"March 2026",monthOrder:202603,region:"UAE",tier:"Macro",engRate:3.84,postedAt:null},
-  {id:2,name:"Shezza Razzaqi",agency:"Lifetime Warranty",category:"Lifestyle",followers:51100,link:"https://www.instagram.com/reel/DWeJgYZCNPn/",videoLink:"https://www.instagram.com/reel/DWeJgYZCNPn/",views:31004,likes:673,comments:36,shares:326,saves:56,cost:1500,cpv:0.0484,liveStatus:"Live",liveMonth:"March 2026",monthOrder:202603,region:"UAE",tier:"Macro",engRate:3.52,postedAt:null},
-  {id:3,name:"Hershy",agency:"Video Call Test Drive",category:"Lifestyle",followers:131000,link:"https://www.instagram.com/p/DWhL1P7DhtO/",videoLink:"https://www.instagram.com/p/DWhL1P7DhtO/",views:30700,likes:2000,comments:3,shares:1,saves:1,cost:1500,cpv:0.0489,liveStatus:"Live",liveMonth:"April 2026",monthOrder:202604,region:"UAE",tier:"Macro",engRate:6.53,postedAt:null},
-  {id:4,name:"Welard",agency:"Price Match",category:"Automobile",followers:12500,link:"",videoLink:"",views:600,likes:21,comments:22,shares:5,saves:0,cost:2000,cpv:3.33,liveStatus:"Live",liveMonth:"May 2026",monthOrder:202605,region:"UAE",tier:"Micro",engRate:8.0,postedAt:null},
-  {id:5,name:"Hina",agency:"Price Match",category:"Lifestyle",followers:126000,link:"",videoLink:"",views:286000,likes:1015,comments:133,shares:47,saves:0,cost:2000,cpv:0.0070,liveStatus:"Live",liveMonth:"May 2026",monthOrder:202605,region:"UAE",tier:"Macro",engRate:0.42,postedAt:null},
-  {id:6,name:"Loai",agency:"Price Match",category:"Lifestyle",followers:75500,link:"",videoLink:"",views:7041,likes:15,comments:10,shares:4,saves:2,cost:2000,cpv:0.2841,liveStatus:"Live",liveMonth:"May 2026",monthOrder:202605,region:"UAE",tier:"Macro",engRate:0.44,postedAt:null},
-  {id:7,name:"Mecik",agency:"Price Match",category:"Automobile",followers:152000,link:"",videoLink:"",views:53900,likes:30,comments:85,shares:14,saves:0,cost:2000,cpv:0.0371,liveStatus:"Live",liveMonth:"May 2026",monthOrder:202605,region:"UAE",tier:"Macro",engRate:0.24,postedAt:null},
+  {id:0,name:"Kareem Almoarrawi",agency:"Self",category:"Lifestyle",followers:524000,link:"https://www.instagram.com/reel/DVyn9Q4DD7x/",videoLink:"https://www.instagram.com/reel/DVyn9Q4DD7x/",views:236000,likes:8200,comments:1004,shares:11000,saves:16,cost:7500,cpv:0.0318,liveStatus:"Live",liveMonth:"March 2026",monthOrder:202603,region:"UAE",tier:"Mega",engRate:3.86,postedAt:null},
+  {id:1,name:"Dr. Dalia Kokash",agency:"Pipa Media",category:"Lifestyle",followers:83300,link:"https://www.instagram.com/reel/DVymYO0CGWR/",videoLink:"https://www.instagram.com/reel/DVymYO0CGWR/",views:11900,likes:234,comments:84,shares:73,saves:66,cost:7500,cpv:0.6303,liveStatus:"Live",liveMonth:"March 2026",monthOrder:202603,region:"UAE",tier:"Macro",engRate:0.55,postedAt:null},
+  {id:2,name:"Shezza Razzaqi",agency:"Pipa Media",category:"Lifestyle",followers:51100,link:"https://www.instagram.com/reel/DWeJgYZCNPn/",videoLink:"https://www.instagram.com/reel/DWeJgYZCNPn/",views:31004,likes:673,comments:36,shares:326,saves:56,cost:1500,cpv:0.0484,liveStatus:"Live",liveMonth:"March 2026",monthOrder:202603,region:"UAE",tier:"Macro",engRate:2.14,postedAt:null},
+  {id:3,name:"Hershy",agency:"Pipa Media",category:"Lifestyle",followers:131000,link:"https://www.instagram.com/p/DWhL1P7DhtO/",videoLink:"https://www.instagram.com/p/DWhL1P7DhtO/",views:30700,likes:2000,comments:3,shares:1,saves:1,cost:1500,cpv:0.0489,liveStatus:"Live",liveMonth:"April 2026",monthOrder:202604,region:"UAE",tier:"Macro",engRate:1.53,postedAt:null},
+  {id:4,name:"Welard",agency:"Pipa Media",category:"Lifestyle",followers:12500,link:"https://www.instagram.com/p/DX3-lMfsJQT/",videoLink:"https://www.instagram.com/p/DX3-lMfsJQT/",views:600,likes:21,comments:22,shares:5,saves:0,cost:2000,cpv:3.333,liveStatus:"Live",liveMonth:"May 2026",monthOrder:202605,region:"UAE",tier:"Micro",engRate:0.38,postedAt:null},
+  {id:5,name:"Hina",agency:"Plain Jane",category:"Lifestyle",followers:126000,link:"https://www.instagram.com/p/DX7JDOiNbTE/",videoLink:"https://www.instagram.com/p/DX7JDOiNbTE/",views:286000,likes:1015,comments:133,shares:47,saves:0,cost:2000,cpv:0.007,liveStatus:"Live",liveMonth:"May 2026",monthOrder:202605,region:"UAE",tier:"Macro",engRate:0.95,postedAt:null},
+  {id:6,name:"Loai",agency:"Plain Jane",category:"Lifestyle",followers:75500,link:"https://www.instagram.com/loaimoustafa1/",videoLink:"https://www.instagram.com/loaimoustafa1/",views:7041,likes:15,comments:10,shares:4,saves:2,cost:2000,cpv:0.2841,liveStatus:"Live",liveMonth:"May 2026",monthOrder:202605,region:"UAE",tier:"Macro",engRate:0.04,postedAt:null},
+  {id:7,name:"Mecik",agency:"Plain Jane",category:"Lifestyle",followers:152000,link:"https://www.instagram.com/mecik.k/",videoLink:"https://www.instagram.com/mecik.k/",views:53900,likes:30,comments:85,shares:14,saves:0,cost:2000,cpv:0.0371,liveStatus:"Live",liveMonth:"May 2026",monthOrder:202605,region:"UAE",tier:"Macro",engRate:0.08,postedAt:null},
+  {id:8,name:"Hishmaa",agency:"Plug Media",category:"Lifestyle",followers:3000,link:"",videoLink:"",views:0,likes:0,comments:0,shares:0,saves:0,cost:2500,cpv:null,liveStatus:"WIP",liveMonth:"June 2026",monthOrder:202606,region:"UAE",tier:"Nano",engRate:null,postedAt:null},
+  {id:9,name:"Tania Stanly",agency:"Plug Media",category:"Lifestyle",followers:46500,link:"",videoLink:"",views:0,likes:0,comments:0,shares:0,saves:0,cost:2500,cpv:null,liveStatus:"WIP",liveMonth:"June 2026",monthOrder:202606,region:"UAE",tier:"Micro",engRate:null,postedAt:null},
+  {id:10,name:"Ashwin Unni",agency:"Plug Media",category:"Lifestyle",followers:23000,link:"",videoLink:"",views:0,likes:0,comments:0,shares:0,saves:0,cost:2500,cpv:null,liveStatus:"WIP",liveMonth:"June 2026",monthOrder:202606,region:"UAE",tier:"Micro",engRate:null,postedAt:null},
+  {id:11,name:"Yaman",agency:"Plug Media",category:"Lifestyle",followers:8500,link:"",videoLink:"",views:0,likes:0,comments:0,shares:0,saves:0,cost:2500,cpv:null,liveStatus:"WIP",liveMonth:"June 2026",monthOrder:202606,region:"UAE",tier:"Nano",engRate:null,postedAt:null},
+  {id:12,name:"Sania",agency:"Plug Media",category:"Lifestyle",followers:4600,link:"",videoLink:"",views:0,likes:0,comments:0,shares:0,saves:0,cost:2500,cpv:null,liveStatus:"WIP",liveMonth:"June 2026",monthOrder:202606,region:"UAE",tier:"Nano",engRate:null,postedAt:null},
+  {id:13,name:"Nawal",agency:"Plug Media",category:"Lifestyle",followers:8700,link:"",videoLink:"",views:0,likes:0,comments:0,shares:0,saves:0,cost:2500,cpv:null,liveStatus:"WIP",liveMonth:"July 2026",monthOrder:202607,region:"UAE",tier:"Nano",engRate:null,postedAt:null},
+  {id:14,name:"Eyaad",agency:"Plug Media",category:"Lifestyle",followers:5400,link:"",videoLink:"",views:0,likes:0,comments:0,shares:0,saves:0,cost:2500,cpv:null,liveStatus:"WIP",liveMonth:"July 2026",monthOrder:202607,region:"UAE",tier:"Nano",engRate:null,postedAt:null},
+  {id:15,name:"Zoya",agency:"Plug Media",category:"Lifestyle",followers:6600,link:"",videoLink:"",views:0,likes:0,comments:0,shares:0,saves:0,cost:2500,cpv:null,liveStatus:"WIP",liveMonth:"July 2026",monthOrder:202607,region:"UAE",tier:"Nano",engRate:null,postedAt:null},
+  {id:16,name:"Syed",agency:"Plain Jane",category:"Lifestyle",followers:106000,link:"",videoLink:"",views:0,likes:0,comments:0,shares:0,saves:0,cost:2000,cpv:null,liveStatus:"WIP",liveMonth:"July 2026",monthOrder:202607,region:"UAE",tier:"Macro",engRate:null,postedAt:null},
 ];
 
 function setSheetLink(c) {
