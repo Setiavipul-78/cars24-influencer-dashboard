@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-07-17T10:24:26.195Z",
+  "exportedAt": "2026-07-17T10:24:35.683Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -5716,7 +5716,7 @@
       "followers": "222000",
       "avg_views": "500000",
       "final_cost": "",
-      "payment_agency": "",
+      "payment_agency": "Flutch",
       "avg_cpv": "0",
       "live_status": "Live",
       "business": "Buy",
