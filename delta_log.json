@@ -18,6 +18,38 @@
         "totalSpend": 43000,
         "delta": null
       }
+    },
+    {
+      "date": "2026-07-18",
+      "refreshedAt": "2026-07-18T10:34:22Z",
+      "AU": {
+        "creatorsLive": 154,
+        "totalViews": 1608567,
+        "totalLikes": 27119,
+        "totalComments": 3453,
+        "totalSpend": 0,
+        "delta": {
+          "creatorsLive": 0,
+          "totalViews": 1042329,
+          "totalLikes": 54,
+          "totalComments": 7,
+          "totalSpend": 0
+        }
+      },
+      "UAE": {
+        "creatorsLive": 15,
+        "totalViews": 757828,
+        "totalLikes": 4740,
+        "totalComments": 1487,
+        "totalSpend": 43000,
+        "delta": {
+          "creatorsLive": 0,
+          "totalViews": 1537,
+          "totalLikes": -8212,
+          "totalComments": 0,
+          "totalSpend": 0
+        }
+      }
     }
   ]
 }
