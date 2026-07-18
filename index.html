@@ -12,13 +12,14 @@
 <meta property="og:description" content="Real-time influencer campaign metrics — views, CPV, engagement and more.">
 <meta property="og:image"       content="og-image.png">
 <meta property="og:type"        content="website">
+<meta name="color-scheme" content="light">
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
+:root{color-scheme:light;
   --blue:#4736FE;--blue-d:#3628e0;--blue-l:#ede9ff;--blue-50:#f5f3ff;
   --mint:#00d4a1;--mint-l:#e0faf4;
   --g50:#f9fafb;--g100:#f3f4f6;--g200:#e5e7eb;--g300:#d1d5db;
@@ -343,8 +344,6 @@ tr.rspin td{background:#f5f3ff!important}
 .ov-period-lbl{font-size:12px;font-weight:600;color:var(--g400);text-transform:uppercase;letter-spacing:.7px}
 .btn-sheet-pill{display:inline-flex;align-items:center;gap:5px;padding:7px 16px;border-radius:20px;background:var(--blue);color:#fff;font-size:12.5px;font-weight:600;text-decoration:none;letter-spacing:.2px;border:none;cursor:pointer;transition:opacity .15s,box-shadow .15s;margin-left:auto}
 .btn-sheet-pill:hover{opacity:.88;box-shadow:0 3px 10px rgba(71,54,254,.3)}
-@media(prefers-color-scheme:dark){.btn-sheet-pill{background:var(--blue)}}
-:root[data-theme="dark"] .btn-sheet-pill{background:var(--blue)}
 .mom-highlight{outline:3px solid var(--blue);outline-offset:4px;border-radius:12px;transition:outline .3s}
 
 /* ── Enhanced KPI cards ───────────────────────────────────────── */
@@ -888,17 +887,6 @@ th.sa{color:var(--blue)}.th.sd{color:var(--blue)}
 @media(max-width:480px){
   #goat-panel{right:12px;left:12px;width:auto;bottom:80px;}
   #goat-btn{bottom:18px;right:18px;}
-}
-@media(prefers-color-scheme:dark){
-  #goat-panel{background:#1e1f2e;border-color:#2e3044;}
-  #goat-msgs::-webkit-scrollbar-thumb{background:#3e4060;}
-  .cmsg.bot  .cbbl{background:#2a2b3d;color:#e5e7eb;}
-  .cmsg.user .cav{background:#2a2b3d;color:#9ca3af;}
-  #goat-input-row{background:#1e1f2e;border-top-color:#2e3044;}
-  #goat-input{background:#2a2b3d;color:#f3f4f6;border-color:#3e4060;}
-  #goat-input:focus{background:#1e1f2e;border-color:#4736FE;}
-  .cchip{background:#2a2b3d;color:#9ca3af;border-color:#3e4060;}
-  .cchip:hover{background:#4736FE;color:#fff;border-color:#4736FE;}
 }
 </style>
 
@@ -1501,6 +1489,7 @@ function buildOverview() {
   buildVFRSection();
   buildMoMTable();
   buildTierTable();
+  syncActiveTab();
 }
 
 function renderOvKPIs(period) {
