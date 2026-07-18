@@ -2493,11 +2493,24 @@ function goatAppend(role, text) {
   const div = document.createElement('div');
   div.className = `goat-msg ${role}`;
   const isBot = role === 'bot';
-  // Minimal markdown: bold (**text**), newlines
-  const html = text
-    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+  // Markdown: bold, bullet lists, newlines
+  const escaped = text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  // Convert bullet lines into a proper <ul>
+  const html = escaped
     .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
-    .replace(/\n/g,'<br>');
+    .split('\n')
+    .reduce((acc, line) => {
+      const bullet = line.match(/^(\s*[-*•]\s+)(.+)/);
+      if (bullet) {
+        if (!acc.inList) { acc.parts.push('<ul style="margin:6px 0 6px 14px;padding:0">'); acc.inList = true; }
+        acc.parts.push(`<li style="margin:2px 0">${bullet[2]}</li>`);
+      } else {
+        if (acc.inList) { acc.parts.push('</ul>'); acc.inList = false; }
+        acc.parts.push(line ? line+'<br>' : '<br>');
+      }
+      return acc;
+    }, {parts:[], inList:false})
+    .parts.join('').replace(/<br>$/, '');
   div.innerHTML = isBot
     ? `<div class="av">🐐</div><div class="bubble">${html}</div>`
     : `<div class="bubble">${html}</div><div class="av">V</div>`;
@@ -2526,6 +2539,7 @@ function goatRemoveTyping(id) {
 function buildDataContext() {
   if (!allRows.length) return 'No data currently loaded.';
   const country = activeCountry;
+  const platform = activePlatform;
   const live = allRows.filter(r => (r.liveStatus||'').toLowerCase() === 'live');
   const totalViews   = allRows.reduce((s,r) => s+(r.views||0), 0);
   const totalLikes   = allRows.reduce((s,r) => s+(r.likes||0), 0);
@@ -2545,8 +2559,8 @@ function buildDataContext() {
   }
   const months = Object.entries(monthMap).sort((a,b)=>a[1].mo-b[1].mo);
   const monthStr = months.map(([m,d]) => {
-    const cpv = d.views&&d.spend ? (d.spend/d.views).toFixed(4) : '—';
-    return `  ${m}: ${d.creators} creators, views=${fmtN(d.views)}, spend=${fmtN(d.spend)}, blendedCPV=${cpv}, likes=${fmtN(d.likes)}, comments=${fmtN(d.comments)}`;
+    const cpv = d.views&&d.spend ? (d.spend/d.views).toFixed(3) : '—';
+    return `  ${m}: ${d.creators} creators, views=${fmtN(d.views)}, spend=${fmtN(d.spend)}, blendedCPV=${cpv}`;
   }).join('\n');
 
   // AU uses MOM_DATA for spend
@@ -2555,10 +2569,6 @@ function buildDataContext() {
     const totAuSpend = AU_MOM_DATA.reduce((s,d)=>s+d.cost,0);
     auSpendStr = `\nAU Monthly Spend (AUD): ${AU_MOM_DATA.map(d=>`${d.month}: A$${d.cost} (${d.views} views)`).join(', ')}\nTotal AU Spend: A$${totAuSpend}`;
   }
-
-  // Top 5 by views
-  const top5 = [...allRows].filter(r=>r.views).sort((a,b)=>b.views-a.views).slice(0,5);
-  const top5Str = top5.map(r=>`  ${r.name} (${r.liveMonth}): ${fmtN(r.views)} views, ER=${r.engRate??'—'}%, CPV=${r.cpv??'—'}`).join('\n');
 
   // Agency summary
   const agMap = {};
@@ -2572,22 +2582,39 @@ function buildDataContext() {
   const agStr = Object.entries(agMap).sort((a,b)=>b[1].views-a[1].views)
     .map(([a,d])=>`  ${a}: ${d.creators} creators, ${fmtN(d.views)} views, spend=${fmtN(d.spend)}`).join('\n');
 
+  // Tier breakdown
+  const tierMap = {};
+  for (const r of allRows) {
+    const t = r.tier||'Unknown';
+    if (!tierMap[t]) tierMap[t] = {creators:0,views:0};
+    tierMap[t].creators++;
+    tierMap[t].views += r.views||0;
+  }
+  const tierStr = Object.entries(tierMap).map(([t,d])=>`  ${t}: ${d.creators} creators, ${fmtN(d.views)} views`).join('\n');
+
+  // All creators — compact one-liner each
+  const creatorsStr = allRows.map(r => {
+    const cpv = r.cpv ? r.cpv.toFixed(3) : '—';
+    const er  = r.engRate != null ? r.engRate.toFixed(1)+'%' : '—';
+    return `  ${r.name} | ${r.agency||'—'} | ${r.liveMonth||'—'} | status=${r.liveStatus||'—'} | views=${fmtN(r.views)} | CPV=${cpv} | ER=${er} | cost=${r.cost||0} | subs=${fmtN(r.followers)}`;
+  }).join('\n');
+
   const sym = country==='AU'?'AUD':country==='UAE'?'AED':'INR';
-  return `Country: ${country}
-Total creators in view: ${allRows.length} (${live.length} live)
-Total views: ${fmtN(totalViews)}
-Total likes: ${fmtN(totalLikes)}
-Total comments: ${fmtN(totalComments)}
-Total spend (live rows, ${sym}): ${fmtN(totalSpend)}${auSpendStr}
+  return `Country: ${country} | Platform: ${platform}
+Total creators: ${allRows.length} (${live.length} live, ${allRows.length-live.length} pipeline)
+Total views: ${fmtN(totalViews)} | Total spend (${sym}): ${fmtN(totalSpend)}${auSpendStr}
 
 Month-by-month:
 ${monthStr}
 
-Top 5 by views:
-${top5Str}
-
 Agency breakdown:
-${agStr}`;
+${agStr}
+
+Tier breakdown:
+${tierStr}
+
+All creators:
+${creatorsStr}`;
 }
 </script>
 </body>
