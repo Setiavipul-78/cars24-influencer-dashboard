@@ -2600,12 +2600,14 @@ function buildDataContext() {
   }
   const tierStr = Object.entries(tierMap).map(([t,d])=>`  ${t}: ${d.creators} creators, ${fmtN(d.views)} views`).join('\n');
 
-  // All creators — compact one-liner each
-  const creatorsStr = allRows.map(r => {
-    const cpv = r.cpv ? r.cpv.toFixed(3) : '—';
-    const er  = r.engRate != null ? r.engRate.toFixed(1)+'%' : '—';
-    return `  ${r.name} | ${r.agency||'—'} | ${r.liveMonth||'—'} | status=${r.liveStatus||'—'} | views=${fmtN(r.views)} | CPV=${cpv} | ER=${er} | cost=${r.cost||0} | subs=${fmtN(r.followers)}`;
-  }).join('\n');
+  // All creators sorted by views desc — raw numbers so Claude can compare correctly
+  const creatorsStr = [...allRows]
+    .sort((a,b) => (b.views||0) - (a.views||0))
+    .map(r => {
+      const cpv = r.cpv ? r.cpv.toFixed(3) : '—';
+      const er  = r.engRate != null ? r.engRate.toFixed(1)+'%' : '—';
+      return `  ${r.name} | ${r.agency||'—'} | ${r.liveMonth||'—'} | status=${r.liveStatus||'—'} | views=${r.views||0} | CPV=${cpv} | ER=${er} | cost=${r.cost||0} | subs=${r.followers||0}`;
+    }).join('\n');
 
   const sym = country==='AU'?'AUD':country==='UAE'?'AED':'INR';
   return `Country: ${country} | Platform: ${platform}
