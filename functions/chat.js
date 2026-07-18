@@ -31,8 +31,7 @@ export async function onRequestPost(context) {
   const { question, dataContext, history = [] } = body;
   if (!question) return json({ error: 'No question provided' }, 400);
 
-  // Cap dataContext to ~12,000 chars (~3,000 tokens) — enough for all 190+ creators
-  const ctxTrimmed = (dataContext || 'No data loaded yet.').slice(0, 12000);
+  const ctxTrimmed = dataContext || 'No data loaded yet.';
 
   const systemPrompt = `You are GOAT — the AI analyst embedded inside Cars24's Influencer Marketing Dashboard.
 GOAT stands for Growth & Outcome Analysis Tool.
