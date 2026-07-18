@@ -2,32 +2,31 @@ export async function onRequestPost(context) {
   const { ANTHROPIC_API_KEY } = context.env;
 
   if (!ANTHROPIC_API_KEY) {
-    return new Response(JSON.stringify({ error: 'API key not configured' }), {
-      status: 500, headers: { 'Content-Type': 'application/json' }
-    });
+    return json({ error: 'API key not configured' }, 500);
   }
 
   let body;
   try { body = await context.request.json(); }
-  catch { return new Response(JSON.stringify({ error: 'Invalid JSON' }), { status: 400, headers: { 'Content-Type': 'application/json' } }); }
+  catch { return json({ error: 'Invalid JSON' }, 400); }
 
   const { question, dataContext, history = [] } = body;
-  if (!question) return new Response(JSON.stringify({ error: 'No question' }), { status: 400, headers: { 'Content-Type': 'application/json' } });
+  if (!question) return json({ error: 'No question provided' }, 400);
 
   const systemPrompt = `You are CLOUT — the AI analyst embedded inside Cars24's Influencer Marketing Dashboard.
 CLOUT stands for Campaign Lens for Outcome & Understanding Tracker.
-You are sharp, data-driven, and speak like a senior marketing analyst who knows the numbers cold.
+You are sharp, concise, and data-driven. Speak like a senior marketing analyst.
 
-Your job: answer questions about the current influencer campaign data visible in the dashboard.
-Keep answers concise, use numbers/percentages where relevant, and always reference month or creator names when available.
-Use Indian number format for India data (Cr/L/K), and standard K/M for AU and UAE.
-If the data doesn't contain enough info to answer, say so clearly rather than guessing.
+Answer questions about the current influencer campaign data below.
+- Keep answers short and punchy (2-4 sentences max unless a list is clearly better)
+- Always cite specific numbers, creator names, or months from the data
+- Use Indian format for India (Cr/L/K), K/M for AU and UAE
+- If data isn't available to answer, say so honestly in one line
 
 CURRENT DASHBOARD DATA:
 ${dataContext || 'No data loaded yet.'}`;
 
   const messages = [
-    ...history.map(h => ({ role: h.role, content: h.content })),
+    ...history.slice(-8).map(h => ({ role: h.role, content: h.content })),
     { role: 'user', content: question }
   ];
 
@@ -41,21 +40,24 @@ ${dataContext || 'No data loaded yet.'}`;
       },
       body: JSON.stringify({
         model: 'claude-haiku-4-5-20251001',
-        max_tokens: 512,
+        max_tokens: 400,
         system: systemPrompt,
         messages,
       }),
     });
 
+    if (!res.ok) {
+      const errText = await res.text();
+      return json({ error: `Anthropic API error ${res.status}`, detail: errText.slice(0, 200) }, 502);
+    }
+
     const data = await res.json();
-    const answer = data?.content?.[0]?.text || 'Sorry, I couldn\'t generate a response.';
-    return new Response(JSON.stringify({ answer }), {
-      headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }
-    });
+    const answer = data?.content?.[0]?.text;
+    if (!answer) return json({ error: 'Empty response from Claude', raw: JSON.stringify(data).slice(0, 300) }, 502);
+
+    return json({ answer });
   } catch (e) {
-    return new Response(JSON.stringify({ error: 'Failed to reach Claude API', detail: e.message }), {
-      status: 502, headers: { 'Content-Type': 'application/json' }
-    });
+    return json({ error: 'Network error reaching Claude API', detail: e.message }, 502);
   }
 }
 
@@ -66,5 +68,12 @@ export async function onRequestOptions() {
       'Access-Control-Allow-Methods': 'POST, OPTIONS',
       'Access-Control-Allow-Headers': 'Content-Type',
     }
+  });
+}
+
+function json(obj, status = 200) {
+  return new Response(JSON.stringify(obj), {
+    status,
+    headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }
   });
 }
