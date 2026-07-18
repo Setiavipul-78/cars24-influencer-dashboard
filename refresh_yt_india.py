@@ -16,7 +16,7 @@ import json, re, os, sys, time, datetime, ssl, certifi, urllib.request, urllib.e
 _SSL = ssl.create_default_context(cafile=certifi.where())
 
 APIFY_TOKEN = os.environ.get("APIFY_TOKEN", "")
-ACTOR_ID    = "bernardo~youtube-scraper"
+ACTOR_ID    = "streamers~youtube-scraper"
 MAX_WAIT_S  = 600
 POLL_S      = 15
 SCRIPT_DIR  = os.path.dirname(os.path.abspath(__file__))
@@ -56,7 +56,11 @@ def clean_yt_url(raw):
     for tok in re.split(r'[\s\n,]+', (raw or '')):
         tok = tok.strip()
         if YT_RE.match(tok) or 'youtu.be' in tok:
-            return tok.split('?')[0].rstrip('/') if '&' not in tok else tok
+            # Extract video ID and return canonical form to avoid matching bugs
+            m = VID_RE.search(tok)
+            if m:
+                return f'https://www.youtube.com/watch?v={m.group(1)}'
+            return tok.split('?')[0].rstrip('/')
     return ''
 
 def fetch_text(url):
@@ -113,15 +117,21 @@ else:
 
             # Determine if executed (Final Cost > 0 OR Watch Time in M:SS format)
             cost_raw = sr.get('final_cost') or sr.get('cost') or ''
-            wt       = (sr.get('watch_time') or sr.get('watchtime') or '').strip()
+            wt       = (sr.get('avg_watch_time') or sr.get('watch_time') or sr.get('watchtime') or '').strip()
             cost_val = num(cost_raw)
             is_exec  = (cost_val and cost_val > 0) or bool(TIME_RE.match(wt))
             if not is_exec:
                 continue
 
-            channel_link = clean_yt_url(sr.get('channel_link') or sr.get('channel_url') or sr.get('channel') or '')
-            video_link   = clean_yt_url(sr.get('video_link') or sr.get('video_url') or sr.get('reel_link') or '')
-            live_month   = (sr.get('live_month') or sr.get('month') or '').strip()
+            channel_link = clean_yt_url(sr.get('link') or sr.get('channel_link') or sr.get('channel_url') or sr.get('channel') or '')
+            video_link   = clean_yt_url(sr.get('video_live_link') or sr.get('video_link') or sr.get('video_url') or sr.get('reel_link') or '')
+            raw_month    = (sr.get('live_month') or sr.get('month') or '').strip()
+            # Convert "2026-01-01" date strings → "January 2026"
+            live_month   = raw_month
+            import re as _re2
+            _dm = _re2.match(r'(\d{4})-(\d{2})-\d{2}', raw_month)
+            if _dm:
+                live_month = f"{MO[int(_dm.group(2))-1]} {_dm.group(1)}"
 
             # Merge with existing row for freeze fields
             old_r = existing_by_name.get(name.lower(), {})
@@ -134,18 +144,19 @@ else:
                 'link':        video_link or channel_link,
                 'subscribers': num(sr.get('subscribers') or sr.get('subs') or old_r.get('subscribers')),
                 'followers':   num(sr.get('subscribers') or sr.get('subs') or old_r.get('subscribers')),
-                'views':       num(sr.get('avg_views') or sr.get('views') or old_r.get('views')),
+                'views':       num(sr.get('views_on_30_jun') or sr.get('avg_views') or sr.get('views') or old_r.get('views')),
+                'plannedViews':num(sr.get('avg_views') or old_r.get('plannedViews')),
                 'likes':       num(sr.get('likes') or old_r.get('likes')),
-                'comments':    old_r.get('comments'),
+                'comments':    num(sr.get('comments') or old_r.get('comments')),
                 'cost':        cost_val,
-                'cpv':         num(sr.get('cpv') or old_r.get('cpv')),
+                'cpv':         num(sr.get('actual_cpv_as_on_30062026') or sr.get('avg_cpv') or sr.get('cpv') or old_r.get('cpv')),
                 'avgWatchTime':wt,
                 'agency':      (sr.get('agency') or sr.get('partner') or old_r.get('agency') or 'Direct').strip(),
-                'liveStatus':  (sr.get('live_status') or sr.get('status') or old_r.get('liveStatus') or 'Live').strip(),
+                'liveStatus':  (sr.get('status') or sr.get('live_status') or old_r.get('liveStatus') or 'Live').strip(),
                 'liveMonth':   live_month or old_r.get('liveMonth', ''),
                 'monthOrder':  month_order(live_month) if live_month else old_r.get('monthOrder', 0),
-                'region':      (sr.get('region') or sr.get('language') or old_r.get('region') or 'PAN INDIA').strip(),
-                'language':    region_to_lang(sr.get('region') or sr.get('language') or old_r.get('region', '')),
+                'region':      (sr.get('city') or sr.get('region') or sr.get('language') or old_r.get('region') or 'PAN INDIA').strip(),
+                'language':    region_to_lang(sr.get('city') or sr.get('region') or sr.get('language') or old_r.get('region', '')),
                 'platform':    'YouTube',
                 'refreshStatus': old_r.get('refreshStatus', 'frozen'),
             }
@@ -163,14 +174,16 @@ if not rows:
 # ══════════════════════════════════════════════════════════════════════════════
 # Step 2: Collect video URLs that Apify can scrape
 # ══════════════════════════════════════════════════════════════════════════════
-def clean_vid_url(raw):
-    return (raw or '').strip().split('?')[0].rstrip('/') if raw else ''
+def vid_id(raw):
+    m = VID_RE.search(raw or '')
+    return m.group(1) if m else ''
 
-scrapeable = {}   # normalised_url → row index list
+scrapeable = {}   # canonical_watch_url → row index list
 for i, r in enumerate(rows):
-    vid = clean_vid_url(r.get('videoLink', ''))
-    if vid and VID_RE.search(vid):
-        scrapeable.setdefault(vid, []).append(i)
+    vid = vid_id(r.get('videoLink', ''))
+    if vid:
+        canon = f'https://www.youtube.com/watch?v={vid}'
+        scrapeable.setdefault(canon, []).append(i)
 
 print(f"  {len(scrapeable)} unique video URLs to scrape")
 
@@ -211,13 +224,15 @@ if scrapeable and APIFY_TOKEN:
             )
             print(f"  Got {len(items)} items from Apify")
             for it in items:
-                raw_url = (it.get('url') or it.get('inputUrl') or '').split('?')[0].rstrip('/')
-                if not raw_url: continue
-                apify_results[raw_url] = {
-                    'views':       it.get('viewCount') or it.get('views') or it.get('videoViewCount'),
-                    'likes':       it.get('likeCount') or it.get('likes'),
-                    'comments':    it.get('commentCount') or it.get('comments'),
-                    'subscribers': it.get('channelSubscriberCount') or it.get('subscriberCount'),
+                raw_url = it.get('url') or it.get('inputUrl') or ''
+                vid = vid_id(raw_url)
+                key = f'https://www.youtube.com/watch?v={vid}' if vid else raw_url.split('?')[0].rstrip('/')
+                if not key: continue
+                apify_results[key] = {
+                    'views':       it.get('viewCount') or it.get('videoViewCount') or it.get('views'),
+                    'likes':       it.get('likes') or it.get('likeCount'),
+                    'comments':    it.get('commentsCount') or it.get('commentCount') or it.get('comments'),
+                    'subscribers': it.get('numberOfSubscribers') or it.get('channelSubscriberCount') or it.get('subscriberCount'),
                 }
         else:
             print(f"  Scrape status: {status} — freezing all data", file=sys.stderr)
@@ -236,7 +251,8 @@ else:
 print("── Step 4: Merging ──")
 updated = frozen = 0
 for r in rows:
-    vid  = clean_vid_url(r.get('videoLink', ''))
+    _v   = vid_id(r.get('videoLink', ''))
+    vid  = f'https://www.youtube.com/watch?v={_v}' if _v else ''
     hit  = apify_results.get(vid, {}) if vid else {}
 
     if hit:
@@ -260,6 +276,7 @@ print(f"\n  Updated: {updated}  Frozen: {frozen}")
 # ══════════════════════════════════════════════════════════════════════════════
 # Step 5: Write india_yt_data.json
 # ══════════════════════════════════════════════════════════════════════════════
+data = {}
 data['refreshedAt'] = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')
 data['rows'] = rows
 with open(OUT_PATH, 'w') as f:

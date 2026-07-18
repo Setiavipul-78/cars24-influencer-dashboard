@@ -620,6 +620,7 @@ th.sa{color:var(--blue)}.th.sd{color:var(--blue)}
     <div class="ts-scroll">
       <table>
         <thead><tr>
+          <th style="width:28px;text-align:center;color:var(--g400);font-weight:600">#</th>
           <th style="width:28px" class="col-hide-sm"><input type="checkbox" id="cb-all" onclick="toggleSelAll()"/></th>
           <th onclick="colSort('name')">Influencer</th>
           <th onclick="colSort('category')" class="col-hide-sm">Category</th>
@@ -1947,7 +1948,7 @@ function colSort(col) {
 // ═══════════════════════════════════════════════
 function renderTable() {
   const tbody = document.getElementById('inf-tbody');
-  if (!filteredRows.length) { tbody.innerHTML=`<tr><td colspan="17" style="text-align:center;padding:32px;color:var(--g400)">No results</td></tr>`; return; }
+  if (!filteredRows.length) { tbody.innerHTML=`<tr><td colspan="18" style="text-align:center;padding:32px;color:var(--g400)">No results</td></tr>`; return; }
   if (activeCountry === 'AU') {
     const momLookup = {};
     AU_MOM_DATA.forEach(d=>{ momLookup[d.month]=d; });
@@ -1961,6 +1962,7 @@ function renderTable() {
       const mER       = mViews ? (mLikes+mComments)/mViews*100 : null;
       const blendedCPV = mViews && mom.cost ? mom.cost/mViews : null;
       const hdr = `<tr style="background:var(--blue);color:#fff">
+        <td></td>
         <td class="col-hide-sm"></td>
         <td style="font-weight:700;padding:8px 12px" colspan="2">${month}</td>
         <td class="col-hide-sm"></td>
@@ -1977,10 +1979,12 @@ function renderTable() {
         <td class="col-hide-sm">${mom.cost?fmtAuC(mom.cost):'—'}</td>
         <td></td><td></td>
       </tr>`;
-      const rowsHtml = mRows.map(r => {
+      const rowsHtml = mRows.map((r, ri) => {
         const sel=selectedIds.has(r.id); const rc=r.refreshStatus==='done'?'rok':r.refreshStatus==='error'?'rerr':'';
         const cat=r.category||'Lifestyle'; const catKey=cat.toLowerCase();
+        const globalIdx = filteredRows.indexOf(r);
         return `<tr class="${rc}${sel?' sel':''}" id="row-${r.id}">
+          <td style="text-align:center;color:var(--g500);font-size:12px;font-weight:600">${globalIdx+1}</td>
           <td class="col-hide-sm"><input type="checkbox" ${sel?'checked':''} onchange="toggleRow(${r.id})"/></td>
           <td><div class="cn">${r.name}</div><div class="cs">${r.agency||'—'}</div>${r.link?`<a href="${r.link}" target="_blank" class="cl">Profile ↗</a>`:''}</td>
           <td class="col-hide-sm"><span class="pill cat-${catKey}">${cat}</span></td>
@@ -2004,12 +2008,13 @@ function renderTable() {
     }).join('');
     return;
   }
-  tbody.innerHTML = filteredRows.map(r => {
+  tbody.innerHTML = filteredRows.map((r, i) => {
     const sel = selectedIds.has(r.id);
     const rc  = r.refreshStatus==='done'?'rok':r.refreshStatus==='error'?'rerr':'';
     const cat = r.category || 'Lifestyle';
     const catKey = cat.toLowerCase();
     return `<tr class="${rc}${sel?' sel':''}" id="row-${r.id}">
+      <td style="text-align:center;color:var(--g500);font-size:12px;font-weight:600">${i+1}</td>
       <td class="col-hide-sm"><input type="checkbox" ${sel?'checked':''} onchange="toggleRow(${r.id})"/></td>
       <td>
         <div class="cn">${r.name}</div>
@@ -2488,8 +2493,8 @@ function toggleGoat() {
   panel.classList.toggle('open', goatOpen);
   if (goatOpen && goatHistory.length === 0) {
     // Boot message
-    const country = activeCountry === 'IN' ? '🇮🇳 India' : activeCountry === 'AU' ? '🇦🇺 Australia' : '🇦🇪 UAE';
-    goatAppend('bot', `Hey! I'm **GOAT** ⚡ — your campaign analyst for the ${country} dashboard.\n\nAsk me anything: views, CPV, top creators, spend by month, agency comparison — I've got the data right here.`);
+    const countryFlag = activeCountry === 'IN' ? '🇮🇳' : activeCountry === 'AU' ? '🇦🇺' : '🇦🇪';
+    goatAppend('bot', `Hey! I'm **GOAT** 🐐 — your campaign analyst for the ${countryFlag} influencer dashboard.\n\nAsk me anything: views, CPV, top creators, spend by month, agency comparison — I've got the data right here.`);
   }
   if (goatOpen) setTimeout(() => document.getElementById('goat-input').focus(), 250);
 }
@@ -2518,7 +2523,7 @@ async function goatSend() {
       body: JSON.stringify({ question: q, dataContext: buildDataContext(), history: goatHistory.slice(-8) })
     });
     const data = await res.json();
-    const answer = data.answer || data.error || 'Sorry, something went wrong.';
+    const answer = data.answer || (data.error ? `⚠️ ${data.error}${data.detail ? ': '+data.detail : ''}` : 'Sorry, something went wrong.');
     goatRemoveTyping(typingId);
     goatAppend('bot', answer);
     goatHistory.push({ role: 'assistant', content: answer });
@@ -2526,7 +2531,9 @@ async function goatSend() {
     if (goatHistory.length > 20) goatHistory = goatHistory.slice(-20);
   } catch(e) {
     goatRemoveTyping(typingId);
-    goatAppend('bot', '⚠️ Couldn\'t reach the server. Make sure the `ANTHROPIC_API_KEY` env var is set in Cloudflare Pages.');
+    const netErr = '⚠️ Couldn\'t reach the server. Make sure the `ANTHROPIC_API_KEY` env var is set in Cloudflare Pages.';
+    goatAppend('bot', netErr);
+    goatHistory.push({ role: 'assistant', content: netErr });
   }
 
   goatWaiting = false;

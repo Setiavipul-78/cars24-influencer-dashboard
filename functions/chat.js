@@ -25,16 +25,23 @@ Answer questions about the current influencer campaign data below.
 CURRENT DASHBOARD DATA:
 ${dataContext || 'No data loaded yet.'}`;
 
-  // Drop trailing user message from history if it duplicates `question`
-  // (frontend pushes to history before sending, so it arrives in both places)
-  const histTrimmed = [...history];
-  if (histTrimmed.length && histTrimmed[histTrimmed.length - 1].role === 'user') {
-    histTrimmed.pop();
+  // Build a valid alternating-role message sequence.
+  // Frontend pushes the current question to history before fetching, so drop any
+  // trailing user message first to avoid two consecutive user entries.
+  let hist = (history || []).filter(h => h && h.role && h.content);
+  if (hist.length && hist[hist.length - 1].role === 'user') hist = hist.slice(0, -1);
+  hist = hist.slice(-8);
+  // Ensure sequence starts with a user message (Anthropic requires user-first).
+  const firstUser = hist.findIndex(h => h.role === 'user');
+  if (firstUser > 0) hist = hist.slice(firstUser);
+  // Collapse any accidental same-role runs.
+  const deduped = [];
+  for (const h of hist) {
+    if (!deduped.length || deduped[deduped.length - 1].role !== h.role) {
+      deduped.push({ role: h.role, content: h.content });
+    }
   }
-  const messages = [
-    ...histTrimmed.slice(-8).map(h => ({ role: h.role, content: h.content })),
-    { role: 'user', content: question }
-  ];
+  const messages = [...deduped, { role: 'user', content: question }];
 
   try {
     const res = await fetch('https://api.anthropic.com/v1/messages', {
@@ -46,7 +53,7 @@ ${dataContext || 'No data loaded yet.'}`;
       },
       body: JSON.stringify({
         model: 'claude-haiku-4-5-20251001',
-        max_tokens: 400,
+        max_tokens: 500,
         system: systemPrompt,
         messages,
       }),

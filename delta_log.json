@@ -57,6 +57,20 @@
         "totalComments": 73681,
         "totalCost": 18426000,
         "delta": null
+      },
+      "IN_YT": {
+        "creatorsLive": 15,
+        "totalViews": 1213871,
+        "totalLikes": 73011,
+        "totalComments": 6272,
+        "totalCost": 590000,
+        "delta": {
+          "creatorsLive": null,
+          "totalViews": null,
+          "totalLikes": null,
+          "totalComments": null,
+          "totalCost": null
+        }
       }
     }
   ]
