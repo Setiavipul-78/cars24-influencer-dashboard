@@ -177,7 +177,18 @@ def refresh_country(json_path, label):
 
     print(f"Done — updated {updated} rows, {no_match} no Apify match")
     print(f"Wrote {full_path}")
-    return json_path, full_path
+
+    # Compute snapshot metrics for delta log
+    live_rows = [r for r in rows if (r.get("liveStatus") or "").lower() == "live"]
+    snapshot = {
+        "creatorsLive": len(live_rows),
+        "totalViews":   sum(r.get("views") or 0 for r in rows),
+        "totalLikes":   sum(r.get("likes") or 0 for r in rows),
+        "totalComments":sum(r.get("comments") or 0 for r in rows),
+        "totalSpend":   sum(r.get("cost") or 0 for r in live_rows),
+    }
+    country_key = "AU" if "australia" in label.lower() else "UAE"
+    return json_path, full_path, country_key, snapshot
 
 
 def push_to_github(file_path, repo_relative):
@@ -224,18 +235,65 @@ def push_to_github(file_path, repo_relative):
     print(f"  Pushed — HTTP {code}")
 
 
+def update_delta_log(script_dir, country_key, new_snap):
+    """Append today's snapshot to delta_log.json, computing delta vs previous entry."""
+    log_path = os.path.join(script_dir, "delta_log.json")
+    try:
+        with open(log_path) as f:
+            log_data = json.load(f)
+    except FileNotFoundError:
+        log_data = {"logs": []}
+
+    today = datetime.date.today().isoformat()
+    now_iso = datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
+
+    # Find or create today's entry
+    entry = next((e for e in log_data["logs"] if e["date"] == today), None)
+    if entry is None:
+        entry = {"date": today, "refreshedAt": now_iso}
+        log_data["logs"].append(entry)
+    entry["refreshedAt"] = now_iso
+
+    # Find previous snapshot for this country to compute delta
+    prev = None
+    for e in reversed(log_data["logs"][:-1]):
+        if country_key in e:
+            prev = e[country_key]
+            break
+
+    delta = None
+    if prev:
+        delta = {k: new_snap[k] - prev.get(k, 0) for k in new_snap}
+
+    entry[country_key] = {**new_snap, "delta": delta}
+
+    # Keep last 30 days only
+    log_data["logs"] = sorted(log_data["logs"], key=lambda e: e["date"])[-30:]
+
+    with open(log_path, "w") as f:
+        json.dump(log_data, f, indent=2)
+    print(f"  Delta log updated for {country_key} (date={today})")
+    return log_path
+
+
 if __name__ == "__main__":
+    script_dir = os.path.dirname(os.path.abspath(__file__))
     files_pushed = []
 
     # AU
-    _, au_path = refresh_country("au_live_data.json", "Australia")
+    _, au_path, au_key, au_snap = refresh_country("au_live_data.json", "Australia")
     files_pushed.append(("au_live_data.json", au_path))
 
     # UAE
-    _, uae_path = refresh_country("uae_live_data.json", "UAE")
+    _, uae_path, uae_key, uae_snap = refresh_country("uae_live_data.json", "UAE")
     files_pushed.append(("uae_live_data.json", uae_path))
 
-    # Push both to GitHub
+    # Update delta log
+    update_delta_log(script_dir, au_key, au_snap)
+    update_delta_log(script_dir, uae_key, uae_snap)
+    files_pushed.append(("delta_log.json", os.path.join(script_dir, "delta_log.json")))
+
+    # Push all to GitHub
     print("\n── Pushing to GitHub ──")
     for repo_rel, local_path in files_pushed:
         push_to_github(local_path, repo_rel)

@@ -1,0 +1,23 @@
+{
+  "logs": [
+    {
+      "date": "2026-07-14",
+      "refreshedAt": "2026-07-14T11:07:53Z",
+      "AU": {
+        "creatorsLive": 154,
+        "totalViews": 566238,
+        "totalLikes": 27065,
+        "totalComments": 3446,
+        "delta": null
+      },
+      "UAE": {
+        "creatorsLive": 15,
+        "totalViews": 756291,
+        "totalLikes": 12952,
+        "totalComments": 1487,
+        "totalSpend": 43000,
+        "delta": null
+      }
+    }
+  ]
+}
