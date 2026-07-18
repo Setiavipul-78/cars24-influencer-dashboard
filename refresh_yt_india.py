@@ -48,7 +48,13 @@ def region_to_lang(region):
 
 def num(s):
     if not s: return None
-    v = re.sub(r'[^0-9.]', '', str(s))
+    s2 = str(s).strip().lower().replace(',', '')
+    m = re.match(r'^([\d.]+)\s*([km])$', s2)
+    if m:
+        v = float(m.group(1))
+        mul = 1000 if m.group(2) == 'k' else 1_000_000
+        return int(round(v * mul))
+    v = re.sub(r'[^0-9.]', '', s2)
     try: return float(v) if '.' in v else int(v)
     except: return None
 
@@ -159,6 +165,7 @@ else:
                 'language':    region_to_lang(sr.get('city') or sr.get('region') or sr.get('language') or old_r.get('region', '')),
                 'platform':    'YouTube',
                 'refreshStatus': old_r.get('refreshStatus', 'frozen'),
+                'postedAt':    old_r.get('postedAt'),
             }
             rows.append(row)
 
@@ -232,7 +239,8 @@ if scrapeable and APIFY_TOKEN:
                     'views':       it.get('viewCount') or it.get('videoViewCount') or it.get('views'),
                     'likes':       it.get('likes') or it.get('likeCount'),
                     'comments':    it.get('commentsCount') or it.get('commentCount') or it.get('comments'),
-                    'subscribers': it.get('numberOfSubscribers') or it.get('channelSubscriberCount') or it.get('subscriberCount'),
+                    'subscribers': num(it.get('numberOfSubscribers') or it.get('channelSubscriberCount') or it.get('subscriberCount')),
+                    'uploadDate':  it.get('uploadDate') or it.get('date') or it.get('publishedAt') or it.get('videoPublishDate'),
                 }
         else:
             print(f"  Scrape status: {status} — freezing all data", file=sys.stderr)
@@ -263,9 +271,12 @@ for r in rows:
         if hit.get('subscribers') is not None:
             r['subscribers'] = hit['subscribers']
             r['followers']   = hit['subscribers']
+        # Upload date — only from Apify (when the video actually went live on YouTube)
+        if hit.get('uploadDate'):
+            r['postedAt'] = str(hit['uploadDate'])
         r['refreshStatus'] = 'scraped'
         updated += 1
-        print(f"  ✓ {r['name']:30s} views={r.get('views')}  subs={r.get('subscribers')}")
+        print(f"  ✓ {r['name']:30s} views={r.get('views')}  subs={r.get('subscribers')}  postedAt={r.get('postedAt')}")
     else:
         r['refreshStatus'] = 'frozen'
         frozen += 1

@@ -1110,12 +1110,17 @@ async function switchPlatform(p) {
       if (res.ok) {
         const data = await res.json();
         if (data.rows && data.rows.length) {
-          allRows = data.rows.map((r,i)=>({...r,id:i,
-            link: r.channelLink||r.link||'',
-            followers: r.subscribers||0,
-            liveStatus: r.liveStatus||'Live',
-            tier: r.tier || tierOf(r.subscribers||0),
-          }));
+          allRows = data.rows.map((r,i)=>{
+            const subs = r.subscribers||0;
+            const eng  = (r.likes||0)+(r.comments||0);
+            return {...r,id:i,
+              link: r.channelLink||r.link||'',
+              followers: subs,
+              liveStatus: r.liveStatus||'Live',
+              tier: r.tier || tierOf(subs),
+              engRate: r.engRate != null ? r.engRate : (r.views && eng > 0 ? eng/r.views*100 : null),
+            };
+          });
           buildFilters(); applyFilters(); buildOverview(); syncActiveTab();
           toast(`▶️ YouTube India — ${allRows.length} creators loaded`,'ok');
           return;
