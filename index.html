@@ -373,7 +373,8 @@ tr:hover td{background:var(--blue-50)!important;transition:background .12s}
 .cm-vlogs{background:#f5f3ff;color:#4c1d95}
 .cm-info{background:#fffbeb;color:#78350f}
 .cm-life{background:#f8fafc;color:#475569}
-tr.cm-total td{background:var(--g100)!important;font-weight:700;color:var(--g700);border-top:2px solid var(--g300)!important}
+tr.cm-total td{background:var(--g100)!important;font-weight:700;color:#111!important;border-top:2px solid var(--g300)!important}
+.cm-grand{background:var(--blue)!important;color:#fff!important;font-weight:700!important}
 
 /* ── Rank number enhanced ─────────────────────────────────────── */
 .prk{box-shadow:0 1px 3px rgba(0,0,0,.15)}
@@ -420,19 +421,18 @@ th.sa{color:var(--blue)}.th.sd{color:var(--blue)}
   </div>
 </header>
 
-<!-- Country switcher — sits above tabs so you pick market first -->
+<!-- Country + Platform switcher — single unified bar -->
 <div class="country-sw">
   <span class="csw-lbl">Market</span>
   <button class="csw-btn on" id="csw-IN" onclick="switchCountry('IN')">🇮🇳 India</button>
   <button class="csw-btn" id="csw-AU" onclick="switchCountry('AU')">🇦🇺 Australia</button>
   <button class="csw-btn" id="csw-UAE" onclick="switchCountry('UAE')">🇦🇪 UAE</button>
-</div>
-
-<!-- Platform toggle (India only) -->
-<div id="platform-sw" style="display:none;gap:6px;align-items:center;margin:0 0 4px;padding:0 2px">
-  <span class="csw-lbl">Platform</span>
-  <button class="csw-btn on" id="plt-ig" onclick="switchPlatform('Instagram')">📸 Instagram</button>
-  <button class="csw-btn" id="plt-yt" onclick="switchPlatform('YouTube')">▶️ YouTube</button>
+  <!-- Platform toggle — only visible when India is selected -->
+  <div id="platform-sw" style="display:none;align-items:center;gap:6px;border-left:2px solid var(--g200);padding-left:16px;margin-left:8px">
+    <span class="csw-lbl">Platform</span>
+    <button class="csw-btn on" id="plt-ig" onclick="switchPlatform('Instagram')">📸 Instagram</button>
+    <button class="csw-btn" id="plt-yt" onclick="switchPlatform('YouTube')">▶️ YouTube</button>
+  </div>
 </div>
 
 <!-- Tabs -->
@@ -651,19 +651,7 @@ th.sa{color:var(--blue)}.th.sd{color:var(--blue)}
 
 <!-- ════════ TAB: ANALYTICS ════════ -->
 <div class="tc" id="tc-an">
-  <div class="g2 mb">
-    <div class="card card-accent-blue">
-      <div class="sh">Top 10 by Views <span class="sh-tag">actual plays</span></div>
-      <div class="sec-desc">Highest-performing reels by total video play count across the full campaign</div>
-      <div class="cw-lg"><canvas id="c-top10v"></canvas></div>
-    </div>
-    <div class="card card-accent-mint">
-      <div class="sh">Top 10 by Engagement Rate <span class="sh-tag">% of views</span></div>
-      <div class="sec-desc">Reels with highest (likes + comments + saves) relative to total plays</div>
-      <div class="cw-lg"><canvas id="c-top10er"></canvas></div>
-    </div>
-  </div>
-  <!-- Row 2: CPV Trend + Budget MoM -->
+  <!-- Row 1: CPV Trend + Budget MoM -->
   <div class="g2 mb">
     <div class="card card-accent-or">
       <div class="sh">Avg CPV by Month <span class="sh-tag">cost-per-view trend</span></div>
@@ -676,20 +664,19 @@ th.sa{color:var(--blue)}.th.sd{color:var(--blue)}
       <div class="cw"><canvas id="c-budget-mom"></canvas></div>
     </div>
   </div>
-  <!-- Row 3: Tier Metrics (ER by Region removed) -->
+  <!-- Row 3: Tier Metrics + Scatter side-by-side -->
   <canvas id="c-er-region" style="display:none"></canvas>
-  <div class="mb">
+  <div class="g2 mb">
     <div class="card">
       <div class="sh">Avg Metrics by Tier <span class="sh-tag">ER % vs Avg CPV</span></div>
       <div class="sec-desc">How different audience-size tiers compare on engagement and cost efficiency</div>
       <div class="cw"><canvas id="c-tier-m"></canvas></div>
     </div>
-  </div>
-  <!-- Row 4: Scatter full-width -->
-  <div class="card mb">
-    <div class="sh">Followers vs Actual Views <span class="sh-tag">reach amplification scatter</span></div>
-    <div class="sec-desc">Each dot is a creator — outliers above the diagonal over-index on reach relative to their follower base</div>
-    <div class="cw" style="height:280px"><canvas id="c-scatter"></canvas></div>
+    <div class="card">
+      <div class="sh">Followers vs Actual Views <span class="sh-tag">reach amplification</span></div>
+      <div class="sec-desc">Each dot is a creator — outliers above the diagonal over-index on reach</div>
+      <div class="cw"><canvas id="c-scatter"></canvas></div>
+    </div>
   </div>
   <!-- Row 5 (2×2): Agency Performance + Content Category Matrix -->
   <div class="g2 mb">
@@ -965,9 +952,10 @@ const SHEET_GID = '1928933144';
 const SHEET_CSV = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=${SHEET_GID}`;
 
 const SHEET_URLS = {
-  IN:  `https://docs.google.com/spreadsheets/d/1VBjkdMm5Uhjq-JLmGqRL7aFTbTH3P0c7oRr1LHcN1o0/edit?gid=1928933144`,
-  AU:  `https://docs.google.com/spreadsheets/d/1VDcKBUNwFacleZFdN_By-qAeroheo3mlqOItat1ZQM8/edit?gid=713202607`,
-  UAE: `https://docs.google.com/spreadsheets/d/1_DEKX02I3Dh41B8nBtwPR1G-_4nt98WgDILZjzg3sp4/edit?gid=211709974`,
+  IN:    `https://docs.google.com/spreadsheets/d/1VBjkdMm5Uhjq-JLmGqRL7aFTbTH3P0c7oRr1LHcN1o0/edit?gid=1928933144`,
+  IN_YT: `https://docs.google.com/spreadsheets/d/1VBjkdMm5Uhjq-JLmGqRL7aFTbTH3P0c7oRr1LHcN1o0/edit?gid=1490331911`,
+  AU:    `https://docs.google.com/spreadsheets/d/1VDcKBUNwFacleZFdN_By-qAeroheo3mlqOItat1ZQM8/edit?gid=713202607`,
+  UAE:   `https://docs.google.com/spreadsheets/d/1_DEKX02I3Dh41B8nBtwPR1G-_4nt98WgDILZjzg3sp4/edit?gid=211709974`,
 };
 
 const MO = ['January','February','March','April','May','June','July','August','September','October','November','December'];
@@ -1091,7 +1079,9 @@ const UAE_ROWS = [
 
 function setSheetLink(c) {
   const el = document.getElementById('btn-sheet');
-  if (el) el.href = SHEET_URLS[c] || '#';
+  if (!el) return;
+  const key = (c === 'IN' && activePlatform === 'YouTube') ? 'IN_YT' : c;
+  el.href = SHEET_URLS[key] || '#';
 }
 
 let activePlatform = 'Instagram';
@@ -1100,6 +1090,7 @@ async function switchPlatform(p) {
   activePlatform = p;
   document.getElementById('plt-ig').classList.toggle('on', p === 'Instagram');
   document.getElementById('plt-yt').classList.toggle('on', p === 'YouTube');
+  setSheetLink('IN');
   Object.keys(charts).forEach(k=>{charts[k].destroy();delete charts[k];});
   selectedIds.clear();
   if (p === 'YouTube') {
@@ -2112,24 +2103,6 @@ function updSel() {
 //  ANALYTICS CHARTS
 // ═══════════════════════════════════════════════
 function buildAnalyticsCharts() {
-  // Top 10 views
-  dch('c-top10v');
-  const t10v = [...allRows].filter(r=>r.views).sort((a,b)=>b.views-a.views).slice(0,10);
-  charts['t10v'] = new Chart(document.getElementById('c-top10v').getContext('2d'), {
-    type:'bar',
-    data:{labels:t10v.map(r=>r.name),datasets:[{label:'Views',data:t10v.map(r=>r.views),backgroundColor:'#4736FE99',borderColor:'#4736FE',borderWidth:1.5,borderRadius:5}]},
-    options:{...bOpts(),indexAxis:'y',scales:{x:{ticks:{callback:v=>fmtN(v)},grid:{color:'#f3f4f6'}},y:{grid:{display:false},ticks:{font:{size:10}}}}}
-  });
-
-  // Top 10 ER
-  dch('c-top10er');
-  const t10er = [...allRows].filter(r=>r.engRate&&r.engRate<100).sort((a,b)=>b.engRate-a.engRate).slice(0,10);
-  charts['t10er'] = new Chart(document.getElementById('c-top10er').getContext('2d'), {
-    type:'bar',
-    data:{labels:t10er.map(r=>r.name),datasets:[{label:'ER %',data:t10er.map(r=>+r.engRate.toFixed(2)),backgroundColor:'#00d4a199',borderColor:'#00d4a1',borderWidth:1.5,borderRadius:5}]},
-    options:{...bOpts(),indexAxis:'y',scales:{x:{ticks:{callback:v=>v+'%'},grid:{color:'#f3f4f6'}},y:{grid:{display:false},ticks:{font:{size:10}}}}}
-  });
-
   // CPV trend — use AU_MOM_DATA for AU, row data for others
   dch('c-cpv-trend');
   if (activeCountry === 'AU') {
@@ -2326,12 +2299,12 @@ function buildCategoryMatrix() {
         const n = d.counts[c] || 0;
         return `<td class="${n ? (CAT_CLS[c]||'cm-life') : 'cm-0'}">${n || '—'}</td>`;
       }).join('')}
-      <td style="font-weight:700;background:var(--blue-l);color:var(--blue)">${total}</td>
+      <td class="cm-grand">${total}</td>
     </tr>`;
   }).join('') + `<tr class="cm-total">
     <td>Total</td>
-    ${CATS.map(c=>`<td class="${CAT_CLS[c]||'cm-life'}">${colTotals[c]}</td>`).join('')}
-    <td style="font-weight:700;background:var(--blue);color:#fff">${CATS.reduce((s,c)=>s+colTotals[c],0)}</td>
+    ${CATS.map(c=>`<td>${colTotals[c]}</td>`).join('')}
+    <td class="cm-grand">${CATS.reduce((s,c)=>s+colTotals[c],0)}</td>
   </tr>`;
 }
 
@@ -2387,12 +2360,12 @@ function buildLanguageTable() {
         const n = d.counts[l] || 0;
         return `<td class="${n ? (LANG_CLS[l]||'cm-life') : 'cm-0'}">${n || '—'}</td>`;
       }).join('')}
-      <td style="font-weight:700;background:var(--blue-l);color:var(--blue)">${total}</td>
+      <td class="cm-grand">${total}</td>
     </tr>`;
   }).join('') + `<tr class="cm-total">
     <td>Total</td>
-    ${LANG_ORDER.map(l=>`<td class="${LANG_CLS[l]||'cm-life'}">${colTotals[l]||'—'}</td>`).join('')}
-    <td style="font-weight:700;background:var(--blue);color:#fff">${LANG_ORDER.reduce((s,l)=>s+colTotals[l],0)}</td>
+    ${LANG_ORDER.map(l=>`<td>${colTotals[l]||'—'}</td>`).join('')}
+    <td class="cm-grand">${LANG_ORDER.reduce((s,l)=>s+colTotals[l],0)}</td>
   </tr>`;
 }
 
