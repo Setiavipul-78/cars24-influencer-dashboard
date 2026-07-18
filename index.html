@@ -915,7 +915,7 @@ th.sa{color:var(--blue)}.th.sd{color:var(--blue)}
 <!-- Chat panel -->
 <div id="goat-panel">
   <div id="goat-hdr">
-    <div class="ch-icon">⚡</div>
+    <div class="ch-icon">🐐</div>
     <div class="ch-text">
       <div class="ch-name">GOAT</div>
       <div class="ch-sub">Campaign Intelligence · Cars24</div>
@@ -2567,7 +2567,7 @@ function goatAppend(role, text) {
     .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
     .replace(/\n/g,'<br>');
   div.innerHTML = isBot
-    ? `<div class="av">⚡</div><div class="bubble">${html}</div>`
+    ? `<div class="av">🐐</div><div class="bubble">${html}</div>`
     : `<div class="bubble">${html}</div><div class="av">V</div>`;
   msgs.appendChild(div);
   msgs.scrollTop = msgs.scrollHeight;
@@ -2580,7 +2580,7 @@ function goatShowTyping() {
   const id = 'goat-t-' + Date.now();
   msgs.insertAdjacentHTML('beforeend', `
     <div class="goat-msg bot" id="${id}">
-      <div class="av">⚡</div>
+      <div class="av">🐐</div>
       <div class="bubble goat-typing"><span></span><span></span><span></span></div>
     </div>`);
   msgs.scrollTop = msgs.scrollHeight;

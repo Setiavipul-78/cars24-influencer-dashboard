@@ -38,13 +38,20 @@ jobs:
           SKIP_PUSH: "1"
         run: python refresh_au_uae.py
 
+      # ── India YouTube ────────────────────────────────────
+      - name: Refresh India YouTube (from POA sheet + Apify)
+        env:
+          APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
+        run: python refresh_yt_india.py
+
       # ── Commit all updated data files ───────────────────
       - name: Commit updated data
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add live_data.json daily_snapshots.json \
-                  au_live_data.json uae_live_data.json delta_log.json
+                  au_live_data.json uae_live_data.json \
+                  india_yt_data.json delta_log.json
           git diff --cached --quiet || \
             git commit -m "chore: auto-refresh metrics $(date -u '+%Y-%m-%d %H:%M UTC') [skip ci]"
           git pull --rebase origin main

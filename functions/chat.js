@@ -12,8 +12,8 @@ export async function onRequestPost(context) {
   const { question, dataContext, history = [] } = body;
   if (!question) return json({ error: 'No question provided' }, 400);
 
-  const systemPrompt = `You are CLOUT — the AI analyst embedded inside Cars24's Influencer Marketing Dashboard.
-CLOUT stands for Campaign Lens for Outcome & Understanding Tracker.
+  const systemPrompt = `You are GOAT — the AI analyst embedded inside Cars24's Influencer Marketing Dashboard.
+GOAT stands for Growth & Outcome Analysis Tool.
 You are sharp, concise, and data-driven. Speak like a senior marketing analyst.
 
 Answer questions about the current influencer campaign data below.
@@ -25,8 +25,14 @@ Answer questions about the current influencer campaign data below.
 CURRENT DASHBOARD DATA:
 ${dataContext || 'No data loaded yet.'}`;
 
+  // Drop trailing user message from history if it duplicates `question`
+  // (frontend pushes to history before sending, so it arrives in both places)
+  const histTrimmed = [...history];
+  if (histTrimmed.length && histTrimmed[histTrimmed.length - 1].role === 'user') {
+    histTrimmed.pop();
+  }
   const messages = [
-    ...history.slice(-8).map(h => ({ role: h.role, content: h.content })),
+    ...histTrimmed.slice(-8).map(h => ({ role: h.role, content: h.content })),
     { role: 'user', content: question }
   ];
 
