@@ -246,6 +246,52 @@ if sheet_rows:
             print(f"  + New row: {name} ({month})")
 
     print(f"Sheet sync: {added} new rows added, {len(rows)-added} existing updated")
+
+    # ── Remove creators deleted from the sheet ──────────────────────────
+    valid_names = {
+        get_val(sr, 'name', 'influencer_name', 'influencer').strip().lower()
+        for sr in sheet_rows
+        if get_val(sr, 'name', 'influencer_name', 'influencer').strip()
+    }
+    before_del = len(rows)
+    rows = [r for r in rows if r.get('name','').strip().lower() in valid_names]
+    n_deleted = before_del - len(rows)
+    if n_deleted:
+        print(f"  Removed {n_deleted} creator(s) no longer in sheet")
+
+    # ── Deduplicate by channel/profile link ─────────────────────────────
+    seen_links = {}
+    deduped = []
+    for r in rows:
+        profile = (r.get('link') or '').strip().rstrip('/')
+        if not profile:
+            deduped.append(r)
+            continue
+        if profile in seen_links:
+            existing = deduped[seen_links[profile]]
+            # Keep the row with more views; merge metadata from both
+            if (r.get('views') or 0) > (existing.get('views') or 0):
+                # replace but carry over any non-null fields from existing
+                for k, v in existing.items():
+                    if r.get(k) is None and v is not None:
+                        r[k] = v
+                deduped[seen_links[profile]] = r
+            else:
+                for k, v in r.items():
+                    if existing.get(k) is None and v is not None:
+                        existing[k] = v
+            print(f"  Dedup: '{r['name']}' merged into '{deduped[seen_links[profile]]['name']}' (same profile link)")
+        else:
+            seen_links[profile] = len(deduped)
+            deduped.append(r)
+    if len(deduped) < len(rows):
+        print(f"  Deduplicated: {len(rows)} → {len(deduped)} rows")
+    rows = deduped
+
+    # Re-assign sequential IDs after cleanup
+    for i, r in enumerate(rows):
+        r['id'] = i
+
 else:
     print("  No sheet data — skipping sync")
 

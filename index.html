@@ -1106,8 +1106,7 @@ async function switchPlatform(p) {
         const data = await res.json();
         if (data.rows && data.rows.length) {
           allRows = data.rows.map((r,i)=>({...r,id:i,
-            videoLink: r.channelLink||'',
-            link: r.channelLink||'',
+            link: r.channelLink||r.link||'',
             followers: r.subscribers||0,
             liveStatus: r.liveStatus||'Live',
           }));
@@ -1213,6 +1212,8 @@ let charts = {};
 let _lastRefreshedAt = null;
 
 window.onload = () => {
+  // Platform toggle is India-only; show it on load since IN is the default market
+  document.getElementById('platform-sw').style.display = 'flex';
   setSheetLink('IN');
   tryLoadLocalJson();
   setInterval(() => tryLoadLocalJson(true), 30 * 60 * 1000);
@@ -1949,65 +1950,6 @@ function colSort(col) {
 function renderTable() {
   const tbody = document.getElementById('inf-tbody');
   if (!filteredRows.length) { tbody.innerHTML=`<tr><td colspan="18" style="text-align:center;padding:32px;color:var(--g400)">No results</td></tr>`; return; }
-  if (activeCountry === 'AU') {
-    const momLookup = {};
-    AU_MOM_DATA.forEach(d=>{ momLookup[d.month]=d; });
-    const months = [...new Set(filteredRows.map(r=>r.liveMonth).filter(Boolean))].sort((a,b)=>monthOrder(b)-monthOrder(a));
-    tbody.innerHTML = months.map(month => {
-      const mRows = filteredRows.filter(r=>r.liveMonth===month);
-      const mom = momLookup[month]||{};
-      const mViews    = mRows.reduce((s,r)=>s+(r.views||0),0);
-      const mLikes    = mRows.reduce((s,r)=>s+(r.likes||0),0);
-      const mComments = mRows.reduce((s,r)=>s+(r.comments||0),0);
-      const mER       = mViews ? (mLikes+mComments)/mViews*100 : null;
-      const blendedCPV = mViews && mom.cost ? mom.cost/mViews : null;
-      const hdr = `<tr style="background:var(--blue);color:#fff">
-        <td></td>
-        <td class="col-hide-sm"></td>
-        <td style="font-weight:700;padding:8px 12px" colspan="2">${month}</td>
-        <td class="col-hide-sm"></td>
-        <td style="font-weight:600;font-size:11px">${mRows.length} reels</td>
-        <td class="col-hide-sm"></td>
-        <td class="col-hide-sm"></td>
-        <td class="col-hide-sm"></td>
-        <td style="font-weight:800">${fmtN(mViews)}</td>
-        <td class="col-hide-sm" style="font-weight:600">${mLikes?fmtN(mLikes):'—'}</td>
-        <td class="col-hide-sm" style="font-weight:600">${mComments?fmtN(mComments):'—'}</td>
-        <td>${mER?`<span style="font-weight:700">${mER.toFixed(2)}%</span>`:'—'}</td>
-        <td class="col-hide-sm">—</td>
-        <td>${blendedCPV?`<span class="cpv-chip cpv-g" style="background:#d1fae5;color:#065f46">${fmtAuCPV(blendedCPV)}</span>`:'—'}</td>
-        <td class="col-hide-sm">${mom.cost?fmtAuC(mom.cost):'—'}</td>
-        <td></td><td></td>
-      </tr>`;
-      const rowsHtml = mRows.map((r, ri) => {
-        const sel=selectedIds.has(r.id); const rc=r.refreshStatus==='done'?'rok':r.refreshStatus==='error'?'rerr':'';
-        const cat=r.category||'Lifestyle'; const catKey=cat.toLowerCase();
-        const globalIdx = filteredRows.indexOf(r);
-        return `<tr class="${rc}${sel?' sel':''}" id="row-${r.id}">
-          <td style="text-align:center;color:var(--g500);font-size:12px;font-weight:600">${globalIdx+1}</td>
-          <td class="col-hide-sm"><input type="checkbox" ${sel?'checked':''} onchange="toggleRow(${r.id})"/></td>
-          <td><div class="cn">${r.name}</div><div class="cs">${r.agency||'—'}</div>${r.link?`<a href="${r.link}" target="_blank" class="cl">Profile ↗</a>`:''}</td>
-          <td class="col-hide-sm"><span class="pill cat-${catKey}">${cat}</span></td>
-          <td class="col-hide-sm"><span class="pill t-${(r.tier||'nano').toLowerCase()}">${r.tier||'—'}</span></td>
-          <td style="white-space:nowrap">${r.liveMonth||'—'}</td>
-          <td class="col-hide-sm" style="white-space:nowrap;color:var(--g500);font-size:12px">${r.postedAt?new Date(r.postedAt).toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'}):'—'}</td>
-          <td class="col-hide-sm">${r.region||'—'}</td>
-          <td class="col-hide-sm" style="font-weight:600">${fmtN(r.followers)}</td>
-          <td style="font-weight:700">${viewsBdg(r)}</td>
-          <td class="col-hide-sm">${fmtN(r.likes)}</td>
-          <td class="col-hide-sm">${fmtN(r.comments)}</td>
-          <td>${fmtER(r.engRate)}</td>
-          <td class="col-hide-sm">${r.followers&&r.views?(r.views/r.followers).toFixed(2)+'×':'—'}</td>
-          <td>—</td>
-          <td class="col-hide-sm">—</td>
-          <td>${stBdg(r)}</td>
-          <td><div style="display:flex;gap:3px"><button class="btn btn-gh btn-xs" onclick="openModal(${r.id})">📊</button>${r.videoLink?`<a href="${r.videoLink}" target="_blank" class="btn btn-gh btn-xs">▶</a>`:''}</div></td>
-        </tr>`;
-      }).join('');
-      return hdr + rowsHtml;
-    }).join('');
-    return;
-  }
   tbody.innerHTML = filteredRows.map((r, i) => {
     const sel = selectedIds.has(r.id);
     const rc  = r.refreshStatus==='done'?'rok':r.refreshStatus==='error'?'rerr':'';
@@ -2033,7 +1975,7 @@ function renderTable() {
       <td>${fmtER(r.engRate)}</td>
       <td class="col-hide-sm">${r.followers && r.views ? (r.views/r.followers).toFixed(2)+'×' : '—'}</td>
       <td>${fmtCPV(r.cpv)}</td>
-      <td class="col-hide-sm">${r.cost?(activeCountry==='UAE'?fmtUaeC(r.cost):curSym()+fmtN(r.cost)):'—'}</td>
+      <td class="col-hide-sm">${r.cost?(activeCountry==='UAE'?fmtUaeC(r.cost):activeCountry==='AU'?fmtAuC(r.cost):curSym()+fmtN(r.cost)):'—'}</td>
       <td>${stBdg(r)}</td>
       <td>
         <div style="display:flex;gap:3px">
