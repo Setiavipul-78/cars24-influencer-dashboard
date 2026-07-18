@@ -1,5 +1,19 @@
+const ALLOWED_ORIGINS = [
+  'https://cars24-influencer-dashboard.pages.dev',
+  'https://cars24-influencer-dashboard.pages.dev/',
+];
+
 export async function onRequestPost(context) {
   const { ANTHROPIC_API_KEY } = context.env;
+  const { request } = context;
+
+  // Block requests from outside the dashboard (bots, scrapers, abuse)
+  const origin  = request.headers.get('origin')  || '';
+  const referer = request.headers.get('referer') || '';
+  const isFromDashboard = ALLOWED_ORIGINS.some(o => origin.startsWith(o) || referer.startsWith(o));
+  if (!isFromDashboard) {
+    return json({ error: 'Forbidden' }, 403);
+  }
 
   if (!ANTHROPIC_API_KEY) {
     return json({ error: 'API key not configured' }, 500);
@@ -12,6 +26,9 @@ export async function onRequestPost(context) {
   const { question, dataContext, history = [] } = body;
   if (!question) return json({ error: 'No question provided' }, 400);
 
+  // Cap dataContext to ~2,000 chars to control token cost (~500 tokens)
+  const ctxTrimmed = (dataContext || 'No data loaded yet.').slice(0, 2000);
+
   const systemPrompt = `You are GOAT — the AI analyst embedded inside Cars24's Influencer Marketing Dashboard.
 GOAT stands for Growth & Outcome Analysis Tool.
 You are sharp, concise, and data-driven. Speak like a senior marketing analyst.
@@ -23,7 +40,7 @@ Answer questions about the current influencer campaign data below.
 - If data isn't available to answer, say so honestly in one line
 
 CURRENT DASHBOARD DATA:
-${dataContext || 'No data loaded yet.'}`;
+${ctxTrimmed}`;
 
   // Build a valid alternating-role message sequence.
   // Frontend pushes the current question to history before fetching, so drop any
@@ -53,7 +70,7 @@ ${dataContext || 'No data loaded yet.'}`;
       },
       body: JSON.stringify({
         model: 'claude-haiku-4-5-20251001',
-        max_tokens: 500,
+        max_tokens: 350,
         system: systemPrompt,
         messages,
       }),
