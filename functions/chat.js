@@ -4,7 +4,6 @@ const ALLOWED_ORIGINS = [
 ];
 
 export async function onRequestPost(context) {
-  const { ANTHROPIC_API_KEY } = context.env;
   const { request } = context;
 
   // Block requests from outside the dashboard (bots, scrapers, abuse)
@@ -15,12 +14,18 @@ export async function onRequestPost(context) {
     return json({ error: 'Forbidden' }, 403);
   }
 
-  if (!ANTHROPIC_API_KEY) {
-    return json({ error: 'API key not configured' }, 500);
+  // Accept the key under any of the common naming conventions
+  const apiKey = context.env['ANTHROPIC_API_KEY']
+              || context.env['ANTHROPIC_KEY']
+              || context.env['anthropic_api_key'];
+
+  if (!apiKey) {
+    const presentKeys = Object.keys(context.env || {}).join(', ') || 'none';
+    return json({ error: 'API key not configured', hint: `Env vars visible: ${presentKeys}` }, 500);
   }
 
   let body;
-  try { body = await context.request.json(); }
+  try { body = await request.json(); }
   catch { return json({ error: 'Invalid JSON' }, 400); }
 
   const { question, dataContext, history = [] } = body;
@@ -43,15 +48,11 @@ CURRENT DASHBOARD DATA:
 ${ctxTrimmed}`;
 
   // Build a valid alternating-role message sequence.
-  // Frontend pushes the current question to history before fetching, so drop any
-  // trailing user message first to avoid two consecutive user entries.
   let hist = (history || []).filter(h => h && h.role && h.content);
   if (hist.length && hist[hist.length - 1].role === 'user') hist = hist.slice(0, -1);
   hist = hist.slice(-8);
-  // Ensure sequence starts with a user message (Anthropic requires user-first).
   const firstUser = hist.findIndex(h => h.role === 'user');
   if (firstUser > 0) hist = hist.slice(firstUser);
-  // Collapse any accidental same-role runs.
   const deduped = [];
   for (const h of hist) {
     if (!deduped.length || deduped[deduped.length - 1].role !== h.role) {
@@ -64,7 +65,7 @@ ${ctxTrimmed}`;
     const res = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: {
-        'x-api-key': ANTHROPIC_API_KEY,
+        'x-api-key': apiKey,
         'anthropic-version': '2023-06-01',
         'content-type': 'application/json',
       },
