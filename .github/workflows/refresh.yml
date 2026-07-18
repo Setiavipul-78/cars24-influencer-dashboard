@@ -26,16 +26,15 @@ jobs:
         run: pip install certifi
 
       # ── India ───────────────────────────────────────────
-      - name: Refresh India metrics (YouTube + Instagram)
+      - name: Refresh India (YouTube + Instagram via Apify)
         env:
           APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
         run: python refresh_metrics.py
 
       # ── Australia + UAE ─────────────────────────────────
-      - name: Refresh AU + UAE metrics (Instagram via Apify)
+      - name: Refresh AU + UAE (Instagram via Apify)
         env:
           APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
           SKIP_PUSH: "1"
         run: python refresh_au_uae.py
 
@@ -50,5 +49,11 @@ jobs:
             git commit -m "chore: auto-refresh metrics $(date -u '+%Y-%m-%d %H:%M UTC') [skip ci]"
           git pull --rebase origin main
           git push
+
+      # ── Comprehensive Slack report (all markets) ────────
+      - name: Send Slack report
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: python notify_slack.py
 
       # Cloudflare Pages auto-deploys on every push — no deploy step needed

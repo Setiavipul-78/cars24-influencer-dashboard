@@ -399,3 +399,39 @@ with open(snap_path, "w") as f:
     json.dump(snap_data, f, indent=2)
 
 print(f"Daily snapshot saved: {today} — {total_views:,} total views")
+
+# ── Append to shared delta_log.json (India entry) ─────────────────────────────
+delta_log_path = os.path.join(script_dir, "delta_log.json")
+try:
+    with open(delta_log_path) as f:
+        dl = json.load(f)
+except (FileNotFoundError, json.JSONDecodeError):
+    dl = {"logs": []}
+
+in_snap = {
+    "creatorsLive":  live_count,
+    "totalViews":    total_views,
+    "totalLikes":    sum(r.get("likes")    or 0 for r in rows),
+    "totalComments": sum(r.get("comments") or 0 for r in rows),
+    "totalCost":     total_cost,
+}
+
+today_entry = next((e for e in dl["logs"] if e.get("date") == today), None)
+if today_entry is None:
+    today_entry = {"date": today, "refreshedAt": now_iso}
+    dl["logs"].append(today_entry)
+today_entry["refreshedAt"] = now_iso
+
+# Compute delta vs previous India entry
+prev_in = None
+for e in reversed(dl["logs"][:-1]):
+    if "IN" in e:
+        prev_in = e["IN"]
+        break
+in_delta = {k: in_snap[k] - prev_in.get(k, 0) for k in in_snap} if prev_in else None
+today_entry["IN"] = {**in_snap, "delta": in_delta}
+
+dl["logs"] = sorted(dl["logs"], key=lambda e: e["date"])[-30:]
+with open(delta_log_path, "w") as f:
+    json.dump(dl, f, indent=2)
+print(f"Delta log updated for IN (date={today})")
