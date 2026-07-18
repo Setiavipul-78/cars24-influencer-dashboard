@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 """
 Refresh script for India YouTube influencer data.
-Mirrors refresh_au_uae.py — reads india_yt_data.json (which already contains
-the creator list), scrapes fresh stats for video links via Apify YouTube scraper,
-freezes last known data where no video link exists or scraping fails,
-then writes india_yt_data.json back and updates delta_log.json.
+Steps:
+  1. Sync yt_sheet_data.json (pushed by Apps Script from the YouTube POA tab)
+     into india_yt_data.json — picks up new creators and updated video links.
+  2. Scrape fresh stats for every row that has a video link via Apify.
+  3. Freeze last known data where no video link or scraping fails.
+  4. Write india_yt_data.json + update delta_log.json.
 
-To add new YouTube creators: update india_yt_data.json directly
-(or extend the Apps Script, same as India Instagram).
+Mirrors the exact pattern of refresh_metrics.py (India Instagram).
 """
 
 import json, re, os, sys, time, datetime, ssl, certifi, urllib.request, urllib.error
@@ -20,9 +21,43 @@ MAX_WAIT_S  = 600
 POLL_S      = 15
 SCRIPT_DIR  = os.path.dirname(os.path.abspath(__file__))
 OUT_PATH    = os.path.join(SCRIPT_DIR, "india_yt_data.json")
+YT_SHEET    = os.path.join(SCRIPT_DIR, "yt_sheet_data.json")
 DELTA_PATH  = os.path.join(SCRIPT_DIR, "delta_log.json")
 
-VID_RE = re.compile(r'(?:watch\?v=|youtu\.be/|/shorts/)([A-Za-z0-9_-]{11})', re.I)
+VID_RE   = re.compile(r'(?:watch\?v=|youtu\.be/|/shorts/)([A-Za-z0-9_-]{11})', re.I)
+YT_RE    = re.compile(r'https?://(www\.)?youtube\.com/', re.I)
+TIME_RE  = re.compile(r'^\d{1,2}:\d{2}$')
+MO = ['January','February','March','April','May','June',
+      'July','August','September','October','November','December']
+
+def month_order(s):
+    s = (s or '').strip()
+    for i, m in enumerate(MO):
+        if m.lower() in s.lower():
+            y = re.search(r'(\d{4})', s)
+            return int(str(y.group(1)) + f'{i+1:02d}') if y else 0
+    return 0
+
+def region_to_lang(region):
+    r = (region or '').lower()
+    if 'malay' in r or 'kerala' in r: return 'Malayalam'
+    if 'kannada' in r or 'bangalore' in r or 'bengaluru' in r: return 'Kannada'
+    if 'tamil' in r or 'chennai' in r: return 'Tamil'
+    if 'telugu' in r or 'hyderabad' in r or 'andhra' in r: return 'Telugu'
+    return 'Hindi'
+
+def num(s):
+    if not s: return None
+    v = re.sub(r'[^0-9.]', '', str(s))
+    try: return float(v) if '.' in v else int(v)
+    except: return None
+
+def clean_yt_url(raw):
+    for tok in re.split(r'[\s\n,]+', (raw or '')):
+        tok = tok.strip()
+        if YT_RE.match(tok) or 'youtu.be' in tok:
+            return tok.split('?')[0].rstrip('/') if '&' not in tok else tok
+    return ''
 
 def fetch_text(url):
     req = urllib.request.Request(url, headers={"User-Agent": "python"})
@@ -44,13 +79,86 @@ def post_json(url, payload):
         raise
 
 # ══════════════════════════════════════════════════════════════════════════════
-# Step 1: Load existing india_yt_data.json
+# Step 1: Load existing india_yt_data.json for freeze fallback
 # ══════════════════════════════════════════════════════════════════════════════
-print("── Step 1: Loading india_yt_data.json ──")
-with open(OUT_PATH) as f:
-    data = json.load(f)
-rows = data["rows"]
-print(f"  {len(rows)} creators loaded")
+print("── Step 1: Loading existing india_yt_data.json ──")
+existing_by_name = {}
+try:
+    with open(OUT_PATH) as f:
+        old = json.load(f)
+    for r in old.get('rows', []):
+        existing_by_name[r.get('name','').strip().lower()] = r
+    print(f"  {len(existing_by_name)} existing rows (freeze fallback)")
+except FileNotFoundError:
+    print("  No existing file — starting fresh")
+
+# ══════════════════════════════════════════════════════════════════════════════
+# Step 2: Sync from yt_sheet_data.json (Apps Script export of YouTube POA tab)
+# ══════════════════════════════════════════════════════════════════════════════
+print("── Step 2: Syncing from yt_sheet_data.json ──")
+rows = []
+if not os.path.exists(YT_SHEET):
+    print("  yt_sheet_data.json not found — using existing rows only")
+    rows = list(existing_by_name.values())
+else:
+    try:
+        with open(YT_SHEET) as f:
+            yt_sheet = json.load(f)
+        sheet_rows = yt_sheet.get('rows', [])
+        print(f"  {len(sheet_rows)} rows in yt_sheet_data.json")
+
+        for i, sr in enumerate(sheet_rows):
+            name = (sr.get('creator_name') or sr.get('name') or '').strip()
+            if not name: continue
+
+            # Determine if executed (Final Cost > 0 OR Watch Time in M:SS format)
+            cost_raw = sr.get('final_cost') or sr.get('cost') or ''
+            wt       = (sr.get('watch_time') or sr.get('watchtime') or '').strip()
+            cost_val = num(cost_raw)
+            is_exec  = (cost_val and cost_val > 0) or bool(TIME_RE.match(wt))
+            if not is_exec:
+                continue
+
+            channel_link = clean_yt_url(sr.get('channel_link') or sr.get('channel_url') or sr.get('channel') or '')
+            video_link   = clean_yt_url(sr.get('video_link') or sr.get('video_url') or sr.get('reel_link') or '')
+            live_month   = (sr.get('live_month') or sr.get('month') or '').strip()
+
+            # Merge with existing row for freeze fields
+            old_r = existing_by_name.get(name.lower(), {})
+
+            row = {
+                'id':          i,
+                'name':        name,
+                'channelLink': channel_link,
+                'videoLink':   video_link,
+                'link':        video_link or channel_link,
+                'subscribers': num(sr.get('subscribers') or sr.get('subs') or old_r.get('subscribers')),
+                'followers':   num(sr.get('subscribers') or sr.get('subs') or old_r.get('subscribers')),
+                'views':       num(sr.get('avg_views') or sr.get('views') or old_r.get('views')),
+                'likes':       num(sr.get('likes') or old_r.get('likes')),
+                'comments':    old_r.get('comments'),
+                'cost':        cost_val,
+                'cpv':         num(sr.get('cpv') or old_r.get('cpv')),
+                'avgWatchTime':wt,
+                'agency':      (sr.get('agency') or sr.get('partner') or old_r.get('agency') or 'Direct').strip(),
+                'liveStatus':  (sr.get('live_status') or sr.get('status') or old_r.get('liveStatus') or 'Live').strip(),
+                'liveMonth':   live_month or old_r.get('liveMonth', ''),
+                'monthOrder':  month_order(live_month) if live_month else old_r.get('monthOrder', 0),
+                'region':      (sr.get('region') or sr.get('language') or old_r.get('region') or 'PAN INDIA').strip(),
+                'language':    region_to_lang(sr.get('region') or sr.get('language') or old_r.get('region', '')),
+                'platform':    'YouTube',
+                'refreshStatus': old_r.get('refreshStatus', 'frozen'),
+            }
+            rows.append(row)
+
+        print(f"  {len(rows)} executed creators after filter")
+    except Exception as e:
+        print(f"  Error reading yt_sheet_data.json: {e} — using existing rows", file=sys.stderr)
+        rows = list(existing_by_name.values())
+
+if not rows:
+    rows = list(existing_by_name.values())
+    print(f"  Falling back to {len(rows)} existing rows")
 
 # ══════════════════════════════════════════════════════════════════════════════
 # Step 2: Collect video URLs that Apify can scrape

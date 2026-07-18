@@ -1091,6 +1091,11 @@ async function switchPlatform(p) {
   document.getElementById('plt-ig').classList.toggle('on', p === 'Instagram');
   document.getElementById('plt-yt').classList.toggle('on', p === 'YouTube');
   setSheetLink('IN');
+  // Reset all filters so nothing from the previous platform bleeds through
+  ['f-month','f-region','f-tier','f-status','f-category','f-week'].forEach(id=>{
+    const el=document.getElementById(id); if(el) el.value='';
+  });
+  document.getElementById('srch').value='';
   Object.keys(charts).forEach(k=>{charts[k].destroy();delete charts[k];});
   selectedIds.clear();
   if (p === 'YouTube') {
