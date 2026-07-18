@@ -34,24 +34,22 @@ body{font-family:'Geist',system-ui,-apple-system,sans-serif;background:var(--g50
 ::-webkit-scrollbar{width:5px;height:5px}
 ::-webkit-scrollbar-thumb{background:var(--g300);border-radius:99px}
 
-/* Header — dark premium bar */
-.hdr{background:#0c0f1a;border-bottom:1px solid rgba(255,255,255,.07);padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px;position:sticky;top:0;z-index:200;box-shadow:0 2px 24px rgba(0,0,0,.4)}
+/* Header */
+.hdr{background:#fff;border-bottom:1px solid var(--g200);padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px;position:sticky;top:0;z-index:200;box-shadow:0 2px 16px rgba(71,54,254,.1)}
 .hbrand{display:flex;align-items:center;gap:12px;flex-shrink:0}
 .hlogo{display:flex;align-items:center}
 .hlogo svg{display:block}
 .hwordmark{display:flex;flex-direction:column;gap:3px}
-.hword-name{font-weight:800;font-size:22px;color:#fff;letter-spacing:-.8px;line-height:1}
-.hword-name .h24{color:#fff}
-.hword-sub{font-size:11px;font-weight:500;color:rgba(255,255,255,.35);letter-spacing:.1px;line-height:1}
+.hword-name{font-weight:800;font-size:22px;color:var(--g900);letter-spacing:-.8px;line-height:1}
+.hword-name .h24{color:var(--g900)}
+.hword-sub{font-size:11px;font-weight:500;color:var(--g500);letter-spacing:.1px;line-height:1}
 .hcenter{display:flex;align-items:center;gap:8px;flex:1;justify-content:center}
 /* Segmented control — market & platform switchers */
-.seg-ctrl{display:flex;align-items:center;gap:2px;background:rgba(255,255,255,.07);border-radius:8px;padding:3px}
-.seg-btn{padding:5px 13px;border-radius:5px;font-size:11.5px;font-weight:600;border:none;background:transparent;cursor:pointer;color:rgba(255,255,255,.48);transition:all .15s;font-family:inherit;white-space:nowrap;line-height:1.3}
-.seg-btn.on{background:rgba(255,255,255,.14);color:#fff;box-shadow:0 1px 3px rgba(0,0,0,.3)}
-.seg-btn:hover:not(.on){color:rgba(255,255,255,.78);background:rgba(255,255,255,.05)}
+.seg-ctrl{display:flex;align-items:center;gap:2px;background:var(--g100);border-radius:8px;padding:3px}
+.seg-btn{padding:5px 13px;border-radius:5px;font-size:11.5px;font-weight:600;border:none;background:transparent;cursor:pointer;color:var(--g500);transition:all .15s;font-family:inherit;white-space:nowrap;line-height:1.3}
+.seg-btn.on{background:var(--blue);color:#fff;box-shadow:0 2px 8px rgba(71,54,254,.28)}
+.seg-btn:hover:not(.on){color:var(--g800);background:var(--g200)}
 .hright{display:flex;align-items:center;gap:6px;flex-shrink:0}
-.hdr .btn-gh{background:rgba(255,255,255,.09);color:rgba(255,255,255,.68);border-color:rgba(255,255,255,.12)}
-.hdr .btn-gh:hover:not(:disabled){background:rgba(255,255,255,.17);color:#fff}
 
 /* Tabs */
 .tabs{background:var(--g50);border-bottom:1px solid var(--g200);padding:10px 24px;gap:6px;display:flex;overflow-x:auto;position:sticky;top:64px;z-index:199}
@@ -432,8 +430,8 @@ th.sa{color:var(--blue)}.th.sd{color:var(--blue)}
       <button class="csw-btn seg-btn" id="csw-UAE" onclick="switchCountry('UAE')">🇦🇪 UAE</button>
     </div>
     <div class="seg-ctrl" id="platform-sw" style="display:none">
-      <button class="seg-btn on" id="plt-ig" onclick="switchPlatform('Instagram')">📸 IG</button>
-      <button class="seg-btn" id="plt-yt" onclick="switchPlatform('YouTube')">▶️ YT</button>
+      <button class="seg-btn on" id="plt-ig" onclick="switchPlatform('Instagram')">📸 Instagram</button>
+      <button class="seg-btn" id="plt-yt" onclick="switchPlatform('YouTube')">▶️ YouTube</button>
     </div>
   </div>
   <div class="hright">
@@ -1118,14 +1116,14 @@ async function switchPlatform(p) {
             liveStatus: r.liveStatus||'Live',
             tier: r.tier || tierOf(r.subscribers||0),
           }));
-          buildFilters(); applyFilters(); buildOverview();
+          buildFilters(); applyFilters(); buildOverview(); syncActiveTab();
           toast(`▶️ YouTube India — ${allRows.length} creators loaded`,'ok');
           return;
         }
       }
     } catch(_) {}
     allRows = [];
-    buildFilters(); applyFilters(); buildOverview();
+    buildFilters(); applyFilters(); buildOverview(); syncActiveTab();
     toast('YouTube data not found — add india_yt_data.json','warn');
   } else {
     _lastRefreshedAt = null;
@@ -1260,6 +1258,11 @@ function switchTab(name) {
   document.getElementById('tc-' + name).classList.add('on');
   document.getElementById('tab-' + name).classList.add('on');
   if (name === 'an' && allRows.length) { buildAnalyticsCharts(); buildRefreshLog(); }
+}
+
+function syncActiveTab() {
+  const active = document.querySelector('.tb.on')?.id?.replace('tab-', '');
+  if (active === 'an' && allRows.length) { buildAnalyticsCharts(); buildRefreshLog(); }
 }
 
 // ── Refresh log ─────────────────────────────────────────────────────────────
@@ -1431,6 +1434,7 @@ function processRows(lines) {
   buildFilters();
   applyFilters();
   buildOverview();
+  syncActiveTab();
 
   document.getElementById('btn-export').classList.remove('h');
   document.getElementById('rm-head').style.display = '';
