@@ -395,6 +395,10 @@ tr.cm-total td{background:var(--g100)!important;font-weight:700;color:#111!impor
 /* ── Sort arrow improvements ──────────────────────────────────── */
 th.sa{color:var(--blue)}.th.sd{color:var(--blue)}
 
+/* ── Platform bar (India only — below header) ─────────────────── */
+#platform-sw{display:none}
+.platform-bar{justify-content:center;padding:8px 24px;background:var(--g50);border-bottom:1px solid var(--g200);}
+
 /* ── Country switcher ─────────────────────────────────────────── */
 .country-sw{display:flex;align-items:center;gap:10px;padding:10px 24px;border-bottom:2px solid var(--g200);background:linear-gradient(to right,#f8f9ff,#fff)}
 .csw-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--g400);margin-right:4px}
@@ -421,16 +425,12 @@ th.sa{color:var(--blue)}.th.sd{color:var(--blue)}
       <div class="hword-sub">Influencer Marketing Dashboard</div>
     </div>
   </div>
-  <!-- Market + Platform switchers — embedded in header, saves vertical space -->
+  <!-- Market switcher -->
   <div class="hcenter">
     <div class="seg-ctrl">
       <button class="csw-btn seg-btn on" id="csw-IN" onclick="switchCountry('IN')">🇮🇳 India</button>
       <button class="csw-btn seg-btn" id="csw-AU" onclick="switchCountry('AU')">🇦🇺 AU</button>
       <button class="csw-btn seg-btn" id="csw-UAE" onclick="switchCountry('UAE')">🇦🇪 UAE</button>
-    </div>
-    <div class="seg-ctrl" id="platform-sw" style="display:none">
-      <button class="seg-btn on" id="plt-ig" onclick="switchPlatform('Instagram')">📸 Instagram</button>
-      <button class="seg-btn" id="plt-yt" onclick="switchPlatform('YouTube')">▶️ YouTube</button>
     </div>
   </div>
   <div class="hright">
@@ -438,6 +438,14 @@ th.sa{color:var(--blue)}.th.sd{color:var(--blue)}
     <button class="btn btn-gh btn-sm" onclick="resetAll()">↺</button>
   </div>
 </header>
+
+<!-- Platform toggle — India only, sits below market tabs -->
+<div id="platform-sw" class="platform-bar">
+  <div class="seg-ctrl">
+    <button class="seg-btn on" id="plt-ig" onclick="switchPlatform('Instagram')">📸 Instagram</button>
+    <button class="seg-btn" id="plt-yt" onclick="switchPlatform('YouTube')">▶️ YouTube</button>
+  </div>
+</div>
 
 <!-- Tabs -->
 <nav class="tabs">
