@@ -67,7 +67,7 @@ async function handleQuestion(question, channel, thread_ts, env) {
 
   const ctx = buildContext(inData, auData, uaeData);
 
-  const systemPrompt = `You are CLOUT — the AI campaign analyst for Cars24's Influencer Marketing Dashboard.
+  const systemPrompt = `You are GOAT — the AI campaign analyst for Cars24's Influencer Marketing Dashboard.
 Answer questions about the influencer campaign data below. Be concise (2-4 sentences), cite specific numbers.
 Use Indian format for India (Cr/L/K), K/M for AU and UAE. Today is ${new Date().toDateString()}.
 
@@ -155,7 +155,7 @@ async function fetchJson(url) {
 }
 
 export async function onRequestGet() {
-  return text('CLOUT Slack Bot is live. Configure your Slack app to POST events here.', 200);
+  return text('GOAT Slack Bot is live. Configure your Slack app to POST events here.', 200);
 }
 
 function json(obj, status = 200) {

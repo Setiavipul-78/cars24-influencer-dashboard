@@ -428,6 +428,13 @@ th.sa{color:var(--blue)}.th.sd{color:var(--blue)}
   <button class="csw-btn" id="csw-UAE" onclick="switchCountry('UAE')">🇦🇪 UAE</button>
 </div>
 
+<!-- Platform toggle (India only) -->
+<div id="platform-sw" style="display:none;gap:6px;align-items:center;margin:0 0 4px;padding:0 2px">
+  <span class="csw-lbl">Platform</span>
+  <button class="csw-btn on" id="plt-ig" onclick="switchPlatform('Instagram')">📸 Instagram</button>
+  <button class="csw-btn" id="plt-yt" onclick="switchPlatform('YouTube')">▶️ YouTube</button>
+</div>
+
 <!-- Tabs -->
 <nav class="tabs">
   <button class="tb on" id="tab-ov" onclick="switchTab('ov')">
@@ -714,6 +721,20 @@ th.sa{color:var(--blue)}.th.sd{color:var(--blue)}
   </div>
 
 
+  <!-- ── Language Mix (India only) ─────────────────────────────── -->
+  <div id="lang-table-section" style="margin-top:24px;display:none">
+    <div class="card card-accent-pur">
+      <div class="sh">Videos Live by Language <span class="sh-tag">month-on-month</span></div>
+      <div class="sec-desc">Creator count going live each month, broken down by content language</div>
+      <div class="tw"><div class="ts">
+        <table id="lang-matrix-table" class="cat-matrix" style="width:100%;border-collapse:collapse">
+          <thead id="lang-matrix-head"></thead>
+          <tbody id="lang-matrix-body"></tbody>
+        </table>
+      </div></div>
+    </div>
+  </div>
+
   <!-- ── Refresh History ──────────────────────────────────────── -->
   <div id="refresh-log-section" style="margin-top:40px;display:none">
     <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px">
@@ -731,6 +752,7 @@ th.sa{color:var(--blue)}.th.sd{color:var(--blue)}
               <th style="padding:8px 12px;text-align:left;white-space:nowrap">Date</th>
               <th style="padding:8px 12px;text-align:left;white-space:nowrap">Time (IST)</th>
               <th style="padding:8px 12px;text-align:right">Creators Live</th>
+              <th style="padding:8px 12px;text-align:right">Δ Creators</th>
               <th style="padding:8px 12px;text-align:right">Total Views</th>
               <th style="padding:8px 12px;text-align:right">Δ Views</th>
               <th style="padding:8px 12px;text-align:right">Total Likes</th>
@@ -740,7 +762,7 @@ th.sa{color:var(--blue)}.th.sd{color:var(--blue)}
             </tr>
           </thead>
           <tbody id="refresh-log-tbody">
-            <tr><td colspan="9" style="text-align:center;padding:24px;color:var(--g400)">Loading…</td></tr>
+            <tr><td colspan="10" style="text-align:center;padding:24px;color:var(--g400)">Loading…</td></tr>
           </tbody>
         </table>
       </div></div>
@@ -752,11 +774,11 @@ th.sa{color:var(--blue)}.th.sd{color:var(--blue)}
 </main>
 
 <!-- ═══════════════════════════════════════════════
-     CLOUT — AI Campaign Analyst
+     GOAT — AI Campaign Analyst
 ═══════════════════════════════════════════════ -->
 <style>
 /* Floating trigger */
-#clout-btn {
+#goat-btn {
   position:fixed;bottom:24px;right:24px;z-index:9999;
   width:52px;height:52px;border-radius:50%;border:none;cursor:pointer;
   background:linear-gradient(135deg,#4736FE 0%,#7c3aed 100%);
@@ -765,52 +787,52 @@ th.sa{color:var(--blue)}.th.sd{color:var(--blue)}
   font-size:20px;transition:transform .18s,box-shadow .18s;
   color:#fff;font-weight:700;
 }
-#clout-btn:hover { transform:scale(1.07);box-shadow:0 6px 24px #4736FE66; }
-#clout-btn.active { background:linear-gradient(135deg,#3525e0,#6d28d9); }
+#goat-btn:hover { transform:scale(1.07);box-shadow:0 6px 24px #4736FE66; }
+#goat-btn.active { background:linear-gradient(135deg,#3525e0,#6d28d9); }
 
 /* Panel — slides up from button, right-anchored */
-#clout-panel {
+#goat-panel {
   position:fixed;bottom:86px;right:24px;z-index:9998;
   width:340px;max-width:calc(100vw - 48px);
   height:460px;
-  background:var(--bg);
-  border:1px solid var(--bdr);
+  background:#fff;
+  border:1px solid #e5e7eb;
   border-radius:16px;
   box-shadow:0 20px 60px #0003,0 4px 20px #4736FE18;
   display:flex;flex-direction:column;overflow:hidden;
   transform:translateY(12px);opacity:0;pointer-events:none;
   transition:transform .22s ease,opacity .18s ease;
 }
-#clout-panel.open { transform:translateY(0);opacity:1;pointer-events:all; }
+#goat-panel.open { transform:translateY(0);opacity:1;pointer-events:all; }
 
 /* Header */
-#clout-hdr {
+#goat-hdr {
   padding:12px 14px;
   background:linear-gradient(135deg,#4736FE,#7c3aed);
   display:flex;align-items:center;gap:9px;flex-shrink:0;
 }
-#clout-hdr .ch-icon {
+#goat-hdr .ch-icon {
   width:32px;height:32px;border-radius:8px;
   background:#fff2;display:flex;align-items:center;justify-content:center;
   font-size:16px;flex-shrink:0;
 }
-#clout-hdr .ch-text { flex:1;min-width:0 }
-#clout-hdr .ch-name { font-size:13px;font-weight:800;color:#fff;letter-spacing:.2px;line-height:1.2 }
-#clout-hdr .ch-sub  { font-size:10px;color:#ffffff99;margin-top:1px;line-height:1.2 }
-#clout-hdr .ch-close {
+#goat-hdr .ch-text { flex:1;min-width:0 }
+#goat-hdr .ch-name { font-size:13px;font-weight:800;color:#fff;letter-spacing:.2px;line-height:1.2 }
+#goat-hdr .ch-sub  { font-size:10px;color:#ffffff99;margin-top:1px;line-height:1.2 }
+#goat-hdr .ch-close {
   background:none;border:none;color:#ffffff99;cursor:pointer;
   font-size:16px;padding:2px;line-height:1;border-radius:4px;
   transition:color .1s,background .1s;
 }
-#clout-hdr .ch-close:hover { color:#fff;background:#fff2; }
+#goat-hdr .ch-close:hover { color:#fff;background:#fff2; }
 
 /* Messages */
-#clout-msgs {
+#goat-msgs {
   flex:1;overflow-y:auto;padding:12px 12px 4px;
   display:flex;flex-direction:column;gap:8px;
 }
-#clout-msgs::-webkit-scrollbar { width:4px; }
-#clout-msgs::-webkit-scrollbar-thumb { background:var(--g200);border-radius:99px; }
+#goat-msgs::-webkit-scrollbar { width:4px; }
+#goat-msgs::-webkit-scrollbar-thumb { background:var(--g200);border-radius:99px; }
 
 .cmsg { display:flex;gap:6px;align-items:flex-end }
 .cmsg.user { flex-direction:row-reverse }
@@ -838,68 +860,79 @@ th.sa{color:var(--blue)}.th.sd{color:var(--blue)}
 @keyframes cdot{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-5px)}}
 
 /* Quick chips — shown only before first send */
-#clout-chips {
+#goat-chips {
   padding:0 12px 8px;display:flex;flex-wrap:wrap;gap:4px;flex-shrink:0;
 }
 .cchip {
   font-size:11px;padding:3px 9px;border-radius:99px;
-  border:1px solid var(--bdr);background:var(--bg);color:var(--g500);
+  border:1px solid #e5e7eb;background:#fff;color:var(--g500);
   cursor:pointer;white-space:nowrap;transition:all .13s;
 }
 .cchip:hover { background:#4736FE;color:#fff;border-color:#4736FE; }
 
 /* Input row */
-#clout-input-row {
+#goat-input-row {
   padding:8px 10px 10px;display:flex;gap:6px;align-items:center;flex-shrink:0;
-  border-top:1px solid var(--bdr);background:var(--bg);
+  border-top:1px solid #e5e7eb;background:#fff;
 }
-#clout-input {
+#goat-input {
   flex:1;padding:8px 12px;border-radius:99px;
-  border:1.5px solid var(--bdr);
-  background:var(--g50,var(--g100));color:var(--txt);
+  border:1.5px solid #e5e7eb;
+  background:#f9fafb;color:var(--txt);
   font-size:12.5px;outline:none;font-family:inherit;
   transition:border-color .15s;
 }
-#clout-input:focus { border-color:#4736FE;background:var(--bg); }
-#clout-send {
+#goat-input:focus { border-color:#4736FE;background:#fff; }
+#goat-send {
   width:32px;height:32px;border-radius:50%;border:none;cursor:pointer;
   background:#4736FE;color:#fff;font-size:14px;flex-shrink:0;
   display:flex;align-items:center;justify-content:center;
   transition:background .13s,transform .1s;
 }
-#clout-send:hover:not(:disabled) { background:#3525e0;transform:scale(1.05); }
-#clout-send:disabled { background:var(--g300);cursor:default; }
+#goat-send:hover:not(:disabled) { background:#3525e0;transform:scale(1.05); }
+#goat-send:disabled { background:var(--g300);cursor:default; }
 
 @media(max-width:480px){
-  #clout-panel{right:12px;left:12px;width:auto;bottom:80px;}
-  #clout-btn{bottom:18px;right:18px;}
+  #goat-panel{right:12px;left:12px;width:auto;bottom:80px;}
+  #goat-btn{bottom:18px;right:18px;}
+}
+@media(prefers-color-scheme:dark){
+  #goat-panel{background:#1e1f2e;border-color:#2e3044;}
+  #goat-msgs::-webkit-scrollbar-thumb{background:#3e4060;}
+  .cmsg.bot  .cbbl{background:#2a2b3d;color:#e5e7eb;}
+  .cmsg.user .cav{background:#2a2b3d;color:#9ca3af;}
+  #goat-input-row{background:#1e1f2e;border-top-color:#2e3044;}
+  #goat-input{background:#2a2b3d;color:#f3f4f6;border-color:#3e4060;}
+  #goat-input:focus{background:#1e1f2e;border-color:#4736FE;}
+  .cchip{background:#2a2b3d;color:#9ca3af;border-color:#3e4060;}
+  .cchip:hover{background:#4736FE;color:#fff;border-color:#4736FE;}
 }
 </style>
 
 <!-- Floating trigger -->
-<button id="clout-btn" onclick="toggleClout()" title="Ask CLOUT — Campaign AI">⚡</button>
+<button id="goat-btn" onclick="toggleGoat()" title="Ask GOAT — Campaign AI">🐐</button>
 
 <!-- Chat panel -->
-<div id="clout-panel">
-  <div id="clout-hdr">
+<div id="goat-panel">
+  <div id="goat-hdr">
     <div class="ch-icon">⚡</div>
     <div class="ch-text">
-      <div class="ch-name">CLOUT</div>
+      <div class="ch-name">GOAT</div>
       <div class="ch-sub">Campaign Intelligence · Cars24</div>
     </div>
-    <button class="ch-close" onclick="toggleClout()">✕</button>
+    <button class="ch-close" onclick="toggleGoat()">✕</button>
   </div>
-  <div id="clout-msgs"></div>
-  <div id="clout-chips">
-    <span class="cchip" onclick="cloutAsk(this.textContent)">Top creator by views?</span>
-    <span class="cchip" onclick="cloutAsk(this.textContent)">Blended CPV this month?</span>
-    <span class="cchip" onclick="cloutAsk(this.textContent)">Best agency?</span>
-    <span class="cchip" onclick="cloutAsk(this.textContent)">Total spend so far?</span>
+  <div id="goat-msgs"></div>
+  <div id="goat-chips">
+    <span class="cchip" onclick="goatAsk(this.textContent)">Top creator by views?</span>
+    <span class="cchip" onclick="goatAsk(this.textContent)">Blended CPV this month?</span>
+    <span class="cchip" onclick="goatAsk(this.textContent)">Best agency?</span>
+    <span class="cchip" onclick="goatAsk(this.textContent)">Total spend so far?</span>
   </div>
-  <div id="clout-input-row">
-    <input id="clout-input" type="text" placeholder="Ask anything about this campaign…"
-      onkeydown="if(event.key==='Enter'){event.preventDefault();cloutSend()}" />
-    <button id="clout-send" type="button" onclick="cloutSend()">➤</button>
+  <div id="goat-input-row">
+    <input id="goat-input" type="text" placeholder="Ask anything about this campaign…"
+      onkeydown="if(event.key==='Enter'){event.preventDefault();goatSend()}" />
+    <button id="goat-send" type="button" onclick="goatSend()">➤</button>
   </div>
 </div>
 
@@ -1061,8 +1094,51 @@ function setSheetLink(c) {
   if (el) el.href = SHEET_URLS[c] || '#';
 }
 
+let activePlatform = 'Instagram';
+
+async function switchPlatform(p) {
+  activePlatform = p;
+  document.getElementById('plt-ig').classList.toggle('on', p === 'Instagram');
+  document.getElementById('plt-yt').classList.toggle('on', p === 'YouTube');
+  Object.keys(charts).forEach(k=>{charts[k].destroy();delete charts[k];});
+  selectedIds.clear();
+  if (p === 'YouTube') {
+    try {
+      const res = await fetch('india_yt_data.json?t='+Date.now());
+      if (res.ok) {
+        const data = await res.json();
+        if (data.rows && data.rows.length) {
+          allRows = data.rows.map((r,i)=>({...r,id:i,
+            videoLink: r.channelLink||'',
+            link: r.channelLink||'',
+            followers: r.subscribers||0,
+            liveStatus: r.liveStatus||'Live',
+          }));
+          buildFilters(); applyFilters(); buildOverview();
+          toast(`▶️ YouTube India — ${allRows.length} creators loaded`,'ok');
+          return;
+        }
+      }
+    } catch(_) {}
+    allRows = [];
+    buildFilters(); applyFilters(); buildOverview();
+    toast('YouTube data not found — add india_yt_data.json','warn');
+  } else {
+    _lastRefreshedAt = null;
+    tryLoadLocalJson();
+  }
+}
+
 async function switchCountry(c) {
   activeCountry = c;
+  activePlatform = 'Instagram'; // reset platform on country switch
+  // Show/hide platform toggle (India only)
+  const pltSw = document.getElementById('platform-sw');
+  if (pltSw) {
+    pltSw.style.display = c === 'IN' ? 'flex' : 'none';
+    document.getElementById('plt-ig').classList.add('on');
+    document.getElementById('plt-yt').classList.remove('on');
+  }
   const auBtn = document.getElementById('au-curr-btn');
   if (auBtn) auBtn.style.display = c === 'AU' ? '' : 'none';
   if (c !== 'AU') auCurr = 'AUD';
@@ -1195,7 +1271,7 @@ async function buildRefreshLog() {
       _deltaLog = await r.json();
     } catch(e) {
       document.getElementById('refresh-log-tbody').innerHTML =
-        '<tr><td colspan="9" style="text-align:center;padding:16px;color:var(--g400)">Refresh log unavailable</td></tr>';
+        '<tr><td colspan="10" style="text-align:center;padding:16px;color:var(--g400)">Refresh log unavailable</td></tr>';
       return;
     }
   }
@@ -1206,7 +1282,7 @@ async function buildRefreshLog() {
 
   if (!rows.length) {
     document.getElementById('refresh-log-tbody').innerHTML =
-      '<tr><td colspan="9" style="text-align:center;padding:16px;color:var(--g400)">No refresh history yet</td></tr>';
+      '<tr><td colspan="10" style="text-align:center;padding:16px;color:var(--g400)">No refresh history yet</td></tr>';
     document.getElementById('refresh-log-subtitle').textContent = 'no data yet';
     return;
   }
@@ -1233,6 +1309,7 @@ async function buildRefreshLog() {
       <td style="padding:7px 12px;white-space:nowrap">${e.date}${isLatest?' <span style="font-size:9px;background:var(--blue);color:#fff;padding:1px 5px;border-radius:99px">latest</span>':''}</td>
       <td style="padding:7px 12px;color:var(--g500);font-size:11.5px;white-space:nowrap">${ts} IST</td>
       <td style="padding:7px 12px;text-align:right">${d.creatorsLive}</td>
+      <td style="padding:7px 12px;text-align:right">${dt ? delta(dt.creatorsLive) : '—'}</td>
       <td style="padding:7px 12px;text-align:right;font-weight:700">${fmtN(d.totalViews)}</td>
       <td style="padding:7px 12px;text-align:right">${dt ? delta(dt.totalViews) : '—'}</td>
       <td style="padding:7px 12px;text-align:right">${fmtN(d.totalLikes)}</td>
@@ -2205,6 +2282,7 @@ function buildAnalyticsCharts() {
   window._agSortDir = -1;
   renderAgencyTable();
   buildCategoryMatrix();
+  buildLanguageTable();
 }
 
 // ─── Content Category Matrix ─────────────────────────────────────────────────
@@ -2254,6 +2332,67 @@ function buildCategoryMatrix() {
     <td>Total</td>
     ${CATS.map(c=>`<td class="${CAT_CLS[c]||'cm-life'}">${colTotals[c]}</td>`).join('')}
     <td style="font-weight:700;background:var(--blue);color:#fff">${CATS.reduce((s,c)=>s+colTotals[c],0)}</td>
+  </tr>`;
+}
+
+// ─── Language Mix Table (India only) ──────────────────────────────────────────
+function buildLanguageTable() {
+  const sec = document.getElementById('lang-table-section');
+  if (!sec) return;
+  if (activeCountry !== 'IN') { sec.style.display = 'none'; return; }
+  sec.style.display = '';
+
+  const LANG_ORDER = ['Hindi','Tamil','Telugu','Kannada','Malayalam'];
+  const LANG_ICON  = {Hindi:'🇮🇳',Tamil:'🌴',Telugu:'⭐',Kannada:'🌺',Malayalam:'🌊'};
+  const LANG_CLS   = {Hindi:'cm-auto',Tamil:'cm-comedy',Telugu:'cm-finance',Kannada:'cm-vlogs',Malayalam:'cm-info'};
+
+  function regionToLang(region) {
+    const r = (region || '').toLowerCase();
+    if (r.includes('malay') || r.includes('kerala')) return 'Malayalam';
+    if (r.includes('kannada') || r.includes('bangalore') || r.includes('bengaluru')) return 'Kannada';
+    if (r.includes('tamil') || r.includes('chennai')) return 'Tamil';
+    if (r.includes('telugu') || r.includes('hyderabad') || r.includes('andhra')) return 'Telugu';
+    return 'Hindi';
+  }
+
+  // month → language → count
+  const monthMap = {};
+  for (const r of allRows) {
+    const m = r.liveMonth; if (!m) continue;
+    if (!monthMap[m]) monthMap[m] = {mo: r.monthOrder, counts: {}};
+    const lang = regionToLang(r.region);
+    monthMap[m].counts[lang] = (monthMap[m].counts[lang] || 0) + 1;
+  }
+  const months = Object.entries(monthMap).sort((a,b) => a[1].mo - b[1].mo);
+
+  const colTotals = {};
+  LANG_ORDER.forEach(l => { colTotals[l] = 0; });
+  months.forEach(([,d]) => LANG_ORDER.forEach(l => { colTotals[l] += d.counts[l] || 0; }));
+
+  const thead = document.getElementById('lang-matrix-head');
+  const tbody = document.getElementById('lang-matrix-body');
+  if (!thead || !tbody) return;
+
+  thead.innerHTML = `<tr>
+    <th style="text-align:left;min-width:120px">Month</th>
+    ${LANG_ORDER.map(l=>`<th>${LANG_ICON[l]} ${l}</th>`).join('')}
+    <th>Total</th>
+  </tr>`;
+
+  tbody.innerHTML = months.map(([month, d]) => {
+    const total = LANG_ORDER.reduce((s,l) => s + (d.counts[l]||0), 0);
+    return `<tr>
+      <td style="font-weight:600;white-space:nowrap;color:var(--g700)">${month}</td>
+      ${LANG_ORDER.map(l => {
+        const n = d.counts[l] || 0;
+        return `<td class="${n ? (LANG_CLS[l]||'cm-life') : 'cm-0'}">${n || '—'}</td>`;
+      }).join('')}
+      <td style="font-weight:700;background:var(--blue-l);color:var(--blue)">${total}</td>
+    </tr>`;
+  }).join('') + `<tr class="cm-total">
+    <td>Total</td>
+    ${LANG_ORDER.map(l=>`<td class="${LANG_CLS[l]||'cm-life'}">${colTotals[l]||'—'}</td>`).join('')}
+    <td style="font-weight:700;background:var(--blue);color:#fff">${LANG_ORDER.reduce((s,l)=>s+colTotals[l],0)}</td>
   </tr>`;
 }
 
@@ -2359,68 +2498,68 @@ function resetAll() {
 }
 
 // ═══════════════════════════════════════════════
-//  CLOUT — AI Campaign Analyst
+//  GOAT — AI Campaign Analyst
 // ═══════════════════════════════════════════════
-let cloutOpen = false;
-let cloutHistory = [];
-let cloutWaiting = false;
+let goatOpen = false;
+let goatHistory = [];
+let goatWaiting = false;
 
-function toggleClout() {
-  cloutOpen = !cloutOpen;
-  const panel = document.getElementById('clout-panel');
-  panel.classList.toggle('open', cloutOpen);
-  if (cloutOpen && cloutHistory.length === 0) {
+function toggleGoat() {
+  goatOpen = !goatOpen;
+  const panel = document.getElementById('goat-panel');
+  panel.classList.toggle('open', goatOpen);
+  if (goatOpen && goatHistory.length === 0) {
     // Boot message
     const country = activeCountry === 'IN' ? '🇮🇳 India' : activeCountry === 'AU' ? '🇦🇺 Australia' : '🇦🇪 UAE';
-    cloutAppend('bot', `Hey! I'm **CLOUT** ⚡ — your campaign analyst for the ${country} dashboard.\n\nAsk me anything: views, CPV, top creators, spend by month, agency comparison — I've got the data right here.`);
+    goatAppend('bot', `Hey! I'm **GOAT** ⚡ — your campaign analyst for the ${country} dashboard.\n\nAsk me anything: views, CPV, top creators, spend by month, agency comparison — I've got the data right here.`);
   }
-  if (cloutOpen) setTimeout(() => document.getElementById('clout-input').focus(), 250);
+  if (goatOpen) setTimeout(() => document.getElementById('goat-input').focus(), 250);
 }
 
-function cloutAsk(q) {
-  document.getElementById('clout-input').value = q;
-  cloutSend();
+function goatAsk(q) {
+  document.getElementById('goat-input').value = q;
+  goatSend();
 }
 
-async function cloutSend() {
-  const inp = document.getElementById('clout-input');
+async function goatSend() {
+  const inp = document.getElementById('goat-input');
   const q = inp.value.trim();
-  if (!q || cloutWaiting) return;
+  if (!q || goatWaiting) return;
   inp.value = '';
-  cloutAppend('user', q);
-  cloutHistory.push({ role: 'user', content: q });
+  goatAppend('user', q);
+  goatHistory.push({ role: 'user', content: q });
 
-  cloutWaiting = true;
-  document.getElementById('clout-send').disabled = true;
-  const typingId = cloutShowTyping();
+  goatWaiting = true;
+  document.getElementById('goat-send').disabled = true;
+  const typingId = goatShowTyping();
 
   try {
     const res = await fetch('/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ question: q, dataContext: buildDataContext(), history: cloutHistory.slice(-8) })
+      body: JSON.stringify({ question: q, dataContext: buildDataContext(), history: goatHistory.slice(-8) })
     });
     const data = await res.json();
     const answer = data.answer || data.error || 'Sorry, something went wrong.';
-    cloutRemoveTyping(typingId);
-    cloutAppend('bot', answer);
-    cloutHistory.push({ role: 'assistant', content: answer });
+    goatRemoveTyping(typingId);
+    goatAppend('bot', answer);
+    goatHistory.push({ role: 'assistant', content: answer });
     // Keep history bounded
-    if (cloutHistory.length > 20) cloutHistory = cloutHistory.slice(-20);
+    if (goatHistory.length > 20) goatHistory = goatHistory.slice(-20);
   } catch(e) {
-    cloutRemoveTyping(typingId);
-    cloutAppend('bot', '⚠️ Couldn\'t reach the server. Make sure the `ANTHROPIC_API_KEY` env var is set in Cloudflare Pages.');
+    goatRemoveTyping(typingId);
+    goatAppend('bot', '⚠️ Couldn\'t reach the server. Make sure the `ANTHROPIC_API_KEY` env var is set in Cloudflare Pages.');
   }
 
-  cloutWaiting = false;
-  document.getElementById('clout-send').disabled = false;
-  document.getElementById('clout-input').focus();
+  goatWaiting = false;
+  document.getElementById('goat-send').disabled = false;
+  document.getElementById('goat-input').focus();
 }
 
-function cloutAppend(role, text) {
-  const msgs = document.getElementById('clout-msgs');
+function goatAppend(role, text) {
+  const msgs = document.getElementById('goat-msgs');
   const div = document.createElement('div');
-  div.className = `clout-msg ${role}`;
+  div.className = `goat-msg ${role}`;
   const isBot = role === 'bot';
   // Minimal markdown: bold (**text**), newlines
   const html = text
@@ -2433,22 +2572,22 @@ function cloutAppend(role, text) {
   msgs.appendChild(div);
   msgs.scrollTop = msgs.scrollHeight;
   // Hide chips after first real exchange
-  if (cloutHistory.length > 1) document.getElementById('clout-chips').style.display = 'none';
+  if (goatHistory.length > 1) document.getElementById('goat-chips').style.display = 'none';
 }
 
-function cloutShowTyping() {
-  const msgs = document.getElementById('clout-msgs');
-  const id = 'clout-t-' + Date.now();
+function goatShowTyping() {
+  const msgs = document.getElementById('goat-msgs');
+  const id = 'goat-t-' + Date.now();
   msgs.insertAdjacentHTML('beforeend', `
-    <div class="clout-msg bot" id="${id}">
+    <div class="goat-msg bot" id="${id}">
       <div class="av">⚡</div>
-      <div class="bubble clout-typing"><span></span><span></span><span></span></div>
+      <div class="bubble goat-typing"><span></span><span></span><span></span></div>
     </div>`);
   msgs.scrollTop = msgs.scrollHeight;
   return id;
 }
 
-function cloutRemoveTyping(id) {
+function goatRemoveTyping(id) {
   document.getElementById(id)?.remove();
 }
 
