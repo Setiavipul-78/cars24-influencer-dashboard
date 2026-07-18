@@ -715,7 +715,12 @@ th.sa{color:var(--blue)}.th.sd{color:var(--blue)}
 
 
   <!-- ── Refresh History ──────────────────────────────────────── -->
-  <div id="refresh-log-section" style="margin-top:28px">
+  <div id="refresh-log-section" style="margin-top:40px;display:none">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px">
+      <div style="flex:1;height:1px;background:var(--g200)"></div>
+      <span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--g400);white-space:nowrap;padding:0 4px">Data Refresh Log</span>
+      <div style="flex:1;height:1px;background:var(--g200)"></div>
+    </div>
     <div class="sh">🔄 Refresh History <span class="sh-tag" id="refresh-log-subtitle">loading…</span></div>
     <div class="sec-desc">Day-on-day changes since each data pull — views, likes, comments, and creator count</div>
     <div class="card" style="padding:0;overflow:hidden">
@@ -745,6 +750,138 @@ th.sa{color:var(--blue)}.th.sd{color:var(--blue)}
 </div><!-- /analytics -->
 
 </main>
+
+<!-- ═══════════════════════════════════════════════
+     CLOUT — AI Campaign Analyst
+═══════════════════════════════════════════════ -->
+<style>
+#clout-btn {
+  position:fixed;bottom:28px;right:28px;z-index:9999;
+  width:56px;height:56px;border-radius:50%;border:none;cursor:pointer;
+  background:linear-gradient(135deg,#4736FE,#7c3aed);
+  box-shadow:0 4px 20px #4736FE55;
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;transition:transform .2s,box-shadow .2s;
+}
+#clout-btn:hover { transform:scale(1.08); box-shadow:0 6px 28px #4736FE77; }
+#clout-btn .clout-badge {
+  position:absolute;top:-4px;right:-4px;width:18px;height:18px;
+  background:#ef4444;border-radius:50%;border:2px solid #fff;
+  font-size:9px;font-weight:800;color:#fff;
+  display:none;align-items:center;justify-content:center;
+}
+#clout-panel {
+  position:fixed;bottom:96px;right:28px;z-index:9998;
+  width:380px;max-width:calc(100vw - 40px);
+  background:var(--bg);border:1.5px solid var(--bdr);border-radius:18px;
+  box-shadow:0 16px 48px #0002,0 4px 16px #4736FE22;
+  display:flex;flex-direction:column;overflow:hidden;
+  transform:translateY(20px) scale(.97);opacity:0;pointer-events:none;
+  transition:transform .25s cubic-bezier(.34,1.56,.64,1),opacity .2s;
+  max-height:520px;
+}
+#clout-panel.open { transform:translateY(0) scale(1);opacity:1;pointer-events:all; }
+#clout-hdr {
+  padding:14px 16px 12px;
+  background:linear-gradient(135deg,#4736FE,#7c3aed);
+  display:flex;align-items:center;gap:10px;flex-shrink:0;
+}
+#clout-hdr .clout-avatar {
+  width:36px;height:36px;border-radius:50%;
+  background:#ffffff22;display:flex;align-items:center;justify-content:center;
+  font-size:18px;flex-shrink:0;
+}
+#clout-hdr .clout-info { flex:1;min-width:0 }
+#clout-hdr .clout-name { font-size:15px;font-weight:800;color:#fff;letter-spacing:.3px }
+#clout-hdr .clout-sub  { font-size:10.5px;color:#ffffffaa;margin-top:1px }
+#clout-hdr button { background:none;border:none;color:#ffffffbb;cursor:pointer;font-size:18px;padding:2px 4px;line-height:1 }
+#clout-hdr button:hover { color:#fff }
+#clout-msgs {
+  flex:1;overflow-y:auto;padding:14px 14px 6px;
+  display:flex;flex-direction:column;gap:10px;
+  scrollbar-width:thin;
+}
+.clout-msg { display:flex;gap:8px;align-items:flex-end;max-width:92% }
+.clout-msg.user { flex-direction:row-reverse;align-self:flex-end }
+.clout-msg .bubble {
+  padding:9px 13px;border-radius:14px;font-size:13px;line-height:1.45;
+  word-break:break-word;
+}
+.clout-msg.bot  .bubble { background:var(--g100);color:var(--txt);border-bottom-left-radius:4px }
+.clout-msg.user .bubble { background:#4736FE;color:#fff;border-bottom-right-radius:4px }
+.clout-msg .av {
+  width:26px;height:26px;border-radius:50%;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:13px;
+  background:linear-gradient(135deg,#4736FE,#7c3aed);color:#fff;font-weight:800;
+}
+.clout-msg.user .av { background:var(--g200);color:var(--g600) }
+.clout-typing { display:flex;gap:4px;align-items:center;padding:10px 13px }
+.clout-typing span { width:7px;height:7px;border-radius:50%;background:var(--g400);animation:cloutBounce 1s infinite }
+.clout-typing span:nth-child(2) { animation-delay:.15s }
+.clout-typing span:nth-child(3) { animation-delay:.3s }
+@keyframes cloutBounce { 0%,80%,100%{transform:translateY(0)}40%{transform:translateY(-6px)} }
+#clout-chips {
+  padding:6px 14px 0;display:flex;flex-wrap:wrap;gap:5px;flex-shrink:0;
+}
+.clout-chip {
+  font-size:11px;padding:4px 10px;border-radius:99px;border:1px solid var(--bdr);
+  background:var(--bg);color:var(--g600);cursor:pointer;white-space:nowrap;
+  transition:background .15s,color .15s;
+}
+.clout-chip:hover { background:#4736FE;color:#fff;border-color:#4736FE }
+#clout-input-row {
+  padding:10px 12px 12px;display:flex;gap:8px;flex-shrink:0;
+  border-top:1px solid var(--bdr);
+}
+#clout-input {
+  flex:1;padding:9px 13px;border-radius:99px;border:1.5px solid var(--bdr);
+  background:var(--bg);color:var(--txt);font-size:13px;outline:none;
+  font-family:inherit;
+}
+#clout-input:focus { border-color:#4736FE }
+#clout-send {
+  width:36px;height:36px;border-radius:50%;border:none;cursor:pointer;
+  background:#4736FE;color:#fff;font-size:16px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .15s;
+}
+#clout-send:hover { background:#3525e0 }
+#clout-send:disabled { background:var(--g300);cursor:default }
+@media(max-width:480px){
+  #clout-panel{bottom:86px;right:16px;left:16px;width:auto}
+  #clout-btn{bottom:20px;right:20px}
+}
+</style>
+
+<!-- Floating button -->
+<button id="clout-btn" onclick="toggleClout()" title="Ask CLOUT">
+  ⚡
+  <span class="clout-badge" id="clout-badge"></span>
+</button>
+
+<!-- Chat panel -->
+<div id="clout-panel">
+  <div id="clout-hdr">
+    <div class="clout-avatar">⚡</div>
+    <div class="clout-info">
+      <div class="clout-name">CLOUT</div>
+      <div class="clout-sub">Campaign Analyst · Cars24 Influencer Dashboard</div>
+    </div>
+    <button onclick="toggleClout()" title="Close">✕</button>
+  </div>
+  <div id="clout-msgs"></div>
+  <div id="clout-chips">
+    <span class="clout-chip" onclick="cloutAsk(this.textContent)">Top creator by views?</span>
+    <span class="clout-chip" onclick="cloutAsk(this.textContent)">Blended CPV this month?</span>
+    <span class="clout-chip" onclick="cloutAsk(this.textContent)">Which agency performed best?</span>
+    <span class="clout-chip" onclick="cloutAsk(this.textContent)">Total spend so far?</span>
+  </div>
+  <div id="clout-input-row">
+    <input id="clout-input" type="text" placeholder="Ask CLOUT anything about this campaign…"
+      onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();cloutSend()}" />
+    <button id="clout-send" onclick="cloutSend()" title="Send">➤</button>
+  </div>
+</div>
 
 <!-- Toasts -->
 <div class="tc2" id="tc2"></div>
@@ -2200,6 +2337,167 @@ function resetAll() {
   document.getElementById('inf-tbody').innerHTML='';
   document.getElementById('rm-head').style.display='none';
   toast('Dashboard reset');
+}
+
+// ═══════════════════════════════════════════════
+//  CLOUT — AI Campaign Analyst
+// ═══════════════════════════════════════════════
+let cloutOpen = false;
+let cloutHistory = [];
+let cloutWaiting = false;
+
+function toggleClout() {
+  cloutOpen = !cloutOpen;
+  const panel = document.getElementById('clout-panel');
+  panel.classList.toggle('open', cloutOpen);
+  if (cloutOpen && cloutHistory.length === 0) {
+    // Boot message
+    const country = activeCountry === 'IN' ? '🇮🇳 India' : activeCountry === 'AU' ? '🇦🇺 Australia' : '🇦🇪 UAE';
+    cloutAppend('bot', `Hey! I'm **CLOUT** ⚡ — your campaign analyst for the ${country} dashboard.\n\nAsk me anything: views, CPV, top creators, spend by month, agency comparison — I've got the data right here.`);
+  }
+  if (cloutOpen) setTimeout(() => document.getElementById('clout-input').focus(), 250);
+}
+
+function cloutAsk(q) {
+  document.getElementById('clout-input').value = q;
+  cloutSend();
+}
+
+async function cloutSend() {
+  const inp = document.getElementById('clout-input');
+  const q = inp.value.trim();
+  if (!q || cloutWaiting) return;
+  inp.value = '';
+  cloutAppend('user', q);
+  cloutHistory.push({ role: 'user', content: q });
+
+  cloutWaiting = true;
+  document.getElementById('clout-send').disabled = true;
+  const typingId = cloutShowTyping();
+
+  try {
+    const res = await fetch('/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ question: q, dataContext: buildDataContext(), history: cloutHistory.slice(-8) })
+    });
+    const data = await res.json();
+    const answer = data.answer || data.error || 'Sorry, something went wrong.';
+    cloutRemoveTyping(typingId);
+    cloutAppend('bot', answer);
+    cloutHistory.push({ role: 'assistant', content: answer });
+    // Keep history bounded
+    if (cloutHistory.length > 20) cloutHistory = cloutHistory.slice(-20);
+  } catch(e) {
+    cloutRemoveTyping(typingId);
+    cloutAppend('bot', '⚠️ Couldn\'t reach the server. Make sure the `ANTHROPIC_API_KEY` env var is set in Cloudflare Pages.');
+  }
+
+  cloutWaiting = false;
+  document.getElementById('clout-send').disabled = false;
+  document.getElementById('clout-input').focus();
+}
+
+function cloutAppend(role, text) {
+  const msgs = document.getElementById('clout-msgs');
+  const div = document.createElement('div');
+  div.className = `clout-msg ${role}`;
+  const isBot = role === 'bot';
+  // Minimal markdown: bold (**text**), newlines
+  const html = text
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
+    .replace(/\n/g,'<br>');
+  div.innerHTML = isBot
+    ? `<div class="av">⚡</div><div class="bubble">${html}</div>`
+    : `<div class="bubble">${html}</div><div class="av">V</div>`;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+  // Hide chips after first real exchange
+  if (cloutHistory.length > 1) document.getElementById('clout-chips').style.display = 'none';
+}
+
+function cloutShowTyping() {
+  const msgs = document.getElementById('clout-msgs');
+  const id = 'clout-t-' + Date.now();
+  msgs.insertAdjacentHTML('beforeend', `
+    <div class="clout-msg bot" id="${id}">
+      <div class="av">⚡</div>
+      <div class="bubble clout-typing"><span></span><span></span><span></span></div>
+    </div>`);
+  msgs.scrollTop = msgs.scrollHeight;
+  return id;
+}
+
+function cloutRemoveTyping(id) {
+  document.getElementById(id)?.remove();
+}
+
+function buildDataContext() {
+  if (!allRows.length) return 'No data currently loaded.';
+  const country = activeCountry;
+  const live = allRows.filter(r => (r.liveStatus||'').toLowerCase() === 'live');
+  const totalViews   = allRows.reduce((s,r) => s+(r.views||0), 0);
+  const totalLikes   = allRows.reduce((s,r) => s+(r.likes||0), 0);
+  const totalComments= allRows.reduce((s,r) => s+(r.comments||0), 0);
+  const totalSpend   = live.reduce((s,r)  => s+(r.cost||0), 0);
+
+  // Month breakdown
+  const monthMap = {};
+  for (const r of allRows) {
+    const m = r.liveMonth; if (!m) continue;
+    if (!monthMap[m]) monthMap[m] = {mo:r.monthOrder, creators:0, views:0, spend:0, likes:0, comments:0};
+    monthMap[m].creators++;
+    monthMap[m].views += r.views||0;
+    if ((r.liveStatus||'').toLowerCase()==='live') monthMap[m].spend += r.cost||0;
+    monthMap[m].likes += r.likes||0;
+    monthMap[m].comments += r.comments||0;
+  }
+  const months = Object.entries(monthMap).sort((a,b)=>a[1].mo-b[1].mo);
+  const monthStr = months.map(([m,d]) => {
+    const cpv = d.views&&d.spend ? (d.spend/d.views).toFixed(4) : '—';
+    return `  ${m}: ${d.creators} creators, views=${fmtN(d.views)}, spend=${fmtN(d.spend)}, blendedCPV=${cpv}, likes=${fmtN(d.likes)}, comments=${fmtN(d.comments)}`;
+  }).join('\n');
+
+  // AU uses MOM_DATA for spend
+  let auSpendStr = '';
+  if (country === 'AU') {
+    const totAuSpend = AU_MOM_DATA.reduce((s,d)=>s+d.cost,0);
+    auSpendStr = `\nAU Monthly Spend (AUD): ${AU_MOM_DATA.map(d=>`${d.month}: A$${d.cost} (${d.views} views)`).join(', ')}\nTotal AU Spend: A$${totAuSpend}`;
+  }
+
+  // Top 5 by views
+  const top5 = [...allRows].filter(r=>r.views).sort((a,b)=>b.views-a.views).slice(0,5);
+  const top5Str = top5.map(r=>`  ${r.name} (${r.liveMonth}): ${fmtN(r.views)} views, ER=${r.engRate??'—'}%, CPV=${r.cpv??'—'}`).join('\n');
+
+  // Agency summary
+  const agMap = {};
+  for (const r of allRows) {
+    const a = r.agency||'Unknown';
+    if (!agMap[a]) agMap[a] = {creators:0,views:0,spend:0};
+    agMap[a].creators++;
+    agMap[a].views += r.views||0;
+    if ((r.liveStatus||'').toLowerCase()==='live') agMap[a].spend += r.cost||0;
+  }
+  const agStr = Object.entries(agMap).sort((a,b)=>b[1].views-a[1].views)
+    .map(([a,d])=>`  ${a}: ${d.creators} creators, ${fmtN(d.views)} views, spend=${fmtN(d.spend)}`).join('\n');
+
+  const sym = country==='AU'?'AUD':country==='UAE'?'AED':'INR';
+  return `Country: ${country}
+Total creators in view: ${allRows.length} (${live.length} live)
+Total views: ${fmtN(totalViews)}
+Total likes: ${fmtN(totalLikes)}
+Total comments: ${fmtN(totalComments)}
+Total spend (live rows, ${sym}): ${fmtN(totalSpend)}${auSpendStr}
+
+Month-by-month:
+${monthStr}
+
+Top 5 by views:
+${top5Str}
+
+Agency breakdown:
+${agStr}`;
 }
 </script>
 </body>
