@@ -2493,8 +2493,7 @@ function toggleGoat() {
   panel.classList.toggle('open', goatOpen);
   if (goatOpen && goatHistory.length === 0) {
     // Boot message
-    const countryFlag = activeCountry === 'IN' ? '🇮🇳' : activeCountry === 'AU' ? '🇦🇺' : '🇦🇪';
-    goatAppend('bot', `Hey! I'm **GOAT** 🐐 — your campaign analyst for the ${countryFlag} influencer dashboard.\n\nAsk me anything: views, CPV, top creators, spend by month, agency comparison — I've got the data right here.`);
+    goatAppend('bot', `Hey! I'm **GOAT** 🐐 — your campaign analyst for the influencer dashboard.\n\nAsk me anything: views, CPV, top creators, spend by month, agency comparison — I've got the data right here.`);
   }
   if (goatOpen) setTimeout(() => document.getElementById('goat-input').focus(), 250);
 }
