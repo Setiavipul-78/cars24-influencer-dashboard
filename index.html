@@ -1187,8 +1187,14 @@ async function buildRefreshLog() {
   if (!sec) return;
   const country = activeCountry;
   // Only show for AU and UAE (India has a different refresh flow)
-  if (country === 'IN') { sec.style.display = 'none'; return; }
   sec.style.display = '';
+  if (country === 'IN') {
+    document.getElementById('refresh-log-subtitle').textContent = 'not available';
+    document.getElementById('refresh-log-tbody').innerHTML =
+      '<tr><td colspan="9" style="text-align:center;padding:20px;color:var(--g400);font-size:13px">' +
+      'Refresh log is tracked for AU &amp; UAE only.<br><span style="font-size:11px">India data is managed separately via Google Sheets.</span></td></tr>';
+    return;
+  }
 
   if (!_deltaLog) {
     try {

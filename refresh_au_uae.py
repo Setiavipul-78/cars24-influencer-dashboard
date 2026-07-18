@@ -8,7 +8,9 @@ Steps per country:
   4. Write updated JSON back to file
 """
 
-import json, re, urllib.request, urllib.error, datetime, os, sys, time, base64
+import json, re, urllib.request, urllib.error, datetime, os, sys, time, base64, ssl, certifi
+
+_SSL_CTX = ssl.create_default_context(cafile=certifi.where())
 
 APIFY_TOKEN = os.environ.get("APIFY_TOKEN", "apify_api_U2idmzmhBnzlnMBi71su8BR6EzzVE30NEfF4")
 GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN", "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")
@@ -33,7 +35,7 @@ def clean_insta_url(raw):
 
 def fetch_text(url):
     req = urllib.request.Request(url, headers={"User-Agent": "python"})
-    with urllib.request.urlopen(req, timeout=30) as r:
+    with urllib.request.urlopen(req, context=_SSL_CTX, timeout=30) as r:
         return r.read().decode('utf-8')
 
 def fetch_json(url):
@@ -44,7 +46,7 @@ def post_json(url, payload):
     req = urllib.request.Request(url, data=data,
                                  headers={"Content-Type": "application/json"}, method="POST")
     try:
-        with urllib.request.urlopen(req, timeout=30) as r:
+        with urllib.request.urlopen(req, context=_SSL_CTX, timeout=30) as r:
             return json.loads(r.read())
     except urllib.error.HTTPError as e:
         print(f"HTTP {e.code}: {e.read().decode()}", file=sys.stderr)
@@ -208,7 +210,7 @@ def push_to_github(file_path, repo_relative):
     sha = None
     try:
         req = urllib.request.Request(api_url, headers=headers)
-        with urllib.request.urlopen(req, timeout=15) as r:
+        with urllib.request.urlopen(req, context=_SSL_CTX, timeout=15) as r:
             sha = json.loads(r.read())["sha"]
     except Exception:
         pass
@@ -226,7 +228,7 @@ def push_to_github(file_path, repo_relative):
                                  headers={**headers, "Content-Type": "application/json"},
                                  method="PUT")
     try:
-        with urllib.request.urlopen(req, timeout=30) as r:
+        with urllib.request.urlopen(req, context=_SSL_CTX, timeout=30) as r:
             code = r.status
     except urllib.error.HTTPError as e:
         code = e.code
@@ -276,9 +278,56 @@ def update_delta_log(script_dir, country_key, new_snap):
     return log_path
 
 
+SKIP_PUSH = os.environ.get("SKIP_PUSH") == "1"  # set in GitHub Actions; git push done by workflow
+
+
+def fmt_delta(val):
+    if val is None or val == 0:
+        return ""
+    sign = "+" if val > 0 else ""
+    return f" ({sign}{val:,})"
+
+
+def post_slack(webhook_url, au_snap, uae_snap, au_log, uae_log, errors):
+    today = datetime.date.today().strftime("%d %b %Y")
+    au_d   = au_log.get("delta") or {}
+    uae_d  = uae_log.get("delta") or {}
+
+    lines = [
+        f"*📊 Cars24 Influencer — Daily Refresh ({today})*",
+        "",
+        f"*🇦🇺 Australia*",
+        f"• {au_snap['creatorsLive']} creators live",
+        f"• {au_snap['totalViews']:,} total views{fmt_delta(au_d.get('totalViews'))}",
+        f"• {au_snap['totalLikes']:,} likes{fmt_delta(au_d.get('totalLikes'))} · {au_snap['totalComments']:,} comments{fmt_delta(au_d.get('totalComments'))}",
+        "",
+        f"*🇦🇪 UAE*",
+        f"• {uae_snap['creatorsLive']} creators live",
+        f"• {uae_snap['totalViews']:,} total views{fmt_delta(uae_d.get('totalViews'))}",
+        f"• {uae_snap['totalLikes']:,} likes{fmt_delta(uae_d.get('totalLikes'))} · {uae_snap['totalComments']:,} comments{fmt_delta(uae_d.get('totalComments'))}",
+        f"• AED {uae_snap['totalSpend']:,} total spend",
+    ]
+    if errors:
+        lines += ["", f"*⚠️ Issues ({len(errors)})*"] + [f"• {e}" for e in errors]
+    else:
+        lines.append("\n✅ All creators scraped successfully")
+
+    payload = json.dumps({"text": "\n".join(lines)}).encode()
+    req = urllib.request.Request(
+        webhook_url, data=payload,
+        headers={"Content-Type": "application/json"}, method="POST"
+    )
+    try:
+        with urllib.request.urlopen(req, context=_SSL_CTX, timeout=15) as r:
+            print(f"  Slack notification sent (HTTP {r.status})")
+    except Exception as e:
+        print(f"  Slack notification failed: {e}", file=sys.stderr)
+
+
 if __name__ == "__main__":
     script_dir = os.path.dirname(os.path.abspath(__file__))
     files_pushed = []
+    errors = []
 
     # AU
     _, au_path, au_key, au_snap = refresh_country("au_live_data.json", "Australia")
@@ -289,13 +338,34 @@ if __name__ == "__main__":
     files_pushed.append(("uae_live_data.json", uae_path))
 
     # Update delta log
-    update_delta_log(script_dir, au_key, au_snap)
-    update_delta_log(script_dir, uae_key, uae_snap)
+    au_log_path  = update_delta_log(script_dir, au_key, au_snap)
+    uae_log_path = update_delta_log(script_dir, uae_key, uae_snap)
     files_pushed.append(("delta_log.json", os.path.join(script_dir, "delta_log.json")))
 
-    # Push all to GitHub
-    print("\n── Pushing to GitHub ──")
-    for repo_rel, local_path in files_pushed:
-        push_to_github(local_path, repo_rel)
+    # Push to GitHub (skip in GitHub Actions — workflow does git push instead)
+    if not SKIP_PUSH:
+        print("\n── Pushing to GitHub ──")
+        for repo_rel, local_path in files_pushed:
+            push_to_github(local_path, repo_rel)
+    else:
+        print("\n── SKIP_PUSH=1 — GitHub Actions will commit & push ──")
+
+    # Slack notification
+    slack_url = os.environ.get("SLACK_WEBHOOK_URL", "")
+    if slack_url:
+        print("\n── Sending Slack report ──")
+        # Read back delta log to get delta values
+        try:
+            with open(os.path.join(script_dir, "delta_log.json")) as f:
+                dl = json.load(f)
+            today_str = datetime.date.today().isoformat()
+            today_entry = next((e for e in dl["logs"] if e["date"] == today_str), {})
+            au_log_data  = today_entry.get("AU", {})
+            uae_log_data = today_entry.get("UAE", {})
+        except Exception:
+            au_log_data = uae_log_data = {}
+        post_slack(slack_url, au_snap, uae_snap, au_log_data, uae_log_data, errors)
+    else:
+        print("\n── SLACK_WEBHOOK_URL not set — skipping Slack report ──")
 
     print("\nAll done.")

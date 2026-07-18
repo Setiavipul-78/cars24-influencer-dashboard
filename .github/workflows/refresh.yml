@@ -2,16 +2,16 @@ name: Refresh Dashboard Metrics
 
 on:
   schedule:
-    # Runs every day at 9:00 AM IST (03:30 UTC)
-    - cron: '30 3 * * *'
+    # Runs every day at 9:30 AM IST (04:00 UTC)
+    - cron: '0 4 * * *'
   workflow_dispatch:   # Allow manual trigger from GitHub UI
 
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 60
     permissions:
-      contents: write   # needed to commit live_data.json
+      contents: write
 
     steps:
       - name: Checkout repo
@@ -22,23 +22,33 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Refresh metrics from Apify
+      - name: Install dependencies
+        run: pip install certifi
+
+      # ── India ───────────────────────────────────────────
+      - name: Refresh India metrics (YouTube + Instagram)
         env:
           APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
         run: python refresh_metrics.py
 
-      - name: Commit updated data (if changed)
+      # ── Australia + UAE ─────────────────────────────────
+      - name: Refresh AU + UAE metrics (Instagram via Apify)
+        env:
+          APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SKIP_PUSH: "1"
+        run: python refresh_au_uae.py
+
+      # ── Commit all updated data files ───────────────────
+      - name: Commit updated data
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add live_data.json daily_snapshots.json
-          git diff --cached --quiet || git commit -m "chore: refresh metrics $(date -u '+%Y-%m-%d %H:%M UTC')"
+          git add live_data.json daily_snapshots.json \
+                  au_live_data.json uae_live_data.json delta_log.json
+          git diff --cached --quiet || \
+            git commit -m "chore: auto-refresh metrics $(date -u '+%Y-%m-%d %H:%M UTC') [skip ci]"
           git pull --rebase origin main
           git push
 
       # Cloudflare Pages auto-deploys on every push — no deploy step needed
-
-      - name: Send daily email report
-        env:
-          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
-        run: python send_report.py
