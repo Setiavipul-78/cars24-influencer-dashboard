@@ -243,6 +243,9 @@ tr.rspin td{background:#f5f3ff!important}
 .cpv-g{background:var(--grnl);color:#14532d}.cpv-ok{background:var(--ylwl);color:#713f12}
 .cpv-b{background:var(--redl);color:#991b1b}
 .cpv-chip{display:inline-block;padding:2px 7px;border-radius:99px;font-size:10.5px;font-weight:700}
+.vw-chip{display:inline-block;padding:1px 6px;border-radius:4px;font-weight:700}
+.vw-g{background:var(--grnl);color:#14532d}
+.updated-badge{font-size:10.5px;color:var(--g400);white-space:nowrap;font-weight:500;display:none}
 
 /* ER bar */
 .erb{display:flex;align-items:center;gap:5px}
@@ -434,6 +437,7 @@ th.sa{color:var(--blue)}.th.sd{color:var(--blue)}
     </div>
   </div>
   <div class="hright">
+    <span id="updated-badge" class="updated-badge"></span>
     <button class="btn btn-gh btn-sm" id="btn-export" onclick="exportCSV()">⬇ Export</button>
     <button class="btn btn-gh btn-sm" onclick="resetAll()">↺</button>
   </div>
@@ -1168,6 +1172,7 @@ async function switchCountry(c) {
           document.getElementById('btn-export').classList.remove('h');
           document.getElementById('rm-head').style.display='';
           const ts = data.refreshedAt ? new Date(data.refreshedAt).toLocaleString('en-IN') : '';
+          updBadge(data.refreshedAt);
           toast(`🇦🇺 Australia — ${allRows.length} reels · refreshed ${ts}`,'ok');
           buildRefreshLog();
           return;
@@ -1191,6 +1196,7 @@ async function switchCountry(c) {
           document.getElementById('btn-export').classList.remove('h');
           document.getElementById('rm-head').style.display='';
           const ts = data.refreshedAt ? new Date(data.refreshedAt).toLocaleString('en-IN') : '';
+          updBadge(data.refreshedAt);
           toast(`🇦🇪 UAE — ${allRows.length} creators · refreshed ${ts}`,'ok');
           buildRefreshLog();
           return;
@@ -1244,6 +1250,7 @@ async function tryLoadLocalJson(silent = false) {
     document.getElementById('btn-export').classList.remove('h');
     document.getElementById('rm-head').style.display = '';
     const ts = data.refreshedAt ? new Date(data.refreshedAt).toLocaleString('en-IN') : '';
+    updBadge(data.refreshedAt);
     if (isUpdate) {
       toast(`Dashboard updated with fresh data · ${ts}`, 'info');
     } else {
@@ -1653,7 +1660,7 @@ function renderCPVSection() {
         <div class="prs">${fmtN(r.views)} views · ${r.liveMonth||'—'}</div>
       </div>
       <div style="display:flex;align-items:center;gap:8px">
-        <span class="cpv-chip ${r.cpv<0.1?'cpv-g':r.cpv<0.5?'cpv-ok':'cpv-b'}">${activeCountry==='AU'?fmtAuCPV(r.cpv):activeCountry==='UAE'?fmtUaeCPV(r.cpv):curSym()+r.cpv.toFixed(2)}</span>
+        <span class="cpv-chip ${cpvCls(r.cpv)}">${activeCountry==='AU'?fmtAuCPV(r.cpv):activeCountry==='UAE'?fmtUaeCPV(r.cpv):curSym()+r.cpv.toFixed(2)}</span>
         ${r.videoLink?`<a href="${r.videoLink}" target="_blank" class="btn btn-gh btn-xs">▶</a>`:''}
       </div>
     </div>`).join('') : '<div style="color:var(--g400);font-size:12px;padding:10px 0">No data</div>';
@@ -1733,7 +1740,7 @@ function buildMoMTable() {
         <td style="font-weight:700">${d.reels}</td>
         <td style="font-weight:700">${fmtN(d.views)}</td>
         <td>${d.cost?fmtAuC(d.cost):'—'}</td>
-        <td>${cpv?`<span class="cpv-chip ${cpv<0.05?'cpv-g':cpv<0.2?'cpv-ok':'cpv-b'}">${fmtAuCPV(cpv)}</span>`:'—'}</td>
+        <td>${cpv?`<span class="cpv-chip ${cpvCls(cpv)}">${fmtAuCPV(cpv)}</span>`:'—'}</td>
         <td>${er?`<span class="${er>5?'mg':er>2?'mo':'mb2'}">${er.toFixed(2)}%</span>`:'—'}</td>
         <td>${st.likes?fmtN(st.likes):'—'}</td>
         <td>${st.comments?fmtN(st.comments):'—'}</td>
@@ -1748,7 +1755,7 @@ function buildMoMTable() {
       <td>${tot.reels}</td>
       <td>${fmtN(tot.views)}</td>
       <td>${fmtAuC(tot.cost)}</td>
-      <td>${totCPV?`<span class="cpv-chip ${totCPV<0.05?'cpv-g':totCPV<0.2?'cpv-ok':'cpv-b'}">${fmtAuCPV(totCPV)}</span>`:'—'}</td>
+      <td>${totCPV?`<span class="cpv-chip ${cpvCls(totCPV)}">${fmtAuCPV(totCPV)}</span>`:'—'}</td>
       <td>${totER?`<span class="${totER>5?'mg':totER>2?'mo':'mb2'}">${totER.toFixed(2)}%</span>`:'—'}</td>
       <td>${fmtN(totSt.likes)}</td>
       <td>${fmtN(totSt.comments)}</td>
@@ -1784,7 +1791,7 @@ function buildMoMTable() {
       <td style="font-weight:700">${d.live}</td>
       <td style="font-weight:700">${fmtN(d.views)}</td>
       <td>${activeCountry==='AU'?fmtAuC(d.cost):activeCountry==='UAE'?fmtUaeC(d.cost):(d.cost?sym+fmtN(d.cost):'—')}</td>
-      <td>${blendedCPV?`<span class="cpv-chip ${blendedCPV<0.1?'cpv-g':blendedCPV<0.5?'cpv-ok':'cpv-b'}">${activeCountry==='AU'?fmtAuCPV(blendedCPV):activeCountry==='UAE'?fmtUaeCPV(blendedCPV):sym+blendedCPV.toFixed(2)}</span>`:'—'}</td>
+      <td>${blendedCPV?`<span class="cpv-chip ${cpvCls(blendedCPV)}">${activeCountry==='AU'?fmtAuCPV(blendedCPV):activeCountry==='UAE'?fmtUaeCPV(blendedCPV):sym+blendedCPV.toFixed(2)}</span>`:'—'}</td>
       <td>${er?`<span class="${er>5?'mg':er>2?'mo':'mb2'}">${er.toFixed(2)}%</span>`:'—'}</td>
       <td>${fmtN(d.likes)}</td>
       <td>${fmtN(d.comments)}</td>
@@ -1808,7 +1815,7 @@ function buildMoMTable() {
     <td>${tot.live}</td>
     <td>${fmtN(tot.views)}</td>
     <td>${activeCountry==='AU'?fmtAuC(tot.cost):activeCountry==='UAE'?fmtUaeC(tot.cost):(tot.cost?sym+fmtN(tot.cost):'—')}</td>
-    <td>${totCPV?`<span class="cpv-chip ${totCPV<0.1?'cpv-g':totCPV<0.5?'cpv-ok':'cpv-b'}">${activeCountry==='AU'?fmtAuCPV(totCPV):activeCountry==='UAE'?fmtUaeCPV(totCPV):sym+totCPV.toFixed(2)}</span>`:'—'}</td>
+    <td>${totCPV?`<span class="cpv-chip ${cpvCls(totCPV)}">${activeCountry==='AU'?fmtAuCPV(totCPV):activeCountry==='UAE'?fmtUaeCPV(totCPV):sym+totCPV.toFixed(2)}</span>`:'—'}</td>
     <td>${totER?`<span class="${totER>5?'mg':totER>2?'mo':'mb2'}">${totER.toFixed(2)}%</span>`:'—'}</td>
     <td>${fmtN(tot.likes)}</td>
     <td>${fmtN(tot.comments)}</td>
@@ -1833,7 +1840,7 @@ function buildTierTable() {
     <td style="font-weight:700">${d.n}</td>
     <td>${fmtN(Math.round(d.avgV))}</td>
     <td><span class="${d.avgER>5?'mg':d.avgER>2?'mo':'mb2'}">${d.avgER?d.avgER.toFixed(2)+'%':'—'}</span></td>
-    <td>${d.avgCPV?`<span class="cpv-chip ${d.avgCPV<0.1?'cpv-g':d.avgCPV<0.5?'cpv-ok':'cpv-b'}">${activeCountry==='AU'?fmtAuCPV(d.avgCPV):activeCountry==='UAE'?fmtUaeCPV(d.avgCPV):curSym()+d.avgCPV.toFixed(2)}</span>`:'—'}</td>
+    <td>${d.avgCPV?`<span class="cpv-chip ${cpvCls(d.avgCPV)}">${activeCountry==='AU'?fmtAuCPV(d.avgCPV):activeCountry==='UAE'?fmtUaeCPV(d.avgCPV):curSym()+d.avgCPV.toFixed(2)}</span>`:'—'}</td>
     <td>${activeCountry==='AU'?fmtAuC(d.budget):activeCountry==='UAE'?fmtUaeC(d.budget):curSym()+fmtN(d.budget)}</td>
   </tr>`).join('');
 
@@ -1963,7 +1970,7 @@ function colSort(col) {
 // ═══════════════════════════════════════════════
 function renderTable() {
   const tbody = document.getElementById('inf-tbody');
-  if (!filteredRows.length) { tbody.innerHTML=`<tr><td colspan="18" style="text-align:center;padding:32px;color:var(--g400)">No results</td></tr>`; return; }
+  if (!filteredRows.length) { tbody.innerHTML=`<tr><td colspan="18" style="text-align:center;padding:40px 24px"><div style="font-size:15px;font-weight:600;color:var(--g500);margin-bottom:6px">No creators match these filters</div><div style="font-size:12px;color:var(--g400)">Try resetting your filters or selecting a different market</div><button class="btn btn-gh btn-sm" onclick="resetAll()" style="margin-top:12px">↺ Reset filters</button></td></tr>`; return; }
   tbody.innerHTML = filteredRows.map((r, i) => {
     const sel = selectedIds.has(r.id);
     const rc  = r.refreshStatus==='done'?'rok':r.refreshStatus==='error'?'rerr':'';
@@ -2018,10 +2025,14 @@ function fmtN(n) {
     return Math.round(v).toLocaleString('en');
   }
 }
+function cpvCls(v) {
+  if (activeCountry === 'AU') return v < 0.05 ? 'cpv-g' : v < 0.2 ? 'cpv-ok' : 'cpv-b';
+  return v < 0.2 ? 'cpv-g' : v < 0.5 ? 'cpv-ok' : 'cpv-b';
+}
 function fmtCPV(v) {
   if (v==null) return '<span class="na">—</span>';
   const disp = activeCountry==='AU'?fmtAuCPV(v):activeCountry==='UAE'?fmtUaeCPV(v):curSym()+v.toFixed(2);
-  return `<span class="cpv-chip ${v<0.1?'cpv-g':v<0.5?'cpv-ok':'cpv-b'}">${disp}</span>`;
+  return `<span class="cpv-chip ${cpvCls(v)}">${disp}</span>`;
 }
 function fmtER(er) {
   if (er==null||er>100) return '<span class="na">—</span>';
@@ -2041,9 +2052,24 @@ function stBdg(r) {
   return `<span class="bdg bw">${r.liveStatus||'WIP'}</span>`;
 }
 function viewsBdg(r) {
-  const v = fmtN(r.views);
-  if (r.overrideViews) return `${v} <span title="Manually set from Creator Insights" style="font-size:9px;background:#f3f0ff;color:#4736FE;border-radius:3px;padding:1px 4px;font-weight:600;vertical-align:middle">M</span>`;
-  return v;
+  const raw = r.views || 0;
+  const disp = fmtN(raw);
+  const badge = raw > 500000
+    ? `<span class="vw-chip vw-g" title="${raw.toLocaleString()} views — healthy reach">${disp}</span>`
+    : disp;
+  if (r.overrideViews) return `${badge} <span title="Manually set from Creator Insights" style="font-size:9px;background:#f3f0ff;color:#4736FE;border-radius:3px;padding:1px 4px;font-weight:600;vertical-align:middle">M</span>`;
+  return badge;
+}
+function updBadge(ts) {
+  const el = document.getElementById('updated-badge');
+  if (!el) return;
+  if (ts) {
+    const d = new Date(ts);
+    el.textContent = 'Updated ' + d.toLocaleString('en-IN', {timeZone:'Asia/Calcutta',day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'});
+    el.style.display = '';
+  } else {
+    el.style.display = 'none';
+  }
 }
 
 // ═══════════════════════════════════════════════
@@ -2354,7 +2380,7 @@ function renderAgencyTable() {
     <td style="font-weight:700;text-align:center">${d.creators}</td>
     <td style="font-weight:700">${fmtN(d.views)}</td>
     <td>${activeCountry==='AU'?fmtAuC(d.cost):activeCountry==='UAE'?fmtUaeC(d.cost):(d.cost?curSym()+fmtN(d.cost):'—')}</td>
-    <td>${d.cpv?`<span class="cpv-chip ${d.cpv<0.1?'cpv-g':d.cpv<0.5?'cpv-ok':'cpv-b'}">${activeCountry==='AU'?fmtAuCPV(d.cpv):activeCountry==='UAE'?fmtUaeCPV(d.cpv):curSym()+d.cpv.toFixed(4)}</span>`:'—'}</td>
+    <td>${d.cpv?`<span class="cpv-chip ${cpvCls(d.cpv)}">${activeCountry==='AU'?fmtAuCPV(d.cpv):activeCountry==='UAE'?fmtUaeCPV(d.cpv):curSym()+d.cpv.toFixed(4)}</span>`:'—'}</td>
     <td>${d.er?`<span class="${d.er>5?'mg':d.er>2?'mo':'mb2'}">${d.er.toFixed(2)}%</span>`:'—'}</td>
   </tr>`).join('');
 }
