@@ -1,4 +1,4 @@
-const GITHUB_RAW = 'https://raw.githubusercontent.com/Setiavipul-78/cars24-influencer-dashboard/main';
+const DASHBOARD_BASE = 'https://cars24-influencer-dashboard.pages.dev';
 
 export async function onRequestPost(context) {
   const { request, env } = context;
@@ -76,8 +76,8 @@ async function fetchDashboardData() {
 
   const settled = await Promise.allSettled(
     sources.map(s =>
-      fetch(`${GITHUB_RAW}/${s.file}`)
-        .then(r => r.json())
+      fetch(`${DASHBOARD_BASE}/${s.file}?t=${Date.now()}`)
+        .then(r => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); })
         .then(data => ({ ...s, data }))
     )
   );
