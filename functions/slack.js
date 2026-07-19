@@ -58,6 +58,16 @@ async function handleMention(event, env) {
   await postSlack(channel, threadTs, '_GOAT is analyzing the data..._', botToken);
 
   const dataContext = await fetchDashboardData(env);
+
+  // If data load failed, post the raw error directly — bypass Claude so the
+  // real problem is visible in Slack instead of a generic "no data" response.
+  if (!dataContext || dataContext.startsWith('No dashboard data')) {
+    await postSlack(channel, threadTs,
+      `⚠️ *GOAT couldn't load dashboard data* (env.ASSETS: ${env.ASSETS ? '✅' : '❌'})\n\`\`\`${dataContext}\`\`\``,
+      botToken);
+    return;
+  }
+
   const apiKey = env.ANTHROPIC_API_KEY || env.ANTHROPIC_KEY;
   const answer = await callClaude(question, dataContext, apiKey);
 
