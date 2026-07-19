@@ -57,16 +57,17 @@ async function handleMention(event, env) {
   // Show a typing indicator while we work
   await postSlack(channel, threadTs, '_GOAT is analyzing the data..._', botToken);
 
-  const dataContext = await fetchDashboardData();
+  const dataContext = await fetchDashboardData(env);
   const apiKey = env.ANTHROPIC_API_KEY || env.ANTHROPIC_KEY;
   const answer = await callClaude(question, dataContext, apiKey);
 
   await postSlack(channel, threadTs, answer, botToken);
 }
 
-// ─── Fetch all dashboard data from GitHub ───────────────────────────────────
+// ─── Fetch all dashboard data ────────────────────────────────────────────────
+// Tries env.ASSETS (CF Pages static-asset binding) first; falls back to public fetch.
 
-async function fetchDashboardData() {
+async function fetchDashboardData(env) {
   const sources = [
     { label: 'India Instagram', file: 'live_data.json',      country: 'IN', platform: 'Instagram' },
     { label: 'India YouTube',   file: 'india_yt_data.json',  country: 'IN', platform: 'YouTube'   },
@@ -75,22 +76,35 @@ async function fetchDashboardData() {
   ];
 
   const settled = await Promise.allSettled(
-    sources.map(s =>
-      fetch(`${DASHBOARD_BASE}/${s.file}?t=${Date.now()}`)
-        .then(r => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); })
-        .then(data => ({ ...s, data }))
-    )
+    sources.map(async s => {
+      let res;
+      if (env && env.ASSETS) {
+        // Read directly from the Pages static-asset store — no external HTTP hop
+        res = await env.ASSETS.fetch(new Request(`https://asset.local/${s.file}`));
+      } else {
+        res = await fetch(`${DASHBOARD_BASE}/${s.file}`);
+      }
+      if (!res.ok) throw new Error(`HTTP ${res.status} fetching ${s.file}`);
+      const data = await res.json();
+      return { ...s, data };
+    })
   );
 
   let ctx = '';
+  const errs = [];
 
-  for (const result of settled) {
-    if (result.status !== 'fulfilled') continue;
+  for (let i = 0; i < settled.length; i++) {
+    const result = settled[i];
+    const src    = sources[i];
+    if (result.status !== 'fulfilled') {
+      errs.push(`${src.label}: ${result.reason?.message || String(result.reason)}`);
+      continue;
+    }
     const { label, country, platform, data } = result.value;
     const rows  = data.rows || [];
     const live  = rows.filter(r => (r.liveStatus || '').toLowerCase() === 'live');
-    const totalViews = rows.reduce((s, r) => s + (r.views  || 0), 0);
-    const totalSpend = rows.reduce((s, r) => s + (r.cost   || 0), 0);
+    const totalViews = rows.reduce((s, r) => s + (r.views || 0), 0);
+    const totalSpend = rows.reduce((s, r) => s + (r.cost  || 0), 0);
 
     ctx += `\n## ${label} (${country} / ${platform})\n`;
     ctx += `Creators: ${rows.length} total, ${live.length} live | Views: ${totalViews} | Spend: ${totalSpend}\n`;
@@ -104,7 +118,13 @@ async function fetchDashboardData() {
     }
   }
 
-  return ctx || 'No dashboard data available.';
+  if (!ctx) {
+    const errDetails = errs.length
+      ? '\nFetch errors:\n' + errs.map(e => `- ${e}`).join('\n')
+      : '';
+    return `No dashboard data available.${errDetails}`;
+  }
+  return ctx;
 }
 
 // ─── Claude API call ─────────────────────────────────────────────────────────
