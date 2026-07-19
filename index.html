@@ -484,6 +484,7 @@ th.sa{color:var(--blue)}.th.sd{color:var(--blue)}
     <a id="btn-sheet" href="#" target="_blank" rel="noopener" class="btn-sheet-pill">📊 View Sheet ↗</a>
     <button id="au-curr-btn" onclick="toggleAuCurr()" style="display:none;background:var(--blue);color:#fff;border:none;border-radius:99px;padding:5px 14px;font-size:12px;font-weight:700;cursor:pointer;letter-spacing:.3px;margin-left:6px">🇦🇺 A$ AUD ⇄ ₹ INR</button>
     <button id="uae-curr-btn" onclick="toggleUaeCurr()" style="display:none;background:#059669;color:#fff;border:none;border-radius:99px;padding:5px 14px;font-size:12px;font-weight:700;cursor:pointer;letter-spacing:.3px;margin-left:6px">🇦🇪 AED ⇄ ₹ INR</button>
+    <span id="fx-note" style="display:none;font-size:11px;color:var(--g400);margin-left:8px;font-weight:500"></span>
   </div>
 
   <!-- Recent month KPIs -->
@@ -562,8 +563,8 @@ th.sa{color:var(--blue)}.th.sd{color:var(--blue)}
               <th>Month</th>
               <th>Creators Live</th>
               <th>Total Views</th>
-              <th>Total Budget</th>
-              <th>Blended CPV</th>
+              <th id="th-mom-budget">Budget (₹)</th>
+              <th id="th-mom-cpv">CPV (₹)</th>
               <th>Eng. Rate</th>
               <th>Total Likes</th>
               <th>Total Comments</th>
@@ -583,7 +584,7 @@ th.sa{color:var(--blue)}.th.sd{color:var(--blue)}
       <table>
         <thead><tr>
           <th>Tier</th><th>Count</th><th>Avg Views</th>
-          <th>Avg ER</th><th>Avg CPV</th><th>Total Budget</th>
+          <th>Avg ER</th><th id="th-tier-cpv">CPV (₹)</th><th id="th-tier-budget">Budget (₹)</th>
         </tr></thead>
         <tbody id="tier-tbody"></tbody>
       </table>
@@ -650,8 +651,8 @@ th.sa{color:var(--blue)}.th.sd{color:var(--blue)}
           <th onclick="colSort('comments')" class="col-hide-sm">Comments</th>
           <th onclick="colSort('engRate')">Eng. Rate</th>
           <th onclick="colSort('vfr')" class="col-hide-sm">Views/Follower</th>
-          <th onclick="colSort('cpv')">CPV</th>
-          <th onclick="colSort('cost')" class="col-hide-sm">Budget</th>
+          <th onclick="colSort('cpv')" id="th-cpv">CPV (₹)</th>
+          <th onclick="colSort('cost')" class="col-hide-sm" id="th-budget">Budget (₹)</th>
           <th>Status</th>
           <th>Actions</th>
         </tr></thead>
@@ -994,6 +995,28 @@ function fmtUaeCPV(cpv) {
   const val = uaeCurr === 'AED' ? cpv : cpv * AED_INR;
   return (uaeCurr === 'AED' ? 'AED ' : '₹') + val.toFixed(2);
 }
+function updCurrHeaders() {
+  const sym = activeCountry === 'AU'  ? (auCurr  === 'AUD' ? 'A$'  : '₹')
+            : activeCountry === 'UAE' ? (uaeCurr === 'AED' ? 'AED' : '₹')
+            : '₹';
+  const ids = ['th-cpv','th-mom-cpv','th-tier-cpv'];
+  const budIds = ['th-budget','th-mom-budget','th-tier-budget'];
+  ids.forEach(id => { const el = document.getElementById(id); if (el) el.textContent = `CPV (${sym})`; });
+  budIds.forEach(id => { const el = document.getElementById(id); if (el) el.textContent = `Budget (${sym})`; });
+  // FX rate note
+  const fx = document.getElementById('fx-note');
+  if (fx) {
+    if (activeCountry === 'AU') {
+      fx.textContent = `1 A$ ≈ ₹${AUD_INR}`;
+      fx.style.display = '';
+    } else if (activeCountry === 'UAE') {
+      fx.textContent = `1 AED ≈ ₹${AED_INR}`;
+      fx.style.display = '';
+    } else {
+      fx.style.display = 'none';
+    }
+  }
+}
 function toggleUaeCurr() {
   uaeCurr = uaeCurr === 'AED' ? 'INR' : 'AED';
   const btn = document.getElementById('uae-curr-btn');
@@ -1001,6 +1024,7 @@ function toggleUaeCurr() {
     btn.textContent = uaeCurr === 'AED' ? '🇦🇪 AED ⇄ ₹ INR' : '🇮🇳 ₹ INR ⇄ AED';
     btn.style.background = uaeCurr === 'AED' ? '#059669' : '#6d28d9';
   }
+  updCurrHeaders();
   renderOvKPIs('');
   buildMoMTable();
   renderTable();
@@ -1019,6 +1043,7 @@ function toggleAuCurr() {
     btn.textContent = auCurr === 'AUD' ? '🇦🇺 A$ AUD  ⇄  ₹ INR' : '🇮🇳 ₹ INR  ⇄  A$ AUD';
     btn.style.background = auCurr === 'AUD' ? 'var(--blue)' : '#6d28d9';
   }
+  updCurrHeaders();
   // Re-render everything that shows costs
   renderOvKPIs('');
   buildMoMTable();
@@ -1714,6 +1739,7 @@ function renderVFRSection() {
 }
 
 function buildMoMTable() {
+  updCurrHeaders();
   // Update column header dynamically
   const liveHdr = document.querySelector('#mom-table thead th:nth-child(2)');
 
