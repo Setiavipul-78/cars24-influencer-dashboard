@@ -1,5 +1,30 @@
 const DASHBOARD_BASE = 'https://cars24-influencer-dashboard.pages.dev';
 
+// Diagnostic GET — curl https://cars24-influencer-dashboard.pages.dev/slack to see what the function can read
+export async function onRequestGet(context) {
+  const { env } = context;
+  const results = {};
+  for (const file of ['live_data.json', 'india_yt_data.json', 'au_live_data.json', 'uae_live_data.json']) {
+    try {
+      let res;
+      if (env && env.ASSETS) {
+        res = await env.ASSETS.fetch(new Request(`${DASHBOARD_BASE}/${file}`));
+      } else {
+        res = await fetch(`${DASHBOARD_BASE}/${file}`);
+      }
+      const text = await res.text();
+      let rows = 0;
+      try { rows = JSON.parse(text).rows?.length ?? -1; } catch { rows = -2; }
+      results[file] = { status: res.status, rows, bytes: text.length, ct: res.headers.get('content-type') };
+    } catch (e) {
+      results[file] = { error: e.message };
+    }
+  }
+  return new Response(JSON.stringify({ hasAssets: !!(env && env.ASSETS), results }, null, 2), {
+    headers: { 'Content-Type': 'application/json' },
+  });
+}
+
 export async function onRequestPost(context) {
   const { request, env } = context;
 
