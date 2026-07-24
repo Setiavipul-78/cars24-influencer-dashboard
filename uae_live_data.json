@@ -1,5 +1,5 @@
 {
-  "refreshedAt": "2026-07-23T06:30:55Z",
+  "refreshedAt": "2026-07-24T06:27:00Z",
   "rows": [
     {
       "id": 0,
@@ -9,7 +9,7 @@
       "followers": 524000,
       "link": "https://www.instagram.com/reel/DVyn9Q4DD7x/",
       "videoLink": "https://www.instagram.com/reel/DVyn9Q4DD7x/",
-      "views": 262218,
+      "views": 262232,
       "likes": 3,
       "comments": 995,
       "shares": 11000,
@@ -23,7 +23,7 @@
       "tier": "Mega",
       "engRate": 4.58,
       "postedAt": "2026-03-12T16:28:58.000Z",
-      "lastRefreshed": "2026-07-23T06:30:55.600531Z",
+      "lastRefreshed": "2026-07-24T06:27:00.914740Z",
       "refreshStatus": "ok"
     },
     {
@@ -48,7 +48,7 @@
       "tier": "Macro",
       "engRate": 4.66,
       "postedAt": "2026-03-12T16:14:31.000Z",
-      "lastRefreshed": "2026-07-23T06:30:55.600567Z",
+      "lastRefreshed": "2026-07-24T06:27:00.914799Z",
       "refreshStatus": "ok"
     },
     {
@@ -73,7 +73,7 @@
       "tier": "Macro",
       "engRate": 3.14,
       "postedAt": "2026-03-29T14:06:49.000Z",
-      "lastRefreshed": "2026-07-23T06:30:55.600580Z",
+      "lastRefreshed": "2026-07-24T06:27:00.914808Z",
       "refreshStatus": "ok"
     },
     {
@@ -98,7 +98,7 @@
       "tier": "Macro",
       "engRate": 5.67,
       "postedAt": "2026-03-30T18:29:03.000Z",
-      "lastRefreshed": "2026-07-23T06:30:55.600589Z",
+      "lastRefreshed": "2026-07-24T06:27:00.914814Z",
       "refreshStatus": "ok"
     },
     {
@@ -123,7 +123,7 @@
       "tier": "Micro",
       "engRate": 5.94,
       "postedAt": "2026-05-03T11:23:31.000Z",
-      "lastRefreshed": "2026-07-23T06:30:55.600597Z",
+      "lastRefreshed": "2026-07-24T06:27:00.914819Z",
       "refreshStatus": "ok"
     },
     {
@@ -134,7 +134,7 @@
       "followers": 126000,
       "link": "https://www.instagram.com/p/DX7JDOiNbTE/",
       "videoLink": "https://www.instagram.com/p/DX7JDOiNbTE/",
-      "views": 286265,
+      "views": 286267,
       "likes": 1011,
       "comments": 151,
       "shares": 47,
@@ -148,7 +148,7 @@
       "tier": "Macro",
       "engRate": 0.42,
       "postedAt": "2026-05-04T16:55:46.000Z",
-      "lastRefreshed": "2026-07-23T06:30:55.600606Z",
+      "lastRefreshed": "2026-07-24T06:27:00.914826Z",
       "refreshStatus": "ok"
     },
     {
@@ -219,7 +219,7 @@
       "tier": "Nano",
       "engRate": 2.74,
       "postedAt": "2026-06-29T14:54:33.000Z",
-      "lastRefreshed": "2026-07-23T06:30:55.600615Z",
+      "lastRefreshed": "2026-07-24T06:27:00.914833Z",
       "refreshStatus": "ok"
     },
     {
@@ -230,7 +230,7 @@
       "followers": 46500,
       "link": "https://www.instagram.com/taniastanly_/",
       "videoLink": "https://www.instagram.com/taniastanly_/reel/DaSuJIjyZg1/",
-      "views": 14946,
+      "views": 14952,
       "likes": 130,
       "comments": 9,
       "shares": 0,
@@ -244,7 +244,7 @@
       "tier": "Micro",
       "engRate": 0.93,
       "postedAt": "2026-07-02T13:40:13.000Z",
-      "lastRefreshed": "2026-07-23T06:30:55.600623Z",
+      "lastRefreshed": "2026-07-24T06:27:00.914838Z",
       "refreshStatus": "ok"
     },
     {
@@ -255,13 +255,13 @@
       "followers": 23000,
       "link": "https://www.instagram.com/unniiverse_/",
       "videoLink": "https://www.instagram.com/unniiverse_/reel/DaVZvSEMjLF/",
-      "views": 12981,
-      "likes": 241,
+      "views": 13011,
+      "likes": 242,
       "comments": 57,
       "shares": 0,
       "saves": 0,
       "cost": 2500,
-      "cpv": 0.193,
+      "cpv": 0.192,
       "liveStatus": "Live",
       "liveMonth": "July 2026",
       "monthOrder": 202607,
@@ -269,7 +269,7 @@
       "tier": "Micro",
       "engRate": 2.3,
       "postedAt": "2026-07-03T14:41:55.000Z",
-      "lastRefreshed": "2026-07-23T06:30:55.600631Z",
+      "lastRefreshed": "2026-07-24T06:27:00.914844Z",
       "refreshStatus": "ok"
     },
     {
@@ -294,7 +294,7 @@
       "tier": "Nano",
       "engRate": 0.56,
       "postedAt": "2026-07-04T13:13:18.000Z",
-      "lastRefreshed": "2026-07-23T06:30:55.600638Z",
+      "lastRefreshed": "2026-07-24T06:27:00.914849Z",
       "refreshStatus": "ok"
     },
     {
@@ -305,21 +305,21 @@
       "followers": 4600,
       "link": "https://www.instagram.com/sania_gladson/",
       "videoLink": "https://www.instagram.com/reel/DaiMITzIK3m/",
-      "views": 5907,
-      "likes": 83,
+      "views": 5918,
+      "likes": 84,
       "comments": 2,
       "shares": 0,
       "saves": 0,
       "cost": 2500,
-      "cpv": 0.423,
+      "cpv": 0.422,
       "liveStatus": "Live",
       "liveMonth": "July 2026",
       "monthOrder": 202607,
       "region": "UAE",
       "tier": "Nano",
-      "engRate": 1.44,
+      "engRate": 1.45,
       "postedAt": "2026-07-08T13:54:53.000Z",
-      "lastRefreshed": "2026-07-23T06:30:55.600645Z",
+      "lastRefreshed": "2026-07-24T06:27:00.914855Z",
       "refreshStatus": "ok"
     },
     {
@@ -344,7 +344,7 @@
       "tier": "Nano",
       "engRate": 0.55,
       "postedAt": "2026-07-10T07:52:11.000Z",
-      "lastRefreshed": "2026-07-23T06:30:55.600652Z",
+      "lastRefreshed": "2026-07-24T06:27:00.914860Z",
       "refreshStatus": "ok"
     },
     {
@@ -415,7 +415,7 @@
       "tier": "Macro",
       "engRate": 1.29,
       "postedAt": "2026-07-13T09:02:46.000Z",
-      "lastRefreshed": "2026-07-23T06:30:55.600660Z",
+      "lastRefreshed": "2026-07-24T06:27:00.914866Z",
       "refreshStatus": "ok"
     }
   ]
