@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-07-24T19:39:21.977Z",
+  "exportedAt": "2026-07-24T19:39:40.194Z",
   "rows": [
     {
       "month": "2025-12-01",
@@ -309,7 +309,7 @@
       "status": "Live",
       "live_date": "2026-07-16",
       "po_status": "true",
-      "payment_status": "false",
+      "payment_status": "true",
       "video_live_link": "https://youtu.be/yMpy_aLA9xs?si=XKWlOUp_9qB7waJA&t=183",
       "views_on_30_jun": "108000",
       "likes": "5200",
