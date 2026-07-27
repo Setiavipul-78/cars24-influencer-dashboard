@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-07-27T10:00:48.453Z",
+  "exportedAt": "2026-07-27T10:00:53.914Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -6000,8 +6000,8 @@
       "live_status": "",
       "business": "",
       "po_status": "false",
-      "payment_status": "",
-      "invoice_raised": "",
+      "payment_status": "false",
+      "invoice_raised": "false",
       "video_live_link": "",
       "live_date": "",
       "views": "",
