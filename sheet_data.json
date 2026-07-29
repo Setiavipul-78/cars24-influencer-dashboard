@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-07-29T07:59:58.018Z",
+  "exportedAt": "2026-07-29T08:18:42.347Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -5755,7 +5755,7 @@
       "payment_status": "false",
       "invoice_raised": "false",
       "video_live_link": "https://www.instagram.com/reel/DbCqOoZvxLB/?",
-      "live_date": "",
+      "live_date": "21 Jily",
       "views": "589966",
       "likes": "15200",
       "comments": "55",
@@ -5777,9 +5777,9 @@
       "performance_vids": "",
       "followers": "313000",
       "avg_views": "1000000",
-      "final_cost": "",
+      "final_cost": "150000",
       "payment_agency": "Scoutly",
-      "avg_cpv": "0",
+      "avg_cpv": "0.15",
       "live_status": "Live",
       "business": "Buy",
       "po_status": "false",
