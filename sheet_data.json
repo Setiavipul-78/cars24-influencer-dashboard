@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-07-29T10:45:44.133Z",
+  "exportedAt": "2026-07-29T10:46:02.408Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -5841,7 +5841,7 @@
       "avg_views": "150000",
       "final_cost": "",
       "payment_agency": "",
-      "avg_cpv": "",
+      "avg_cpv": "0",
       "live_status": "Live",
       "business": "Buy",
       "po_status": "false",
@@ -5872,7 +5872,7 @@
       "avg_views": "500000",
       "final_cost": "",
       "payment_agency": "",
-      "avg_cpv": "",
+      "avg_cpv": "0",
       "live_status": "Live",
       "business": "Buy",
       "po_status": "false",
