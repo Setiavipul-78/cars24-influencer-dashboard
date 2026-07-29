@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-07-29T07:39:40.353Z",
+  "exportedAt": "2026-07-29T07:59:55.279Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -5749,7 +5749,7 @@
       "final_cost": "60000",
       "payment_agency": "Creator Info",
       "avg_cpv": "0.06",
-      "live_status": "WIP",
+      "live_status": "Live",
       "business": "Buy",
       "po_status": "false",
       "payment_status": "false",
@@ -5780,8 +5780,8 @@
       "final_cost": "",
       "payment_agency": "Scoutly",
       "avg_cpv": "0",
-      "live_status": "",
-      "business": "",
+      "live_status": "Live",
+      "business": "Buy",
       "po_status": "false",
       "payment_status": "false",
       "invoice_raised": "false",
@@ -5811,7 +5811,7 @@
       "final_cost": "30000",
       "payment_agency": "Creator Info",
       "avg_cpv": "0.6",
-      "live_status": "WIP",
+      "live_status": "Live",
       "business": "Buy",
       "po_status": "false",
       "payment_status": "false",
