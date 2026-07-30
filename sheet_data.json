@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-07-30T07:40:44.273Z",
+  "exportedAt": "2026-07-30T07:41:09.427Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -5871,7 +5871,7 @@
       "followers": "163000",
       "avg_views": "500000",
       "final_cost": "50000",
-      "payment_agency": "",
+      "payment_agency": "Creator Connect",
       "avg_cpv": "0.1",
       "live_status": "Live",
       "business": "Buy",
