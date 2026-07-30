@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-07-30T07:35:08.978Z",
+  "exportedAt": "2026-07-30T07:36:59.735Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -5839,9 +5839,9 @@
       "performance_vids": "",
       "followers": "22000",
       "avg_views": "150000",
-      "final_cost": "",
+      "final_cost": "17000",
       "payment_agency": "",
-      "avg_cpv": "0",
+      "avg_cpv": "0.11333333333333333",
       "live_status": "Live",
       "business": "Buy",
       "po_status": "false",
@@ -5854,7 +5854,7 @@
       "comments": "31",
       "shares": "13",
       "saves": "53",
-      "actual_cpv_as_on_09072025": "0",
+      "actual_cpv_as_on_09072025": "0.7848931160256706",
       "engagement_rate": "0.002031488065007618",
       "insights": "",
       "insights_link": "",
