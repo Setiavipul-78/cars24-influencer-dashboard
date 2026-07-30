@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-07-30T07:36:59.735Z",
+  "exportedAt": "2026-07-30T07:38:44.926Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -5715,9 +5715,9 @@
       "performance_vids": "",
       "followers": "222000",
       "avg_views": "500000",
-      "final_cost": "",
+      "final_cost": "80000",
       "payment_agency": "Flutch",
-      "avg_cpv": "0",
+      "avg_cpv": "0.16",
       "live_status": "Live",
       "business": "Buy",
       "po_status": "false",
@@ -5730,7 +5730,7 @@
       "comments": "85",
       "shares": "3724",
       "saves": "412",
-      "actual_cpv_as_on_09072025": "0",
+      "actual_cpv_as_on_09072025": "0.47058823529411764",
       "engagement_rate": "0.08946470588235295",
       "insights": "",
       "insights_link": "",
