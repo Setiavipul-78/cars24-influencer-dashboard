@@ -1570,11 +1570,7 @@ function renderOvKPIs(period) {
     ? allRows.filter(r => r.liveMonth === kpiMonth && isActive(r))
     : allRows.filter(r => isActive(r));
 
-  // Creator count: Live + Briefing (contracted but not yet posted)
-  const isLiveOrBriefing = r => ['live','briefing'].includes((r.liveStatus||'').toLowerCase());
-  const creatorsCount = (kpiMonth
-    ? allRows.filter(r => r.liveMonth === kpiMonth && isLiveOrBriefing(r))
-    : allRows.filter(r => isLiveOrBriefing(r))).length;
+  const creatorsCount = pool.length;
 
   const views = pool.reduce((s,r)=>s+(r.views||0),0);
   const spend = pool.reduce((s,r)=>s+(r.cost||0),0);
@@ -1600,7 +1596,7 @@ function renderOvKPIs(period) {
       ? {l:'Active Months',  v: [...new Set(pool.map(r=>r.liveMonth))].length, s:'months with live creators',  cls:'',    i:'📅'}
       : {l: isMoM ? 'Latest Month' : 'Period',
          v: isMoM ? (curMonth||'—') : (kpiMonth||'—'), s:'selected period', cls:'', i:'📅'},
-    {l: activeCountry==='AU'?'In Briefing':'Creators', v: creatorsCount, s: isAllTime?'total across campaign':'active this period',  cls:'mint', i:'👥'},
+    {l: activeCountry==='AU'?'In Briefing':'Creators', v: pool.length, s: isAllTime?'total across campaign':'active this period',  cls:'mint', i:'👥'},
     {l:'Total Views',  v: fmtN(views),                      s: isAllTime?'all-time plays':'plays this period',          cls:'grn',  i:'👁️'},
     {l:'Total Spend',  v: activeCountry==='UAE'?fmtUaeC(spend):curSym()+fmtN(spend),              s: isAllTime?'all-time budget':'budget this period',  cls:'or',   i:'💸'},
     {l:'Avg CPV',      v: cpv?(activeCountry==='UAE'?fmtUaeCPV(cpv):curSym()+cpv.toFixed(2)):'—', s:'blended cost per view',                           cls:'pur',  i:'📉'},
