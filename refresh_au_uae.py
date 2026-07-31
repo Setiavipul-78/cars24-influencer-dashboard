@@ -291,6 +291,8 @@ def apify_scrape(urls):
                 "views":     it.get("videoPlayCount") or it.get("videoViewCount") or 0,
                 "likes":     None if lk is None or lk < 0 else lk,
                 "comments":  it.get("commentsCount", 0) or 0,
+                "shares":    it.get("sharesCount"),
+                "saves":     it.get("savesCount"),
                 "followers": it.get("ownerFollowersCount") or 0,
                 "ts":        it.get("timestamp", ""),
             }
@@ -328,23 +330,34 @@ def refresh_country(json_path, label):
     apify = apify_scrape(urls)
     print(f"Apify returned: {len(apify)} shortcodes")
 
-    updated = no_match = 0
+    updated = missed = no_link = 0
     for r in rows:
         sc = shortcode(r.get("videoLink", ""))
-        if not sc or sc not in apify:
-            no_match += 1
+        if not sc:
+            no_link += 1
+            continue
+        if sc not in apify:
+            # Apify didn't return this video — keep every existing field as-is
+            print(f"  ⚠️  {r['name']}: no match in Apify results — keeping last fetched data")
+            missed += 1
             continue
 
         m = apify[sc]
-        new_views    = m["views"]    if m["views"]    else r.get("views")
-        new_likes    = m["likes"]    if m["likes"] is not None else r.get("likes")
-        new_comments = m["comments"] if m["comments"] else r.get("comments")
-        new_followers = m["followers"] if m["followers"] else r.get("followers")
+
+        # Use Apify value if non-zero/non-None; fall back to last fetched data otherwise
+        new_views     = m["views"]    if m["views"]                else r.get("views")
+        new_likes     = m["likes"]    if m["likes"]    is not None else r.get("likes")
+        new_comments  = m["comments"] if m["comments"] is not None else r.get("comments")
+        new_shares    = m["shares"]   if m["shares"]   is not None else r.get("shares")
+        new_saves     = m["saves"]    if m["saves"]    is not None else r.get("saves")
+        new_followers = m["followers"] if m["followers"]           else r.get("followers")
 
         r.update({
             "views":         new_views,
             "likes":         new_likes,
             "comments":      new_comments,
+            "shares":        new_shares,
+            "saves":         new_saves,
             "followers":     new_followers or r.get("followers"),
             "lastRefreshed": datetime.datetime.utcnow().isoformat() + "Z",
             "refreshStatus": "ok",
@@ -358,12 +371,19 @@ def refresh_country(json_path, label):
             except Exception:
                 pass
 
-        shares = r.get("shares") or 0
-        saves  = r.get("saves")  or 0
-        eng    = (new_likes or 0) + shares + (new_comments or 0) + saves
-        r["engRate"] = round(eng / new_views * 100, 2) if new_views else None
-        r["cpv"]     = round(r["cost"] / new_views, 3) if (r.get("cost") and new_views) else None
+        eng = (new_likes or 0) + (new_shares or 0) + (new_comments or 0) + (new_saves or 0)
+        # Keep last computed value when views are zero (scrape failure, not genuine 0)
+        r["engRate"] = round(eng / new_views * 100, 2) if new_views else r.get("engRate")
+        r["cpv"]     = round(r["cost"] / new_views, 3) if (r.get("cost") and new_views) else r.get("cpv")
+
+        print(f"  ✅ {r['name']}: {new_views:,} views  "
+              f"ER={r['engRate']}%  CPV={r['cost']}/{new_views}={r['cpv']}"
+              if new_views else
+              f"  ✅ {r['name']}: updated (views=0, kept last data)")
         updated += 1
+
+    # Sort by campaign month then name, same as India
+    rows.sort(key=lambda r: (r.get("monthOrder", 0), r.get("name", "")))
 
     now_iso = datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
     data["refreshedAt"] = now_iso
@@ -372,7 +392,7 @@ def refresh_country(json_path, label):
     with open(full_path, "w") as f:
         json.dump(data, f, indent=2)
 
-    print(f"Done — updated {updated} rows, {no_match} no Apify match")
+    print(f"Done — updated {updated}, missed {missed} (kept last data), {no_link} no videoLink")
     print(f"Wrote {full_path}")
 
     # Compute snapshot metrics for delta log
