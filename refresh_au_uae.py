@@ -2,13 +2,15 @@
 """
 Refresh script for AU and UAE Instagram reels (mirrors refresh_metrics.py for India).
 Steps per country:
-  1. Read current JSON file (au_live_data.json / uae_live_data.json)
-  2. Scrape all Instagram reel links via Apify
-  3. Update views, likes, comments, engRate, postedAt, liveMonth from Apify results
-  4. Write updated JSON back to file
+  1. [UAE only] Sync liveStatus, videoLink, link, cost from Google Sheet
+  2. Read current JSON file (au_live_data.json / uae_live_data.json)
+  3. Scrape all Instagram reel links via Apify
+  4. Update views, likes, comments, engRate, postedAt, liveMonth from Apify results
+  5. Write updated JSON back to file
 """
 
-import json, re, urllib.request, urllib.error, datetime, os, sys, time, base64, ssl, certifi
+import csv, io, json, re, urllib.parse, urllib.request, urllib.error
+import datetime, os, sys, time, base64, ssl, certifi
 
 _SSL_CTX = ssl.create_default_context(cafile=certifi.where())
 
@@ -21,6 +23,9 @@ BATCH_SIZE   = 50
 MAX_WAIT_S   = 600
 POLL_S       = 10
 
+UAE_SHEET_ID  = "1_DEKX02I3Dh41B8nBtwPR1G-_4nt98WgDILZjzg3sp4"
+UAE_SHEET_TAB = "Pan UAE POA - Instagram"
+
 SC_RE    = re.compile(r'/(?:reel|reels|p)/([A-Za-z0-9_-]+)(?:/|\?|$)')
 INSTA_RE = re.compile(r'^https?://(www\.)?instagram\.com/', re.I)
 
@@ -32,6 +37,189 @@ def clean_insta_url(raw):
     candidates = [l.strip() for l in re.split(r'\s+', (raw or '').replace('\n', ' '))
                   if INSTA_RE.match(l.strip())]
     return (candidates[0].split('?')[0].rstrip('/') + '/') if candidates else ''
+
+def month_order(s):
+    MO = ["january","february","march","april","may","june","july",
+          "august","september","october","november","december"]
+    sl = s.lower()
+    mi = next((i + 1 for i, m in enumerate(MO) if m in sl), 0)
+    ym = re.search(r"\d{4}", s)
+    yr = int(ym.group()) if ym else 2025
+    return yr * 100 + mi
+
+def tier_of(f):
+    if not f: return "Unknown"
+    if f < 10_000:   return "Nano"
+    if f < 100_000:  return "Micro"
+    if f < 1_000_000: return "Macro"
+    return "Mega"
+
+def parse_k_number(s):
+    """Parse '5.4k' → 5400, '524k' → 524000, '3000' → 3000."""
+    if not s: return None
+    s = s.strip().replace(',', '')
+    m = re.match(r'^([\d.]+)([kKmM]?)$', s)
+    if not m: return None
+    n = float(m.group(1))
+    suffix = m.group(2).lower()
+    if suffix == 'k': return int(n * 1_000)
+    if suffix == 'm': return int(n * 1_000_000)
+    return int(n)
+
+def parse_aed_cost(s):
+    """Parse 'AED 2,500' → 2500."""
+    if not s: return None
+    nums = re.sub(r'[^\d.]', '', s)
+    try: return float(nums) if nums else None
+    except: return None
+
+def sync_uae_from_sheet(rows):
+    """Fetch the UAE master sheet and update liveStatus, videoLink, link, cost for each
+    creator. Also inserts any new rows added to the sheet that aren't yet in the JSON.
+    This is the step that was missing — it prevents stale Briefing status when a creator
+    goes Live in the sheet but the nightly Apify run never picked them up (no videoLink
+    in JSON yet → nothing to scrape → status never updated)."""
+    url = (f"https://docs.google.com/spreadsheets/d/{UAE_SHEET_ID}"
+           f"/gviz/tq?tqx=out:csv&sheet={urllib.parse.quote(UAE_SHEET_TAB)}")
+    print("\n📊 Syncing from UAE sheet…")
+    try:
+        req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+        with urllib.request.urlopen(req, context=_SSL_CTX, timeout=20) as r:
+            text = r.read().decode("utf-8", errors="replace")
+    except Exception as e:
+        print(f"  ⚠️  Sheet fetch failed ({e}) — skipping sync", file=sys.stderr)
+        return rows
+
+    reader = csv.reader(io.StringIO(text))
+    raw = [r for r in reader if any(c.strip() for c in r)]
+    if len(raw) < 2:
+        print("  ⚠️  Sheet returned no data — skipping sync", file=sys.stderr)
+        return rows
+
+    hdrs = raw[0]
+
+    def col(*names):
+        for name in names:
+            nl = name.lower()
+            for i, h in enumerate(hdrs):
+                if h.strip().lower() == nl: return i
+            for i, h in enumerate(hdrs):
+                if nl in h.strip().lower(): return i
+        return -1
+
+    C = {
+        "name":       col("name"),
+        "link":       col("channel link", "link"),
+        "agency":     col("agency name", "agency"),
+        "liveMonth":  col("live month"),
+        "followers":  col("followers"),
+        "cost":       col("final cost"),
+        "liveStatus": col("live status"),
+        "videoLink":  col("video live link"),
+    }
+
+    def g(row, key):
+        i = C.get(key, -1)
+        return row[i].strip() if 0 <= i < len(row) else ""
+
+    # Index sheet rows by lowercase name
+    sheet_by_name = {}
+    for sr in raw[1:]:
+        name = g(sr, "name")
+        if name:
+            sheet_by_name[name.lower()] = sr
+
+    json_names = {r["name"].strip().lower() for r in rows}
+    changes = 0
+
+    for r in rows:
+        key = r["name"].strip().lower()
+        sr  = sheet_by_name.get(key)
+        if not sr:
+            print(f"  ⚠️  {r['name']!r} not found in sheet")
+            continue
+
+        updates = []
+
+        new_status = g(sr, "liveStatus")
+        if new_status and new_status != r.get("liveStatus"):
+            r["liveStatus"] = new_status
+            updates.append(f"liveStatus→{new_status}")
+
+        sheet_video = clean_insta_url(g(sr, "videoLink"))
+        json_video  = r.get("videoLink") or ""
+        if sheet_video and not json_video:
+            r["videoLink"] = sheet_video
+            updates.append("videoLink added")
+        elif sheet_video and not r.get("views"):
+            r["videoLink"] = sheet_video
+            updates.append("videoLink refreshed")
+
+        new_link = g(sr, "link")
+        if new_link:
+            r["link"] = new_link
+
+        new_agency = g(sr, "agency")
+        if new_agency:
+            r["agency"] = new_agency
+
+        # Only set liveMonth from sheet if Apify hasn't already stamped a posting date
+        new_month = g(sr, "liveMonth")
+        if new_month and new_month != r.get("liveMonth") and not r.get("views"):
+            r["liveMonth"]  = new_month
+            r["monthOrder"] = month_order(new_month)
+            updates.append(f"liveMonth→{new_month}")
+
+        new_cost = parse_aed_cost(g(sr, "cost"))
+        if new_cost is not None and new_cost != r.get("cost"):
+            r["cost"] = new_cost
+            updates.append(f"cost→{new_cost}")
+
+        new_followers = parse_k_number(g(sr, "followers"))
+        if new_followers and not r.get("followers"):
+            r["followers"] = new_followers
+            r["tier"]      = tier_of(new_followers)
+
+        if updates:
+            print(f"  ✏️  {r['name']}: {', '.join(updates)}")
+            changes += 1
+
+    # Add creators in the sheet but not yet in the JSON
+    next_id = max((r.get("id", -1) for r in rows), default=-1) + 1
+    for sname, sr in sheet_by_name.items():
+        if sname in json_names:
+            continue
+        name      = g(sr, "name")
+        cost      = parse_aed_cost(g(sr, "cost"))
+        followers = parse_k_number(g(sr, "followers"))
+        new_row = {
+            "id":         next_id,
+            "name":       name,
+            "agency":     g(sr, "agency"),
+            "category":   "",
+            "followers":  followers,
+            "link":       g(sr, "link"),
+            "videoLink":  clean_insta_url(g(sr, "videoLink")),
+            "views":      None,
+            "likes":      None, "comments": None,
+            "shares":     None, "saves":    None,
+            "cost":       cost,
+            "cpv":        None,
+            "liveStatus": g(sr, "liveStatus"),
+            "liveMonth":  g(sr, "liveMonth"),
+            "monthOrder": month_order(g(sr, "liveMonth")),
+            "region":     "UAE",
+            "tier":       tier_of(followers),
+            "engRate":    None, "postedAt": None,
+        }
+        rows.append(new_row)
+        print(f"  ➕ Added new creator: {name}")
+        next_id += 1
+        changes += 1
+
+    print(f"  Sheet sync done — {changes} change(s)")
+    return rows
+
 
 def fetch_text(url):
     req = urllib.request.Request(url, headers={"User-Agent": "python"})
@@ -121,6 +309,13 @@ def refresh_country(json_path, label):
     with open(full_path) as f:
         data = json.load(f)
     rows = data["rows"]
+
+    # [UAE only] Step 1: sync liveStatus / videoLink / link / cost from Google Sheet
+    # This catches creators whose status changed in the sheet since the last run,
+    # and new creators added to the sheet that haven't been added to the JSON yet.
+    if "uae" in label.lower():
+        rows = sync_uae_from_sheet(rows)
+        data["rows"] = rows
 
     # Collect scrapeable URLs
     urls = []
