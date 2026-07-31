@@ -968,6 +968,21 @@ const SHEET_URLS = {
 const MO = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 const COLORS = ['#4736FE','#00d4a1','#8b5cf6','#f97316','#ec4899','#eab308','#22c55e','#ef4444','#06b6d4','#a78bfa'];
 
+// Override liveMonth/monthOrder from actual Apify-scraped postedAt date.
+// Rows with no postedAt keep their sheet-declared liveMonth unchanged.
+// Applies to all three countries so month grouping everywhere reflects
+// when the video actually went live, not the campaign plan month.
+function applyPostedAtMonth(rows) {
+  return rows.map(r => {
+    if (!r.postedAt) return r;
+    const d = new Date(r.postedAt);
+    if (isNaN(d.getTime())) return r;
+    const m  = MO[d.getUTCMonth()] + ' ' + d.getUTCFullYear();
+    const mo = d.getUTCFullYear() * 100 + d.getUTCMonth() + 1;
+    return {...r, liveMonth: m, monthOrder: mo};
+  });
+}
+
 // ═══════════════════════════════════════════════
 //  MULTI-COUNTRY
 // ═══════════════════════════════════════════════
@@ -1192,7 +1207,7 @@ async function switchCountry(c) {
       if (res.ok) {
         const data = await res.json();
         if (data.rows && data.rows.length) {
-          allRows = data.rows.map((r,i)=>({...r,id:i,liveStatus:r.liveStatus||'Live',link:r.link||r.profileLink||''}));
+          allRows = applyPostedAtMonth(data.rows.map((r,i)=>({...r,id:i,liveStatus:r.liveStatus||'Live',link:r.link||r.profileLink||''})));
           buildFilters(); applyFilters(); buildOverview();
           document.getElementById('btn-export').classList.remove('h');
           document.getElementById('rm-head').style.display='';
@@ -1216,7 +1231,7 @@ async function switchCountry(c) {
       if (res.ok) {
         const data = await res.json();
         if (data.rows && data.rows.length) {
-          allRows = data.rows.map((r,i)=>({...r,id:i,link:r.link||r.videoLink||''}));
+          allRows = applyPostedAtMonth(data.rows.map((r,i)=>({...r,id:i,link:r.link||r.videoLink||''})));
           buildFilters(); applyFilters(); buildOverview();
           document.getElementById('btn-export').classList.remove('h');
           document.getElementById('rm-head').style.display='';
@@ -1270,7 +1285,7 @@ async function tryLoadLocalJson(silent = false) {
     const isUpdate = silent && _lastRefreshedAt !== null;
     _lastRefreshedAt = data.refreshedAt;
 
-    allRows = data.rows;
+    allRows = applyPostedAtMonth(data.rows);
     buildFilters(); applyFilters(); buildOverview();
     document.getElementById('btn-export').classList.remove('h');
     document.getElementById('rm-head').style.display = '';

@@ -121,6 +121,7 @@ def sync_uae_from_sheet(rows):
         "cost":       col("final cost"),
         "liveStatus": col("live status"),
         "videoLink":  col("video live link"),
+        "liveDate":   col("live date"),
     }
 
     def g(row, key):
@@ -167,6 +168,21 @@ def sync_uae_from_sheet(rows):
         new_agency = g(sr, "agency")
         if new_agency:
             r["agency"] = new_agency
+
+        # For creators whose videoLink is a profile URL (no reel shortcode), Apify
+        # can't scrape them so postedAt stays None. Use the sheet's "Live Date" column
+        # (format MM-DD-YYYY, e.g. "05-20-2026") to give them a posting date.
+        if not r.get("postedAt") and not shortcode(r.get("videoLink", "")):
+            ld = g(sr, "liveDate")
+            if ld:
+                try:
+                    parts = ld.split("-")
+                    if len(parts) == 3:
+                        iso = f"{parts[2]}-{parts[0]}-{parts[1]}T00:00:00Z"
+                        r["postedAt"] = iso
+                        updates.append(f"postedAt→{iso[:10]}")
+                except Exception:
+                    pass
 
         # Only set liveMonth from sheet if Apify hasn't already stamped a posting date
         new_month = g(sr, "liveMonth")
