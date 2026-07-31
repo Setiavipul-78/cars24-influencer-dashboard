@@ -2,7 +2,9 @@
 """
 Refresh script for AU and UAE Instagram reels (mirrors refresh_metrics.py for India).
 Steps per country:
-  1. [UAE only] Sync liveStatus, videoLink, link, cost from Google Sheet
+  1. Sync liveStatus, videoLink, link, cost from Google Sheet
+     - UAE sheet: public (gviz/tq, no auth needed)
+     - AU sheet:  requires auth; sync skips gracefully if sheet returns 401
   2. Read current JSON file (au_live_data.json / uae_live_data.json)
   3. Scrape all Instagram reel links via Apify
   4. Update views, likes, comments, engRate, postedAt, liveMonth from Apify results
@@ -25,6 +27,9 @@ POLL_S       = 10
 
 UAE_SHEET_ID  = "1_DEKX02I3Dh41B8nBtwPR1G-_4nt98WgDILZjzg3sp4"
 UAE_SHEET_TAB = "Pan UAE POA - Instagram"
+
+AU_SHEET_ID  = "1VDcKBUNwFacleZFdN_By-qAeroheo3mlqOItat1ZQM8"
+AU_SHEET_TAB = "Pan Australia POA - Instagram"
 
 SC_RE    = re.compile(r'/(?:reel|reels|p)/([A-Za-z0-9_-]+)(?:/|\?|$)')
 INSTA_RE = re.compile(r'^https?://(www\.)?instagram\.com/', re.I)
@@ -221,6 +226,162 @@ def sync_uae_from_sheet(rows):
     return rows
 
 
+def sync_au_from_sheet(rows):
+    """Fetch the AU master sheet and sync liveStatus, videoLink, link, cost.
+    Also inserts any new creators in the sheet not yet in the JSON.
+    NOTE: The AU sheet is not publicly accessible without auth — this function
+    attempts the gviz/tq URL and silently skips on 401/403 so the nightly run
+    is not broken. If the sheet is ever made public (like UAE/India), the sync
+    will activate automatically."""
+    url = (f"https://docs.google.com/spreadsheets/d/{AU_SHEET_ID}"
+           f"/gviz/tq?tqx=out:csv&sheet={urllib.parse.quote(AU_SHEET_TAB)}")
+    print("\n📊 Syncing from AU sheet…")
+    try:
+        req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+        with urllib.request.urlopen(req, context=_SSL_CTX, timeout=20) as r:
+            text = r.read().decode("utf-8", errors="replace")
+    except urllib.error.HTTPError as e:
+        if e.code in (401, 403):
+            print(f"  ℹ️  AU sheet requires auth ({e.code}) — skipping sync"
+                  f" (share sheet publicly to enable)", file=sys.stderr)
+        else:
+            print(f"  ⚠️  Sheet fetch failed (HTTP {e.code}) — skipping sync", file=sys.stderr)
+        return rows
+    except Exception as e:
+        print(f"  ⚠️  Sheet fetch failed ({e}) — skipping sync", file=sys.stderr)
+        return rows
+
+    reader = csv.reader(io.StringIO(text))
+    raw = [r for r in reader if any(c.strip() for c in r)]
+    if len(raw) < 2:
+        print("  ⚠️  Sheet returned no data — skipping sync", file=sys.stderr)
+        return rows
+
+    hdrs = raw[0]
+
+    def col(*names):
+        for name in names:
+            nl = name.lower()
+            for i, h in enumerate(hdrs):
+                if h.strip().lower() == nl: return i
+            for i, h in enumerate(hdrs):
+                if nl in h.strip().lower(): return i
+        return -1
+
+    C = {
+        "name":       col("name"),
+        "link":       col("channel link", "link"),
+        "agency":     col("agency name", "agency"),
+        "liveMonth":  col("live month"),
+        "followers":  col("followers"),
+        "cost":       col("final cost"),
+        "liveStatus": col("status", "live status"),
+        "videoLink":  col("video live link"),
+    }
+
+    def g(row, key):
+        i = C.get(key, -1)
+        return row[i].strip() if 0 <= i < len(row) else ""
+
+    sheet_by_name = {}
+    for sr in raw[1:]:
+        name = g(sr, "name")
+        if name:
+            sheet_by_name[name.lower()] = sr
+
+    json_names = {r["name"].strip().lower() for r in rows}
+    changes = 0
+
+    for r in rows:
+        key = r["name"].strip().lower()
+        sr  = sheet_by_name.get(key)
+        if not sr:
+            continue
+
+        updates = []
+
+        new_status = g(sr, "liveStatus")
+        if new_status and new_status.lower() == "live" and r.get("liveStatus") != "Live":
+            r["liveStatus"] = "Live"
+            updates.append(f"liveStatus→Live")
+
+        sheet_video = clean_insta_url(g(sr, "videoLink"))
+        json_video  = r.get("videoLink") or ""
+        if sheet_video and not json_video:
+            r["videoLink"] = sheet_video
+            updates.append("videoLink added")
+        elif sheet_video and not r.get("views"):
+            r["videoLink"] = sheet_video
+            updates.append("videoLink refreshed")
+
+        new_link = g(sr, "link")
+        if new_link:
+            r["link"] = new_link
+
+        new_agency = g(sr, "agency")
+        if new_agency:
+            r["agency"] = new_agency
+
+        new_month = g(sr, "liveMonth")
+        if new_month and new_month != r.get("liveMonth") and not r.get("views"):
+            r["liveMonth"]  = new_month
+            r["monthOrder"] = month_order(new_month)
+            updates.append(f"liveMonth→{new_month}")
+
+        new_cost = parse_aed_cost(g(sr, "cost"))
+        if new_cost is not None and new_cost != r.get("cost"):
+            r["cost"] = new_cost
+            updates.append(f"cost→{new_cost}")
+
+        new_followers = parse_k_number(g(sr, "followers"))
+        if new_followers and not r.get("followers"):
+            r["followers"] = new_followers
+            r["tier"]      = tier_of(new_followers)
+
+        if updates:
+            print(f"  ✏️  {r['name']}: {', '.join(updates)}")
+            changes += 1
+
+    # Add creators in the sheet but not yet in the JSON (only if status = Live)
+    next_id = max((r.get("id", -1) for r in rows), default=-1) + 1
+    for sname, sr in sheet_by_name.items():
+        if sname in json_names:
+            continue
+        status = g(sr, "liveStatus")
+        if status.lower() != "live":
+            continue
+        name      = g(sr, "name")
+        cost      = parse_aed_cost(g(sr, "cost"))
+        followers = parse_k_number(g(sr, "followers"))
+        new_row = {
+            "id":         next_id,
+            "name":       name,
+            "agency":     g(sr, "agency"),
+            "category":   "",
+            "followers":  followers,
+            "link":       g(sr, "link"),
+            "videoLink":  clean_insta_url(g(sr, "videoLink")),
+            "views":      None,
+            "likes":      None, "comments": None,
+            "shares":     None, "saves":    None,
+            "cost":       cost,
+            "cpv":        None,
+            "liveStatus": "Live",
+            "liveMonth":  g(sr, "liveMonth"),
+            "monthOrder": month_order(g(sr, "liveMonth")),
+            "region":     "Australia",
+            "tier":       tier_of(followers),
+            "engRate":    None, "postedAt": None,
+        }
+        rows.append(new_row)
+        print(f"  ➕ Added new creator: {name}")
+        next_id += 1
+        changes += 1
+
+    print(f"  AU sheet sync done — {changes} change(s)")
+    return rows
+
+
 def fetch_text(url):
     req = urllib.request.Request(url, headers={"User-Agent": "python"})
     with urllib.request.urlopen(req, context=_SSL_CTX, timeout=30) as r:
@@ -312,11 +473,14 @@ def refresh_country(json_path, label):
         data = json.load(f)
     rows = data["rows"]
 
-    # [UAE only] Step 1: sync liveStatus / videoLink / link / cost from Google Sheet
+    # Step 1: sync liveStatus / videoLink / link / cost from Google Sheet
     # This catches creators whose status changed in the sheet since the last run,
     # and new creators added to the sheet that haven't been added to the JSON yet.
     if "uae" in label.lower():
         rows = sync_uae_from_sheet(rows)
+        data["rows"] = rows
+    elif "australia" in label.lower():
+        rows = sync_au_from_sheet(rows)
         data["rows"] = rows
 
     # Collect scrapeable URLs
