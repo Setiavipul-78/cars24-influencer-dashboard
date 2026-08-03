@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-08-03T10:42:43.532Z",
+  "exportedAt": "2026-08-03T11:13:46.938Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -5983,37 +5983,6 @@
       "insights": "",
       "insights_link": "",
       "performance_cut": ""
-    },
-    {
-      "live_month": "2026-08-01",
-      "agency_name": "Flutch",
-      "name": "Nihal Nizam",
-      "link": "https://instagram.com/nameisnihal__",
-      "region": "Malyalam",
-      "performance_cuts": "",
-      "performance_vids": "",
-      "followers": "1100000",
-      "avg_views": "7000000",
-      "final_cost": "200000",
-      "payment_agency": "Flutch",
-      "avg_cpv": "0.02857142857142857",
-      "live_status": "dropped",
-      "business": "Buy",
-      "po_status": "false",
-      "payment_status": "false",
-      "invoice_raised": "false",
-      "video_live_link": "",
-      "live_date": "",
-      "views": "",
-      "likes": "",
-      "comments": "",
-      "shares": "",
-      "saves": "",
-      "actual_cpv_as_on_09072025": "",
-      "engagement_rate": "",
-      "insights": "",
-      "insights_link": "",
-      "performance_cut": "false"
     },
     {
       "live_month": "2026-08-01",
