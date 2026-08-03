@@ -150,12 +150,12 @@ else:
                 'link':        video_link or channel_link,
                 'subscribers': num(sr.get('subscribers') or sr.get('subs') or old_r.get('subscribers')),
                 'followers':   num(sr.get('subscribers') or sr.get('subs') or old_r.get('subscribers')),
-                'views':       num(sr.get('views_on_30_jun') or sr.get('avg_views') or sr.get('views') or old_r.get('views')),
+                'views':       old_r.get('views'),
                 'plannedViews':num(sr.get('avg_views') or old_r.get('plannedViews')),
-                'likes':       num(sr.get('likes') or old_r.get('likes')),
-                'comments':    num(sr.get('comments') or old_r.get('comments')),
+                'likes':       old_r.get('likes'),
+                'comments':    old_r.get('comments'),
                 'cost':        cost_val,
-                'cpv':         num(sr.get('actual_cpv_as_on_30062026') or sr.get('avg_cpv') or sr.get('cpv') or old_r.get('cpv')),
+                'cpv':         old_r.get('cpv'),
                 'avgWatchTime':wt,
                 'agency':      (sr.get('agency') or sr.get('partner') or old_r.get('agency') or 'Direct').strip(),
                 'liveStatus':  (sr.get('status') or sr.get('live_status') or old_r.get('liveStatus') or 'Live').strip(),
@@ -265,18 +265,21 @@ for r in rows:
 
     if hit:
         # Only overwrite if Apify returned a non-None value (don't zero-out on partial failures)
-        if hit.get('views')   is not None: r['views']       = hit['views']
-        if hit.get('likes')   is not None: r['likes']       = hit['likes']
-        if hit.get('comments') is not None: r['comments']   = hit['comments']
+        if hit.get('views')    is not None: r['views']    = hit['views']
+        if hit.get('likes')    is not None: r['likes']    = hit['likes']
+        if hit.get('comments') is not None: r['comments'] = hit['comments']
         if hit.get('subscribers') is not None:
             r['subscribers'] = hit['subscribers']
             r['followers']   = hit['subscribers']
         # Upload date — only from Apify (when the video actually went live on YouTube)
         if hit.get('uploadDate'):
             r['postedAt'] = str(hit['uploadDate'])
+        # Recalculate CPV from Apify views + sheet cost (never use sheet CPV)
+        v = r.get('views')
+        r['cpv'] = round(r['cost'] / v, 4) if (r.get('cost') and v) else None
         r['refreshStatus'] = 'scraped'
         updated += 1
-        print(f"  ✓ {r['name']:30s} views={r.get('views')}  subs={r.get('subscribers')}  postedAt={r.get('postedAt')}")
+        print(f"  ✓ {r['name']:30s} views={r.get('views')}  cpv={r.get('cpv')}  subs={r.get('subscribers')}  postedAt={r.get('postedAt')}")
     else:
         r['refreshStatus'] = 'frozen'
         frozen += 1
