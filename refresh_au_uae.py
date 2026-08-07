@@ -16,7 +16,7 @@ import datetime, os, sys, time, base64, ssl, certifi
 
 _SSL_CTX = ssl.create_default_context(cafile=certifi.where())
 
-APIFY_TOKEN = os.environ.get("APIFY_TOKEN", "apify_api_U2idmzmhBnzlnMBi71su8BR6EzzVE30NEfF4")
+APIFY_TOKEN = os.environ.get("APIFY_TOKEN", "")
 GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN", "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")
 GITHUB_OWNER = "Setiavipul-78"
 GITHUB_REPO  = "cars24-influencer-dashboard"

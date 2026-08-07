@@ -8,7 +8,7 @@ csvPin=true rows are never overwritten (manually verified metrics from CSV).
 
 import json, re, urllib.request, urllib.error, datetime, os, sys, time
 
-APIFY_TOKEN = os.environ.get("APIFY_TOKEN", "apify_api_U2idmzmhBnzlnMBi71su8BR6EzzVE30NEfF4")
+APIFY_TOKEN = os.environ.get("APIFY_TOKEN", "")
 ACTOR_ID    = "apify~instagram-scraper"
 BATCH_SIZE  = 50
 MAX_WAIT_S  = 600
