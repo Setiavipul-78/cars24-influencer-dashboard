@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-08-07T14:14:42.039Z",
+  "exportedAt": "2026-08-07T14:14:51.168Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -6047,7 +6047,7 @@
       "performance_cut": ""
     },
     {
-      "live_month": "",
+      "live_month": "2026-08-01",
       "agency_name": "Self",
       "name": "oye sachin",
       "link": "https://www.instagram.com/_oyesachin_?",
@@ -6057,7 +6057,7 @@
       "followers": "260000",
       "avg_views": "500000",
       "final_cost": "110000",
-      "payment_agency": "",
+      "payment_agency": "Flutch",
       "avg_cpv": "",
       "live_status": "",
       "business": "",
