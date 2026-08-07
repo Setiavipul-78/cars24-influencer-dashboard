@@ -1,29 +1,46 @@
 {
-  "2026-07": {
-    "india_instagram_views": 100000000,
-    "india_youtube_views":   20000000,
-    "australia_views":        5000000,
-    "uae_views":              3000000,
-    "india_budget_inr":    5000000,
-    "australia_budget_aud":  200000,
-    "uae_budget_usd":         50000
-  },
   "2026-08": {
-    "india_instagram_views": 100000000,
-    "india_youtube_views":   20000000,
-    "australia_views":        5000000,
-    "uae_views":              3000000,
-    "india_budget_inr":    5000000,
-    "australia_budget_aud":  200000,
-    "uae_budget_usd":         50000
+    "india_instagram_views":   30000000,
+    "india_youtube_views":      3000000,
+    "australia_views":          5000000,
+    "uae_views":                3000000,
+    "india_budget_inr":       1500000,
+    "india_yt_budget_inr":     775000,
+    "australia_budget_aud":    200000,
+    "uae_budget_usd":           50000,
+    "language_split": {
+      "hindi_pct":   50,
+      "malayalam_pct": 12.5,
+      "telugu_pct":    12.5,
+      "tamil_pct":     12.5,
+      "kannada_pct":   12.5
+    },
+    "ig_category_mix": {
+      "automobile_pct":    35,
+      "entertainment_pct": 40,
+      "finance_infotainment_vlogs_pct": 25
+    }
   },
   "2026-09": {
-    "india_instagram_views": 100000000,
-    "india_youtube_views":   20000000,
-    "australia_views":        5000000,
-    "uae_views":              3000000,
-    "india_budget_inr":    5000000,
-    "australia_budget_aud":  200000,
-    "uae_budget_usd":         50000
+    "india_instagram_views":   30000000,
+    "india_youtube_views":      3000000,
+    "australia_views":          5000000,
+    "uae_views":                3000000,
+    "india_budget_inr":       1500000,
+    "india_yt_budget_inr":     775000,
+    "australia_budget_aud":    200000,
+    "uae_budget_usd":           50000,
+    "language_split": {
+      "hindi_pct":   50,
+      "malayalam_pct": 12.5,
+      "telugu_pct":    12.5,
+      "tamil_pct":     12.5,
+      "kannada_pct":   12.5
+    },
+    "ig_category_mix": {
+      "automobile_pct":    35,
+      "entertainment_pct": 40,
+      "finance_infotainment_vlogs_pct": 25
+    }
   }
 }
