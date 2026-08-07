@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-08-07T13:53:54.315Z",
+  "exportedAt": "2026-08-07T13:54:00.142Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -5936,7 +5936,7 @@
       "payment_agency": "Creator Connect",
       "avg_cpv": "0.17142857142857143",
       "live_status": "Live",
-      "business": "",
+      "business": "Buy",
       "po_status": "",
       "payment_status": "false",
       "invoice_raised": "false",
