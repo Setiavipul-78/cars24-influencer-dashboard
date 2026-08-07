@@ -1,0 +1,29 @@
+{
+  "2026-07": {
+    "india_instagram_views": 100000000,
+    "india_youtube_views":   20000000,
+    "australia_views":        5000000,
+    "uae_views":              3000000,
+    "india_budget_inr":    5000000,
+    "australia_budget_aud":  200000,
+    "uae_budget_usd":         50000
+  },
+  "2026-08": {
+    "india_instagram_views": 100000000,
+    "india_youtube_views":   20000000,
+    "australia_views":        5000000,
+    "uae_views":              3000000,
+    "india_budget_inr":    5000000,
+    "australia_budget_aud":  200000,
+    "uae_budget_usd":         50000
+  },
+  "2026-09": {
+    "india_instagram_views": 100000000,
+    "india_youtube_views":   20000000,
+    "australia_views":        5000000,
+    "uae_views":              3000000,
+    "india_budget_inr":    5000000,
+    "australia_budget_aud":  200000,
+    "uae_budget_usd":         50000
+  }
+}
