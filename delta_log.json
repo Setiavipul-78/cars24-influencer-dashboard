@@ -1332,6 +1332,66 @@
           "totalCost": 0
         }
       }
+    },
+    {
+      "date": "2026-08-09",
+      "refreshedAt": "2026-08-09T05:06:18Z",
+      "IN": {
+        "creatorsLive": 188,
+        "totalViews": 185541011,
+        "totalLikes": 7686595,
+        "totalComments": 74391,
+        "totalCost": 16826000,
+        "delta": {
+          "creatorsLive": 0,
+          "totalViews": 243728,
+          "totalLikes": 12501,
+          "totalComments": 37,
+          "totalCost": 0
+        }
+      },
+      "AU": {
+        "creatorsLive": 154,
+        "totalViews": 1627800,
+        "totalLikes": 27176,
+        "totalComments": 3379,
+        "totalSpend": 18387.89,
+        "delta": {
+          "creatorsLive": 0,
+          "totalViews": 815,
+          "totalLikes": 0,
+          "totalComments": 1,
+          "totalSpend": 0.0
+        }
+      },
+      "UAE": {
+        "creatorsLive": 17,
+        "totalViews": 774288,
+        "totalLikes": 5086,
+        "totalComments": 1505,
+        "totalSpend": 48000,
+        "delta": {
+          "creatorsLive": 0,
+          "totalViews": 108,
+          "totalLikes": 0,
+          "totalComments": 0,
+          "totalSpend": 0
+        }
+      },
+      "IN_YT": {
+        "creatorsLive": 15,
+        "totalViews": 1649290,
+        "totalLikes": 53904,
+        "totalComments": 3264,
+        "totalCost": 590000,
+        "delta": {
+          "creatorsLive": 0,
+          "totalViews": 4905,
+          "totalLikes": 0,
+          "totalComments": 2,
+          "totalCost": 0
+        }
+      }
     }
   ]
 }
