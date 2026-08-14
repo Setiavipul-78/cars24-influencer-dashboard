@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-08-14T06:53:07.909Z",
+  "exportedAt": "2026-08-14T06:55:07.469Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -6214,7 +6214,7 @@
       "final_cost": "45000",
       "payment_agency": "Flutch",
       "avg_cpv": "0.09",
-      "live_status": "",
+      "live_status": "WIP",
       "business": "",
       "po_status": "false",
       "payment_status": "false",
@@ -6244,8 +6244,8 @@
       "avg_views": "700000",
       "final_cost": "80000",
       "payment_agency": "Flutch",
-      "avg_cpv": "",
-      "live_status": "",
+      "avg_cpv": "0.11428571428571428",
+      "live_status": "WIP",
       "business": "",
       "po_status": "false",
       "payment_status": "false",
