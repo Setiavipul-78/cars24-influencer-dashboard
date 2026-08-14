@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-08-14T08:03:55.079Z",
+  "exportedAt": "2026-08-14T08:03:58.755Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -6245,7 +6245,7 @@
       "final_cost": "80000",
       "payment_agency": "Flutch",
       "avg_cpv": "0.2",
-      "live_status": "WIP",
+      "live_status": "",
       "business": "",
       "po_status": "false",
       "payment_status": "false",
