@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-08-14T11:13:41.163Z",
+  "exportedAt": "2026-08-14T11:14:40.440Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -6274,9 +6274,9 @@
       "followers": "351000",
       "avg_views": "1000000",
       "final_cost": "75000",
-      "payment_agency": "",
-      "avg_cpv": "",
-      "live_status": "",
+      "payment_agency": "Esportsxo",
+      "avg_cpv": "0.075",
+      "live_status": "WIP",
       "business": "",
       "po_status": "false",
       "payment_status": "false",
