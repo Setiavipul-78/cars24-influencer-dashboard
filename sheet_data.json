@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-08-14T06:56:27.964Z",
+  "exportedAt": "2026-08-14T07:50:31.855Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -6014,37 +6014,6 @@
       "insights": "",
       "insights_link": "",
       "performance_cut": ""
-    },
-    {
-      "live_month": "2026-08-01",
-      "agency_name": "CreatorInfo",
-      "name": "Mahak Kapoor",
-      "link": "https://www.instagram.com/her_garage_yt?",
-      "region": "PAN INDIA",
-      "performance_cuts": "",
-      "performance_vids": "",
-      "followers": "1000000",
-      "avg_views": "4000000",
-      "final_cost": "300000",
-      "payment_agency": "Creator Info",
-      "avg_cpv": "0.075",
-      "live_status": "WIP",
-      "business": "Buy",
-      "po_status": "true",
-      "payment_status": "false",
-      "invoice_raised": "false",
-      "video_live_link": "",
-      "live_date": "",
-      "views": "",
-      "likes": "",
-      "comments": "",
-      "shares": "",
-      "saves": "",
-      "actual_cpv_as_on_09072025": "",
-      "engagement_rate": "",
-      "insights": "",
-      "insights_link": "",
-      "performance_cut": "false"
     },
     {
       "live_month": "2026-08-01",
