@@ -1,5 +1,5 @@
 {
-  "refreshedAt": "2026-08-17T04:40:19Z",
+  "refreshedAt": "2026-08-18T04:46:40Z",
   "rows": [
     {
       "id": 1,
@@ -23,7 +23,7 @@
       "tier": "Macro",
       "engRate": 4.61,
       "postedAt": "2026-03-12T16:14:31.000Z",
-      "lastRefreshed": "2026-08-17T04:40:19.484436Z",
+      "lastRefreshed": "2026-08-18T04:46:40.590968Z",
       "refreshStatus": "ok"
     },
     {
@@ -48,7 +48,7 @@
       "tier": "Macro",
       "engRate": 5.66,
       "postedAt": "2026-03-30T18:29:03.000Z",
-      "lastRefreshed": "2026-08-17T04:40:19.484495Z",
+      "lastRefreshed": "2026-08-18T04:46:40.591026Z",
       "refreshStatus": "ok"
     },
     {
@@ -73,7 +73,7 @@
       "tier": "Mega",
       "engRate": 4.58,
       "postedAt": "2026-03-12T16:28:58.000Z",
-      "lastRefreshed": "2026-08-17T04:40:19.484511Z",
+      "lastRefreshed": "2026-08-18T04:46:40.591041Z",
       "refreshStatus": "ok"
     },
     {
@@ -98,7 +98,7 @@
       "tier": "Macro",
       "engRate": 3.12,
       "postedAt": "2026-03-29T14:06:49.000Z",
-      "lastRefreshed": "2026-08-17T04:40:19.484523Z",
+      "lastRefreshed": "2026-08-18T04:46:40.591054Z",
       "refreshStatus": "ok"
     },
     {
@@ -123,7 +123,7 @@
       "tier": "Macro",
       "engRate": 0.42,
       "postedAt": "2026-05-04T16:55:46.000Z",
-      "lastRefreshed": "2026-08-17T04:40:19.484532Z",
+      "lastRefreshed": "2026-08-18T04:46:40.591065Z",
       "refreshStatus": "ok"
     },
     {
@@ -194,7 +194,7 @@
       "tier": "Micro",
       "engRate": 5.81,
       "postedAt": "2026-05-03T11:23:31.000Z",
-      "lastRefreshed": "2026-08-17T04:40:19.484545Z",
+      "lastRefreshed": "2026-08-18T04:46:40.591079Z",
       "refreshStatus": "ok"
     },
     {
@@ -219,7 +219,7 @@
       "tier": "Nano",
       "engRate": 2.59,
       "postedAt": "2026-06-29T14:54:33.000Z",
-      "lastRefreshed": "2026-08-17T04:40:19.484556Z",
+      "lastRefreshed": "2026-08-18T04:46:40.591091Z",
       "refreshStatus": "ok"
     },
     {
@@ -244,7 +244,7 @@
       "tier": "Micro",
       "engRate": 2.25,
       "postedAt": "2026-07-03T14:41:55.000Z",
-      "lastRefreshed": "2026-08-17T04:40:19.484566Z",
+      "lastRefreshed": "2026-08-18T04:46:40.591102Z",
       "refreshStatus": "ok"
     },
     {
@@ -256,7 +256,7 @@
       "link": "https://www.instagram.com/eyad.mhh",
       "videoLink": "https://www.instagram.com/reel/Da5nPF3saq8/",
       "views": 7884,
-      "likes": 192,
+      "likes": 194,
       "comments": 5,
       "shares": 19,
       "saves": 19,
@@ -267,9 +267,9 @@
       "monthOrder": 202607,
       "region": "UAE",
       "tier": "Nano",
-      "engRate": 2.98,
+      "engRate": 3.01,
       "postedAt": "2026-07-17T16:15:26.000Z",
-      "lastRefreshed": "2026-08-17T04:40:19.484576Z",
+      "lastRefreshed": "2026-08-18T04:46:40.591113Z",
       "refreshStatus": "ok"
     },
     {
@@ -294,7 +294,7 @@
       "tier": "Nano",
       "engRate": 0.52,
       "postedAt": "2026-07-10T07:52:11.000Z",
-      "lastRefreshed": "2026-08-17T04:40:19.484585Z",
+      "lastRefreshed": "2026-08-18T04:46:40.591124Z",
       "refreshStatus": "ok"
     },
     {
@@ -319,7 +319,7 @@
       "tier": "Nano",
       "engRate": 1.4,
       "postedAt": "2026-07-08T13:54:53.000Z",
-      "lastRefreshed": "2026-08-17T04:40:19.484594Z",
+      "lastRefreshed": "2026-08-18T04:46:40.591135Z",
       "refreshStatus": "ok"
     },
     {
@@ -344,7 +344,7 @@
       "tier": "Macro",
       "engRate": 1.28,
       "postedAt": "2026-07-13T09:02:46.000Z",
-      "lastRefreshed": "2026-08-17T04:40:19.484618Z",
+      "lastRefreshed": "2026-08-18T04:46:40.591146Z",
       "refreshStatus": "ok"
     },
     {
@@ -357,7 +357,7 @@
       "videoLink": "https://www.instagram.com/taniastanly_/reel/DaSuJIjyZg1/",
       "views": 15131,
       "likes": 131,
-      "comments": 8,
+      "comments": 9,
       "shares": 0,
       "saves": 0,
       "cost": 2500,
@@ -367,9 +367,9 @@
       "monthOrder": 202607,
       "region": "UAE",
       "tier": "Micro",
-      "engRate": 0.92,
+      "engRate": 0.93,
       "postedAt": "2026-07-02T13:40:13.000Z",
-      "lastRefreshed": "2026-08-17T04:40:19.484628Z",
+      "lastRefreshed": "2026-08-18T04:46:40.591156Z",
       "refreshStatus": "ok"
     },
     {
@@ -394,7 +394,7 @@
       "tier": "Micro",
       "engRate": 0.89,
       "postedAt": "2026-07-29T14:20:15.000Z",
-      "lastRefreshed": "2026-08-17T04:40:19.484637Z",
+      "lastRefreshed": "2026-08-18T04:46:40.591166Z",
       "refreshStatus": "ok"
     },
     {
@@ -419,7 +419,7 @@
       "tier": "Nano",
       "engRate": 0.53,
       "postedAt": "2026-07-04T13:13:18.000Z",
-      "lastRefreshed": "2026-08-17T04:40:19.484646Z",
+      "lastRefreshed": "2026-08-18T04:46:40.591177Z",
       "refreshStatus": "ok"
     },
     {
@@ -444,7 +444,7 @@
       "tier": "Nano",
       "engRate": 2.85,
       "postedAt": "2026-07-18T07:15:23.000Z",
-      "lastRefreshed": "2026-08-17T04:40:19.484655Z",
+      "lastRefreshed": "2026-08-18T04:46:40.591188Z",
       "refreshStatus": "ok"
     },
     {
@@ -469,7 +469,7 @@
       "tier": "Macro",
       "engRate": 3.06,
       "postedAt": "2026-08-06T08:31:25.000Z",
-      "lastRefreshed": "2026-08-17T04:40:19.484664Z",
+      "lastRefreshed": "2026-08-18T04:46:40.591198Z",
       "refreshStatus": "ok"
     },
     {
@@ -481,7 +481,7 @@
       "link": "https://www.instagram.com/gree.in.dubai/",
       "videoLink": "https://www.instagram.com/p/Dbn55KfIjfS/",
       "views": 6315,
-      "likes": 153,
+      "likes": 154,
       "comments": 25,
       "shares": null,
       "saves": null,
@@ -492,9 +492,9 @@
       "monthOrder": 202608,
       "region": "UAE",
       "tier": "Micro",
-      "engRate": 2.82,
+      "engRate": 2.83,
       "postedAt": "2026-08-04T15:43:17.000Z",
-      "lastRefreshed": "2026-08-17T04:40:19.484672Z",
+      "lastRefreshed": "2026-08-18T04:46:40.591208Z",
       "refreshStatus": "ok"
     },
     {
@@ -519,7 +519,7 @@
       "tier": "Micro",
       "engRate": null,
       "postedAt": null,
-      "lastRefreshed": "2026-08-17T04:40:19.484681Z",
+      "lastRefreshed": "2026-08-18T04:46:40.591219Z",
       "refreshStatus": "ok"
     }
   ]
