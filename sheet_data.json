@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-08-19T08:53:55.240Z",
+  "exportedAt": "2026-08-19T08:54:14.846Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -6128,13 +6128,13 @@
       "invoice_raised": "false",
       "video_live_link": "https://www.instagram.com/reels/DcGV8qmzdjP/",
       "live_date": "2026-08-15",
-      "views": "",
+      "views": "755615",
       "likes": "37965",
       "comments": "33",
       "shares": "1300",
       "saves": "1329",
-      "actual_cpv_as_on_09072025": "#DIV/0!",
-      "engagement_rate": "#DIV/0!",
+      "actual_cpv_as_on_09072025": "0.14557678182672393",
+      "engagement_rate": "0.05200796702024179",
       "insights": "",
       "insights_link": "",
       "performance_cut": ""
