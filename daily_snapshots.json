@@ -499,6 +499,16 @@
       "updatedRows": 179,
       "noMatchRows": 9,
       "totalCost": 17018000
+    },
+    {
+      "date": "2026-08-20",
+      "refreshedAt": "2026-08-20T04:34:34Z",
+      "totalViews": 201515997,
+      "totalCreators": 203,
+      "liveCreators": 192,
+      "updatedRows": 182,
+      "noMatchRows": 8,
+      "totalCost": 17093000
     }
   ]
 }
