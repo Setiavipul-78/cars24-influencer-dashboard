@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-08-25T08:35:50.811Z",
+  "exportedAt": "2026-08-25T08:35:59.486Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -6164,8 +6164,8 @@
       "comments": "103",
       "shares": "1972",
       "saves": "2190",
-      "actual_cpv_as_on_09072025": "",
-      "engagement_rate": "",
+      "actual_cpv_as_on_09072025": "0.06364460850610193",
+      "engagement_rate": "0.06299463794173336",
       "insights": "",
       "insights_link": "",
       "performance_cut": ""
@@ -6194,9 +6194,9 @@
       "likes": "12693",
       "comments": "92",
       "shares": "1200",
-      "saves": "",
-      "actual_cpv_as_on_09072025": "",
-      "engagement_rate": "",
+      "saves": "810",
+      "actual_cpv_as_on_09072025": "0.18477674769407018",
+      "engagement_rate": "0.023491843786377923",
       "insights": "",
       "insights_link": "",
       "performance_cut": ""
@@ -6227,7 +6227,7 @@
       "shares": "",
       "saves": "",
       "actual_cpv_as_on_09072025": "",
-      "engagement_rate": "",
+      "engagement_rate": "#DIV/0!",
       "insights": "",
       "insights_link": "",
       "performance_cut": ""
