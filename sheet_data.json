@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-08-31T07:25:31.836Z",
+  "exportedAt": "2026-08-31T07:25:38.314Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -6258,7 +6258,7 @@
       "shares": "2270",
       "saves": "289",
       "actual_cpv_as_on_09072025": "0.26764016315344347",
-      "engagement_rate": "",
+      "engagement_rate": "0.042255028958665654",
       "insights": "",
       "insights_link": "",
       "performance_cut": ""
@@ -6289,7 +6289,7 @@
       "shares": "450",
       "saves": "199",
       "actual_cpv_as_on_09072025": "0.3821398741122072",
-      "engagement_rate": "",
+      "engagement_rate": "0.032825815186238595",
       "insights": "",
       "insights_link": "",
       "performance_cut": ""
@@ -6320,7 +6320,7 @@
       "shares": "7150",
       "saves": "195",
       "actual_cpv_as_on_09072025": "0.298591351389328",
-      "engagement_rate": "",
+      "engagement_rate": "0.05480029507851196",
       "insights": "",
       "insights_link": "",
       "performance_cut": ""
@@ -6351,7 +6351,7 @@
       "shares": "",
       "saves": "",
       "actual_cpv_as_on_09072025": "#DIV/0!",
-      "engagement_rate": "",
+      "engagement_rate": "#DIV/0!",
       "insights": "",
       "insights_link": "",
       "performance_cut": ""
@@ -6382,7 +6382,7 @@
       "shares": "36",
       "saves": "20",
       "actual_cpv_as_on_09072025": "1.3682386208154702",
-      "engagement_rate": "",
+      "engagement_rate": "0.014868193012861443",
       "insights": "",
       "insights_link": "",
       "performance_cut": ""
@@ -6413,7 +6413,7 @@
       "shares": "940",
       "saves": "354",
       "actual_cpv_as_on_09072025": "0.2643306060634331",
-      "engagement_rate": "",
+      "engagement_rate": "0.02521713981845152",
       "insights": "",
       "insights_link": "",
       "performance_cut": ""
