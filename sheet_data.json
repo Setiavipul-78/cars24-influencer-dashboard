@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-08-31T07:18:29.964Z",
+  "exportedAt": "2026-08-31T07:18:32.543Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -6585,7 +6585,7 @@
       "avg_views": "200000",
       "final_cost": "80000",
       "payment_agency": "Scoutly",
-      "avg_cpv": "",
+      "avg_cpv": "0.4",
       "live_status": "",
       "business": "",
       "po_status": "false",
@@ -6616,7 +6616,7 @@
       "avg_views": "800000",
       "final_cost": "70000",
       "payment_agency": "Scoutly",
-      "avg_cpv": "",
+      "avg_cpv": "0.0875",
       "live_status": "",
       "business": "",
       "po_status": "false",
