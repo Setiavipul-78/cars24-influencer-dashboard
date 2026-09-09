@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-09-09T17:17:41.418Z",
+  "exportedAt": "2026-09-09T17:17:50.183Z",
   "rows": [
     {
       "month": "2025-12-01",
@@ -335,6 +335,27 @@
       "views_on_30_jun": "230267",
       "likes": "3900",
       "comments": "303",
+      "actual_cpv_as_on_30062026": "0"
+    },
+    {
+      "month": "2026-09-01",
+      "agency": "Creatormela",
+      "name": "Power Racer",
+      "link": "https://www.youtube.com/@PowerRacer",
+      "subscribers": "966 K",
+      "city": "Pan India",
+      "avg_views": "40000",
+      "final_cost": "",
+      "avg_watch_time": "",
+      "avg_cpv": "",
+      "status": "Live",
+      "live_date": "2026-09-05",
+      "po_status": "true",
+      "payment_status": "true",
+      "video_live_link": "https://www.youtube.com/watch?v=6z8pwah2UfU",
+      "views_on_30_jun": "62000",
+      "likes": "248",
+      "comments": "18",
       "actual_cpv_as_on_30062026": "0"
     }
   ]
