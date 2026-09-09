@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-09-09T17:11:34.916Z",
+  "exportedAt": "2026-09-09T17:11:38.148Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -6586,7 +6586,7 @@
       "final_cost": "45000",
       "payment_agency": "",
       "avg_cpv": "0.18",
-      "live_status": "",
+      "live_status": "Live",
       "business": "Buy",
       "po_status": "false",
       "payment_status": "false",
