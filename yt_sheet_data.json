@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-09-09T17:16:44.142Z",
+  "exportedAt": "2026-09-09T17:17:01.536Z",
   "rows": [
     {
       "month": "2025-12-01",
@@ -335,7 +335,7 @@
       "views_on_30_jun": "230267",
       "likes": "3900",
       "comments": "303",
-      "actual_cpv_as_on_30062026": ""
+      "actual_cpv_as_on_30062026": "0"
     }
   ]
 }
