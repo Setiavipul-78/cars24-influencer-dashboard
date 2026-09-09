@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-09-09T17:18:08.408Z",
+  "exportedAt": "2026-09-09T17:18:42.770Z",
   "rows": [
     {
       "month": "2025-12-01",
@@ -324,9 +324,9 @@
       "subscribers": "1.92 M",
       "city": "Pan India",
       "avg_views": "150000",
-      "final_cost": "",
+      "final_cost": "55000",
       "avg_watch_time": "",
-      "avg_cpv": "0",
+      "avg_cpv": "0.36666666666666664",
       "status": "Live",
       "live_date": "2026-09-01",
       "po_status": "true",
@@ -335,7 +335,7 @@
       "views_on_30_jun": "230267",
       "likes": "3900",
       "comments": "303",
-      "actual_cpv_as_on_30062026": "0"
+      "actual_cpv_as_on_30062026": "0.23885315742160187"
     },
     {
       "month": "2026-09-01",
@@ -345,9 +345,9 @@
       "subscribers": "966 K",
       "city": "Pan India",
       "avg_views": "40000",
-      "final_cost": "",
+      "final_cost": "45000",
       "avg_watch_time": "",
-      "avg_cpv": "",
+      "avg_cpv": "1.125",
       "status": "Live",
       "live_date": "2026-09-05",
       "po_status": "true",
@@ -356,7 +356,7 @@
       "views_on_30_jun": "62000",
       "likes": "248",
       "comments": "18",
-      "actual_cpv_as_on_30062026": "0"
+      "actual_cpv_as_on_30062026": "0.7258064516129032"
     }
   ]
 }
