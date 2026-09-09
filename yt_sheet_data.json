@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-09-09T17:13:41.494Z",
+  "exportedAt": "2026-09-09T17:13:57.367Z",
   "rows": [
     {
       "month": "2025-12-01",
@@ -315,6 +315,27 @@
       "likes": "5200",
       "comments": "515",
       "actual_cpv_as_on_30062026": "0.4017857142857143"
+    },
+    {
+      "month": "2026-09-01",
+      "agency": "Creatormela",
+      "name": "ASY cardrive",
+      "link": "https://www.youtube.com/@asycardrive",
+      "subscribers": "",
+      "city": "",
+      "avg_views": "",
+      "final_cost": "",
+      "avg_watch_time": "",
+      "avg_cpv": "",
+      "status": "",
+      "live_date": "",
+      "po_status": "",
+      "payment_status": "",
+      "video_live_link": "",
+      "views_on_30_jun": "",
+      "likes": "",
+      "comments": "",
+      "actual_cpv_as_on_30062026": ""
     }
   ]
 }
