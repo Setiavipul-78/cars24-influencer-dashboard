@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-09-10T07:53:42.439Z",
+  "exportedAt": "2026-09-10T07:53:47.216Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -7176,7 +7176,7 @@
       "payment_agency": "Creator Info",
       "avg_cpv": "",
       "live_status": "Brief Shared",
-      "business": "",
+      "business": "Sell",
       "po_status": "false",
       "payment_status": "false",
       "invoice_raised": "false",
@@ -7207,7 +7207,7 @@
       "payment_agency": "Creator Info",
       "avg_cpv": "",
       "live_status": "Brief Shared",
-      "business": "",
+      "business": "Sell",
       "po_status": "false",
       "payment_status": "false",
       "invoice_raised": "false",
@@ -7238,7 +7238,7 @@
       "payment_agency": "Creator Info",
       "avg_cpv": "",
       "live_status": "Brief Shared",
-      "business": "",
+      "business": "Sell",
       "po_status": "false",
       "payment_status": "false",
       "invoice_raised": "false",
@@ -7269,7 +7269,7 @@
       "payment_agency": "Creator Info",
       "avg_cpv": "",
       "live_status": "Brief Shared",
-      "business": "",
+      "business": "Sell",
       "po_status": "false",
       "payment_status": "false",
       "invoice_raised": "false",
