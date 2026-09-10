@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-09-10T07:28:07.488Z",
+  "exportedAt": "2026-09-10T07:28:15.577Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -6985,7 +6985,7 @@
       "performance_cuts": "",
       "performance_vids": "",
       "followers": "",
-      "avg_views": "",
+      "avg_views": "100000",
       "final_cost": "",
       "payment_agency": "Social Emerge",
       "avg_cpv": "",
