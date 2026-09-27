@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-09-27T06:17:21.643Z",
+  "exportedAt": "2026-09-27T06:21:09.284Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -6738,9 +6738,9 @@
       "performance_vids": "",
       "followers": "163000",
       "avg_views": "150000",
-      "final_cost": "",
+      "final_cost": "80000",
       "payment_agency": "Creator Info",
-      "avg_cpv": "0",
+      "avg_cpv": "0.1228878648233487",
       "live_status": "Brief Shared",
       "business": "Sell",
       "po_status": "false",
