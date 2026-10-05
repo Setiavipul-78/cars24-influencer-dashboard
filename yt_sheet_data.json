@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-10-05T12:12:17.889Z",
+  "exportedAt": "2026-10-05T12:12:30.712Z",
   "rows": [
     {
       "month": "2025-12-01",
@@ -353,10 +353,10 @@
       "po_status": "true",
       "payment_status": "true",
       "video_live_link": "https://www.youtube.com/watch?v=6z8pwah2UfU",
-      "views_on_30_jun": "",
+      "views_on_30_jun": "117609",
       "likes": "248",
       "comments": "18",
-      "actual_cpv_as_on_30062026": "#DIV/0!"
+      "actual_cpv_as_on_30062026": "0.38262377879243936"
     }
   ]
 }
