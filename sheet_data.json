@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-10-05T11:45:52.873Z",
+  "exportedAt": "2026-10-05T11:45:54.798Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -8015,7 +8015,7 @@
       "payment_agency": "Create WTF",
       "avg_cpv": "",
       "live_status": "WIP",
-      "business": "",
+      "business": "Buy",
       "po_status": "false",
       "payment_status": "false",
       "invoice_raised": "false",
