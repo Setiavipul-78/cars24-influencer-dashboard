@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-10-05T12:11:46.641Z",
+  "exportedAt": "2026-10-05T12:12:17.889Z",
   "rows": [
     {
       "month": "2025-12-01",
@@ -331,11 +331,11 @@
       "live_date": "2026-09-01",
       "po_status": "true",
       "payment_status": "true",
-      "video_live_link": "",
-      "views_on_30_jun": "230267",
+      "video_live_link": "https://www.youtube.com/watch?v=FnJVjp6-p98",
+      "views_on_30_jun": "238814",
       "likes": "3900",
       "comments": "303",
-      "actual_cpv_as_on_30062026": "0.23885315742160187"
+      "actual_cpv_as_on_30062026": "0.2303047560025794"
     },
     {
       "month": "2026-09-01",
@@ -352,11 +352,11 @@
       "live_date": "2026-09-05",
       "po_status": "true",
       "payment_status": "true",
-      "video_live_link": "",
-      "views_on_30_jun": "62000",
+      "video_live_link": "https://www.youtube.com/watch?v=6z8pwah2UfU",
+      "views_on_30_jun": "",
       "likes": "248",
       "comments": "18",
-      "actual_cpv_as_on_30062026": "0.7258064516129032"
+      "actual_cpv_as_on_30062026": "#DIV/0!"
     }
   ]
 }
