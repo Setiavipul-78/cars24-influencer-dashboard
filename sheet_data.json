@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-10-05T11:45:48.956Z",
+  "exportedAt": "2026-10-05T11:45:52.873Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -7951,7 +7951,7 @@
       "payment_agency": "Flutch",
       "avg_cpv": "0.7142857142857143",
       "live_status": "WIP",
-      "business": "Sell",
+      "business": "Buy",
       "po_status": "false",
       "payment_status": "false",
       "invoice_raised": "false",
@@ -7983,7 +7983,7 @@
       "payment_agency": "Flutch",
       "avg_cpv": "0.5882352941176471",
       "live_status": "WIP",
-      "business": "",
+      "business": "Sell",
       "po_status": "false",
       "payment_status": "false",
       "invoice_raised": "false",
