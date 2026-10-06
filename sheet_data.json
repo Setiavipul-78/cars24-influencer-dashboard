@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-10-06T13:08:05.249Z",
+  "exportedAt": "2026-10-06T13:08:09.101Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -7502,7 +7502,7 @@
       "final_cost": "32000",
       "payment_agency": "Socio Impulse",
       "avg_cpv": "0.32",
-      "live_status": "WIP",
+      "live_status": "Live",
       "business": "Sell",
       "po_status": "false",
       "payment_status": "false",
@@ -7534,7 +7534,7 @@
       "final_cost": "35000",
       "payment_agency": "Yamini",
       "avg_cpv": "0.35",
-      "live_status": "WIP",
+      "live_status": "Live",
       "business": "Sell",
       "po_status": "false",
       "payment_status": "false",
@@ -7566,8 +7566,8 @@
       "final_cost": "40000",
       "payment_agency": "Yamini",
       "avg_cpv": "0.5714285714285714",
-      "live_status": "WIP",
-      "business": "",
+      "live_status": "Live",
+      "business": "Sell",
       "po_status": "false",
       "payment_status": "false",
       "invoice_raised": "false",
