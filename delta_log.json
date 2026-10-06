@@ -1,66 +1,6 @@
 {
   "logs": [
     {
-      "date": "2026-09-06",
-      "refreshedAt": "2026-09-06T08:26:44Z",
-      "IN": {
-        "creatorsLive": 207,
-        "totalViews": 217541917,
-        "totalLikes": 8891395,
-        "totalComments": 77362,
-        "totalCost": 17843000,
-        "delta": {
-          "creatorsLive": 0,
-          "totalViews": 726603,
-          "totalLikes": 36020,
-          "totalComments": 54,
-          "totalCost": 0
-        }
-      },
-      "AU": {
-        "creatorsLive": 156,
-        "totalViews": 1688276,
-        "totalLikes": 28133,
-        "totalComments": 3447,
-        "totalSpend": 20687.89,
-        "delta": {
-          "creatorsLive": 0,
-          "totalViews": 1931,
-          "totalLikes": 41,
-          "totalComments": 0,
-          "totalSpend": 0.0
-        }
-      },
-      "UAE": {
-        "creatorsLive": 22,
-        "totalViews": 839396,
-        "totalLikes": 6466,
-        "totalComments": 1601,
-        "totalSpend": 64000.0,
-        "delta": {
-          "creatorsLive": 0,
-          "totalViews": 147,
-          "totalLikes": 11,
-          "totalComments": 0,
-          "totalSpend": 0.0
-        }
-      },
-      "IN_YT": {
-        "creatorsLive": 15,
-        "totalViews": 1808593,
-        "totalLikes": 55409,
-        "totalComments": 3319,
-        "totalCost": 590000,
-        "delta": {
-          "creatorsLive": 0,
-          "totalViews": 5496,
-          "totalLikes": 0,
-          "totalComments": 0,
-          "totalCost": 0
-        }
-      }
-    },
-    {
       "date": "2026-09-07",
       "refreshedAt": "2026-09-07T08:58:16Z",
       "IN": {
@@ -1796,6 +1736,66 @@
           "totalViews": 7497,
           "totalLikes": 100,
           "totalComments": 2,
+          "totalCost": 0
+        }
+      }
+    },
+    {
+      "date": "2026-10-06",
+      "refreshedAt": "2026-10-06T11:10:00Z",
+      "IN": {
+        "creatorsLive": 225,
+        "totalViews": 234293248,
+        "totalLikes": 9462640,
+        "totalComments": 78905,
+        "totalCost": 19118000,
+        "delta": {
+          "creatorsLive": 0,
+          "totalViews": 508116,
+          "totalLikes": 6199,
+          "totalComments": 47,
+          "totalCost": 0
+        }
+      },
+      "AU": {
+        "creatorsLive": 156,
+        "totalViews": 1717236,
+        "totalLikes": 28269,
+        "totalComments": 3450,
+        "totalSpend": 20687.89,
+        "delta": {
+          "creatorsLive": 0,
+          "totalViews": 475,
+          "totalLikes": 0,
+          "totalComments": 0,
+          "totalSpend": 0.0
+        }
+      },
+      "UAE": {
+        "creatorsLive": 23,
+        "totalViews": 1106036,
+        "totalLikes": 6480,
+        "totalComments": 2600,
+        "totalSpend": 71500.0,
+        "delta": {
+          "creatorsLive": 0,
+          "totalViews": 78,
+          "totalLikes": -3,
+          "totalComments": 0,
+          "totalSpend": 0.0
+        }
+      },
+      "IN_YT": {
+        "creatorsLive": 17,
+        "totalViews": 2321955,
+        "totalLikes": 61180,
+        "totalComments": 3665,
+        "totalCost": 690000,
+        "delta": {
+          "creatorsLive": 0,
+          "totalViews": 6152,
+          "totalLikes": 207,
+          "totalComments": 1,
           "totalCost": 0
         }
       }
