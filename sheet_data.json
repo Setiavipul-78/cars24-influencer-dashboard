@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-10-07T07:41:05.634Z",
+  "exportedAt": "2026-10-07T07:41:08.242Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -8238,7 +8238,7 @@
       "final_cost": "15000",
       "payment_agency": "Flutch",
       "avg_cpv": "1.5",
-      "live_status": "WIP",
+      "live_status": "Brief Shared",
       "business": "Buy",
       "po_status": "false",
       "payment_status": "false",
@@ -8366,7 +8366,7 @@
       "final_cost": "65000",
       "payment_agency": "Yamini",
       "avg_cpv": "0.65",
-      "live_status": "WIP",
+      "live_status": "Brief Shared",
       "business": "",
       "po_status": "false",
       "payment_status": "false",
