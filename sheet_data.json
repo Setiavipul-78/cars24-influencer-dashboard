@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-10-07T07:30:35.584Z",
+  "exportedAt": "2026-10-07T07:32:30.136Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -8174,7 +8174,7 @@
       "final_cost": "8000",
       "payment_agency": "Flutch",
       "avg_cpv": "0.1",
-      "live_status": "WIP",
+      "live_status": "Brief Shared",
       "business": "Buy",
       "po_status": "false",
       "payment_status": "false",
@@ -8322,7 +8322,7 @@
       "": ""
     },
     {
-      "live_month": "Naresh Bukya",
+      "live_month": "2026-10-31",
       "agency_name": "Self",
       "name": "Saurav Kumar Singh",
       "link": "https://www.instagram.com/sauravsights?stkn=MWJzZWdpOTAxNHZnOQ==",
@@ -8356,7 +8356,7 @@
     {
       "live_month": "2026-10-31",
       "agency_name": "Yamini",
-      "name": "",
+      "name": "Naresh Bukya",
       "link": "https://www.instagram.com/naresh_bukya?igsh=MWluZGQ2cG9zenQzbg==",
       "region": "Telugu",
       "performance_cuts": "",
