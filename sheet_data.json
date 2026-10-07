@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-10-07T07:11:38.055Z",
+  "exportedAt": "2026-10-07T07:11:40.891Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -7598,7 +7598,7 @@
       "final_cost": "50000",
       "payment_agency": "Socio Impulse",
       "avg_cpv": "0.2777777777777778",
-      "live_status": "Brief Shared",
+      "live_status": "Concept Closed",
       "business": "Sell",
       "po_status": "false",
       "payment_status": "false",
