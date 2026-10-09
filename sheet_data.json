@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-10-09T13:48:05.682Z",
+  "exportedAt": "2026-10-09T13:48:18.472Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -8105,8 +8105,8 @@
       "followers": "216000",
       "avg_views": "500000",
       "final_cost": "110000",
-      "payment_agency": "",
-      "avg_cpv": "",
+      "payment_agency": "Creator Info",
+      "avg_cpv": "0.22",
       "live_status": "Live",
       "content_bucket_new": "",
       "business": "Sell",
