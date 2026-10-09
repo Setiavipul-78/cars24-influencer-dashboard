@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-10-09T12:10:31.014Z",
+  "exportedAt": "2026-10-09T12:10:47.345Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -9161,7 +9161,7 @@
       "final_cost": "20000",
       "payment_agency": "Greenroom",
       "avg_cpv": "0.8",
-      "live_status": "",
+      "live_status": "Brief Shared",
       "content_bucket_new": "",
       "business": "",
       "po_status": "false",
@@ -9195,7 +9195,7 @@
       "final_cost": "35000",
       "payment_agency": "Greenroom",
       "avg_cpv": "1.1666666666666667",
-      "live_status": "",
+      "live_status": "Brief Shared",
       "content_bucket_new": "",
       "business": "",
       "po_status": "false",
@@ -9229,7 +9229,7 @@
       "final_cost": "15000",
       "payment_agency": "Greenroom",
       "avg_cpv": "0.6",
-      "live_status": "",
+      "live_status": "Brief Shared",
       "content_bucket_new": "",
       "business": "",
       "po_status": "false",
