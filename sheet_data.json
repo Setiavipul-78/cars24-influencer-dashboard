@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-10-09T12:42:06.877Z",
+  "exportedAt": "2026-10-09T13:20:14.524Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -7971,7 +7971,7 @@
       "final_cost": "60000",
       "payment_agency": "Flutch",
       "avg_cpv": "0.06",
-      "live_status": "Concept Closed",
+      "live_status": "Live",
       "content_bucket_new": "",
       "business": "Buy",
       "po_status": "false",
@@ -8039,7 +8039,7 @@
       "final_cost": "25000",
       "payment_agency": "Flutch",
       "avg_cpv": "2.5",
-      "live_status": "Shoot Done",
+      "live_status": "Live",
       "content_bucket_new": "",
       "business": "Buy",
       "po_status": "false",
@@ -8107,7 +8107,7 @@
       "final_cost": "50000",
       "payment_agency": "Socio Impulse",
       "avg_cpv": "0.2777777777777778",
-      "live_status": "Concept Closed",
+      "live_status": "Live",
       "content_bucket_new": "",
       "business": "Sell",
       "po_status": "false",
