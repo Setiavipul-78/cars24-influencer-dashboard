@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-10-09T14:32:00.289Z",
+  "exportedAt": "2026-10-09T14:32:11.145Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -8196,7 +8196,7 @@
       "": ""
     },
     {
-      "live_month": "2026-10-01",
+      "live_month": "2026-09-01",
       "agency_name": "",
       "poc": "Prachi",
       "name": "Danish Sait",
@@ -8216,7 +8216,7 @@
       "payment_status": "false",
       "invoice_raised": "false",
       "video_live_link": "https://www.instagram.com/reel/Ddx10TeTNLN/",
-      "live_date": "",
+      "live_date": "2026-09-27",
       "views": "651695",
       "likes": "",
       "comments": "164",
