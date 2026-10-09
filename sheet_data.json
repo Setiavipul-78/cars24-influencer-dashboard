@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-10-09T14:18:07.972Z",
+  "exportedAt": "2026-10-09T14:18:10.795Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -8094,7 +8094,7 @@
       "": ""
     },
     {
-      "live_month": "",
+      "live_month": "2026-10-01",
       "agency_name": "CreatorInfo",
       "poc": "Mohit",
       "name": "Cartech Kannada",
