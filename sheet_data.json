@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-10-09T14:27:18.844Z",
+  "exportedAt": "2026-10-09T14:27:22.685Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -8208,7 +8208,7 @@
       "avg_views": "500000",
       "final_cost": "1950000",
       "payment_agency": "DANISH SAIT",
-      "avg_cpv": "0.06",
+      "avg_cpv": "3.9",
       "live_status": "Live",
       "content_bucket_new": "",
       "business": "Sell",
