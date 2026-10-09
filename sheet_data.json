@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-10-09T13:20:34.508Z",
+  "exportedAt": "2026-10-09T13:20:43.361Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -8619,7 +8619,7 @@
       "avg_cpv": "0.3",
       "live_status": "Concept Closed",
       "content_bucket_new": "",
-      "business": "",
+      "business": "Buy",
       "po_status": "false",
       "payment_status": "false",
       "invoice_raised": "false",
@@ -8789,7 +8789,7 @@
       "avg_cpv": "0.9",
       "live_status": "Brief Shared",
       "content_bucket_new": "UGC",
-      "business": "",
+      "business": "Buy",
       "po_status": "false",
       "payment_status": "false",
       "invoice_raised": "false",
