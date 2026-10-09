@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-10-09T13:46:23.073Z",
+  "exportedAt": "2026-10-09T13:46:26.234Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -7495,7 +7495,7 @@
       "final_cost": "65000",
       "payment_agency": "Yamini",
       "avg_cpv": "0.65",
-      "live_status": "Brief Shared",
+      "live_status": "Live",
       "content_bucket_new": "Direct Explainer",
       "business": "Sell",
       "po_status": "false",
@@ -7529,7 +7529,7 @@
       "final_cost": "",
       "payment_agency": "",
       "avg_cpv": "",
-      "live_status": "",
+      "live_status": "Live",
       "content_bucket_new": "",
       "business": "Sell",
       "po_status": "false",
