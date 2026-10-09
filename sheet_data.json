@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-10-09T12:13:28.504Z",
+  "exportedAt": "2026-10-09T12:13:37.768Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -9396,9 +9396,9 @@
       "performance_vids": "",
       "followers": "162000",
       "avg_views": "110000",
-      "final_cost": "1,00,000",
+      "final_cost": "100000",
       "payment_agency": "Outbrand",
-      "avg_cpv": "#VALUE!",
+      "avg_cpv": "0.9090909090909091",
       "live_status": "Brief Shared",
       "content_bucket_new": "",
       "business": "",
