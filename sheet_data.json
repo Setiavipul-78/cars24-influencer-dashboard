@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-10-09T09:23:30.806Z",
+  "exportedAt": "2026-10-09T09:23:42.864Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -8887,7 +8887,7 @@
       "followers": "394000",
       "avg_views": "160900",
       "final_cost": "38500",
-      "payment_agency": "",
+      "payment_agency": "Flutch",
       "avg_cpv": "",
       "live_status": "",
       "content_bucket_new": "",
@@ -8921,7 +8921,7 @@
       "followers": "221000",
       "avg_views": "210000",
       "final_cost": "55000",
-      "payment_agency": "",
+      "payment_agency": "Flutch",
       "avg_cpv": "",
       "live_status": "",
       "content_bucket_new": "",
@@ -8955,7 +8955,7 @@
       "followers": "103000",
       "avg_views": "28100",
       "final_cost": "66000",
-      "payment_agency": "",
+      "payment_agency": "Flutch",
       "avg_cpv": "",
       "live_status": "",
       "content_bucket_new": "",
@@ -8989,7 +8989,7 @@
       "followers": "134000",
       "avg_views": "412400",
       "final_cost": "22000",
-      "payment_agency": "",
+      "payment_agency": "Flutch",
       "avg_cpv": "",
       "live_status": "",
       "content_bucket_new": "",
