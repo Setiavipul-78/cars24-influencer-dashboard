@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-10-09T13:37:08.786Z",
+  "exportedAt": "2026-10-09T13:37:12.654Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -8019,7 +8019,7 @@
       "shares": "62",
       "saves": "8",
       "actual_cpv_as_on_24102026": "1.6494845360824741",
-      "engagement_rate": "",
+      "engagement_rate": "0.021278350515463916",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
@@ -8053,7 +8053,7 @@
       "shares": "18",
       "saves": "7",
       "actual_cpv_as_on_24102026": "2.5869205298013247",
-      "engagement_rate": "",
+      "engagement_rate": "0.004346026490066225",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
@@ -8087,7 +8087,7 @@
       "shares": "",
       "saves": "",
       "actual_cpv_as_on_24102026": "#DIV/0!",
-      "engagement_rate": "",
+      "engagement_rate": "#DIV/0!",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
