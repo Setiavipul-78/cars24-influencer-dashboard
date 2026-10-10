@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-10-10T18:10:52.556Z",
+  "exportedAt": "2026-10-10T18:10:58.927Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -8857,7 +8857,7 @@
       "avg_cpv": "0.15",
       "live_status": "Brief Shared",
       "content_bucket_new": "Fear Files",
-      "business": "Sell",
+      "business": "Buy",
       "po_status": "false",
       "payment_status": "false",
       "invoice_raised": "false",
