@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-10-10T18:13:13.519Z",
+  "exportedAt": "2026-10-10T18:13:22.957Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -7720,7 +7720,7 @@
       "": ""
     },
     {
-      "live_month": "",
+      "live_month": "2026-10-01",
       "agency_name": "CreatorInfo",
       "poc": "Pooja",
       "name": "Shiva",
