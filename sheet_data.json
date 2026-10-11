@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-10-11T13:24:38.067Z",
+  "exportedAt": "2026-10-11T13:26:00.926Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -9673,7 +9673,7 @@
       "avg_cpv": "0.057815845824411134",
       "live_status": "Brief Shared",
       "content_bucket_new": "",
-      "business": "",
+      "business": "Buy",
       "po_status": "false",
       "payment_status": "false",
       "invoice_raised": "false",
@@ -9707,7 +9707,7 @@
       "avg_cpv": "0.049002450122506126",
       "live_status": "Brief Shared",
       "content_bucket_new": "",
-      "business": "",
+      "business": "Buy",
       "po_status": "false",
       "payment_status": "false",
       "invoice_raised": "false",
@@ -9741,7 +9741,7 @@
       "avg_cpv": "0.35545023696682465",
       "live_status": "Brief Shared",
       "content_bucket_new": "",
-      "business": "",
+      "business": "Buy",
       "po_status": "false",
       "payment_status": "false",
       "invoice_raised": "false",
@@ -9775,7 +9775,7 @@
       "avg_cpv": "0.5192878338278932",
       "live_status": "Brief Shared",
       "content_bucket_new": "",
-      "business": "",
+      "business": "Buy",
       "po_status": "false",
       "payment_status": "false",
       "invoice_raised": "false",
