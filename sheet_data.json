@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-10-11T13:24:31.676Z",
+  "exportedAt": "2026-10-11T13:24:38.067Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -9670,7 +9670,7 @@
       "avg_views": "467000",
       "final_cost": "27000",
       "payment_agency": "Echopact",
-      "avg_cpv": "",
+      "avg_cpv": "0.057815845824411134",
       "live_status": "Brief Shared",
       "content_bucket_new": "",
       "business": "",
@@ -9704,7 +9704,7 @@
       "avg_views": "571400",
       "final_cost": "28000",
       "payment_agency": "Echopact",
-      "avg_cpv": "",
+      "avg_cpv": "0.049002450122506126",
       "live_status": "Brief Shared",
       "content_bucket_new": "",
       "business": "",
@@ -9738,7 +9738,7 @@
       "avg_views": "84400",
       "final_cost": "30000",
       "payment_agency": "Echopact",
-      "avg_cpv": "",
+      "avg_cpv": "0.35545023696682465",
       "live_status": "Brief Shared",
       "content_bucket_new": "",
       "business": "",
@@ -9772,7 +9772,7 @@
       "avg_views": "67400",
       "final_cost": "35000",
       "payment_agency": "Echopact",
-      "avg_cpv": "",
+      "avg_cpv": "0.5192878338278932",
       "live_status": "Brief Shared",
       "content_bucket_new": "",
       "business": "",
