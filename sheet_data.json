@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-10-13T09:20:47.474Z",
+  "exportedAt": "2026-10-13T09:20:53.487Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -10610,7 +10610,7 @@
       "": ""
     },
     {
-      "live_month": "",
+      "live_month": "2026-11-01",
       "agency_name": "Self",
       "poc": "Pooja",
       "name": "",
@@ -10619,7 +10619,7 @@
       "followers": "",
       "avg_views": "",
       "final_cost": "",
-      "payment_agency": "",
+      "payment_agency": "Flutch",
       "avg_cpv": "",
       "live_status": "",
       "content_bucket_new": "",
