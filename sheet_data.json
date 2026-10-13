@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-10-13T08:47:14.412Z",
+  "exportedAt": "2026-10-13T08:47:29.075Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -26,14 +26,14 @@
       "comments": "117",
       "shares": "331",
       "saves": "68",
-      "performance_cuts": "0:36 - 0:36",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.7247831225887023",
       "engagement_rate": "0.022501728328984633",
       "insights": "true",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "0:36 - 0:36",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-06-01",
@@ -60,14 +60,14 @@
       "comments": "14",
       "shares": "138",
       "saves": "84",
-      "performance_cuts": "0:25- 0:34",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.3459968168292852",
       "engagement_rate": "0.021368763407376652",
       "insights": "true",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "0:25- 0:34",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-06-01",
@@ -94,14 +94,14 @@
       "comments": "144",
       "shares": "3486",
       "saves": "552",
-      "performance_cuts": "0:54 - 1:01",
-      "performance_vids": "https://drive.google.com/drive/folders/1Ts7S2sM9BxIibNeovzjbYH97grE5sczH",
       "actual_cpv_as_on_24102026": "0.19801980198019803",
       "engagement_rate": "0.06638283828382838",
       "insights": "true",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "0:54 - 1:01",
+      "performance_vids": "https://drive.google.com/drive/folders/1Ts7S2sM9BxIibNeovzjbYH97grE5sczH"
     },
     {
       "live_month": "2025-08-01",
@@ -128,14 +128,14 @@
       "comments": "46",
       "shares": "115",
       "saves": "64",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.3073140749846343",
       "engagement_rate": "0.018383527965580824",
       "insights": "74119",
       "insights_link": "113263.4",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-08-01",
@@ -162,14 +162,14 @@
       "comments": "61",
       "shares": "1080",
       "saves": "682",
-      "performance_cuts": "NA",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.033034394089750486",
       "engagement_rate": "0.031760587853649706",
       "insights": "true",
       "insights_link": "https://drive.google.com/drive/folders/1sLjw_tiL9yYuLglOMTSQlnFWnqqOVxY1?usp=drive_link\nhttps://drive.google.com/drive/folders/1Fpun0ovtX-P-bzC84VXyV9eoR07mYI5O?usp=drive_link",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "NA",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-08-01",
@@ -196,14 +196,14 @@
       "comments": "37",
       "shares": "79",
       "saves": "30",
-      "performance_cuts": "0:11 - 0;26",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.17550457565500815",
       "engagement_rate": "0.017425097154318666",
       "insights": "true",
       "insights_link": "https://drive.google.com/drive/folders/1y0hO8DIOaWs02Nt_waOEQZ98MNTQVDhw?usp=drive_link",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "0:11 - 0;26",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-08-01",
@@ -230,14 +230,14 @@
       "comments": "28",
       "shares": "9",
       "saves": "145",
-      "performance_cuts": "0:29 - 0:47",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.38141734686093526",
       "engagement_rate": "0.03479797594527932",
       "insights": "true",
       "insights_link": "https://drive.google.com/drive/folders/106WwCHnm9-NwtsiJJR0M2nSjo55bXgDy?usp=drive_link",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "0:29 - 0:47",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-08-01",
@@ -264,14 +264,14 @@
       "comments": "214",
       "shares": "811",
       "saves": "-",
-      "performance_cuts": "Already done",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.3246753246753247",
       "engagement_rate": "0.03507467532467533",
       "insights": "true",
       "insights_link": "https://drive.google.com/drive/folders/1hnT2tZvkA6cFDzim-BJblmkMGPp7D0si?usp=drive_link",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "Already done",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-08-01",
@@ -298,14 +298,14 @@
       "comments": "102",
       "shares": "303000",
       "saves": "-",
-      "performance_cuts": "0:48 - 0: 53 , 0:58 - 1:09\\",
-      "performance_vids": "https://drive.google.com/drive/folders/1nKlFRHTfvUfv1unA66jNWGTOY_ydJJEx",
       "actual_cpv_as_on_24102026": "0.36809815950920244",
       "engagement_rate": "#REF!",
       "insights": "true",
       "insights_link": "https://drive.google.com/drive/folders/1Ru74c2Ti3OzGRVugCGbwr8p9B8MrYSip?usp=drive_link",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "0:48 - 0: 53 , 0:58 - 1:09\\",
+      "performance_vids": "https://drive.google.com/drive/folders/1nKlFRHTfvUfv1unA66jNWGTOY_ydJJEx"
     },
     {
       "live_month": "2025-08-01",
@@ -332,14 +332,14 @@
       "comments": "152",
       "shares": "150",
       "saves": "138",
-      "performance_cuts": "0:45 - 1:00",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.6548788474132285",
       "engagement_rate": "0.03100851342501637",
       "insights": "true",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "0:45 - 1:00",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-08-01",
@@ -366,14 +366,14 @@
       "comments": "44",
       "shares": "2357",
       "saves": "1132",
-      "performance_cuts": "0:27 - 0:40",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.030674888445655687",
       "engagement_rate": "0.05816095182133854",
       "insights": "true",
       "insights_link": "https://drive.google.com/drive/folders/1q9tdw4_oALlB7JqhBOPIYs5fwd3APS74?usp=drive_link",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "0:27 - 0:40",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-08-01",
@@ -400,14 +400,14 @@
       "comments": "171",
       "shares": "1894",
       "saves": "293",
-      "performance_cuts": "NA",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.0623319163211023",
       "engagement_rate": "0.044159329444577296",
       "insights": "true",
       "insights_link": "https://drive.google.com/drive/folders/1_TLKeiGp0hrvqYp2WIMmrHElGuyRBfFb?usp=drive_link",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "NA",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-08-01",
@@ -434,14 +434,14 @@
       "comments": "103",
       "shares": "1183",
       "saves": "395",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.44510385756676557",
       "engagement_rate": "0.03942433234421365",
       "insights": "277018",
       "insights_link": "631261.75",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-09-01",
@@ -468,14 +468,14 @@
       "comments": "68",
       "shares": "450",
       "saves": "151",
-      "performance_cuts": "0:45 - 1:00",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.12254901960784313",
       "engagement_rate": "0.04507352941176471",
       "insights": "true",
       "insights_link": "https://drive.google.com/drive/folders/1hZjbHC0xk1iVc6nihZmr7YgUn6NCDhmt?usp=drive_link",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "0:45 - 1:00",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-09-01",
@@ -502,14 +502,14 @@
       "comments": "13",
       "shares": "239",
       "saves": "64",
-      "performance_cuts": "0:33- 0:38 , \n0:45 - 0:54",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.16393442622950818",
       "engagement_rate": "0.02318032786885246",
       "insights": "true",
       "insights_link": "https://drive.google.com/drive/folders/1vbXPuyUZyWNSFisTlSsp-Sw5Z8YCu4AD?usp=drive_link",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "0:33- 0:38 , \n0:45 - 0:54",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-09-01",
@@ -536,14 +536,14 @@
       "comments": "44",
       "shares": "210",
       "saves": "-",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.16233766233766234",
       "engagement_rate": "0.011253246753246753",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-09-01",
@@ -570,14 +570,14 @@
       "comments": "55",
       "shares": "2273",
       "saves": "230",
-      "performance_cuts": "0:26 - 0:40",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.08074534161490683",
       "engagement_rate": "0.02704968944099379",
       "insights": "true",
       "insights_link": "https://drive.google.com/drive/folders/1wMiufrY_B27UzUIHYSRqtgkkOsgURd-i?usp=drive_link",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "0:26 - 0:40",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-09-01",
@@ -604,14 +604,14 @@
       "comments": "9",
       "shares": "373",
       "saves": "48",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.4466501240694789",
       "engagement_rate": "0.04856079404466501",
       "insights": "https://drive.google.com/drive/folders/1BFshi7uZ78i6h_5_qZvlLPLtG0jpXiEA?usp=drive_link",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-09-01",
@@ -638,14 +638,14 @@
       "comments": "14",
       "shares": "3",
       "saves": "21",
-      "performance_cuts": "NA",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.4513908480505558",
       "engagement_rate": "0.03255656491564633",
       "insights": "true",
       "insights_link": "https://drive.google.com/drive/folders/1XpaVViVt59mGJz-iAh-0X2Umdqp0zaKr?usp=drive_link",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "NA",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-09-01",
@@ -672,14 +672,14 @@
       "comments": "76",
       "shares": "132",
       "saves": "-",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.215311004784689",
       "engagement_rate": "0.011028708133971292",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-09-01",
@@ -706,14 +706,14 @@
       "comments": "55",
       "shares": "2272",
       "saves": "71",
-      "performance_cuts": "0: 50 - 1 : 05",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.1751592356687898",
       "engagement_rate": "0.027573248407643313",
       "insights": "true",
       "insights_link": "https://drive.google.com/drive/folders/1tRufD2XQp6m8XKFoxVEKxCU3R9sF8XPW?usp=drive_link",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "0: 50 - 1 : 05",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-09-01",
@@ -740,14 +740,14 @@
       "comments": "9",
       "shares": "300",
       "saves": "31",
-      "performance_cuts": "NA",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.4679144385026738",
       "engagement_rate": "0.008101604278074867",
       "insights": "true",
       "insights_link": "https://drive.google.com/drive/folders/1Mn2f39i9mafMvrHGi4XQP7tAa33SINCI?usp=drive_link",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "NA",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-09-01",
@@ -774,14 +774,14 @@
       "comments": "153",
       "shares": "3207",
       "saves": "317",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.08797653958944282",
       "engagement_rate": "0.09870967741935484",
       "insights": "https://drive.google.com/drive/folders/10uMKKW8yEbFelh3aZWB3wTBfGb8163Sz?usp=drive_link",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-09-01",
@@ -808,14 +808,14 @@
       "comments": "44",
       "shares": "280",
       "saves": "274",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.182648401826484",
       "engagement_rate": "0.035315068493150685",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-09-01",
@@ -842,14 +842,14 @@
       "comments": "36",
       "shares": "892",
       "saves": "166",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.16806722689075632",
       "engagement_rate": "0.05684033613445378",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-09-01",
@@ -876,14 +876,14 @@
       "comments": "330",
       "shares": "23600",
       "saves": "5551",
-      "performance_cuts": "7 DAY RETURN",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.03640549901017493",
       "engagement_rate": "0.09583949867200829",
       "insights": "true",
       "insights_link": "https://drive.google.com/drive/folders/1j5yydvoTmA1mRByfjwFxUERBNGLEX3Yl?usp=drive_link",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "7 DAY RETURN",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-09-01",
@@ -910,14 +910,14 @@
       "comments": "14",
       "shares": "372",
       "saves": "293",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.039936102236421724",
       "engagement_rate": "0.02841214057507987",
       "insights": "https://drive.google.com/drive/folders/1Jbsu_8drlO-eEGPxyKersXO92e07FYeK?usp=drive_link",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-09-01",
@@ -944,14 +944,14 @@
       "comments": "47",
       "shares": "2411",
       "saves": "1057",
-      "performance_cuts": "0:38 - 0 : 52",
-      "performance_vids": "https://drive.google.com/drive/folders/1N-Iq_mCZD0r_0QwWS81uDkbHfEzsc1yt?usp=drive_link",
       "actual_cpv_as_on_24102026": "0.20765027322404372",
       "engagement_rate": "0.02607431693989071",
       "insights": "true",
       "insights_link": "https://drive.google.com/drive/folders/1gV_4-tF1ECBwXWqpE3RRdl73CNjPhNOg?usp=drive_link",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "0:38 - 0 : 52",
+      "performance_vids": "https://drive.google.com/drive/folders/1N-Iq_mCZD0r_0QwWS81uDkbHfEzsc1yt?usp=drive_link"
     },
     {
       "live_month": "2025-09-01",
@@ -978,14 +978,14 @@
       "comments": "23",
       "shares": "587",
       "saves": "412",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.15989340439706862",
       "engagement_rate": "0.018669906336951834",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-09-01",
@@ -1012,14 +1012,14 @@
       "comments": "143",
       "shares": "441",
       "saves": "343",
-      "performance_cuts": "0:37 - 0:49",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.37433155080213903",
       "engagement_rate": "0.0374331550802139",
       "insights": "true",
       "insights_link": "https://drive.google.com/drive/folders/1r1eLRcIgvrL_64VdD5KuAHQnsKGySSPB?usp=drive_link",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "0:37 - 0:49",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-09-01",
@@ -1046,14 +1046,14 @@
       "comments": "42",
       "shares": "170",
       "saves": "101",
-      "performance_cuts": "NA",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.9858044164037855",
       "engagement_rate": "0.01444794952681388",
       "insights": "false",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "NA",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-10-01",
@@ -1080,14 +1080,14 @@
       "comments": "20",
       "shares": "1931",
       "saves": "-",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.03355704697986577",
       "engagement_rate": "0.05319127516778523",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-10-01",
@@ -1114,14 +1114,14 @@
       "comments": "3",
       "shares": "22",
       "saves": "18",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.19402985074626866",
       "engagement_rate": "0.005671641791044776",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-10-01",
@@ -1148,14 +1148,14 @@
       "comments": "80",
       "shares": "9677",
       "saves": "361",
-      "performance_cuts": "7 DAY RETURN",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.11320754716981132",
       "engagement_rate": "0.10008176100628931",
       "insights": "true",
       "insights_link": "https://drive.google.com/drive/folders/1Ke3_l-0TtMCe4rDmIynahLG0i0sMPjsv?usp=drive_link",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "7 DAY RETURN",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-10-01",
@@ -1182,14 +1182,14 @@
       "comments": "50",
       "shares": "1539",
       "saves": "482",
-      "performance_cuts": "0:39 - 0:42 , \n0:45 - 0: 54",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.2968036529680365",
       "engagement_rate": "0.039472602739726026",
       "insights": "true",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "0:39 - 0:42 , \n0:45 - 0: 54",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-10-01",
@@ -1216,14 +1216,14 @@
       "comments": "1121",
       "shares": "49000",
       "saves": "7377",
-      "performance_cuts": "N/A",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.01730769230769231",
       "engagement_rate": "0.07273884615384615",
       "insights": "true",
       "insights_link": "https://drive.google.com/drive/folders/1M4hpbFlnn1Q3fNtgosyA6GCcfIEIACJU?usp=drive_link",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "N/A",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-10-01",
@@ -1250,14 +1250,14 @@
       "comments": "22",
       "shares": "339",
       "saves": "343",
-      "performance_cuts": "NA",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.13392857142857142",
       "engagement_rate": "0.012973214285714286",
       "insights": "true",
       "insights_link": "https://drive.google.com/drive/folders/1dbMkFkkEPA9Ck_uo9ZbXqjJeVGZU5LTa?usp=drive_link",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "NA",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-10-01",
@@ -1284,14 +1284,14 @@
       "comments": "124",
       "shares": "523",
       "saves": "427",
-      "performance_cuts": "0:30 - 0:40",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.4966887417218543",
       "engagement_rate": "0.05008609271523179",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "0:30 - 0:40",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-10-01",
@@ -1318,14 +1318,14 @@
       "comments": "208",
       "shares": "11000",
       "saves": "9327",
-      "performance_cuts": "0:41 - 0:49",
-      "performance_vids": "https://drive.google.com/drive/folders/1V77-9VySYvqO7I3F0HCgoaugriK6gL65?usp=drive_link",
       "actual_cpv_as_on_24102026": "0.07058823529411765",
       "engagement_rate": "0.025298823529411766",
       "insights": "false",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "0:41 - 0:49",
+      "performance_vids": "https://drive.google.com/drive/folders/1V77-9VySYvqO7I3F0HCgoaugriK6gL65?usp=drive_link"
     },
     {
       "live_month": "2025-10-01",
@@ -1352,14 +1352,14 @@
       "comments": "13",
       "shares": "945",
       "saves": "171",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.016018306636155607",
       "engagement_rate": "0.05688329519450801",
       "insights": "https://drive.google.com/drive/folders/1HOpFnooNn7QU3Cr-D9xixpqKocc2egQp?usp=drive_link",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-10-01",
@@ -1386,14 +1386,14 @@
       "comments": "40",
       "shares": "614",
       "saves": "232",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.17142857142857143",
       "engagement_rate": "0.03849142857142857",
       "insights": "https://drive.google.com/drive/folders/1mnvvuJI6LYhb38TzPzxAO_7o7mUstXMO?usp=drive_link",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-10-01",
@@ -1420,14 +1420,14 @@
       "comments": "205",
       "shares": "5675",
       "saves": "2455",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.041666666666666664",
       "engagement_rate": "0.051616666666666665",
       "insights": "https://drive.google.com/drive/folders/1P2aLDMvLvv5ztDdpJ1mPqGbjYTV27OtX?usp=drive_link",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-10-01",
@@ -1454,14 +1454,14 @@
       "comments": "79",
       "shares": "1100",
       "saves": "477",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.44742729306487694",
       "engagement_rate": "0.04111633109619687",
       "insights": "https://drive.google.com/drive/folders/1ALvZA3CMkiKZhhL3P5OSIGGgYRoWVk9Y?usp=drive_link",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-11-01",
@@ -1488,14 +1488,14 @@
       "comments": "40000",
       "shares": "0.005614285714285714",
       "saves": "-",
-      "performance_cuts": "",
-      "performance_vids": "240K",
       "actual_cpv_as_on_24102026": "0.07142857142857142",
       "engagement_rate": "0.06275715087755102",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": "240K"
     },
     {
       "live_month": "2025-11-01",
@@ -1522,14 +1522,14 @@
       "comments": "269",
       "shares": "4044",
       "saves": "523",
-      "performance_cuts": "0:28 - 0:$3",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.06493506493506493",
       "engagement_rate": "0.05366233766233766",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "0:28 - 0:$3",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-11-01",
@@ -1556,14 +1556,14 @@
       "comments": "55",
       "shares": "340",
       "saves": "99",
-      "performance_cuts": "0:20 - 0:44",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.2158273381294964",
       "engagement_rate": "0.04603597122302158",
       "insights": "need to pay 50% advance",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "0:20 - 0:44",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-11-01",
@@ -1590,14 +1590,14 @@
       "comments": "68",
       "shares": "1070",
       "saves": "161",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.47413793103448276",
       "engagement_rate": "0.04561206896551724",
       "insights": "https://drive.google.com/drive/folders/1gBQgmSQiAByxuOx0NHlhP8mRS_YiRi5e?usp=drive_link",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-11-01",
@@ -1624,14 +1624,14 @@
       "comments": "328",
       "shares": "33200",
       "saves": "5377",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.03571428571428571",
       "engagement_rate": "0.06750666666666667",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-11-01",
@@ -1658,14 +1658,14 @@
       "comments": "122",
       "shares": "1154",
       "saves": "144",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.2204724409448819",
       "engagement_rate": "0.037503937007874015",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-11-01",
@@ -1692,14 +1692,14 @@
       "comments": "543",
       "shares": "38000",
       "saves": "4017",
-      "performance_cuts": "0:41 - 0:43\n0: 48 : 0:53",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.018333333333333333",
       "engagement_rate": "0.04684766666666667",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "0:41 - 0:43\n0: 48 : 0:53",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-11-01",
@@ -1726,14 +1726,14 @@
       "comments": "168",
       "shares": "5047",
       "saves": "697",
-      "performance_cuts": "0:35 - 1:28",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.15015015015015015",
       "engagement_rate": "0.08142642642642643",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "0:35 - 1:28",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-11-01",
@@ -1760,14 +1760,14 @@
       "comments": "103",
       "shares": "6905",
       "saves": "951",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.19434628975265017",
       "engagement_rate": "0.07034628975265017",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-11-01",
@@ -1794,14 +1794,14 @@
       "comments": "56",
       "shares": "1607",
       "saves": "541",
-      "performance_cuts": "NA",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.03",
       "engagement_rate": "0.046063",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "NA",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-11-01",
@@ -1828,14 +1828,14 @@
       "comments": "315",
       "shares": "1874",
       "saves": "910",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.04090909090909091",
       "engagement_rate": "0.031444545454545454",
       "insights": "https://drive.google.com/drive/folders/1ub9JKlrFjD8JxGyarSRxZjPoGreI99fr?usp=sharing",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-11-01",
@@ -1862,14 +1862,14 @@
       "comments": "60",
       "shares": "432",
       "saves": "-",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.14950166112956811",
       "engagement_rate": "0.054790697674418604",
       "insights": "this page isn't available",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-11-01",
@@ -1896,14 +1896,14 @@
       "comments": "24",
       "shares": "759",
       "saves": "168",
-      "performance_cuts": "0:05 - 0 : 20",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.043885698236087504",
       "engagement_rate": "0.029098168406003173",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "0:05 - 0 : 20",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-11-01",
@@ -1930,14 +1930,14 @@
       "comments": "46",
       "shares": "496",
       "saves": "259",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.08658008658008658",
       "engagement_rate": "0.03927705627705628",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-11-01",
@@ -1964,14 +1964,14 @@
       "comments": "1202",
       "shares": "43300",
       "saves": "6840",
-      "performance_cuts": "0:42 - 0:52",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.02972972972972973",
       "engagement_rate": "0.07905459459459459",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "0:42 - 0:52",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-11-01",
@@ -1998,14 +1998,14 @@
       "comments": "24",
       "shares": "1128",
       "saves": "163",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.2336448598130841",
       "engagement_rate": "0.049476635514018694",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-11-01",
@@ -2032,14 +2032,14 @@
       "comments": "351",
       "shares": "16600",
       "saves": "2207",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.022222222222222223",
       "engagement_rate": "0.07108388888888889",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-11-01",
@@ -2066,14 +2066,14 @@
       "comments": "205",
       "shares": "9263",
       "saves": "1048",
-      "performance_cuts": "0:39 - 0:44\n0:46 - 0:55",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.23255813953488372",
       "engagement_rate": "0.0597953488372093",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "0:39 - 0:44\n0:46 - 0:55",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-11-01",
@@ -2100,14 +2100,14 @@
       "comments": "140",
       "shares": "3471",
       "saves": "1047",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.20350877192982456",
       "engagement_rate": "0.08431868131868132",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-11-01",
@@ -2134,14 +2134,14 @@
       "comments": "37",
       "shares": "2808",
       "saves": "622",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.10638297872340426",
       "engagement_rate": "0.05711702127659574",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-11-01",
@@ -2168,14 +2168,14 @@
       "comments": "113",
       "shares": "1530",
       "saves": "1386",
-      "performance_cuts": "0:26 - 0:32\n0:37 - 0:46",
-      "performance_vids": "Aakhri Pasta",
       "actual_cpv_as_on_24102026": "0.28846153846153844",
       "engagement_rate": "0.02168269230769231",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "0:26 - 0:32\n0:37 - 0:46",
+      "performance_vids": "Aakhri Pasta"
     },
     {
       "live_month": "2025-12-01",
@@ -2202,14 +2202,14 @@
       "comments": "10",
       "shares": "224",
       "saves": "319",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "1.0610079575596818",
       "engagement_rate": "0.029575596816976128",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-12-01",
@@ -2236,14 +2236,14 @@
       "comments": "38",
       "shares": "1587",
       "saves": "189",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.2",
       "engagement_rate": "0.038984",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-12-01",
@@ -2270,14 +2270,14 @@
       "comments": "92",
       "shares": "23100",
       "saves": "1950",
-      "performance_cuts": "0:37- 1:07 ( mute 3 years)",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.030376670716889428",
       "engagement_rate": "0.11056136087484812",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "0:37- 1:07 ( mute 3 years)",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-12-01",
@@ -2304,14 +2304,14 @@
       "comments": "464",
       "shares": "1940",
       "saves": "367",
-      "performance_cuts": "0:34 - 1:03",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.6391252833045727",
       "engagement_rate": "0.05488611279086346",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "0:34 - 1:03",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-12-01",
@@ -2338,14 +2338,14 @@
       "comments": "173",
       "shares": "932",
       "saves": "599",
-      "performance_cuts": "0:16 - 0:49",
-      "performance_vids": "37",
       "actual_cpv_as_on_24102026": "0.022222222222222223",
       "engagement_rate": "0.0030746913580246915",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "0:16 - 0:49",
+      "performance_vids": "37"
     },
     {
       "live_month": "2025-12-01",
@@ -2372,14 +2372,14 @@
       "comments": "75",
       "shares": "843",
       "saves": "525",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.25125628140703515",
       "engagement_rate": "0.024988274706867673",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-12-01",
@@ -2406,14 +2406,14 @@
       "comments": "95",
       "shares": "326",
       "saves": "87",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.3439153439153439",
       "engagement_rate": "0.022349206349206348",
       "insights": "https://drive.google.com/drive/folders/1NYQdFaSpWf3WaKD8r4P0huDy5JXU2_2k?usp=sharing",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-12-01",
@@ -2440,14 +2440,14 @@
       "comments": "41",
       "shares": "800",
       "saves": "525",
-      "performance_cuts": "0:15 - 0:43 ( Mute 3 years warranty)",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.9414225941422594",
       "engagement_rate": "0.0603765690376569",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "0:15 - 0:43 ( Mute 3 years warranty)",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-12-01",
@@ -2474,14 +2474,14 @@
       "comments": "41",
       "shares": "2143",
       "saves": "503",
-      "performance_cuts": "0:27 - 0:39",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "1.0582010582010581",
       "engagement_rate": "0.061915343915343916",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "0:27 - 0:39",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-12-01",
@@ -2508,14 +2508,14 @@
       "comments": "45",
       "shares": "1916",
       "saves": "110",
-      "performance_cuts": "0:39 - 1:02",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.5277777777777778",
       "engagement_rate": "0.01951388888888889",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "0:39 - 1:02",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-12-01",
@@ -2542,14 +2542,14 @@
       "comments": "110",
       "shares": "6741",
       "saves": "1950",
-      "performance_cuts": "0:34 - 0:45",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.45",
       "engagement_rate": "0.356755",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "0:34 - 0:45",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-12-01",
@@ -2576,14 +2576,14 @@
       "comments": "11",
       "shares": "",
       "saves": "34",
-      "performance_cuts": "0:29 - 0:55",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "1.5625",
       "engagement_rate": "0.04204861111111111",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "0:29 - 0:55",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-12-01",
@@ -2610,14 +2610,14 @@
       "comments": "90",
       "shares": "690",
       "saves": "319",
-      "performance_cuts": "0:39 - 0:50",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.07530120481927711",
       "engagement_rate": "0.010487951807228916",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "0:39 - 0:50",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-12-01",
@@ -2644,14 +2644,14 @@
       "comments": "10",
       "shares": "224",
       "saves": "173",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "1.9827631787659281",
       "engagement_rate": "0.029477079257653464",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-12-01",
@@ -2678,14 +2678,14 @@
       "comments": "197",
       "shares": "6566",
       "saves": "1041",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.09090909090909091",
       "engagement_rate": "0.008693636363636363",
       "insights": "0.0005076142131979696",
       "insights_link": "#REF!",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-12-01",
@@ -2712,14 +2712,14 @@
       "comments": "176",
       "shares": "4909",
       "saves": "1096",
-      "performance_cuts": "0:42 - 0:57",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.09560863180223546",
       "engagement_rate": "0.034537024761360856",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "0:42 - 0:57",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-12-01",
@@ -2746,14 +2746,14 @@
       "comments": "517",
       "shares": "20100",
       "saves": "1834",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "1.2484394506866416",
       "engagement_rate": "1.0439076154806493",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-12-01",
@@ -2780,14 +2780,14 @@
       "comments": "324",
       "shares": "7215",
       "saves": "1547",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.05",
       "engagement_rate": "0.025132777777777778",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-12-01",
@@ -2814,14 +2814,14 @@
       "comments": "64",
       "shares": "2042",
       "saves": "966",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.7692307692307693",
       "engagement_rate": "0.6616923076923077",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-12-01",
@@ -2848,14 +2848,14 @@
       "comments": "43",
       "shares": "179",
       "saves": "172",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.042283298097251586",
       "engagement_rate": "0.030913319238900634",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-12-01",
@@ -2882,14 +2882,14 @@
       "comments": "3801",
       "shares": "80300",
       "saves": "10100",
-      "performance_cuts": "0:33 - 0$8",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.006404494382022472",
       "engagement_rate": "0.02709",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "0:33 - 0$8",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-12-01",
@@ -2916,14 +2916,14 @@
       "comments": "316",
       "shares": "8609",
       "saves": "2356",
-      "performance_cuts": "0:35 - 0:59",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.12173913043478261",
       "engagement_rate": "0.06257608695652174",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "0:35 - 0:59",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-12-01",
@@ -2950,14 +2950,14 @@
       "comments": "927",
       "shares": "26100",
       "saves": "4920",
-      "performance_cuts": "0:29 - 0:44",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.02702702702702703",
       "engagement_rate": "0.04621986486486487",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "0:29 - 0:44",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-01-01",
@@ -2984,14 +2984,14 @@
       "comments": "179",
       "shares": "21000",
       "saves": "2237",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.020512820512820513",
       "engagement_rate": "0.07619974358974359",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-01-01",
@@ -3018,14 +3018,14 @@
       "comments": "42",
       "shares": "415",
       "saves": "477",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.4573170731707317",
       "engagement_rate": "0.04475609756097561",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-01-01",
@@ -3052,14 +3052,14 @@
       "comments": "19",
       "shares": "29",
       "saves": "39",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "1.7741935483870968",
       "engagement_rate": "0.018508064516129033",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-01-01",
@@ -3086,14 +3086,14 @@
       "comments": "107",
       "shares": "2631",
       "saves": "735",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.15991471215351813",
       "engagement_rate": "0.05892963752665245",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-01-01",
@@ -3120,14 +3120,14 @@
       "comments": "110",
       "shares": "4789",
       "saves": "413",
-      "performance_cuts": "0:30 - 0:49",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.07534246575342465",
       "engagement_rate": "0.03266849315068493",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "0:30 - 0:49",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-01-01",
@@ -3154,14 +3154,14 @@
       "comments": "113",
       "shares": "11000",
       "saves": "1428",
-      "performance_cuts": "0:27 - 0:47",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.2916666666666667",
       "engagement_rate": "0.12755416666666666",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "0:27 - 0:47",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-01-01",
@@ -3188,14 +3188,14 @@
       "comments": "14",
       "shares": "4789",
       "saves": "-",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.25",
       "engagement_rate": "0.03418181818181818",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-01-01",
@@ -3222,14 +3222,14 @@
       "comments": "12",
       "shares": "497",
       "saves": "112",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.3686635944700461",
       "engagement_rate": "0.019101382488479264",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-01-01",
@@ -3256,14 +3256,14 @@
       "comments": "16",
       "shares": "102",
       "saves": "89",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.21953896816684962",
       "engagement_rate": "0.05981339187705818",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-01-01",
@@ -3290,14 +3290,14 @@
       "comments": "8",
       "shares": "193",
       "saves": "-",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.09911894273127753",
       "engagement_rate": "0.00114647577092511",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-01-01",
@@ -3324,14 +3324,14 @@
       "comments": "497",
       "shares": "65",
       "saves": "-",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.29914529914529914",
       "engagement_rate": "0.0008005698005698006",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-01-01",
@@ -3358,14 +3358,14 @@
       "comments": "151",
       "shares": "7086",
       "saves": "2080",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.053513513513513515",
       "engagement_rate": "0.09701297297297297",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-01-01",
@@ -3392,14 +3392,14 @@
       "comments": "49",
       "shares": "1095",
       "saves": "239",
-      "performance_cuts": "0:37 - 0:56",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.5737704918032787",
       "engagement_rate": "0.03241393442622951",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "0:37 - 0:56",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-01-01",
@@ -3426,14 +3426,14 @@
       "comments": "94",
       "shares": "394",
       "saves": "212",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.11924119241192412",
       "engagement_rate": "0.02037127371273713",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-01-01",
@@ -3460,14 +3460,14 @@
       "comments": "406",
       "shares": "18000",
       "saves": "12100",
-      "performance_cuts": "0:22- 1:07",
-      "performance_vids": "e",
       "actual_cpv_as_on_24102026": "0.027107514707402747",
       "engagement_rate": "0.05628352190917596",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "0:22- 1:07",
+      "performance_vids": "e"
     },
     {
       "live_month": "2026-01-01",
@@ -3494,14 +3494,14 @@
       "comments": "117",
       "shares": "5000",
       "saves": "4673",
-      "performance_cuts": "0:45 - 0:56",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.08749390365058435",
       "engagement_rate": "0.028793114737811817",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "0:45 - 0:56",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-02-01",
@@ -3528,14 +3528,14 @@
       "comments": "3",
       "shares": "173",
       "saves": "9",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.28169014084507044",
       "engagement_rate": "0.033690140845070424",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-03-01",
@@ -3562,14 +3562,14 @@
       "comments": "18",
       "shares": "951",
       "saves": "1409",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.41379310344827586",
       "engagement_rate": "0.1211655172413793",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-03-01",
@@ -3596,14 +3596,14 @@
       "comments": "243",
       "shares": "4990",
       "saves": "4848",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.21837703931398164",
       "engagement_rate": "0.02825274783828569",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-03-01",
@@ -3630,14 +3630,14 @@
       "comments": "5",
       "shares": "50",
       "saves": "21",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.6600909039473436",
       "engagement_rate": "0.002508345434999906",
       "insights": "",
       "insights_link": "",
       "performance_cut": "true",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-03-01",
@@ -3664,14 +3664,14 @@
       "comments": "13",
       "shares": "4",
       "saves": "-",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "1.4049607888216211",
       "engagement_rate": "0.0004342606074539556",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-03-01",
@@ -3698,14 +3698,14 @@
       "comments": "70",
       "shares": "4365",
       "saves": "5582",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.20508894023708282",
       "engagement_rate": "0.03387955354416476",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-03-01",
@@ -3732,14 +3732,14 @@
       "comments": "211",
       "shares": "2620",
       "saves": "1183",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.28254014895516655",
       "engagement_rate": "0.0642072488500616",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-03-01",
@@ -3766,14 +3766,14 @@
       "comments": "28",
       "shares": "840",
       "saves": "827",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.3200568990042674",
       "engagement_rate": "0.03725462304409673",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-03-01",
@@ -3800,14 +3800,14 @@
       "comments": "6",
       "shares": "65",
       "saves": "92",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.5300460382844682",
       "engagement_rate": "0.008465592440029077",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-03-01",
@@ -3834,14 +3834,14 @@
       "comments": "4",
       "shares": "6",
       "saves": "1",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "2.899951667472209",
       "engagement_rate": "0.022716288061865635",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-03-01",
@@ -3868,14 +3868,14 @@
       "comments": "58",
       "shares": "943",
       "saves": "163",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.25",
       "engagement_rate": "0.023467857142857144",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-03-01",
@@ -3902,14 +3902,14 @@
       "comments": "28",
       "shares": "958",
       "saves": "827",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "1.778081236975555",
       "engagement_rate": "0.03809361242096429",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-03-01",
@@ -3936,14 +3936,14 @@
       "comments": "135",
       "shares": "65",
       "saves": "-",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.861244019138756",
       "engagement_rate": "0.0009569377990430622",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-03-01",
@@ -3970,14 +3970,14 @@
       "comments": "36",
       "shares": "744",
       "saves": "608",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.6032381825640035",
       "engagement_rate": "0.029177424414255724",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-03-01",
@@ -4004,14 +4004,14 @@
       "comments": "6",
       "shares": "9",
       "saves": "7",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.4918032786885246",
       "engagement_rate": "0.016434426229508196",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-03-01",
@@ -4038,14 +4038,14 @@
       "comments": "81",
       "shares": "550",
       "saves": "670",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.053822536333202164",
       "engagement_rate": "0.005634621525904787",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-03-01",
@@ -4072,14 +4072,14 @@
       "comments": "1",
       "shares": "3",
       "saves": "8",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "2.589555459646094",
       "engagement_rate": "0.0003452740612861459",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-03-01",
@@ -4106,14 +4106,14 @@
       "comments": "210",
       "shares": "13000",
       "saves": "6491",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.20479674946599247",
       "engagement_rate": "0.06797818505024689",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-03-01",
@@ -4140,14 +4140,14 @@
       "comments": "3",
       "shares": "91",
       "saves": "60",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "1.7369727047146402",
       "engagement_rate": "0.012704714640198511",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-03-01",
@@ -4174,14 +4174,14 @@
       "comments": "170",
       "shares": "7910",
       "saves": "2813",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.7456936193482637",
       "engagement_rate": "0.033166795091678886",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-03-01",
@@ -4208,14 +4208,14 @@
       "comments": "0",
       "shares": "1",
       "saves": "-",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "5.573248407643312",
       "engagement_rate": "0.01910828025477707",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-04-01",
@@ -4242,14 +4242,14 @@
       "comments": "11",
       "shares": "20",
       "saves": "97",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.7593385076828786",
       "engagement_rate": "0.005261131088945659",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-04-01",
@@ -4276,14 +4276,14 @@
       "comments": "4",
       "shares": "",
       "saves": "-",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "5.4",
       "engagement_rate": "0.0408",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-04-01",
@@ -4310,14 +4310,14 @@
       "comments": "67",
       "shares": "4500",
       "saves": "33",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.36019006509354856",
       "engagement_rate": "0.030993634721169668",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-04-01",
@@ -4344,14 +4344,14 @@
       "comments": "56",
       "shares": "50",
       "saves": "73",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "1.5287922541192458",
       "engagement_rate": "0.014744351961950059",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-04-01",
@@ -4378,14 +4378,14 @@
       "comments": "4",
       "shares": "21",
       "saves": "23",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.34453354464724073",
       "engagement_rate": "0.0036003755415636653",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-04-01",
@@ -4412,14 +4412,14 @@
       "comments": "56",
       "shares": "1490",
       "saves": "1304",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.09584741092181248",
       "engagement_rate": "0.0857642632928378",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-04-01",
@@ -4446,14 +4446,14 @@
       "comments": "46",
       "shares": "115",
       "saves": "95",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "1.6233766233766234",
       "engagement_rate": "0.02088744588744589",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-04-01",
@@ -4480,14 +4480,14 @@
       "comments": "48",
       "shares": "641",
       "saves": "332",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.11570421794467235",
       "engagement_rate": "0.02522141579888503",
       "insights": "",
       "insights_link": "",
       "performance_cut": "true",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-04-01",
@@ -4514,14 +4514,14 @@
       "comments": "47",
       "shares": "1956",
       "saves": "897",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.708502024291498",
       "engagement_rate": "0.052643724696356274",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-04-01",
@@ -4548,14 +4548,14 @@
       "comments": "65",
       "shares": "483",
       "saves": "608",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.0863995576342649",
       "engagement_rate": "0.022878602861553347",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-04-01",
@@ -4582,14 +4582,14 @@
       "comments": "128",
       "shares": "2567",
       "saves": "233",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.11972511114481152",
       "engagement_rate": "0.03610709810275607",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-04-01",
@@ -4616,14 +4616,14 @@
       "comments": "58",
       "shares": "3107",
       "saves": "1058",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.2876883759511697",
       "engagement_rate": "0.04282720956659746",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-04-01",
@@ -4650,14 +4650,14 @@
       "comments": "0",
       "shares": "12",
       "saves": "7",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.24",
       "engagement_rate": "0.00508",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-04-01",
@@ -4684,14 +4684,14 @@
       "comments": "8",
       "shares": "21",
       "saves": "32",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.5",
       "engagement_rate": "0.0043",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-04-01",
@@ -4718,14 +4718,14 @@
       "comments": "110",
       "shares": "3245",
       "saves": "426",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.16043528384439612",
       "engagement_rate": "0.05864138817775313",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-05-01",
@@ -4752,14 +4752,14 @@
       "comments": "6",
       "shares": "61",
       "saves": "32",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.06464437513130888",
       "engagement_rate": "0.01349451330866073",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-05-01",
@@ -4786,14 +4786,14 @@
       "comments": "15",
       "shares": "10",
       "saves": "8",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.23555572306184752",
       "engagement_rate": "0.013049787057626352",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-05-01",
@@ -4820,14 +4820,14 @@
       "comments": "203",
       "shares": "987",
       "saves": "206",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.13059817227857895",
       "engagement_rate": "0.025749062141875324",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-05-01",
@@ -4854,14 +4854,14 @@
       "comments": "110",
       "shares": "3938",
       "saves": "2661",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.06068946264032542",
       "engagement_rate": "0.05994601672298143",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-05-01",
@@ -4888,14 +4888,14 @@
       "comments": "7",
       "shares": "370",
       "saves": "8",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.2131077232902767",
       "engagement_rate": "0.007490736473653226",
       "insights": "",
       "insights_link": "",
       "performance_cut": "true",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-05-01",
@@ -4922,14 +4922,14 @@
       "comments": "58",
       "shares": "406",
       "saves": "98",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.3667678946055778",
       "engagement_rate": "0.041650162111409414",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-05-01",
@@ -4956,14 +4956,14 @@
       "comments": "116",
       "shares": "4147",
       "saves": "3057",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.07682423181833252",
       "engagement_rate": "0.022959123847939775",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-05-01",
@@ -4990,14 +4990,14 @@
       "comments": "183",
       "shares": "4678",
       "saves": "1327",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.003400928680258289",
       "engagement_rate": "0.06056033700935935",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-05-01",
@@ -5024,14 +5024,14 @@
       "comments": "83",
       "shares": "1029",
       "saves": "1486",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.1425896973072355",
       "engagement_rate": "0.034424507981668",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-05-01",
@@ -5058,14 +5058,14 @@
       "comments": "66",
       "shares": "337",
       "saves": "59",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.12683197598250018",
       "engagement_rate": "0.018357809417796467",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-05-01",
@@ -5092,14 +5092,14 @@
       "comments": "80",
       "shares": "887",
       "saves": "11",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.18401972691472526",
       "engagement_rate": "0.050561260167089915",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-05-01",
@@ -5126,14 +5126,14 @@
       "comments": "199",
       "shares": "3772",
       "saves": "2807",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.07700874915651354",
       "engagement_rate": "0.05360771550657799",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-05-01",
@@ -5160,14 +5160,14 @@
       "comments": "256",
       "shares": "9034",
       "saves": "6467",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.04859304364074986",
       "engagement_rate": "0.03982796295531406",
       "insights": "",
       "insights_link": "",
       "performance_cut": "true",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-05-01",
@@ -5194,14 +5194,14 @@
       "comments": "213",
       "shares": "6613",
       "saves": "3670",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.1031096277425178",
       "engagement_rate": "0.053129218571788886",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-05-01",
@@ -5228,14 +5228,14 @@
       "comments": "55",
       "shares": "411",
       "saves": "375",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.2517263125539887",
       "engagement_rate": "0.01692660720626189",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-05-01",
@@ -5262,14 +5262,14 @@
       "comments": "41",
       "shares": "286",
       "saves": "329",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.144372017815507",
       "engagement_rate": "0.0007868274970945132",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-05-01",
@@ -5296,14 +5296,14 @@
       "comments": "166",
       "shares": "924",
       "saves": "478",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.5104208954444341",
       "engagement_rate": "0.038770621597688626",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-05-01",
@@ -5330,14 +5330,14 @@
       "comments": "116",
       "shares": "1500",
       "saves": "824",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.5235562935206169",
       "engagement_rate": "0.017146468612800204",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-05-01",
@@ -5364,14 +5364,14 @@
       "comments": "2277",
       "shares": "17200",
       "saves": "23700",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.006593710338832312",
       "engagement_rate": "0.04513816724392403",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-06-01",
@@ -5398,14 +5398,14 @@
       "comments": "39",
       "shares": "870",
       "saves": "678",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.34359065983150316",
       "engagement_rate": "0.03335578125644233",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-06-01",
@@ -5432,14 +5432,14 @@
       "comments": "61",
       "shares": "26",
       "saves": "23",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "2.7130731367001277",
       "engagement_rate": "0.00868183403744041",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-06-01",
@@ -5466,14 +5466,14 @@
       "comments": "162",
       "shares": "440",
       "saves": "117",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "1.1156089631211552",
       "engagement_rate": "0.032894527141172344",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-06-01",
@@ -5500,14 +5500,14 @@
       "comments": "1",
       "shares": "4",
       "saves": "35",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "6.820700827009976",
       "engagement_rate": "0.00042629380168812344",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-06-01",
@@ -5534,14 +5534,14 @@
       "comments": "146",
       "shares": "318",
       "saves": "65",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "2.1933031144904227",
       "engagement_rate": "0.04635180581956427",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-06-01",
@@ -5568,14 +5568,14 @@
       "comments": "1276",
       "shares": "2997",
       "saves": "3398",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.7041790680424761",
       "engagement_rate": "0.07715924774897424",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-06-01",
@@ -5602,14 +5602,14 @@
       "comments": "6",
       "shares": "",
       "saves": "8",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.9669309611293754",
       "engagement_rate": "0.00005801585766776252",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-06-01",
@@ -5636,14 +5636,14 @@
       "comments": "4",
       "shares": "134",
       "saves": "150",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.037294785443099346",
       "engagement_rate": "0.02806059656738795",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-06-01",
@@ -5670,14 +5670,14 @@
       "comments": "111",
       "shares": "481",
       "saves": "257",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.37456852587115996",
       "engagement_rate": "0.02756248091141166",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-06-01",
@@ -5704,14 +5704,14 @@
       "comments": "104",
       "shares": "3681",
       "saves": "1329",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.12114912366781395",
       "engagement_rate": "0.04307457092009125",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-06-01",
@@ -5738,14 +5738,14 @@
       "comments": "21",
       "shares": "70",
       "saves": "66",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.3756574004507889",
       "engagement_rate": "0.019325486267635028",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-06-01",
@@ -5772,14 +5772,14 @@
       "comments": "26",
       "shares": "390",
       "saves": "246",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.1831350895988426",
       "engagement_rate": "0.028543435064875604",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-06-01",
@@ -5806,14 +5806,14 @@
       "comments": "42",
       "shares": "625",
       "saves": "303",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.6137077769049489",
       "engagement_rate": "0.032612431264728986",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-06-01",
@@ -5840,14 +5840,14 @@
       "comments": "234",
       "shares": "1189",
       "saves": "328",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.31584741862416865",
       "engagement_rate": "0.03678268795177461",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-06-01",
@@ -5874,14 +5874,14 @@
       "comments": "1291",
       "shares": "21500",
       "saves": "9929",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.022590419020993797",
       "engagement_rate": "0.05595194983119744",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-06-01",
@@ -5908,14 +5908,14 @@
       "comments": "1064",
       "shares": "38000",
       "saves": "5507",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.04832756872180272",
       "engagement_rate": "0.06688163760568867",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-06-01",
@@ -5942,14 +5942,14 @@
       "comments": "299",
       "shares": "9879",
       "saves": "1484",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.0776500305358745",
       "engagement_rate": "0.022898994005029392",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-06-01",
@@ -5976,14 +5976,14 @@
       "comments": "154",
       "shares": "5970",
       "saves": "1616",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.11797368400355494",
       "engagement_rate": "0.06556715193175354",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-06-01",
@@ -6010,14 +6010,14 @@
       "comments": "277",
       "shares": "55890",
       "saves": "3984",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.029355969177537074",
       "engagement_rate": "0.05136968428633682",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-06-01",
@@ -6044,14 +6044,14 @@
       "comments": "197",
       "shares": "12786",
       "saves": "4196",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.14154715761511913",
       "engagement_rate": "0.06982049461295109",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-07-01",
@@ -6078,14 +6078,14 @@
       "comments": "282",
       "shares": "7480",
       "saves": "4633",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.0426708671055467",
       "engagement_rate": "0.03717120191945752",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-07-01",
@@ -6112,14 +6112,14 @@
       "comments": "26",
       "shares": "271",
       "saves": "210",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.08906874954810708",
       "engagement_rate": "0.01687800410554542",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-07-01",
@@ -6146,14 +6146,14 @@
       "comments": "64",
       "shares": "630",
       "saves": "401",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.4923515086786422",
       "engagement_rate": "0.04399728827938297",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-07-01",
@@ -6180,14 +6180,14 @@
       "comments": "153",
       "shares": "6300",
       "saves": "1351",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.22169376996167653",
       "engagement_rate": "0.03850525192541039",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-07-01",
@@ -6214,14 +6214,14 @@
       "comments": "1076",
       "shares": "35000",
       "saves": "15300",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.021739130434782608",
       "engagement_rate": "0.07936434782608695",
       "insights": "",
       "insights_link": "",
       "performance_cut": "false",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-07-01",
@@ -6248,14 +6248,14 @@
       "comments": "35",
       "shares": "61",
       "saves": "48",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "4.545454545454546",
       "engagement_rate": "0.03386363636363637",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-07-01",
@@ -6282,14 +6282,14 @@
       "comments": "85",
       "shares": "3724",
       "saves": "412",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.10165184243964422",
       "engagement_rate": "0.01932528589580686",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-07-01",
@@ -6316,14 +6316,14 @@
       "comments": "55",
       "shares": "1291",
       "saves": "525",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.1017007759769207",
       "engagement_rate": "0.028045683988568833",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-07-01",
@@ -6350,14 +6350,14 @@
       "comments": "16",
       "shares": "6028",
       "saves": "15",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.06619970863301573",
       "engagement_rate": "0.014495088202285126",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-07-01",
@@ -6384,14 +6384,14 @@
       "comments": "9",
       "shares": "4",
       "saves": "9",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.2630632842574162",
       "engagement_rate": "0.0037442674125972237",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-07-01",
@@ -6418,14 +6418,14 @@
       "comments": "31",
       "shares": "13",
       "saves": "53",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.6203247582557927",
       "engagement_rate": "0.00160554643313264",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-07-01",
@@ -6452,14 +6452,14 @@
       "comments": "17",
       "shares": "150",
       "saves": "151",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.35690067454227486",
       "engagement_rate": "0.0431921196331061",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-07-01",
@@ -6486,14 +6486,14 @@
       "comments": "69",
       "shares": "1400",
       "saves": "386",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.4454382667106166",
       "engagement_rate": "0.10990743792817753",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-08-01",
@@ -6520,14 +6520,14 @@
       "comments": "113",
       "shares": "1300",
       "saves": "781",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.10447755996141296",
       "engagement_rate": "0.02906913976659713",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-08-01",
@@ -6554,14 +6554,14 @@
       "comments": "15",
       "shares": "120",
       "saves": "39",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.0792425817937527",
       "engagement_rate": "0.014082287257880894",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-08-01",
@@ -6588,14 +6588,14 @@
       "comments": "23",
       "shares": "260",
       "saves": "136",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.05646425940707395",
       "engagement_rate": "0.006768011457111545",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-08-01",
@@ -6622,14 +6622,14 @@
       "comments": "34",
       "shares": "8500",
       "saves": "1500",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.05299715201458482",
       "engagement_rate": "0.04480786901713112",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-08-01",
@@ -6656,14 +6656,14 @@
       "comments": "809",
       "shares": "6700",
       "saves": "1750",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.0034215716099581725",
       "engagement_rate": "0.022111716442043024",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-08-01",
@@ -6690,14 +6690,14 @@
       "comments": "594",
       "shares": "15000",
       "saves": "6677",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.015455125630594884",
       "engagement_rate": "0.05304137295917642",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-08-01",
@@ -6724,14 +6724,14 @@
       "comments": "52",
       "shares": "1950",
       "saves": "1987",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.09458931897410144",
       "engagement_rate": "0.04882442674573187",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-08-01",
@@ -6758,14 +6758,14 @@
       "comments": "203",
       "shares": "3300",
       "saves": "4651",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.030851223829485287",
       "engagement_rate": "0.06244596215326117",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-08-01",
@@ -6792,14 +6792,14 @@
       "comments": "97",
       "shares": "1200",
       "saves": "962",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.1624493822493037",
       "engagement_rate": "0.02272223813897988",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-08-01",
@@ -6826,14 +6826,14 @@
       "comments": "4",
       "shares": "108",
       "saves": "129",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "2.1149633658131277",
       "engagement_rate": "0.018573910416194578",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-08-01",
@@ -6860,14 +6860,14 @@
       "comments": "72",
       "shares": "2350",
       "saves": "295",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.2572695807877938",
       "engagement_rate": "0.042284828298281785",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-08-01",
@@ -6894,14 +6894,14 @@
       "comments": "55",
       "shares": "395",
       "saves": "224",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.3436949167521812",
       "engagement_rate": "0.032331871811615905",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-08-01",
@@ -6928,14 +6928,14 @@
       "comments": "18",
       "shares": "7150",
       "saves": "202",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.29347281923800644",
       "engagement_rate": "0.054254492723600396",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-08-01",
@@ -6962,14 +6962,14 @@
       "comments": "94",
       "shares": "2470",
       "saves": "2443",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.03151030014420259",
       "engagement_rate": "0.03723142482129363",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-08-01",
@@ -6996,14 +6996,14 @@
       "comments": "17",
       "shares": "225",
       "saves": "87",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.7413264801818721",
       "engagement_rate": "0.04124246318078482",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-08-01",
@@ -7030,14 +7030,14 @@
       "comments": "83",
       "shares": "1115",
       "saves": "386",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.23103915977852857",
       "engagement_rate": "0.025099007075234506",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-08-01",
@@ -7064,14 +7064,14 @@
       "comments": "18",
       "shares": "35",
       "saves": "45",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "2.7226627641833714",
       "engagement_rate": "0.018514106796446925",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-08-01",
@@ -7098,14 +7098,14 @@
       "comments": "164",
       "shares": "5760",
       "saves": "1159",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.10468704853710319",
       "engagement_rate": "0.06816383104347863",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-08-01",
@@ -7132,14 +7132,14 @@
       "comments": "10",
       "shares": "70",
       "saves": "222",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.21981457419474595",
       "engagement_rate": "0.03254232651745328",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-08-01",
@@ -7166,14 +7166,14 @@
       "comments": "50",
       "shares": "782",
       "saves": "404",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "1.2139237048951474",
       "engagement_rate": "0.062334982246365814",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-08-01",
@@ -7200,14 +7200,14 @@
       "comments": "54",
       "shares": "1079",
       "saves": "858",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.3402147435461263",
       "engagement_rate": "0.0772650363576156",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-08-01",
@@ -7234,14 +7234,14 @@
       "comments": "89",
       "shares": "3700",
       "saves": "989",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.055543692519992645",
       "engagement_rate": "0.0345469424431572",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2025-08-01",
@@ -7268,14 +7268,14 @@
       "comments": "66",
       "shares": "1100",
       "saves": "576",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.40332135132818764",
       "engagement_rate": "0.08332114966751196",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-09-22",
@@ -7302,14 +7302,14 @@
       "comments": "16",
       "shares": "4",
       "saves": "38",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "1.3673288828118717",
       "engagement_rate": "0.0016086222150727902",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-09-22",
@@ -7336,14 +7336,14 @@
       "comments": "10",
       "shares": "11",
       "saves": "5",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.6692320562154928",
       "engagement_rate": "0.0034800066923205623",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-09-22",
@@ -7370,14 +7370,14 @@
       "comments": "25",
       "shares": "69",
       "saves": "7",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.9614768284084354",
       "engagement_rate": "0.006025254791359528",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-09-01",
@@ -7404,14 +7404,14 @@
       "comments": "6",
       "shares": "69",
       "saves": "12",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.11614941460695039",
       "engagement_rate": "0.001238927089140804",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-09-07",
@@ -7438,14 +7438,14 @@
       "comments": "48",
       "shares": "1010",
       "saves": "48",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.07490086438478302",
       "engagement_rate": "0.03283970782901285",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-09-10",
@@ -7472,14 +7472,14 @@
       "comments": "",
       "shares": "51",
       "saves": "835",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.051771803695126205",
       "engagement_rate": "0.00017602413256342909",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-09-14",
@@ -7506,14 +7506,14 @@
       "comments": "18",
       "shares": "83",
       "saves": "80",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.8776163938742376",
       "engagement_rate": "0.021797797182851377",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-09-03",
@@ -7540,14 +7540,14 @@
       "comments": "10",
       "shares": "69",
       "saves": "54",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.6360564500099384",
       "engagement_rate": "0.037053601007089376",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-09-04",
@@ -7574,14 +7574,14 @@
       "comments": "1",
       "shares": "15",
       "saves": "33",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "2.653927813163482",
       "engagement_rate": "0.010748407643312101",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-09-22",
@@ -7608,14 +7608,14 @@
       "comments": "21",
       "shares": "555",
       "saves": "107",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.37431803932211005",
       "engagement_rate": "0.02564078569356454",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-09-22",
@@ -7642,14 +7642,14 @@
       "comments": "5",
       "shares": "9",
       "saves": "6",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.403478884605039",
       "engagement_rate": "0.006926387519053169",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-09-23",
@@ -7676,14 +7676,14 @@
       "comments": "52",
       "shares": "871",
       "saves": "709",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.06677388645005218",
       "engagement_rate": "0.05784717174434378",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-09-18",
@@ -7710,14 +7710,14 @@
       "comments": "54",
       "shares": "2400",
       "saves": "1350",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.18385732671446958",
       "engagement_rate": "0.06304774161917019",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-09-01",
@@ -7744,14 +7744,14 @@
       "comments": "164",
       "shares": "3268",
       "saves": "514",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "2.9921972701954136",
       "engagement_rate": "0.005266267195543928",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-25",
@@ -7778,14 +7778,14 @@
       "comments": "12",
       "shares": "",
       "saves": "6",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "4.088678902416864",
       "engagement_rate": "0.020534254043249135",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-01",
@@ -7812,14 +7812,14 @@
       "comments": "19",
       "shares": "1000",
       "saves": "298",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.20762007187806888",
       "engagement_rate": "0.06494978708561629",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-01",
@@ -7846,14 +7846,14 @@
       "comments": "37",
       "shares": "23",
       "saves": "47",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.9937394415184339",
       "engagement_rate": "0.019204014707343734",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-26",
@@ -7880,14 +7880,14 @@
       "comments": "13",
       "shares": "34",
       "saves": "23",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "5.471207769115032",
       "engagement_rate": "0.024620434961017644",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-31",
@@ -7914,14 +7914,14 @@
       "comments": "10",
       "shares": "74",
       "saves": "69",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "1.6696206108242788",
       "engagement_rate": "0.028434923325884258",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-01",
@@ -7948,14 +7948,14 @@
       "comments": "1",
       "shares": "1",
       "saves": "3",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "3.0686612965093976",
       "engagement_rate": "0.01981843753995653",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": "Q9jTBBgTdR1XpkZXFXQ-yJv9DPmCTkOzuA4TYFj9NW2bSFia6vss2cnwg26opDEJuQ"
+      "": "Q9jTBBgTdR1XpkZXFXQ-yJv9DPmCTkOzuA4TYFj9NW2bSFia6vss2cnwg26opDEJuQ",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-01",
@@ -7982,14 +7982,14 @@
       "comments": "16",
       "shares": "227",
       "saves": "8",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.5266189418250637",
       "engagement_rate": "0.030741380729038096",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-11",
@@ -8016,14 +8016,14 @@
       "comments": "68",
       "shares": "614",
       "saves": "292",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.13209952378121678",
       "engagement_rate": "0.02649476115305271",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-24",
@@ -8050,14 +8050,14 @@
       "comments": "19",
       "shares": "62",
       "saves": "8",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "1.6494845360824741",
       "engagement_rate": "0.021278350515463916",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-01",
@@ -8084,14 +8084,14 @@
       "comments": "24",
       "shares": "18",
       "saves": "7",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "2.5869205298013247",
       "engagement_rate": "0.004346026490066225",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-23",
@@ -8118,14 +8118,14 @@
       "comments": "12",
       "shares": "438",
       "saves": "19",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "0.8886857607150112",
       "engagement_rate": "0.02084602884420069",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-01",
@@ -8152,14 +8152,14 @@
       "comments": "10",
       "shares": "126",
       "saves": "190",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "1.1353783906527393",
       "engagement_rate": "0.03384459766318484",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-02",
@@ -8186,14 +8186,14 @@
       "comments": "5",
       "shares": "",
       "saves": "7",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "1.2884273455819826",
       "engagement_rate": "0.03677171644290978",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-14",
@@ -8220,14 +8220,14 @@
       "comments": "7",
       "shares": "21",
       "saves": "19",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "1.7932716447887527",
       "engagement_rate": "0.017287138655763576",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-03",
@@ -8254,14 +8254,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": "Q9jTBBg-T2c0mhiVtx7qyqNQB1_BZg099gxFMsF6omNgTsISWgSHDDsxLXXdFRqrbQ"
+      "": "Q9jTBBg-T2c0mhiVtx7qyqNQB1_BZg099gxFMsF6omNgTsISWgSHDDsxLXXdFRqrbQ",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-08",
@@ -8288,14 +8288,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": "9jTBBlGw3ie_uBDPs2HlB8nrPpcMAZ2sSbWtQKXJtVDziWldFIzSzFCfzpJZrs7_A"
+      "": "9jTBBlGw3ie_uBDPs2HlB8nrPpcMAZ2sSbWtQKXJtVDziWldFIzSzFCfzpJZrs7_A",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-10",
@@ -8322,14 +8322,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": "Q9jTBBk8gRQUARH-qA9O7kmEy4MHfmEhokgDuzcr4CTimTe0xn1-gLybL3Fpaj45Vg"
+      "": "Q9jTBBk8gRQUARH-qA9O7kmEy4MHfmEhokgDuzcr4CTimTe0xn1-gLybL3Fpaj45Vg",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-31",
@@ -8356,14 +8356,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-17",
@@ -8390,14 +8390,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-04",
@@ -8424,14 +8424,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-05",
@@ -8458,14 +8458,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-06",
@@ -8492,14 +8492,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-09",
@@ -8526,14 +8526,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-15",
@@ -8560,14 +8560,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-12",
@@ -8594,14 +8594,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-18",
@@ -8628,14 +8628,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-19",
@@ -8662,14 +8662,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-20",
@@ -8696,14 +8696,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-21",
@@ -8730,14 +8730,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-30",
@@ -8764,14 +8764,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-31",
@@ -8798,14 +8798,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-31",
@@ -8832,14 +8832,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-31",
@@ -8866,14 +8866,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-31",
@@ -8900,14 +8900,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-31",
@@ -8934,14 +8934,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-31",
@@ -8968,14 +8968,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-31",
@@ -9002,14 +9002,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-31",
@@ -9036,14 +9036,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-31",
@@ -9070,14 +9070,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-31",
@@ -9104,14 +9104,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-31",
@@ -9138,14 +9138,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-31",
@@ -9172,14 +9172,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-31",
@@ -9206,14 +9206,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-31",
@@ -9240,14 +9240,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-31",
@@ -9274,14 +9274,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-31",
@@ -9308,14 +9308,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-31",
@@ -9342,14 +9342,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-31",
@@ -9376,14 +9376,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-31",
@@ -9410,14 +9410,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-31",
@@ -9444,14 +9444,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-31",
@@ -9478,14 +9478,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-31",
@@ -9512,14 +9512,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-31",
@@ -9546,14 +9546,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-31",
@@ -9580,14 +9580,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-31",
@@ -9614,14 +9614,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-31",
@@ -9648,14 +9648,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-31",
@@ -9682,14 +9682,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-31",
@@ -9716,14 +9716,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-31",
@@ -9750,14 +9750,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-31",
@@ -9784,14 +9784,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-31",
@@ -9818,14 +9818,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-31",
@@ -9852,14 +9852,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-31",
@@ -9886,14 +9886,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-31",
@@ -9920,14 +9920,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-31",
@@ -9954,14 +9954,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-31",
@@ -9988,14 +9988,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-31",
@@ -10022,14 +10022,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-31",
@@ -10056,14 +10056,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-31",
@@ -10090,14 +10090,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-31",
@@ -10124,14 +10124,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-31",
@@ -10158,14 +10158,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-31",
@@ -10192,14 +10192,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-31",
@@ -10226,14 +10226,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-31",
@@ -10260,14 +10260,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-31",
@@ -10294,14 +10294,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-31",
@@ -10328,14 +10328,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-31",
@@ -10362,14 +10362,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-31",
@@ -10396,14 +10396,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-31",
@@ -10430,14 +10430,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-31",
@@ -10464,14 +10464,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-31",
@@ -10498,14 +10498,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-31",
@@ -10532,14 +10532,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-31",
@@ -10566,14 +10566,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     },
     {
       "live_month": "2026-10-31",
@@ -10600,14 +10600,14 @@
       "comments": "",
       "shares": "",
       "saves": "",
-      "performance_cuts": "",
-      "performance_vids": "",
       "actual_cpv_as_on_24102026": "",
       "engagement_rate": "",
       "insights": "",
       "insights_link": "",
       "performance_cut": "",
-      "": ""
+      "": "",
+      "performance_cuts": "",
+      "performance_vids": ""
     }
   ]
 }
