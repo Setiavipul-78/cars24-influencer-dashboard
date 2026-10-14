@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-10-14T13:17:54.191Z",
+  "exportedAt": "2026-10-14T13:18:06.152Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -10107,10 +10107,10 @@
       "link": "https://www.instagram.com/bangalore.nexa?igsh=ZDE4MTlpZGliN3N4",
       "region": "Kannada",
       "followers": "103000",
-      "avg_views": "",
+      "avg_views": "50000",
       "final_cost": "10000",
       "payment_agency": "Flutch",
-      "avg_cpv": "#DIV/0!",
+      "avg_cpv": "0.2",
       "live_status": "",
       "content_bucket_new": "",
       "business": "Buy",
