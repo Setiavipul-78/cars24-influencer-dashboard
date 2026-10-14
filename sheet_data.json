@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-10-14T08:49:35.085Z",
+  "exportedAt": "2026-10-14T08:49:39.404Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -9337,7 +9337,7 @@
       "invoice_raised": "false",
       "video_live_link": "",
       "live_date": "",
-      "views": "15,000/-",
+      "views": "15000",
       "likes": "",
       "comments": "",
       "shares": "",
