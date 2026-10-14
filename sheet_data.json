@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-10-14T09:03:03.369Z",
+  "exportedAt": "2026-10-14T09:10:39.714Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -10210,7 +10210,7 @@
       "region": "Hindi",
       "followers": "",
       "avg_views": "",
-      "final_cost": "",
+      "final_cost": "11000",
       "payment_agency": "",
       "avg_cpv": "",
       "live_status": "",
@@ -10237,14 +10237,14 @@
     },
     {
       "live_month": "2026-10-01",
-      "agency_name": "",
+      "agency_name": "Self",
       "poc": "Mohit",
       "name": "Explorish The World",
       "link": "https://www.instagram.com/explorishtheworld?",
       "region": "Hindi",
       "followers": "",
       "avg_views": "",
-      "final_cost": "",
+      "final_cost": "9000",
       "payment_agency": "",
       "avg_cpv": "",
       "live_status": "",
