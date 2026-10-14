@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-10-14T13:19:21.049Z",
+  "exportedAt": "2026-10-14T13:19:24.164Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -10209,10 +10209,10 @@
       "link": "https://www.instagram.com/bangalore.insider?",
       "region": "Kannada",
       "followers": "120000",
-      "avg_views": "",
+      "avg_views": "5000",
       "final_cost": "9000",
       "payment_agency": "Flutch",
-      "avg_cpv": "#DIV/0!",
+      "avg_cpv": "1.8",
       "live_status": "",
       "content_bucket_new": "",
       "business": "Buy",
