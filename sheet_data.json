@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-10-14T13:17:08.969Z",
+  "exportedAt": "2026-10-14T13:17:15.004Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -10311,10 +10311,10 @@
       "link": "https://www.instagram.com/explorishtheworld?",
       "region": "Hindi",
       "followers": "25000",
-      "avg_views": "",
+      "avg_views": "15000",
       "final_cost": "9000",
       "payment_agency": "Flutch",
-      "avg_cpv": "#DIV/0!",
+      "avg_cpv": "0.6",
       "live_status": "",
       "content_bucket_new": "",
       "business": "Buy",
