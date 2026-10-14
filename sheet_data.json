@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-10-14T12:38:58.597Z",
+  "exportedAt": "2026-10-14T12:49:48.232Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -10317,7 +10317,7 @@
       "avg_cpv": "0.23927905531385954",
       "live_status": "Brief Shared",
       "content_bucket_new": "",
-      "business": "Buy",
+      "business": "Sell",
       "po_status": "false",
       "payment_status": "false",
       "invoice_raised": "false",
