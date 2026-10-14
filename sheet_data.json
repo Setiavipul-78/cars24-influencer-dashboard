@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-10-14T13:18:46.024Z",
+  "exportedAt": "2026-10-14T13:19:02.001Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -10141,10 +10141,10 @@
       "link": "https://www.instagram.com/bangalore.nexus?",
       "region": "Kannada",
       "followers": "156000",
-      "avg_views": "",
+      "avg_views": "56000",
       "final_cost": "11000",
       "payment_agency": "Flutch",
-      "avg_cpv": "#DIV/0!",
+      "avg_cpv": "0.19642857142857142",
       "live_status": "",
       "content_bucket_new": "",
       "business": "Buy",
