@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-10-14T13:17:15.004Z",
+  "exportedAt": "2026-10-14T13:17:42.276Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -10276,11 +10276,11 @@
       "name": "Jaipur Blogger",
       "link": "https://instagram.com/jaipur_blogger?",
       "region": "Hindi",
-      "followers": "",
-      "avg_views": "",
+      "followers": "37000",
+      "avg_views": "38000",
       "final_cost": "11000",
       "payment_agency": "Flutch",
-      "avg_cpv": "#DIV/0!",
+      "avg_cpv": "0.2894736842105263",
       "live_status": "",
       "content_bucket_new": "",
       "business": "Buy",
