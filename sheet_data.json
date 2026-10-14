@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-10-14T13:14:49.011Z",
+  "exportedAt": "2026-10-14T13:14:58.949Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -9937,10 +9937,10 @@
       "link": "https://www.instagram.com/bangalore.saga?igsh=YmMxMjN6Znd4ZDhj",
       "region": "Kannada",
       "followers": "216000",
-      "avg_views": "",
+      "avg_views": "40000",
       "final_cost": "11000",
       "payment_agency": "Flutch",
-      "avg_cpv": "#DIV/0!",
+      "avg_cpv": "0.275",
       "live_status": "",
       "content_bucket_new": "",
       "business": "Buy",
