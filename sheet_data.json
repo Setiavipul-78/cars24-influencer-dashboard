@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-10-14T09:11:18.211Z",
+  "exportedAt": "2026-10-14T09:18:30.718Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -7728,9 +7728,9 @@
       "region": "Kannada",
       "followers": "1800000",
       "avg_views": "500000",
-      "final_cost": "",
+      "final_cost": "1950000",
       "payment_agency": "DANISH SAIT",
-      "avg_cpv": "0",
+      "avg_cpv": "3.9",
       "live_status": "Live",
       "content_bucket_new": "",
       "business": "Sell",
@@ -7744,7 +7744,7 @@
       "comments": "164",
       "shares": "3268",
       "saves": "514",
-      "actual_cpv_as_on_24102026": "0",
+      "actual_cpv_as_on_24102026": "2.9921972701954136",
       "engagement_rate": "0.005266267195543928",
       "insights": "",
       "insights_link": "",
