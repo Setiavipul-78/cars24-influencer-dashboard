@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-10-14T13:19:24.164Z",
+  "exportedAt": "2026-10-14T13:19:37.348Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -9057,7 +9057,7 @@
       "final_cost": "60000",
       "payment_agency": "Socio Implus",
       "avg_cpv": "0.046153846153846156",
-      "live_status": "",
+      "live_status": "Shoot Done",
       "content_bucket_new": "",
       "business": "Buy",
       "po_status": "false",
