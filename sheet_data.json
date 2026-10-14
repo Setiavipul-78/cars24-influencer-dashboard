@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-10-14T13:14:06.292Z",
+  "exportedAt": "2026-10-14T13:14:14.928Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -9971,10 +9971,10 @@
       "link": "https://www.instagram.com/bengaluru.ig?igsh=MWtvM2x6NXMzbGgybg==",
       "region": "Kannada",
       "followers": "211000",
-      "avg_views": "",
+      "avg_views": "25000",
       "final_cost": "11000",
       "payment_agency": "Flutch",
-      "avg_cpv": "#DIV/0!",
+      "avg_cpv": "0.44",
       "live_status": "",
       "content_bucket_new": "",
       "business": "Buy",
