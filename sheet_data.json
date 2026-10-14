@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-10-14T13:15:12.058Z",
+  "exportedAt": "2026-10-14T13:15:20.468Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -10175,10 +10175,10 @@
       "link": "https://www.instagram.com/bangalore.circle?",
       "region": "Kannada",
       "followers": "121000",
-      "avg_views": "",
+      "avg_views": "5000",
       "final_cost": "10000",
       "payment_agency": "Flutch",
-      "avg_cpv": "#DIV/0!",
+      "avg_cpv": "2",
       "live_status": "",
       "content_bucket_new": "",
       "business": "Buy",
