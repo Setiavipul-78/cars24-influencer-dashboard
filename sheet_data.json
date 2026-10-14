@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-10-14T13:20:16.724Z",
+  "exportedAt": "2026-10-14T13:49:28.821Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -10825,7 +10825,7 @@
       "final_cost": "72000",
       "payment_agency": "Outbrand",
       "avg_cpv": "0.6545454545454545",
-      "live_status": "Brief Shared",
+      "live_status": "Live",
       "content_bucket_new": "",
       "business": "Buy",
       "po_status": "false",
