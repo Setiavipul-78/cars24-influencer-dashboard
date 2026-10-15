@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-10-15T02:06:12.821Z",
+  "exportedAt": "2026-10-15T07:18:30.563Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -8513,7 +8513,7 @@
       "final_cost": "35000",
       "payment_agency": "Outbrand",
       "avg_cpv": "0.813953488372093",
-      "live_status": "Brief Shared",
+      "live_status": "Live",
       "content_bucket_new": "",
       "business": "Buy",
       "po_status": "false",
@@ -9947,7 +9947,7 @@
       "po_status": "false",
       "payment_status": "false",
       "invoice_raised": "false",
-      "video_live_link": "",
+      "video_live_link": "https://www.instagram.com/reel/DegXh0CRCcY/",
       "live_date": "",
       "views": "",
       "likes": "",
