@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-10-16T06:06:55.903Z",
+  "exportedAt": "2026-10-16T06:07:00.406Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -9872,7 +9872,7 @@
       "avg_views": "",
       "final_cost": "15000",
       "payment_agency": "Socio Implus",
-      "avg_cpv": "#DIV/0!",
+      "avg_cpv": "",
       "live_status": "Concept Closed",
       "content_bucket_new": "",
       "business": "Buy",
