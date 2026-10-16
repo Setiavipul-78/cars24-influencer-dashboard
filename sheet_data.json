@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-10-16T04:52:10.628Z",
+  "exportedAt": "2026-10-16T04:52:13.742Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -8847,7 +8847,7 @@
       "poc": "Mohit",
       "name": "super pune",
       "link": "https://www.instagram.com/super_pune_?stkn=MXhrZjN1YnczdWxnMQ==",
-      "region": "",
+      "region": "Hindi",
       "followers": "34500",
       "avg_views": "100000",
       "final_cost": "10000",
@@ -8855,7 +8855,7 @@
       "avg_cpv": "0.1",
       "live_status": "Concept Closed",
       "content_bucket_new": "",
-      "business": "",
+      "business": "Buy",
       "po_status": "false",
       "payment_status": "false",
       "invoice_raised": "false",
