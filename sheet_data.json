@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-10-20T06:47:44.667Z",
+  "exportedAt": "2026-10-20T06:47:50.371Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -8555,8 +8555,8 @@
       "invoice_raised": "false",
       "video_live_link": "https://www.instagram.com/reel/DeeaEsWPt2u/",
       "live_date": "2026-10-14",
-      "views": "117062",
-      "likes": "",
+      "views": "",
+      "likes": "117062",
       "comments": "",
       "shares": "",
       "saves": "",
