@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-10-22T08:17:59.304Z",
+  "exportedAt": "2026-10-22T08:19:50.048Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -11244,10 +11244,10 @@
       "link": "https://www.instagram.com/ashik_gowda_kannada/",
       "region": "Kannada",
       "followers": "80200",
-      "avg_views": "30000",
+      "avg_views": "",
       "final_cost": "35000",
       "payment_agency": "Greenroom",
-      "avg_cpv": "1.1666666666666667",
+      "avg_cpv": "#DIV/0!",
       "live_status": "Brief Shared",
       "content_bucket_new": "",
       "business": "Buy",
@@ -13518,7 +13518,7 @@
       "name": "Sharjeel Ali",
       "link": "https://www.instagram.com/iamsharjeelali/",
       "region": "Kannada",
-      "followers": "",
+      "followers": "133000",
       "avg_views": "",
       "final_cost": "",
       "payment_agency": "",
@@ -13553,7 +13553,7 @@
       "name": "Nanda Kishore Reddy",
       "link": "https://www.instagram.com/nk.business.talks/",
       "region": "Kannada",
-      "followers": "",
+      "followers": "84000",
       "avg_views": "",
       "final_cost": "",
       "payment_agency": "",
