@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-10-22T09:42:31.032Z",
+  "exportedAt": "2026-10-22T09:45:54.373Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -8261,7 +8261,7 @@
       "content_bucket_new": "",
       "business": "Sell",
       "po_status": "false",
-      "payment_status": "false",
+      "payment_status": "true",
       "invoice_raised": "false",
       "ad_codes": "",
       "video_live_link": "https://www.instagram.com/reel/Dd_fwjqKtAa/?",
