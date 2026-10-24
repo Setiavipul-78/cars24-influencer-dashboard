@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-10-24T19:10:09.796Z",
+  "exportedAt": "2026-10-24T19:10:12.941Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -1349,8 +1349,8 @@
       "content_bucket_new": "",
       "business": "Buy + Sell",
       "po_status": "true",
-      "payment_status": "false",
-      "invoice_raised": "false",
+      "payment_status": "true",
+      "invoice_raised": "true",
       "ad_codes": "",
       "video_live_link": "",
       "live_date": "",
