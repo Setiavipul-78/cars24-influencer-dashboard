@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-10-24T19:21:52.037Z",
+  "exportedAt": "2026-10-24T19:22:09.912Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -9516,7 +9516,7 @@
       "avg_views": "452808",
       "final_cost": "50000",
       "payment_agency": "Creator Info",
-      "avg_cpv": "",
+      "avg_cpv": "0.11042207734845674",
       "live_status": "Live",
       "content_bucket_new": "",
       "business": "Buy + Sell",
