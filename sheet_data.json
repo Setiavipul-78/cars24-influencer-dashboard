@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-10-24T19:14:16.144Z",
+  "exportedAt": "2026-10-24T19:14:45.225Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -1342,7 +1342,7 @@
       "": "PAN INDIA",
       "followers": "440K",
       "avg_views": "",
-      "final_cost": "",
+      "final_cost": "50000",
       "payment_agency": "",
       "avg_cpv": "",
       "live_status": "",
