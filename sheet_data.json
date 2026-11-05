@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-11-05T09:37:34.448Z",
+  "exportedAt": "2026-11-05T09:37:39.184Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -11972,8 +11972,8 @@
       "payment_status": "false",
       "invoice_raised": "false",
       "video_live_link": "https://www.instagram.com/reel/DfFHgg4TFYf/?",
-      "ad_codes": "2026-10-30",
-      "live_date": "",
+      "ad_codes": "",
+      "live_date": "2026-10-30",
       "views": "50968",
       "likes": "12",
       "comments": "41",
