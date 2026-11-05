@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-11-05T07:09:19.379Z",
+  "exportedAt": "2026-11-05T07:09:34.663Z",
   "rows": [
     {
       "live_month": "2025-06-01",
@@ -12441,13 +12441,13 @@
       "invoice_raised": "false",
       "ad_codes": "",
       "video_live_link": "https://www.instagram.com/reel/DewkieOM0lF/",
-      "live_date": "",
-      "views": "",
-      "likes": "",
-      "comments": "",
-      "shares": "",
-      "saves": "",
-      "cpv": "",
+      "live_date": "11800",
+      "views": "288",
+      "likes": "1",
+      "comments": "3",
+      "shares": "3",
+      "saves": "0.18666666666666668",
+      "cpv": "0.1541",
       "engagement_rate": "",
       "bc": "",
       "cpbc": "",
